@@ -34,6 +34,6 @@ class User extends Authenticatable
 
     public function rol()
     {
-        return $this->hasOne(Rol::class, 'id', 'rol_id');
+        return $this->belongsTo(Rol::class, 'id', 'rol_id');
     }
 }

@@ -13,20 +13,20 @@ class Acompanante extends Model
 
     protected $primaryKey = 'id';
 
-    public $timestamps = true;
+    public $timestamps = false;
 
     protected $fillable = [
         'nombre',
         'tipo_documento',
         'nacionalidad',
         'fecha_nacimiento',
-        'ciudad',
+        'ciudad'
     ];
 
     protected $guarded = [];
 
-    public function hospedajedetalle()
-    {
-        return $this->belongsTo(HospedajeDetalle::class, 'acompanante_id', 'id');
-    }
+    protected $casts = [
+        'id' => 'integer',
+        'fecha_nacimiento' => 'date',
+    ];
 }

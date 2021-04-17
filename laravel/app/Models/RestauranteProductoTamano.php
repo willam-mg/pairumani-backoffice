@@ -5,11 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class HabitacionCategoria extends Model
+class RestauranteProductoTamano extends Model
 {
     use HasFactory;
 
-    protected $table = 'habitacion_categorias';
+    protected $table = 'restaurante_producto_tamanho';
 
     protected $primaryKey = 'id';
 
@@ -17,13 +17,20 @@ class HabitacionCategoria extends Model
 
     protected $fillable = [
         'nombre',
-        'descripcion',
-        'foto',
+        'precio',
+        'restaurante_producto_id',
     ];
 
     protected $guarded = [];
 
     protected $casts = [
         'id' => 'integer',
+        'restaurante_producto_id' => 'integer',
     ];
+
+
+    public function restauranteProducto()
+    {
+        return $this->belongsTo(\App\Models\RestauranteProducto::class, 'restaurante_producto_id','id');
+    }
 }
