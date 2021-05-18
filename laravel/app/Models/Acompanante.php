@@ -18,6 +18,7 @@ class Acompanante extends Model
     protected $fillable = [
         'nombre',
         'tipo_documento',
+        'num_documento',
         'nacionalidad',
         'fecha_nacimiento',
         'ciudad'
@@ -27,6 +28,5 @@ class Acompanante extends Model
 
     protected $casts = [
         'id' => 'integer',
-        'fecha_nacimiento' => 'date',
     ];
 }

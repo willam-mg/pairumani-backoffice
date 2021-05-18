@@ -9,6 +9,8 @@ class GaleriaEvento extends Model
 {
     use HasFactory;
 
+    const PATH = '/imagenes/eventos/galeria/';
+
     protected $table = 'galeria_evento';
 
     protected $primaryKey = 'id';
@@ -27,9 +29,30 @@ class GaleriaEvento extends Model
         'evento_id' => 'integer',
     ];
 
-
     public function evento()
     {
-        return $this->belongsTo(\App\Models\Evento::class,'evento_id','id');
+        return $this->belongsTo(\App\Models\Evento::class);
+    }
+
+    public function getFotoUrlAttribute()
+    {
+        if ($this->foto) {
+            return urlpath(self::PATH) . $this->foto;
+        }
+        return null;
+    }
+
+    public static function Name($model, $galeria)
+    {
+        return 'foto_' . $model . '_' . $galeria;
+    }
+
+    public static function Ruta()
+    {
+        return public_path() . self::PATH;
+    }
+    public static function Urldelete()
+    {
+        return urlpath(self::PATH);
     }
 }

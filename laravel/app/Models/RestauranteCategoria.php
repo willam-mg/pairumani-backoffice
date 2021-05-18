@@ -9,7 +9,9 @@ class RestauranteCategoria extends Model
 {
     use HasFactory;
 
-    protected $table = 'retaurante_categorias';
+    const PATH = '/imagenes/restaurantes/categorias/';
+
+    protected $table = 'restaurante_categorias';
 
     protected $primaryKey = 'id';
 
@@ -26,4 +28,27 @@ class RestauranteCategoria extends Model
     protected $casts = [
         'id' => 'integer',
     ];
+
+    public function getFotoUrlAttribute()
+    {
+        if ($this->foto) {
+            return urlpath(self::PATH) . $this->foto;
+        }
+        return null;
+    }
+
+    ///FOTO
+    public static function Namefoto()
+    {
+        return 'restaurantecategoria_' . date('ymdHis');
+    }
+
+    public static function Rutafoto()
+    {
+        return public_path() . self::PATH;
+    }
+    public static function Urldeletefoto()
+    {
+        return urlpath(self::PATH);
+    }
 }

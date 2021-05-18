@@ -31,8 +31,8 @@ class RestauranteProductoOpcion extends Model
     ];
 
 
-    public function restauranteProducto()
+    public function producto()
     {
-        return $this->belongsTo(\App\Models\RestauranteProducto::class, 'restaurante_producto_id','id');
+        return $this->belongsTo(\App\Models\RestauranteProducto::class,'restaurante_producto_id','id');
     }
 }

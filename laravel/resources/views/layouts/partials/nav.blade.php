@@ -1,121 +1,167 @@
+<ul class="nav nav-mobile-menu">
+    <li class="nav-item">
+        <a class="nav-link" data-toggle="collapse" href="#mobile">
+            <i class="material-icons">person</i>
+            <p> {{auth()->user()->nombre}} {{auth()->user()->apellido}}
+                <b class="caret"></b>
+            </p>
+        </a>
+        <div class="collapse" id="mobile">
+            <ul class="nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                        <i class="material-icons">exit_to_app</i>
+                        <span class="sidebar-normal"> Salir </span>
+                    </a>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                        @csrf
+                    </form>
+                </li>
+            </ul>
+        </div>
+    </li>
+</ul>
 <ul class="nav">
-    @if(Auth::user()->rol_id == null)
+    {{-- @if(Auth::user()->rol_id == null)
         
-    @else 
-        @if(kvfj(Auth::user()->rol->permisos,'roles_index'))
-            <!-- SECCION ROLES -->
-            <li class="nav-item {{ setActiveRoute(['roles_index','roles_create','roles_edit','roles_permisos']) }}">
-                <a href="{{ route('roles_index') }}" class="nav-link">
-                    <i class="material-icons">privacy_tip</i>
-                    <p>
-                        Roles
-                    </p>
-                </a>
-            </li>
-        @endif
-        @if(kvfj(Auth::user()->rol->permisos,'usuarios_index'))
-            <!-- SECCION USUARIOS -->
-            <li class="nav-item {{ setActiveRoute(['usuarios_index','usuarios_create','usuarios_edit']) }}">
-                <a href="{{ route('usuarios_index') }}" class="nav-link">
-                    <i class="material-icons">people_alt</i>
-                    <p>
-                        Usuarios
-                    </p>
-                </a>
-            </li>
-        @endif
-        @if(kvfj(Auth::user()->rol->permisos,'categorias_index'))
-            <!-- SECCION CATEGORIAS -->
-            <li class="nav-item {{ setActiveRoute(['categorias_index',
-                                                   'categorias_create',
-                                                   'categorias_edit',
-                                                   'subcategorias_index',
-                                                   'subcategorias_create',
-                                                   'subcategorias_edit']) }}">
-                <a href="{{ route('categorias_index') }}" class="nav-link">
+    @else  --}}
+        <li class="nav-item {{ setActiveRoute(['usuarios_index','usuarios_create','usuarios_edit','usuarios_show','roles_index','roles_create','roles_edit','roles_permisos','hotel_galeria']) }}">
+            <a class="nav-link" data-toggle="collapse" href="#sistema" aria-expanded="{{ setActiveRouteExpanded(['usuarios_index','usuarios_create','usuarios_edit','usuarios_show','roles_index','roles_create','roles_edit','roles_permisos','hotel_galeria']) }}">
+                <i class="material-icons">face</i>
+                <p> Sistema
+                    <b class="caret"></b>
+                </p>
+            </a>
+            <div class="collapse {{ setActiveRouteShow(['usuarios_index','usuarios_create','usuarios_edit','usuarios_show','roles_index','roles_create','roles_edit','roles_permisos','hotel_galeria']) }}" id="sistema">
+                <ul class="nav">
+                    {{-- @if(kvfj(Auth::user()->rol->permisos,'usuarios_index')) --}}
+                        <!-- SECCION USUARIOS -->
+                        <li class="nav-item {{ setActiveRoute(['usuarios_index','usuarios_create','usuarios_edit','usuarios_show']) }}">
+                            <a href="{{ route('usuarios_index') }}" class="nav-link">
+                                <i class="material-icons">people_alt</i>
+                                <span class="sidebar-normal"> Usuarios </span>
+                            </a>
+                        </li>
+                    {{-- @endif --}}
+                    {{-- @if(kvfj(Auth::user()->rol->permisos,'roles_index')) --}}
+                        <!-- SECCION ROLES -->
+                        <li class="nav-item {{ setActiveRoute(['roles_index','roles_create','roles_edit','roles_permisos']) }}">
+                            <a href="{{ route('roles_index') }}" class="nav-link">
+                                <i class="material-icons">privacy_tip</i>
+                                <span class="sidebar-normal"> Roles </span>
+                            </a>
+                        </li>
+                    {{-- @endif  --}}
+                    {{-- @if(kvfj(Auth::user()->rol->permisos,'hotel_galeria')) --}}
+                        <!-- SECCION HOTEL -->
+                        <li class="nav-item {{ setActiveRoute(['hotel_galeria']) }}">
+                            <a href="{{ route('hotel_galeria') }}" class="nav-link">
+                                <i class="material-icons">domain</i>
+                                <span class="sidebar-normal"> Hotel </span>
+                            </a>
+                        </li>
+                    {{-- @endif  --}}
+                </ul>
+            </div>
+        </li>
+        {{-- @if(kvfj(Auth::user()->rol->permisos,'habitacioncategorias_index')) --}}
+            <!-- SECCION acompanantes -->
+            <li class="nav-item {{ setActiveRoute(['habitacioncategorias_index','habitacioncategorias_create','habitacioncategorias_edit','habitacioncategorias_show','habitaciones_index','habitaciones_create','habitaciones_edit','habitaciones_show','habitaciones_galeria','reservas_index','reservas_create','reservas_edit','reservas_show','reservas_hospedaje']) }}">
+                <a href="{{ route('habitacioncategorias_index') }}" class="nav-link">
                     <i class="material-icons">assignment</i>
                     <p>
-                        Categorias
+                        Habitacion Categorias
                     </p>
                 </a>
             </li>
-        @endif
-        @if(kvfj(Auth::user()->rol->permisos,'usuariosapp_index'))
-            <!-- SECCION USUARIOSAPP -->
-            <li class="nav-item {{ setActiveRoute(['usuariosapp_index']) }}">
-                <a href="{{ route('usuariosapp_index') }}" class="nav-link">
+        {{-- @endif --}} 
+        {{-- @if(kvfj(Auth::user()->rol->permisos,'restaurantecategorias_index')) --}}
+            <!-- SECCION acompanantes -->
+            <li class="nav-item {{ setActiveRoute(['restaurantecategorias_index','restaurantecategorias_create','restaurantecategorias_edit','restaurantecategorias_show','productos_index','productos_create','productos_edit','productos_show','productos_galeria','opciones_index','opciones_create','opciones_edit','opciones_show','tamanos_index','tamanos_create','tamanos_edit','tamanos_show']) }}">
+                <a href="{{ route('restaurantecategorias_index') }}" class="nav-link">
+                    <i class="material-icons">assignment</i>
+                    <p>
+                        Restaurante Categorias
+                    </p>
+                </a>
+            </li>
+        {{-- @endif --}}               
+        {{-- @if(kvfj(Auth::user()->rol->permisos,'acompanantes_index')) --}}
+            <!-- SECCION Acompañantes -->
+            <li class="nav-item {{ setActiveRoute(['acompanantes_index','acompanantes_create','acompanantes_edit','acompanantes_show']) }}">
+                <a href="{{ route('acompanantes_index') }}" class="nav-link">
                     <i class="material-icons">people_alt</i>
                     <p>
-                        Usuarios App
+                        Acompañantes
                     </p>
                 </a>
             </li>
-        @endif
-        @if(kvfj(Auth::user()->rol->permisos,'departamentos_index'))
-            <!-- SECCION Departamentos -->
-            <li class="nav-item {{ setActiveRoute(['departamentos_index','departamentos_create','departamentos_edit','departamentos_show']) }}">
-                <a href="{{ route('departamentos_index') }}" class="nav-link">
-                    <i class="material-icons">location_city</i>
+        {{-- @endif --}}
+        {{-- @if(kvfj(Auth::user()->rol->permisos,'clientes_index')) --}}
+            <!-- SECCION acompanantes -->
+            <li class="nav-item {{ setActiveRoute(['clientes_index','clientes_create','clientes_edit','clientes_show']) }}">
+                <a href="{{ route('clientes_index') }}" class="nav-link">
+                    <i class="material-icons">people_alt</i>
                     <p>
-                        Departamentos
+                        Clientes
                     </p>
                 </a>
             </li>
-        @endif
-        @if(kvfj(Auth::user()->rol->permisos,'comercios_index'))
-            <!-- SECCION COMERCIOS -->
-            <li class="nav-item {{ setActiveRoute(['comercios_index',
-                                                    'comercios_create',
-                                                    'comercios_edit',
-                                                    'celulares_index',
-                                                    'celulares_create',
-                                                    'celulares_edit',
-                                                    'celulares_show',
-                                                    'celulares_create',
-                                                    'horarios_index',
-                                                    'horarios_create',
-                                                    'horarios_edit',
-                                                    'horarios_create',
-                                                    'direcciones_index',
-                                                    'direcciones_create',
-                                                    'direcciones_edit',
-                                                    'direcciones_create',
-                                                    'subcategoriacomercios_index',
-                                                    'subcategoriacomercios_create',
-                                                    'subcategoriacomercios_edit',
-                                                    'subcategoriacomercios_create',
-                                                    'platos_index',
-                                                    'platos_create',
-                                                    'platos_edit',
-                                                    'platos_show',
-                                                    'platos_create',
-                                                    'galerias_create',
-                                                    'menus_index',
-                                                    'menus_create',
-                                                    'menus_edit',
-                                                    'menus_show',
-                                                    'menus_create',
-                                                    'pagoscomercio_index',
-                                                    'pagoscomercio_create',
-                                                    'pagoscomercio_create']) }}">
-                <a href="{{ route('comercios_index') }}" class="nav-link">
-                    <i class="material-icons">dining</i>
+        {{-- @endif --}}        
+        {{-- @if(kvfj(Auth::user()->rol->permisos,'hospedajes_index')) --}}
+            <!-- SECCION acompanantes -->
+            <li class="nav-item {{ setActiveRoute(['hospedajes_index','hospedajes_create','hospedajes_edit','hospedajes_show','hospedajes_transporte']) }}">
+                <a href="{{ route('hospedajes_index') }}" class="nav-link">
+                    <i class="material-icons">hotel</i>
                     <p>
-                        Comercios
+                        Hospedajes
                     </p>
                 </a>
             </li>
-        @endif
-        @if(kvfj(Auth::user()->rol->permisos,'pagos_index'))
-            <!-- SECCION PAGOS -->
-            <li class="nav-item {{ setActiveRoute(['pagos_index','pagos_create','pagos_edit','pagos_show']) }}">
-                <a href="{{ route('pagos_index') }}" class="nav-link">
-                    <i class="material-icons">attach_money</i>
+        {{-- @endif --}}        
+        {{-- @if(kvfj(Auth::user()->rol->permisos,'eventos_index')) --}}
+            <!-- SECCION acompanantes -->
+            <li class="nav-item {{ setActiveRoute(['eventos_index','eventos_create','eventos_edit','eventos_show','eventos_galeria']) }}">
+                <a href="{{ route('eventos_index') }}" class="nav-link">
+                    <i class="material-icons">event</i>
                     <p>
-                        Pagos
+                        Eventos
                     </p>
                 </a>
             </li>
-        @endif
-    @endif
+        {{-- @endif --}}                
+        {{-- @if(kvfj(Auth::user()->rol->permisos,'promociones_index')) --}}
+            <!-- SECCION acompanantes -->
+            <li class="nav-item {{ setActiveRoute(['promociones_index','promociones_create','promociones_edit','promociones_show','promocionreservas_index','promocionreservas_create','promocionreservas_edit','promocionreservas_show']) }}">
+                <a href="{{ route('promociones_index') }}" class="nav-link">
+                    <i class="material-icons">campaign</i>
+                    <p>
+                        Promociones
+                    </p>
+                </a>
+            </li>
+        {{-- @endif --}}        
+        {{-- @if(kvfj(Auth::user()->rol->permisos,'lugaresturisticos_index')) --}}
+            <!-- SECCION acompanantes -->
+            <li class="nav-item {{ setActiveRoute(['lugaresturisticos_index','lugaresturisticos_create','lugaresturisticos_edit','lugaresturisticos_show','lugaresturisticos_galeria']) }}">
+                <a href="{{ route('lugaresturisticos_index') }}" class="nav-link">
+                    <i class="material-icons">hiking</i>
+                    <p>
+                        Lugares Turisticos
+                    </p>
+                </a>
+            </li>
+        {{-- @endif --}}        
+        {{-- @if(kvfj(Auth::user()->rol->permisos,'transportes_index')) --}}
+            <!-- SECCION acompanantes -->
+            <li class="nav-item {{ setActiveRoute(['transportes_index','transportes_create','transportes_edit','transportes_show']) }}">
+                <a href="{{ route('transportes_index') }}" class="nav-link">
+                    <i class="material-icons">directions_car</i>
+                    <p>
+                        Transportes
+                    </p>
+                </a>
+            </li>
+        {{-- @endif --}}        
+    {{-- @endif --}}
 </ul>

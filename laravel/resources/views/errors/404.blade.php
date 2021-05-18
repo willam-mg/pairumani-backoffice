@@ -1,20 +1,12 @@
 @extends ('layouts.admin')
 @section ('contenido')
-    <div class="box-admin">
-        <div class="col-md-4 col-md-offset-4">
-            <div class="panel panel-warning">
-                <div class="panel-heading">
-                    <div class="panel-tittle">
-                        <h2>Sistema Administrativo</h2>
-                    </div>
-                    <div class="panel-body">
-                        <img class="img-responsive center-block" src="{{ asset('imagenes/error.png')}}">
-                        <hr>
-                        <strong class="text-center">
-                            <p class="text-center"><h3>Objeto no localizado</h3></p>
-                        </strong>
-                    </div>
-                </div>
+    <div class=".col-md-6 offset-md-3 text-center">
+        <div class="card" style="width: 20rem;">
+            <img class="card-img-top" src="{{ asset('imagenes/error.png')}}" alt="Card image cap">
+            <div class="card-body">
+                <h1 class="title">404</h1>
+                <h2>Página no encontrada</h2>
+                <h4>Ooooups! Parece que te perdiste.</h4>
             </div>
         </div>
     </div>

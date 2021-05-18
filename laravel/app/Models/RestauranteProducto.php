@@ -9,6 +9,8 @@ class RestauranteProducto extends Model
 {
     use HasFactory;
 
+    const PATH = '/imagenes/restaurantes/productos/';
+
     protected $table = 'restaurante_productos';
 
     protected $primaryKey = 'id';
@@ -31,8 +33,36 @@ class RestauranteProducto extends Model
     ];
 
 
-    public function restauranteCategoria()
+    public function categoria()
     {
-        return $this->belongsTo(\App\Models\RestauranteCategoria::class, 'restaurante_categoria_id','id');
+        return $this->belongsTo(RestauranteCategoria::class, 'restaurante_categoria_id', 'id');
+    }
+
+    public function fotos()
+    {
+        return $this->hasMany(GaleriaRestauranteProducto::class, 'restaurante_producto_id', 'id');
+    }
+
+    public function getFotoUrlAttribute()
+    {
+        if ($this->foto) {
+            return urlpath(self::PATH) . $this->foto;
+        }
+        return null;
+    }
+
+    ///FOTO
+    public static function Namefoto()
+    {
+        return 'producto_' . date('ymdHis');
+    }
+
+    public static function Rutafoto()
+    {
+        return public_path() . self::PATH;
+    }
+    public static function Urldeletefoto()
+    {
+        return urlpath(self::PATH);
     }
 }

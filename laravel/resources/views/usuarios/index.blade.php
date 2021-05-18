@@ -1,14 +1,12 @@
 @extends ('layouts.admin')
 @section('header')
     <!-- Content Header (Page header) -->
+    <h3 class="m-0">Listado de Usuarios</h3>
     <div class="card">
-        <div class="card-body py-3 justify-content-between align-items-center">
+        <div class="card-body">
             <div class="row">
-                <div class="col-sm-6">
-                    <h3 class="m-0 text-dark">Listado de Usuarios</h3>
-                </div><!-- /.col -->
-                <div class="col-sm-6">
-                    <ol class="breadcrumb float-sm-right" style="background-color: inherit">
+                <div class="col-sm-12">
+                    <ol class="breadcrumb" style="background-color: inherit">
                         <li class="breadcrumb-item"><a href="{{ route('home') }}">Inicio</a></li>
                         <li class="breadcrumb-item active">Usuarios</li>
                     </ol>
@@ -33,11 +31,11 @@
                                     <i class="material-icons">add</i> Nuevo
                                 </a>
                             @endif
-                            @if(kvfj(Auth::user()->rol->permisos,'usuarios_reporte'))
+                            {{-- @if(kvfj(Auth::user()->rol->permisos,'usuarios_reporte'))
                                 <a class="btn btn-info" href="{{ route('usuarios_reporte') }}" target="_blank" data-toggle="tooltip" data-placement="top" title="Reporte de usuarios">
                                     <i class="material-icons">local_printshop</i> Reporte
                                 </a>
-                            @endif
+                            @endif --}}
                         </div>
                     </div>
                     <div class="card-body">
@@ -77,12 +75,12 @@
 												<td>{{ $usuario->updated_at }}</td>
 												<td style="width: 250px; text-align: center;">
 													@if(kvfj(Auth::user()->rol->permisos,'usuarios_edit'))
-														<a href="{{ route('usuarios_edit',$usuario->id) }}" class="btn btn-info btn-round btn-just-icon" title="Editar usuario">
+														<a href="{{ route('usuarios_edit',$usuario->id) }}" class="btn btn-warning btn-round btn-just-icon" title="Editar usuario">
 															<i class="material-icons">mode_edit</i>
 														</a>
 													@endif
-													@if(kvfj(Auth::user()->rol->permisos,'roles_permisos'))
-														<a href="{{ route('roles_permisos',$usuario->rol ? $usuario->rol->id : '') }}" class="btn btn-primary btn-round btn-just-icon" title="Ver permisos">
+													@if(kvfj(Auth::user()->rol->permisos,'usuarios_show'))
+														<a href="{{ route('usuarios_show',$usuario->id) }}" class="btn btn-info btn-round btn-just-icon" title="Ver permisos">
 															<i class="material-icons">remove_red_eye</i>
 														</a>
 													@endif

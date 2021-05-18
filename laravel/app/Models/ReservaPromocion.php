@@ -9,6 +9,8 @@ class ReservaPromocion extends Model
 {
     use HasFactory;
 
+    const TIPO = 'promocion';
+
     protected $table = 'reservas_promocion';
 
     protected $primaryKey = 'id';
@@ -32,23 +34,23 @@ class ReservaPromocion extends Model
         'promocion_id' => 'integer',
         'habitacion_id' => 'integer',
         'cliente_id' => 'integer',
-        'checkin' => 'date',
-        'checkout' => 'date',
+        // 'checkin' => 'date',
+        // 'checkout' => 'date',
     ];
 
 
     public function promocion()
     {
-        return $this->belongsTo(\App\Models\Promocion::class,'promocion_id','id');
+        return $this->belongsTo(Promocion::class, 'promocion_id', 'id');
     }
 
     public function habitacion()
     {
-        return $this->belongsTo(\App\Models\Habitacion::class,'habitacion_id','id');
+        return $this->belongsTo(Habitacion::class, 'habitacion_id', 'id');
     }
 
     public function cliente()
     {
-        return $this->belongsTo(\App\Models\Cliente::class,'cliente_id','id');
+        return $this->belongsTo(Cliente::class, 'cliente_id', 'id');
     }
 }

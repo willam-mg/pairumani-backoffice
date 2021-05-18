@@ -9,6 +9,8 @@ class Transporte extends Model
 {
     use HasFactory;
 
+    const PATH = '/imagenes/transportes/';
+
     protected $table = 'transportes';
 
     protected $primaryKey = 'id';
@@ -19,6 +21,7 @@ class Transporte extends Model
         'nombre',
         'descripcion',
         'precio',
+        'foto',
     ];
 
     protected $guarded = [];
@@ -26,4 +29,27 @@ class Transporte extends Model
     protected $casts = [
         'id' => 'integer',
     ];
+
+    public function getFotoUrlAttribute()
+    {
+        if ($this->foto) {
+            return urlpath(self::PATH) . $this->foto;
+        }
+        return null;
+    }
+
+    ///FOTO
+    public static function Namefoto()
+    {
+        return 'transporte_' . date('ymdHis');
+    }
+
+    public static function Rutafoto()
+    {
+        return public_path() . self::PATH;
+    }
+    public static function Urldeletefoto()
+    {
+        return urlpath(self::PATH);
+    }
 }

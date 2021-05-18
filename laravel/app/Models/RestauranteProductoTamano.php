@@ -28,9 +28,8 @@ class RestauranteProductoTamano extends Model
         'restaurante_producto_id' => 'integer',
     ];
 
-
-    public function restauranteProducto()
+    public function producto()
     {
-        return $this->belongsTo(\App\Models\RestauranteProducto::class, 'restaurante_producto_id','id');
+        return $this->belongsTo(\App\Models\RestauranteProducto::class, 'restaurante_producto_id', 'id');
     }
 }

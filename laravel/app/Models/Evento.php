@@ -9,6 +9,8 @@ class Evento extends Model
 {
     use HasFactory;
 
+    const PATH = '/imagenes/eventos/';
+
     protected $table = 'eventos';
 
     protected $primaryKey = 'id';
@@ -26,6 +28,34 @@ class Evento extends Model
 
     protected $casts = [
         'id' => 'integer',
-        'fecha' => 'date',
+        // 'fecha' => 'date',
     ];
+
+    public function fotos()
+    {
+        return $this->hasMany(GaleriaEvento::class, 'evento_id', 'id');
+    }
+
+    public function getFotoUrlAttribute()
+    {
+        if ($this->foto) {
+            return urlpath(self::PATH) . $this->foto;
+        }
+        return null;
+    }
+
+    ///FOTO
+    public static function Namefoto()
+    {
+        return 'evento_' . date('ymdHis');
+    }
+
+    public static function Rutafoto()
+    {
+        return public_path() . self::PATH;
+    }
+    public static function Urldeletefoto()
+    {
+        return urlpath(self::PATH);
+    }
 }

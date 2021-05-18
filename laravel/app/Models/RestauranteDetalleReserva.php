@@ -36,6 +36,6 @@ class RestauranteDetalleReserva extends Model
 
     public function restauranteReserva()
     {
-        return $this->belongsTo(\App\Models\RestauranteReserva::class, 'restaurante_reserva_id','id');
+        return $this->belongsTo(\App\Models\RestauranteReserva::class);
     }
 }

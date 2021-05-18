@@ -32,6 +32,6 @@ class ReservaRestaurante extends Model
 
     public function hospedaje()
     {
-        return $this->belongsTo(\App\Models\Hospedaje::class,'hospedaje_id','id');
+        return $this->belongsTo(\App\Models\Hospedaje::class);
     }
 }

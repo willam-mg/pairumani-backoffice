@@ -9,6 +9,8 @@ class GaleriaHabitacion extends Model
 {
     use HasFactory;
 
+    const PATH = '/imagenes/habitaciones/galeria/';
+
     protected $table = 'galeria_habitacion';
 
     protected $primaryKey = 'id';
@@ -28,9 +30,30 @@ class GaleriaHabitacion extends Model
         'habitacion_id' => 'integer',
     ];
 
-
     public function habitacion()
     {
-        return $this->belongsTo(\App\Models\Habitacion::class, 'habitacion_id', 'id');
+        return $this->belongsTo(\App\Models\Habitacion::class);
+    }
+
+    public function getFotoUrlAttribute()
+    {
+        if ($this->foto) {
+            return urlpath(self::PATH) . $this->foto;
+        }
+        return null;
+    }
+
+    public static function Name($model, $galeria)
+    {
+        return 'foto_' . $model . '_' . $galeria;
+    }
+
+    public static function Ruta()
+    {
+        return public_path() . self::PATH;
+    }
+    public static function Urldelete()
+    {
+        return urlpath(self::PATH);
     }
 }

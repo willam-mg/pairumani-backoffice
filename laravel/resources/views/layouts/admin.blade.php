@@ -6,6 +6,8 @@
         <meta charset="utf-8">
         <meta content="width=device-width, initial-scale=1.0" name="viewport" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+        <!-- CSRF Token -->
+        <meta name="csrf-token" content="{{ csrf_token() }}">
         <!--     Fonts and icons     -->
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
@@ -20,51 +22,21 @@
     </head>
     <body>
         <div class="wrapper ">
-            <div class="sidebar" data-color="rose" data-background-color="black">
+            <div class="sidebar" data-color="green" data-background-color="#ffff" data-image="{{asset('img/sidebar-1.jpg')}}">
                 <!--
                     Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
 
                     Tip 2: you can also add an image using data-image tag
                 -->
-                <div class="logo">
-                    <a href="{{ route('home') }}" class="simple-text logo-mini">
-                        {{ env('NAME') }}
-                    </a>
+                <div class="logo text-center">
+                    {{-- <a href="{{ route('home') }}" class="simple-text logo-mini">
+                        {{ env('APP_NAME1') }}
+                    </a> --}}
                     <a href="{{ route('home') }}" class="simple-text logo-normal">
                         {{ env('APP_NAME') }}
                     </a>
                 </div>
                 <div class="sidebar-wrapper">
-                    <div class="user">
-                        <div class="photo">
-                            <i class="material-icons">person</i>
-                        </div>
-                        <div class="user-info">
-                            <a data-toggle="collapse" href="#collapseExample" class="username">
-                                <span>
-                                    {{ Auth::user()->nombre }} {{ Auth::user()->apellido }}
-                                </span>
-                            </a>
-                            <div class="collapse" id="collapseExample">
-                                <ul class="nav">
-                                    <li class="nav-item">
-                                        {{-- <a class="nav-link" href="#">
-                                            <span class="sidebar-mini"> MP </span>
-                                            <span class="sidebar-normal"> My Profile </span>
-                                        </a> --}}
-                                        <a class="nav-link" href="{{ route('logout') }}"
-                                            onclick="event.preventDefault();
-                                                            document.getElementById('logout-form').submit();">
-                                            Cerrar Sesión
-                                        </a>
-                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                            @csrf
-                                        </form>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
                     @include('layouts.partials.nav')
                 </div>
             </div>
@@ -79,6 +51,7 @@
                                     <i class="material-icons design_bullet-list-67 visible-on-sidebar-mini">view_list</i>
                                 </button>
                             </div>
+                            <a class="navbar-brand" href="javascript:;">Dashboard</a>
                         </div>
                         <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
                             <span class="sr-only">Toggle navigation</span>
@@ -139,19 +112,10 @@
                         <nav class="float-left">
                             <ul>
                                 <li>
-                                    <a href="{{ route('home') }}">
-                                        {{ env('APP_NAME') }}
-                                    </a>
+                                    © {{ env('APP_NAME') }} {{ date('Y') }}
                                 </li>
                             </ul>
                         </nav>
-                        <div class="copyright float-right">
-                            &copy;
-                            <script>
-                                document.write(new Date().getFullYear())
-                            </script>, made with <i class="material-icons">favorite</i> by
-                            <a href="{{ route('home') }}" target="_blank">{{ env('APP_NAME') }}</a> for a better web.
-                        </div>
                         <!-- your footer here -->
                     </div>
                 </footer>
@@ -165,7 +129,7 @@
         <script src="{{asset('js//plugins/jquery.validate.min.js')}}"></script>
         <script src="{{asset('js/plugins/jasny-bootstrap.min.js')}}"></script>
         <script src="{{asset('plugins/select2/js/select2.full.min.js')}}"></script>
-        <script src='https://maps.googleapis.com/maps/api/js?&libraries=places&key=AIzaSyDZXohjARtsZVcjKt0qYHCB7jZqg0G3ePY'></script>
+        <script src='https://maps.googleapis.com/maps/api/js?&libraries=places&key={{ env('GOOGLE_MAPS_KEY')}}'></script>
 	    <script src="{{asset('js/locationpicker.jquery.js')}}"></script>
         <script>
             $(function(){

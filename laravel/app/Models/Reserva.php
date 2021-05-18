@@ -9,6 +9,8 @@ class Reserva extends Model
 {
     use HasFactory;
 
+    const TIPO = 'reserva';
+
     protected $table = 'reservas';
 
     protected $primaryKey = 'id';
@@ -28,8 +30,8 @@ class Reserva extends Model
 
     protected $casts = [
         'id' => 'integer',
-        'checkin' => 'date',
-        'checkout' => 'date',
+        // 'checkin' => 'date',
+        // 'checkout' => 'date',
         'cliente_id' => 'integer',
         'habitacion_id' => 'integer',
     ];
@@ -37,11 +39,11 @@ class Reserva extends Model
 
     public function cliente()
     {
-        return $this->belongsTo(\App\Models\Cliente::class,'cliente_id','id');
+        return $this->belongsTo(Cliente::class, 'cliente_id', 'id');
     }
 
     public function habitacion()
     {
-        return $this->belongsTo(\App\Models\Habitacion::class,'habitacion_id','id');
+        return $this->belongsTo(Habitacion::class,'habitacion_id','id');
     }
 }

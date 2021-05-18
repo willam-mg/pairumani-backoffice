@@ -46,6 +46,17 @@ return [
             'provider' => 'users',
             'hash' => false,
         ],
+
+        'cliente' => [
+            'driver' => 'session',
+            'provider' => 'clientes',
+        ],
+
+        'cliente-api' => [
+            'driver' => 'token',
+            'provider' => 'clientes',
+            'hash' => false,
+        ],
     ],
 
     /*
@@ -69,6 +80,11 @@ return [
         'users' => [
             'driver' => 'eloquent',
             'model' => App\Models\User::class,
+        ],
+
+        'clientes' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Cliente::class,
         ],
 
         // 'users' => [
@@ -98,6 +114,11 @@ return [
             'table' => 'password_resets',
             'expire' => 60,
             'throttle' => 60,
+        ],
+        'clientes' => [
+            'provider' => 'clientes',
+            'table' => 'password_resets',
+            'expire' => 60,
         ],
     ],
 

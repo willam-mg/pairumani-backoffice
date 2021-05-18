@@ -2,12 +2,19 @@
 
 namespace App\Models;
 
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
 
-class Cliente extends Model
+class Cliente extends Authenticatable
 {
-    use HasFactory;
+    use HasFactory, Notifiable;
+
+    const TIPO = '1';
+    const TIPOGMAIL = '2';
+    const TIPOFACE = '3';
+    const PATH = '/imagenes/clientes/';
 
     protected $table = 'clientes';
 
@@ -28,16 +35,30 @@ class Cliente extends Model
         'empresa',
         'telefono',
         'email',
+        'password',
+        'api_token',
+        'imei_celular',
         'fecha_nacimiento',
         'motivo_viaje',
+        'foto',
     ];
 
     protected $guarded = [];
 
+    protected $hidden = [
+        'password',
+        // 'api_token',
+        // 'imei_celular'
+    ];
+
     protected $casts = [
         'id' => 'integer',
-        'fecha_nacimiento' => 'date',
     ];
+
+    public function getNombreCompletoAttribute()
+    {
+        return $this->nombres . ' ' . $this->apellidos;
+    }
 
     public function reservas()
     {
@@ -52,5 +73,33 @@ class Cliente extends Model
     public function reservaspromociones()
     {
         return $this->hasMany(\App\Models\ReservaPromocion::class, 'cliente_id', 'id');
+    }
+
+    public function getFotoUrlAttribute()
+    {
+        if ($this->foto) {
+            if (strpos($this->foto, 'platform-lookaside') !== false) {
+                return $this->foto;
+            }
+            if (strpos($this->foto, 'google') !== false) {
+                return $this->foto;
+            }
+            return urlpath(self::PATH) . $this->foto;
+        }
+        return null;
+    }
+
+    public static function Name()
+    {
+        return 'cliente_' . date('ymdhis');
+    }
+
+    public static function Ruta()
+    {
+        return public_path() . self::PATH;
+    }
+    public static function Urldelete()
+    {
+        return urlpath(self::PATH);
     }
 }

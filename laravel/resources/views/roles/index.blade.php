@@ -1,14 +1,12 @@
 @extends ('layouts.admin')
 @section('header')
     <!-- Content Header (Page header) -->
+    <h3 class="m-0 text-dark">Listado de Roles</h3>
     <div class="card">
-        <div class="card-body py-3 justify-content-between align-items-center">
+        <div class="card-body">
             <div class="row">
-                <div class="col-sm-6">
-                    <h3 class="m-0 text-dark">Listado de Roles</h3>
-                </div><!-- /.col -->
-                <div class="col-sm-6">
-                    <ol class="breadcrumb float-sm-right" style="background-color: inherit">
+                <div class="col-sm-12">
+                    <ol class="breadcrumb" style="background-color: inherit">
                         <li class="breadcrumb-item"><a href="{{ route('home') }}">Inicio</a></li>
                         <li class="breadcrumb-item active">Roles</li>
                     </ol>
@@ -33,11 +31,11 @@
                                     <i class="material-icons">add</i> Nuevo
                                 </a>
                             @endif
-                            @if(kvfj(Auth::user()->rol->permisos,'roles_reporte'))
+                            {{-- @if(kvfj(Auth::user()->rol->permisos,'roles_reporte'))
                                 <a class="btn btn-info" href="{{ route('roles_reporte') }}" target="_blank" data-toggle="tooltip" data-placement="top" title="Reporte de roles">
                                     <i class="material-icons">local_printshop</i> Reporte
                                 </a>
-                            @endif
+                            @endif --}}
                         </div>
                     </div>
                     <div class="card-body">
@@ -69,12 +67,12 @@
                                                 <td>{{ $rol->descripcion }}</td>
                                                 <td style="width: 20%">
                                                     @if(kvfj(Auth::user()->rol->permisos,'roles_edit'))
-                                                        <a href="{{ route('roles_edit',$rol->id) }}" class="btn btn-info btn-round btn-just-icon" title="Editar rol">
+                                                        <a href="{{ route('roles_edit',$rol->id) }}" class="btn btn-warning btn-round btn-just-icon" title="Editar rol">
                                                             <i class="material-icons">mode_edit</i>
                                                         </a>
                                                     @endif
                                                     @if(kvfj(Auth::user()->rol->permisos,'roles_permisos'))
-                                                        <a href="{{ route('roles_permisos',$rol->id) }}" class="btn btn-warning btn-round btn-just-icon" title="Permisos de rol">
+                                                        <a href="{{ route('roles_permisos',$rol->id) }}" class="btn btn-info btn-round btn-just-icon" title="Permisos de rol">
                                                             <i class="material-icons">settings</i>
                                                         </a>
                                                     @endif

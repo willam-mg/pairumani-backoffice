@@ -9,6 +9,8 @@ class GaleriaHotel extends Model
 {
     use HasFactory;
 
+    const PATH = '/imagenes/hotel/galeria/';
+
     protected $table = 'galeria_hotel';
 
     protected $primaryKey = 'id';
@@ -25,4 +27,26 @@ class GaleriaHotel extends Model
     protected $casts = [
         'id' => 'integer',
     ];
+
+    public function getFotoUrlAttribute()
+    {
+        if ($this->foto) {
+            return urlpath(self::PATH) . $this->foto;
+        }
+        return null;
+    }
+
+    public static function Name()
+    {
+        return 'foto_' . date('ymdHis');
+    }
+
+    public static function Ruta()
+    {
+        return public_path() . self::PATH;
+    }
+    public static function Urldelete()
+    {
+        return urlpath(self::PATH);
+    }
 }

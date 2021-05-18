@@ -34,11 +34,11 @@ class ReservaLugarTuristico extends Model
 
     public function cliente()
     {
-        return $this->belongsTo(\App\Models\Cliente::class,'cliente_id','id');
+        return $this->belongsTo(\App\Models\Cliente::class);
     }
 
     public function lugarTuristico()
     {
-        return $this->belongsTo(\App\Models\LugarTuristico::class,'lugar_turistico_id','id');
+        return $this->belongsTo(\App\Models\LugarTuristico::class);
     }
 }

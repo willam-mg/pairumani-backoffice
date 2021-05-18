@@ -8,6 +8,16 @@ function setActiveRoute($name)
     return request()->routeIs($name) ? 'active' : '';
 }
 
+function setActiveRouteShow($name)
+{
+    return request()->routeIs($name) ? 'show' : '';
+}
+
+function setActiveRouteExpanded($name)
+{
+    return request()->routeIs($name) ? 'true' : 'false';
+}
+
 function routerequest($name)
 {
     return request()->routeIs($name);
@@ -128,6 +138,7 @@ function user_permissions()
                     'usuarios_edit' => 'Puede editar usuarios.',
                     'usuarios_destroy' => 'Puede eliminar usuarios.',
                     'usuarios_reporte' => 'Puede descargar un reporte.',
+                    'usuarios_show' => 'Puede ver los roles asiganos al usuario.',
                 ],
             ],
         ];

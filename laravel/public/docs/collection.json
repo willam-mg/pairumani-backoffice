@@ -1,0 +1,1435 @@
+{
+    "variable": [
+        {
+            "id": "baseUrl",
+            "key": "baseUrl",
+            "type": "string",
+            "name": "string",
+            "value": "pairumanibackoffice.test"
+        }
+    ],
+    "info": {
+        "name": "HOTEL-PAIRUMANI",
+        "_postman_id": "454d3e62-72d8-4b16-9368-4cc21f60290b",
+        "description": "",
+        "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
+    },
+    "item": [
+        {
+            "name": "Endpoints",
+            "description": "",
+            "item": [
+                {
+                    "name": "Login con redes sociales y normal",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "{{baseUrl}}",
+                            "path": "api\/login",
+                            "query": [],
+                            "raw": "http:\/\/{{baseUrl}}\/api\/login"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"tipo_login\": \"1,2,3\",\n    \"email\": \"cliente@gmail.com\",\n    \"password\": \"cliente54782\",\n    \"nombres\": \"Jose Rodrigo\",\n    \"apellidos\": \"Cespedes Rojas\",\n    \"tipo_documento\": \"Ci,Pasaporte\",\n    \"num_documento\": \"657848455\",\n    \"celular\": \"65582210\",\n    \"direccion\": \"Av Potosi\",\n    \"ciudad\": \"La Paz\",\n    \"pais\": \"Bolivia\",\n    \"oficio\": \"Ing Civil\",\n    \"empresa\": \"YPFB\",\n    \"telefono\": \"4652588\",\n    \"fecha_nacimiento\": \"1985-03-22\",\n    \"motivo_viaje\": \"Recreacion,Negocios,Salud,Otro\",\n    \"foto\": \"foto.jpg\",\n    \"imei_celular\": \"354651100023680\"\n}"
+                        },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "name": "Login con redes sociales y normal Response #1",
+                            "originalRequest": {
+                                "url": {
+                                    "protocol": "http",
+                                    "host": "{{baseUrl}}",
+                                    "path": "api\/login",
+                                    "query": [],
+                                    "raw": "http:\/\/{{baseUrl}}\/api\/login"
+                                },
+                                "method": "POST",
+                                "header": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application\/json"
+                                    },
+                                    {
+                                        "key": "Accept",
+                                        "value": "application\/json"
+                                    }
+                                ],
+                                "body": {
+                                    "mode": "raw",
+                                    "raw": "{\n    \"tipo_login\": \"1,2,3\",\n    \"email\": \"cliente@gmail.com\",\n    \"password\": \"cliente54782\",\n    \"nombres\": \"Jose Rodrigo\",\n    \"apellidos\": \"Cespedes Rojas\",\n    \"tipo_documento\": \"Ci,Pasaporte\",\n    \"num_documento\": \"657848455\",\n    \"celular\": \"65582210\",\n    \"direccion\": \"Av Potosi\",\n    \"ciudad\": \"La Paz\",\n    \"pais\": \"Bolivia\",\n    \"oficio\": \"Ing Civil\",\n    \"empresa\": \"YPFB\",\n    \"telefono\": \"4652588\",\n    \"fecha_nacimiento\": \"1985-03-22\",\n    \"motivo_viaje\": \"Recreacion,Negocios,Salud,Otro\",\n    \"foto\": \"foto.jpg\",\n    \"imei_celular\": \"354651100023680\"\n}"
+                                },
+                                "description": "",
+                                "auth": {
+                                    "type": "noauth"
+                                }
+                            },
+                            "header": null,
+                            "cookie": [],
+                            "body": "{\n    \"id\": 7,\n    \"nombres\": \"Juan Carlos\",\n    \"apellidos\": \"Espinoza Cespedes\",\n    \"tipo_documento\": \"Ci\",\n    \"num_documento\": \"94564455\",\n    \"celular\": \"65582210\",\n    \"direccion\": \"Av Pando\",\n    \"ciudad\": \"Cochabamba\",\n    \"pais\": \"Bolivia\",\n    \"oficio\": \"Arquitecto\",\n    \"empresa\": \"SOFT\",\n    \"telefono\": \"4444444\",\n    \"email\": \"juan@gmail.com\",\n    \"fecha_nacimiento\": \"1989-05-12\",\n    \"motivo_viaje\": \"Recreacion\",\n    \"foto\": \"foto.jpg\",\n    \"api_token\": \"KjUdFmnlAu7aFjlUXWIuSE1L4wPM8y3oWFacDALHOHKbNlbZGIa6ifz6Ojy4\",\n    \"imei_celular\": \"354651100023680\"\n}"
+                        }
+                    ]
+                },
+                {
+                    "name": "Registro de nuevo Cliente",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "{{baseUrl}}",
+                            "path": "api\/signup",
+                            "query": [],
+                            "raw": "http:\/\/{{baseUrl}}\/api\/signup"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"nombres\": \"Jose Rodrigo\",\n    \"apellidos\": \"Cespedes Rojas\",\n    \"tipo_documento\": \"Ci,Pasaporte\",\n    \"num_documento\": \"657848455\",\n    \"celular\": \"65582210\",\n    \"direccion\": \"Av Potosi\",\n    \"ciudad\": \"La Paz\",\n    \"pais\": \"Bolivia\",\n    \"oficio\": \"Ing Civil\",\n    \"empresa\": \"YPFB\",\n    \"telefono\": \"4652588\",\n    \"email\": \"cliente@gmail.com\",\n    \"password\": \"cliente54782\",\n    \"fecha_nacimiento\": \"1985-03-22\",\n    \"motivo_viaje\": \"Recreacion,Negocios,Salud,Otro\",\n    \"foto\": \"foto.jpg\",\n    \"imei_celular\": \"354651100023680\"\n}"
+                        },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "name": "Registro de nuevo Cliente Response #1",
+                            "originalRequest": {
+                                "url": {
+                                    "protocol": "http",
+                                    "host": "{{baseUrl}}",
+                                    "path": "api\/signup",
+                                    "query": [],
+                                    "raw": "http:\/\/{{baseUrl}}\/api\/signup"
+                                },
+                                "method": "POST",
+                                "header": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application\/json"
+                                    },
+                                    {
+                                        "key": "Accept",
+                                        "value": "application\/json"
+                                    }
+                                ],
+                                "body": {
+                                    "mode": "raw",
+                                    "raw": "{\n    \"nombres\": \"Jose Rodrigo\",\n    \"apellidos\": \"Cespedes Rojas\",\n    \"tipo_documento\": \"Ci,Pasaporte\",\n    \"num_documento\": \"657848455\",\n    \"celular\": \"65582210\",\n    \"direccion\": \"Av Potosi\",\n    \"ciudad\": \"La Paz\",\n    \"pais\": \"Bolivia\",\n    \"oficio\": \"Ing Civil\",\n    \"empresa\": \"YPFB\",\n    \"telefono\": \"4652588\",\n    \"email\": \"cliente@gmail.com\",\n    \"password\": \"cliente54782\",\n    \"fecha_nacimiento\": \"1985-03-22\",\n    \"motivo_viaje\": \"Recreacion,Negocios,Salud,Otro\",\n    \"foto\": \"foto.jpg\",\n    \"imei_celular\": \"354651100023680\"\n}"
+                                },
+                                "description": "",
+                                "auth": {
+                                    "type": "noauth"
+                                }
+                            },
+                            "header": null,
+                            "cookie": [],
+                            "body": "{\n    \"id\": 7,\n    \"nombres\": \"Juan Carlos\",\n    \"apellidos\": \"Espinoza Cespedes\",\n    \"tipo_documento\": \"Ci\",\n    \"num_documento\": \"94564455\",\n    \"celular\": \"65582210\",\n    \"direccion\": \"Av Pando\",\n    \"ciudad\": \"Cochabamba\",\n    \"pais\": \"Bolivia\",\n    \"oficio\": \"Arquitecto\",\n    \"empresa\": \"SOFT\",\n    \"telefono\": \"4444444\",\n    \"email\": \"juan@gmail.com\",\n    \"fecha_nacimiento\": \"1989-05-12\",\n    \"motivo_viaje\": \"Recreacion\",\n    \"foto\": \"foto.jpg\",\n    \"api_token\": \"KjUdFmnlAu7aFjlUXWIuSE1L4wPM8y3oWFacDALHOHKbNlbZGIa6ifz6Ojy4\",\n    \"imei_celular\": \"354651100023680\"\n}"
+                        }
+                    ]
+                },
+                {
+                    "name": "Perfil de Cliente",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "{{baseUrl}}",
+                            "path": "api\/perfil",
+                            "query": [],
+                            "raw": "http:\/\/{{baseUrl}}\/api\/perfil"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"cliente_id\": 7\n}"
+                        },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "name": "Perfil de Cliente Response #1",
+                            "originalRequest": {
+                                "url": {
+                                    "protocol": "http",
+                                    "host": "{{baseUrl}}",
+                                    "path": "api\/perfil",
+                                    "query": [],
+                                    "raw": "http:\/\/{{baseUrl}}\/api\/perfil"
+                                },
+                                "method": "POST",
+                                "header": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application\/json"
+                                    },
+                                    {
+                                        "key": "Accept",
+                                        "value": "application\/json"
+                                    }
+                                ],
+                                "body": {
+                                    "mode": "raw",
+                                    "raw": "{\n    \"cliente_id\": 7\n}"
+                                },
+                                "description": "",
+                                "auth": {
+                                    "type": "noauth"
+                                }
+                            },
+                            "header": null,
+                            "cookie": [],
+                            "body": "{\n    \"id\": 7,\n    \"nombres\": \"Juan Carlos\",\n    \"apellidos\": \"Espinoza Cespedes\",\n    \"tipo_documento\": \"Ci\",\n    \"num_documento\": \"94564455\",\n    \"celular\": \"65582210\",\n    \"direccion\": \"Av Pando\",\n    \"ciudad\": \"Cochabamba\",\n    \"pais\": \"Bolivia\",\n    \"oficio\": \"Arquitecto\",\n    \"empresa\": \"SOFT\",\n    \"telefono\": \"4444444\",\n    \"email\": \"juan@gmail.com\",\n    \"fecha_nacimiento\": \"1989-05-12\",\n    \"motivo_viaje\": \"Recreacion\",\n    \"foto\": \"foto.jpg\",\n    \"api_token\": \"KjUdFmnlAu7aFjlUXWIuSE1L4wPM8y3oWFacDALHOHKbNlbZGIa6ifz6Ojy4\",\n    \"imei_celular\": \"354651100023680\"\n}"
+                        }
+                    ]
+                },
+                {
+                    "name": "Verificacion de email para cambio de password",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "{{baseUrl}}",
+                            "path": "api\/verificaremail",
+                            "query": [],
+                            "raw": "http:\/\/{{baseUrl}}\/api\/verificaremail"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"email\": \"cliente@gmail.com\"\n}"
+                        },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "name": "Verificacion de email para cambio de password Response #1",
+                            "originalRequest": {
+                                "url": {
+                                    "protocol": "http",
+                                    "host": "{{baseUrl}}",
+                                    "path": "api\/verificaremail",
+                                    "query": [],
+                                    "raw": "http:\/\/{{baseUrl}}\/api\/verificaremail"
+                                },
+                                "method": "POST",
+                                "header": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application\/json"
+                                    },
+                                    {
+                                        "key": "Accept",
+                                        "value": "application\/json"
+                                    }
+                                ],
+                                "body": {
+                                    "mode": "raw",
+                                    "raw": "{\n    \"email\": \"cliente@gmail.com\"\n}"
+                                },
+                                "description": "",
+                                "auth": {
+                                    "type": "noauth"
+                                }
+                            },
+                            "header": null,
+                            "cookie": [],
+                            "body": "null"
+                        }
+                    ]
+                },
+                {
+                    "name": "Verificacion de codigo enviado al email del cliente",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "{{baseUrl}}",
+                            "path": "api\/verificarcodigo",
+                            "query": [],
+                            "raw": "http:\/\/{{baseUrl}}\/api\/verificarcodigo"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"codigo\": \"58741258\"\n}"
+                        },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "name": "Verificacion de codigo enviado al email del cliente Response #1",
+                            "originalRequest": {
+                                "url": {
+                                    "protocol": "http",
+                                    "host": "{{baseUrl}}",
+                                    "path": "api\/verificarcodigo",
+                                    "query": [],
+                                    "raw": "http:\/\/{{baseUrl}}\/api\/verificarcodigo"
+                                },
+                                "method": "POST",
+                                "header": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application\/json"
+                                    },
+                                    {
+                                        "key": "Accept",
+                                        "value": "application\/json"
+                                    }
+                                ],
+                                "body": {
+                                    "mode": "raw",
+                                    "raw": "{\n    \"codigo\": \"58741258\"\n}"
+                                },
+                                "description": "",
+                                "auth": {
+                                    "type": "noauth"
+                                }
+                            },
+                            "header": null,
+                            "cookie": [],
+                            "body": "null"
+                        }
+                    ]
+                },
+                {
+                    "name": "Cambio de password del Cliente",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "{{baseUrl}}",
+                            "path": "api\/cambiarpassword",
+                            "query": [],
+                            "raw": "http:\/\/{{baseUrl}}\/api\/cambiarpassword"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"id\": 5,\n    \"password\": \"cliente12578\",\n    \"retypepassword\": \"cliente12578\"\n}"
+                        },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "name": "Cambio de password del Cliente Response #1",
+                            "originalRequest": {
+                                "url": {
+                                    "protocol": "http",
+                                    "host": "{{baseUrl}}",
+                                    "path": "api\/cambiarpassword",
+                                    "query": [],
+                                    "raw": "http:\/\/{{baseUrl}}\/api\/cambiarpassword"
+                                },
+                                "method": "POST",
+                                "header": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application\/json"
+                                    },
+                                    {
+                                        "key": "Accept",
+                                        "value": "application\/json"
+                                    }
+                                ],
+                                "body": {
+                                    "mode": "raw",
+                                    "raw": "{\n    \"id\": 5,\n    \"password\": \"cliente12578\",\n    \"retypepassword\": \"cliente12578\"\n}"
+                                },
+                                "description": "",
+                                "auth": {
+                                    "type": "noauth"
+                                }
+                            },
+                            "header": null,
+                            "cookie": [],
+                            "body": "null"
+                        }
+                    ]
+                },
+                {
+                    "name": "Listado de la Galeria del Hotel",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "{{baseUrl}}",
+                            "path": "api\/sliders",
+                            "query": [],
+                            "raw": "http:\/\/{{baseUrl}}\/api\/sliders"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"bearer_token\": \"drWa9YnurQFx6bY8rfsRcdMXsXpLvTUWSEkqQHivBDLJpbFv7E31BxxBcj6z\"\n}"
+                        },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "name": "Listado de la Galeria del Hotel Response #1",
+                            "originalRequest": {
+                                "url": {
+                                    "protocol": "http",
+                                    "host": "{{baseUrl}}",
+                                    "path": "api\/sliders",
+                                    "query": [],
+                                    "raw": "http:\/\/{{baseUrl}}\/api\/sliders"
+                                },
+                                "method": "GET",
+                                "header": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application\/json"
+                                    },
+                                    {
+                                        "key": "Accept",
+                                        "value": "application\/json"
+                                    }
+                                ],
+                                "body": {
+                                    "mode": "raw",
+                                    "raw": "{\n    \"bearer_token\": \"drWa9YnurQFx6bY8rfsRcdMXsXpLvTUWSEkqQHivBDLJpbFv7E31BxxBcj6z\"\n}"
+                                },
+                                "description": "",
+                                "auth": {
+                                    "type": "noauth"
+                                }
+                            },
+                            "header": null,
+                            "cookie": [],
+                            "body": "{\n    \"id\": 1,\n    \"foto\": \"http:\\\/\\\/pairumanibackoffice.test\\\/laravel\\\/public\\\/imagenes\\\/hotel\\\/galeria\\\/foto_210514173512.jpg\",\n    \"descripcion\": \"<p>sadsafasfa<\\\/p>\"\n}"
+                        }
+                    ]
+                },
+                {
+                    "name": "Listado de las categorias de las habitaciones",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "{{baseUrl}}",
+                            "path": "api\/habitacioncategorias",
+                            "query": [],
+                            "raw": "http:\/\/{{baseUrl}}\/api\/habitacioncategorias"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"bearer_token\": \"drWa9YnurQFx6bY8rfsRcdMXsXpLvTUWSEkqQHivBDLJpbFv7E31BxxBcj6z\"\n}"
+                        },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "name": "Listado de las categorias de las habitaciones Response #1",
+                            "originalRequest": {
+                                "url": {
+                                    "protocol": "http",
+                                    "host": "{{baseUrl}}",
+                                    "path": "api\/habitacioncategorias",
+                                    "query": [],
+                                    "raw": "http:\/\/{{baseUrl}}\/api\/habitacioncategorias"
+                                },
+                                "method": "GET",
+                                "header": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application\/json"
+                                    },
+                                    {
+                                        "key": "Accept",
+                                        "value": "application\/json"
+                                    }
+                                ],
+                                "body": {
+                                    "mode": "raw",
+                                    "raw": "{\n    \"bearer_token\": \"drWa9YnurQFx6bY8rfsRcdMXsXpLvTUWSEkqQHivBDLJpbFv7E31BxxBcj6z\"\n}"
+                                },
+                                "description": "",
+                                "auth": {
+                                    "type": "noauth"
+                                }
+                            },
+                            "header": null,
+                            "cookie": [],
+                            "body": "{\n    \"id\": 4,\n    \"nombre\": \"Habitacion Presidencial\",\n    \"descripcion\": \"<p>sadsafasfa<\\\/p>\",\n    \"foto\": \"http:\\\/\\\/pairumanibackoffice.test\\\/laravel\\\/public\\\/imagenes\\\/habitaciones\\\/categorias\\\/habitacioncategoria_210422124342.jpg\"\n}"
+                        }
+                    ]
+                },
+                {
+                    "name": "Listado de habitaciones segun la categoria que estan enlazadas",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "{{baseUrl}}",
+                            "path": "api\/habitaciones",
+                            "query": [],
+                            "raw": "http:\/\/{{baseUrl}}\/api\/habitaciones"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"bearer_token\": \"drWa9YnurQFx6bY8rfsRcdMXsXpLvTUWSEkqQHivBDLJpbFv7E31BxxBcj6z\",\n    \"categoria_id\": 1\n}"
+                        },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "name": "Listado de habitaciones segun la categoria que estan enlazadas Response #1",
+                            "originalRequest": {
+                                "url": {
+                                    "protocol": "http",
+                                    "host": "{{baseUrl}}",
+                                    "path": "api\/habitaciones",
+                                    "query": [],
+                                    "raw": "http:\/\/{{baseUrl}}\/api\/habitaciones"
+                                },
+                                "method": "POST",
+                                "header": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application\/json"
+                                    },
+                                    {
+                                        "key": "Accept",
+                                        "value": "application\/json"
+                                    }
+                                ],
+                                "body": {
+                                    "mode": "raw",
+                                    "raw": "{\n    \"bearer_token\": \"drWa9YnurQFx6bY8rfsRcdMXsXpLvTUWSEkqQHivBDLJpbFv7E31BxxBcj6z\",\n    \"categoria_id\": 1\n}"
+                                },
+                                "description": "",
+                                "auth": {
+                                    "type": "noauth"
+                                }
+                            },
+                            "header": null,
+                            "cookie": [],
+                            "body": "{\n    \"nombre\": \"Habitacion 1\",\n    \"descripcion\": \"<p>asdafasfasfasfafafas<\\\/p>\",\n    \"num_habitacion\": 1,\n    \"precio\": \"850.00\",\n    \"precio_promocion\": \"550.00\",\n    \"capacidad_minima\": \"3\",\n    \"capacidad_maxima\": \"7\",\n    \"estado\": \"Disponible\",\n    \"foto\": \"http:\\\/\\\/pairumanibackoffice.test\\\/laravel\\\/public\\\/imagenes\\\/habitaciones\\\/habitacion_210516222401.jfif\"\n}"
+                        }
+                    ]
+                },
+                {
+                    "name": "Detalle de la habitacion",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "{{baseUrl}}",
+                            "path": "api\/habitaciondetalle",
+                            "query": [],
+                            "raw": "http:\/\/{{baseUrl}}\/api\/habitaciondetalle"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"bearer_token\": \"drWa9YnurQFx6bY8rfsRcdMXsXpLvTUWSEkqQHivBDLJpbFv7E31BxxBcj6z\",\n    \"habitacion_id\": 1\n}"
+                        },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "name": "Detalle de la habitacion Response #1",
+                            "originalRequest": {
+                                "url": {
+                                    "protocol": "http",
+                                    "host": "{{baseUrl}}",
+                                    "path": "api\/habitaciondetalle",
+                                    "query": [],
+                                    "raw": "http:\/\/{{baseUrl}}\/api\/habitaciondetalle"
+                                },
+                                "method": "POST",
+                                "header": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application\/json"
+                                    },
+                                    {
+                                        "key": "Accept",
+                                        "value": "application\/json"
+                                    }
+                                ],
+                                "body": {
+                                    "mode": "raw",
+                                    "raw": "{\n    \"bearer_token\": \"drWa9YnurQFx6bY8rfsRcdMXsXpLvTUWSEkqQHivBDLJpbFv7E31BxxBcj6z\",\n    \"habitacion_id\": 1\n}"
+                                },
+                                "description": "",
+                                "auth": {
+                                    "type": "noauth"
+                                }
+                            },
+                            "header": null,
+                            "cookie": [],
+                            "body": "{\n    \"nombre\": \"asfasfasgfsagasga\",\n    \"descripcion\": \"<p>asasfasfa<\\\/p>\",\n    \"num_habitacion\": 100,\n    \"precio\": \"250.00\",\n    \"precio_promocion\": \"0.00\",\n    \"capacidad_minima\": \"6\",\n    \"capacidad_maxima\": \"8\",\n    \"estado\": \"Reservado\",\n    \"foto\": \"http:\\\/\\\/pairumanibackoffice.test\\\/laravel\\\/public\\\/imagenes\\\/habitaciones\\\/habitacion_210430121313.jpg\"\n}"
+                        }
+                    ]
+                },
+                {
+                    "name": "Listado de habitaciones a la categoria que pertenece",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "{{baseUrl}}",
+                            "path": "api\/Habitacionescategoria",
+                            "query": [],
+                            "raw": "http:\/\/{{baseUrl}}\/api\/Habitacionescategoria"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"bearer_token\": \"drWa9YnurQFx6bY8rfsRcdMXsXpLvTUWSEkqQHivBDLJpbFv7E31BxxBcj6z\"\n}"
+                        },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "name": "Listado de habitaciones a la categoria que pertenece Response #1",
+                            "originalRequest": {
+                                "url": {
+                                    "protocol": "http",
+                                    "host": "{{baseUrl}}",
+                                    "path": "api\/Habitacionescategoria",
+                                    "query": [],
+                                    "raw": "http:\/\/{{baseUrl}}\/api\/Habitacionescategoria"
+                                },
+                                "method": "GET",
+                                "header": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application\/json"
+                                    },
+                                    {
+                                        "key": "Accept",
+                                        "value": "application\/json"
+                                    }
+                                ],
+                                "body": {
+                                    "mode": "raw",
+                                    "raw": "{\n    \"bearer_token\": \"drWa9YnurQFx6bY8rfsRcdMXsXpLvTUWSEkqQHivBDLJpbFv7E31BxxBcj6z\"\n}"
+                                },
+                                "description": "",
+                                "auth": {
+                                    "type": "noauth"
+                                }
+                            },
+                            "header": null,
+                            "cookie": [],
+                            "body": "{\n    \"nombre\": \"Habitacion 1\",\n    \"descripcion\": \"<p>asdafasfasfasfafafas<\\\/p>\",\n    \"num_habitacion\": 1,\n    \"precio\": \"850.00\",\n    \"precio_promocion\": \"550.00\",\n    \"capacidad_minima\": \"3\",\n    \"capacidad_maxima\": \"7\",\n    \"estado\": \"Disponible\",\n    \"categoria\": \"Habitacion Presidencial\",\n    \"foto\": \"http:\\\/\\\/pairumanibackoffice.test\\\/laravel\\\/public\\\/imagenes\\\/habitaciones\\\/habitacion_210516222401.jfif\"\n}"
+                        }
+                    ]
+                },
+                {
+                    "name": "Listado de promociones de las habitaciones",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "{{baseUrl}}",
+                            "path": "api\/promociones",
+                            "query": [],
+                            "raw": "http:\/\/{{baseUrl}}\/api\/promociones"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"bearer_token\": \"drWa9YnurQFx6bY8rfsRcdMXsXpLvTUWSEkqQHivBDLJpbFv7E31BxxBcj6z\"\n}"
+                        },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "name": "Listado de promociones de las habitaciones Response #1",
+                            "originalRequest": {
+                                "url": {
+                                    "protocol": "http",
+                                    "host": "{{baseUrl}}",
+                                    "path": "api\/promociones",
+                                    "query": [],
+                                    "raw": "http:\/\/{{baseUrl}}\/api\/promociones"
+                                },
+                                "method": "GET",
+                                "header": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application\/json"
+                                    },
+                                    {
+                                        "key": "Accept",
+                                        "value": "application\/json"
+                                    }
+                                ],
+                                "body": {
+                                    "mode": "raw",
+                                    "raw": "{\n    \"bearer_token\": \"drWa9YnurQFx6bY8rfsRcdMXsXpLvTUWSEkqQHivBDLJpbFv7E31BxxBcj6z\"\n}"
+                                },
+                                "description": "",
+                                "auth": {
+                                    "type": "noauth"
+                                }
+                            },
+                            "header": null,
+                            "cookie": [],
+                            "body": "{\n    \"nombre\": \"asdasfasfasfa\",\n    \"descripcion\": \"<p>asfasfasfasfsafa<\\\/p>\",\n    \"precio\": \"150.00\",\n    \"estado\": \"Activo\",\n    \"foto\": \"http:\\\/\\\/pairumanibackoffice.test\\\/laravel\\\/public\\\/imagenes\\\/promociones\\\/promocion_210513161554.jpg\"\n}"
+                        }
+                    ]
+                },
+                {
+                    "name": "Listado de transportes",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "{{baseUrl}}",
+                            "path": "api\/transportes",
+                            "query": [],
+                            "raw": "http:\/\/{{baseUrl}}\/api\/transportes"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"bearer_token\": \"drWa9YnurQFx6bY8rfsRcdMXsXpLvTUWSEkqQHivBDLJpbFv7E31BxxBcj6z\"\n}"
+                        },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "name": "Listado de transportes Response #1",
+                            "originalRequest": {
+                                "url": {
+                                    "protocol": "http",
+                                    "host": "{{baseUrl}}",
+                                    "path": "api\/transportes",
+                                    "query": [],
+                                    "raw": "http:\/\/{{baseUrl}}\/api\/transportes"
+                                },
+                                "method": "GET",
+                                "header": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application\/json"
+                                    },
+                                    {
+                                        "key": "Accept",
+                                        "value": "application\/json"
+                                    }
+                                ],
+                                "body": {
+                                    "mode": "raw",
+                                    "raw": "{\n    \"bearer_token\": \"drWa9YnurQFx6bY8rfsRcdMXsXpLvTUWSEkqQHivBDLJpbFv7E31BxxBcj6z\"\n}"
+                                },
+                                "description": "",
+                                "auth": {
+                                    "type": "noauth"
+                                }
+                            },
+                            "header": null,
+                            "cookie": [],
+                            "body": "{\n    \"nombre\": \"Taxis corona\",\n    \"descripcion\": \"<p>adasdasdasd<\\\/p>\",\n    \"precio\": \"25.00\"\n}"
+                        }
+                    ]
+                },
+                {
+                    "name": "Listado de eventos",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "{{baseUrl}}",
+                            "path": "api\/eventos",
+                            "query": [],
+                            "raw": "http:\/\/{{baseUrl}}\/api\/eventos"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"bearer_token\": \"drWa9YnurQFx6bY8rfsRcdMXsXpLvTUWSEkqQHivBDLJpbFv7E31BxxBcj6z\"\n}"
+                        },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "name": "Listado de eventos Response #1",
+                            "originalRequest": {
+                                "url": {
+                                    "protocol": "http",
+                                    "host": "{{baseUrl}}",
+                                    "path": "api\/eventos",
+                                    "query": [],
+                                    "raw": "http:\/\/{{baseUrl}}\/api\/eventos"
+                                },
+                                "method": "GET",
+                                "header": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application\/json"
+                                    },
+                                    {
+                                        "key": "Accept",
+                                        "value": "application\/json"
+                                    }
+                                ],
+                                "body": {
+                                    "mode": "raw",
+                                    "raw": "{\n    \"bearer_token\": \"drWa9YnurQFx6bY8rfsRcdMXsXpLvTUWSEkqQHivBDLJpbFv7E31BxxBcj6z\"\n}"
+                                },
+                                "description": "",
+                                "auth": {
+                                    "type": "noauth"
+                                }
+                            },
+                            "header": null,
+                            "cookie": [],
+                            "body": "{\n    \"nombre\": \"sadaasfasa\",\n    \"descripcion\": \"<p>asfasfasfas<\\\/p>\",\n    \"fecha\": \"2021-04-24\",\n    \"foto\": \"http:\\\/\\\/pairumanibackoffice.test\\\/laravel\\\/public\\\/imagenes\\\/eventos\\\/evento_210422123859.jpg\"\n}"
+                        }
+                    ]
+                },
+                {
+                    "name": "Listado de Lugares Turisticos Gastronomicos",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "{{baseUrl}}",
+                            "path": "api\/lugaresgastronomia",
+                            "query": [],
+                            "raw": "http:\/\/{{baseUrl}}\/api\/lugaresgastronomia"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"bearer_token\": \"drWa9YnurQFx6bY8rfsRcdMXsXpLvTUWSEkqQHivBDLJpbFv7E31BxxBcj6z\"\n}"
+                        },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "name": "Listado de Lugares Turisticos Gastronomicos Response #1",
+                            "originalRequest": {
+                                "url": {
+                                    "protocol": "http",
+                                    "host": "{{baseUrl}}",
+                                    "path": "api\/lugaresgastronomia",
+                                    "query": [],
+                                    "raw": "http:\/\/{{baseUrl}}\/api\/lugaresgastronomia"
+                                },
+                                "method": "GET",
+                                "header": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application\/json"
+                                    },
+                                    {
+                                        "key": "Accept",
+                                        "value": "application\/json"
+                                    }
+                                ],
+                                "body": {
+                                    "mode": "raw",
+                                    "raw": "{\n    \"bearer_token\": \"drWa9YnurQFx6bY8rfsRcdMXsXpLvTUWSEkqQHivBDLJpbFv7E31BxxBcj6z\"\n}"
+                                },
+                                "description": "",
+                                "auth": {
+                                    "type": "noauth"
+                                }
+                            },
+                            "header": null,
+                            "cookie": [],
+                            "body": "{\n    \"nombre\": \"Pairumani\",\n    \"descripcion\": \"<p>Recorrido por todo el parque<\\\/p>\",\n    \"precio_recorrido\": \"500.00\",\n    \"lat\": \"-17.38918918180772\",\n    \"lng\": \"-66.15840481762962\",\n    \"tipo\": \"Gastronomia\",\n    \"foto\": \"http:\\\/\\\/pairumanibackoffice.test\\\/laravel\\\/public\\\/imagenes\\\/lugaresturisticos\\\/lugar_210422114750.jpg\"\n}"
+                        }
+                    ]
+                },
+                {
+                    "name": "Listado de Lugares Turisticos Turismo",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "{{baseUrl}}",
+                            "path": "api\/lugaresturismo",
+                            "query": [],
+                            "raw": "http:\/\/{{baseUrl}}\/api\/lugaresturismo"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"bearer_token\": \"drWa9YnurQFx6bY8rfsRcdMXsXpLvTUWSEkqQHivBDLJpbFv7E31BxxBcj6z\"\n}"
+                        },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "name": "Listado de Lugares Turisticos Turismo Response #1",
+                            "originalRequest": {
+                                "url": {
+                                    "protocol": "http",
+                                    "host": "{{baseUrl}}",
+                                    "path": "api\/lugaresturismo",
+                                    "query": [],
+                                    "raw": "http:\/\/{{baseUrl}}\/api\/lugaresturismo"
+                                },
+                                "method": "GET",
+                                "header": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application\/json"
+                                    },
+                                    {
+                                        "key": "Accept",
+                                        "value": "application\/json"
+                                    }
+                                ],
+                                "body": {
+                                    "mode": "raw",
+                                    "raw": "{\n    \"bearer_token\": \"drWa9YnurQFx6bY8rfsRcdMXsXpLvTUWSEkqQHivBDLJpbFv7E31BxxBcj6z\"\n}"
+                                },
+                                "description": "",
+                                "auth": {
+                                    "type": "noauth"
+                                }
+                            },
+                            "header": null,
+                            "cookie": [],
+                            "body": "{\n    \"nombre\": \"Pairumani\",\n    \"descripcion\": \"<p>Recorrido por todo el parque<\\\/p>\",\n    \"precio_recorrido\": \"500.00\",\n    \"lat\": \"-17.38918918180772\",\n    \"lng\": \"-66.15840481762962\",\n    \"tipo\": \"Turismo\",\n    \"foto\": \"http:\\\/\\\/pairumanibackoffice.test\\\/laravel\\\/public\\\/imagenes\\\/lugaresturisticos\\\/lugar_210422114750.jpg\"\n}"
+                        }
+                    ]
+                },
+                {
+                    "name": "Detalle Lugar Turistico",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "{{baseUrl}}",
+                            "path": "api\/turismodetalle",
+                            "query": [],
+                            "raw": "http:\/\/{{baseUrl}}\/api\/turismodetalle"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"bearer_token\": \"drWa9YnurQFx6bY8rfsRcdMXsXpLvTUWSEkqQHivBDLJpbFv7E31BxxBcj6z\",\n    \"turismo_id\": 2\n}"
+                        },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "name": "Detalle Lugar Turistico Response #1",
+                            "originalRequest": {
+                                "url": {
+                                    "protocol": "http",
+                                    "host": "{{baseUrl}}",
+                                    "path": "api\/turismodetalle",
+                                    "query": [],
+                                    "raw": "http:\/\/{{baseUrl}}\/api\/turismodetalle"
+                                },
+                                "method": "POST",
+                                "header": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application\/json"
+                                    },
+                                    {
+                                        "key": "Accept",
+                                        "value": "application\/json"
+                                    }
+                                ],
+                                "body": {
+                                    "mode": "raw",
+                                    "raw": "{\n    \"bearer_token\": \"drWa9YnurQFx6bY8rfsRcdMXsXpLvTUWSEkqQHivBDLJpbFv7E31BxxBcj6z\",\n    \"turismo_id\": 2\n}"
+                                },
+                                "description": "",
+                                "auth": {
+                                    "type": "noauth"
+                                }
+                            },
+                            "header": null,
+                            "cookie": [],
+                            "body": "{\n    \"nombre\": \"Plaza Principal\",\n    \"descripcion\": \"<p>asdafafafmans,mfna,s<\\\/p>\",\n    \"precio_recorrido\": \"250.00\",\n    \"lat\": \"-17.39375549279761\",\n    \"lng\": \"-66.15695642476157\",\n    \"tipo\": \"Turismo\",\n    \"foto\": \"http:\\\/\\\/pairumanibackoffice.test\\\/laravel\\\/public\\\/imagenes\\\/lugaresturisticos\\\/lugar_210513145930.jpg\"\n}"
+                        }
+                    ]
+                },
+                {
+                    "name": "Listado de Categorias Restaurante",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "{{baseUrl}}",
+                            "path": "api\/restaurantecategorias",
+                            "query": [],
+                            "raw": "http:\/\/{{baseUrl}}\/api\/restaurantecategorias"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"bearer_token\": \"drWa9YnurQFx6bY8rfsRcdMXsXpLvTUWSEkqQHivBDLJpbFv7E31BxxBcj6z\"\n}"
+                        },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "name": "Listado de Categorias Restaurante Response #1",
+                            "originalRequest": {
+                                "url": {
+                                    "protocol": "http",
+                                    "host": "{{baseUrl}}",
+                                    "path": "api\/restaurantecategorias",
+                                    "query": [],
+                                    "raw": "http:\/\/{{baseUrl}}\/api\/restaurantecategorias"
+                                },
+                                "method": "GET",
+                                "header": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application\/json"
+                                    },
+                                    {
+                                        "key": "Accept",
+                                        "value": "application\/json"
+                                    }
+                                ],
+                                "body": {
+                                    "mode": "raw",
+                                    "raw": "{\n    \"bearer_token\": \"drWa9YnurQFx6bY8rfsRcdMXsXpLvTUWSEkqQHivBDLJpbFv7E31BxxBcj6z\"\n}"
+                                },
+                                "description": "",
+                                "auth": {
+                                    "type": "noauth"
+                                }
+                            },
+                            "header": null,
+                            "cookie": [],
+                            "body": "{\n    \"nombre\": \"adasdasfasf\",\n    \"descripcion\": \"<p>safasfasfasfa<\\\/p>\",\n    \"foto\": \"http:\\\/\\\/pairumanibackoffice.test\\\/laravel\\\/public\\\/imagenes\\\/restaurantes\\\/categorias\\\/restaurantecategoria_210422153310.jpg\"\n}"
+                        }
+                    ]
+                },
+                {
+                    "name": "Listado de Productos Restaurante segun a la Categoria que pertenecen",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "{{baseUrl}}",
+                            "path": "api\/restauranteproductos",
+                            "query": [],
+                            "raw": "http:\/\/{{baseUrl}}\/api\/restauranteproductos"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"bearer_token\": \"drWa9YnurQFx6bY8rfsRcdMXsXpLvTUWSEkqQHivBDLJpbFv7E31BxxBcj6z\",\n    \"categoria_id\": 1\n}"
+                        },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "name": "Listado de Productos Restaurante segun a la Categoria que pertenecen Response #1",
+                            "originalRequest": {
+                                "url": {
+                                    "protocol": "http",
+                                    "host": "{{baseUrl}}",
+                                    "path": "api\/restauranteproductos",
+                                    "query": [],
+                                    "raw": "http:\/\/{{baseUrl}}\/api\/restauranteproductos"
+                                },
+                                "method": "POST",
+                                "header": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application\/json"
+                                    },
+                                    {
+                                        "key": "Accept",
+                                        "value": "application\/json"
+                                    }
+                                ],
+                                "body": {
+                                    "mode": "raw",
+                                    "raw": "{\n    \"bearer_token\": \"drWa9YnurQFx6bY8rfsRcdMXsXpLvTUWSEkqQHivBDLJpbFv7E31BxxBcj6z\",\n    \"categoria_id\": 1\n}"
+                                },
+                                "description": "",
+                                "auth": {
+                                    "type": "noauth"
+                                }
+                            },
+                            "header": null,
+                            "cookie": [],
+                            "body": "{\n    \"nombre\": \"Pique macho\",\n    \"descripcion\": \"<p>afasfasfasfasfasf<\\\/p>\",\n    \"precio\": \"100.00\",\n    \"foto\": \"http:\\\/\\\/pairumanibackoffice.test\\\/laravel\\\/public\\\/imagenes\\\/restaurantes\\\/productos\\\/producto_210423115837.jpg\"\n}"
+                        }
+                    ]
+                },
+                {
+                    "name": "Deatelle Producto Restaurante",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "{{baseUrl}}",
+                            "path": "api\/productodetalle",
+                            "query": [],
+                            "raw": "http:\/\/{{baseUrl}}\/api\/productodetalle"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"bearer_token\": \"drWa9YnurQFx6bY8rfsRcdMXsXpLvTUWSEkqQHivBDLJpbFv7E31BxxBcj6z\",\n    \"producto_id\": 1\n}"
+                        },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "name": "Deatelle Producto Restaurante Response #1",
+                            "originalRequest": {
+                                "url": {
+                                    "protocol": "http",
+                                    "host": "{{baseUrl}}",
+                                    "path": "api\/productodetalle",
+                                    "query": [],
+                                    "raw": "http:\/\/{{baseUrl}}\/api\/productodetalle"
+                                },
+                                "method": "POST",
+                                "header": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application\/json"
+                                    },
+                                    {
+                                        "key": "Accept",
+                                        "value": "application\/json"
+                                    }
+                                ],
+                                "body": {
+                                    "mode": "raw",
+                                    "raw": "{\n    \"bearer_token\": \"drWa9YnurQFx6bY8rfsRcdMXsXpLvTUWSEkqQHivBDLJpbFv7E31BxxBcj6z\",\n    \"producto_id\": 1\n}"
+                                },
+                                "description": "",
+                                "auth": {
+                                    "type": "noauth"
+                                }
+                            },
+                            "header": null,
+                            "cookie": [],
+                            "body": "{\n    \"nombre\": \"Pique macho\",\n    \"descripcion\": \"<p>afasfasfasfasfasf<\\\/p>\",\n    \"precio\": \"100.00\",\n    \"foto\": \"http:\\\/\\\/pairumanibackoffice.test\\\/laravel\\\/public\\\/imagenes\\\/restaurantes\\\/productos\\\/producto_210423115837.jpg\"\n}"
+                        }
+                    ]
+                },
+                {
+                    "name": "Creacion de la Reserva de una Habitacion",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "{{baseUrl}}",
+                            "path": "api\/reservahabitacion",
+                            "query": [],
+                            "raw": "http:\/\/{{baseUrl}}\/api\/reservahabitacion"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"bearer_token\": \"drWa9YnurQFx6bY8rfsRcdMXsXpLvTUWSEkqQHivBDLJpbFv7E31BxxBcj6z\",\n    \"checkin\": \"2021-05-17\",\n    \"checkout\": \"2021-05-19\",\n    \"adultos\": 3,\n    \"ni\\u00f1os\": 2,\n    \"cliente_id\": 1,\n    \"habitacion_id\": 1\n}"
+                        },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "name": "Creacion de la Reserva de una Habitacion Response #1",
+                            "originalRequest": {
+                                "url": {
+                                    "protocol": "http",
+                                    "host": "{{baseUrl}}",
+                                    "path": "api\/reservahabitacion",
+                                    "query": [],
+                                    "raw": "http:\/\/{{baseUrl}}\/api\/reservahabitacion"
+                                },
+                                "method": "POST",
+                                "header": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application\/json"
+                                    },
+                                    {
+                                        "key": "Accept",
+                                        "value": "application\/json"
+                                    }
+                                ],
+                                "body": {
+                                    "mode": "raw",
+                                    "raw": "{\n    \"bearer_token\": \"drWa9YnurQFx6bY8rfsRcdMXsXpLvTUWSEkqQHivBDLJpbFv7E31BxxBcj6z\",\n    \"checkin\": \"2021-05-17\",\n    \"checkout\": \"2021-05-19\",\n    \"adultos\": 3,\n    \"ni\\u00f1os\": 2,\n    \"cliente_id\": 1,\n    \"habitacion_id\": 1\n}"
+                                },
+                                "description": "",
+                                "auth": {
+                                    "type": "noauth"
+                                }
+                            },
+                            "header": null,
+                            "cookie": [],
+                            "body": "{\n    \"checkin\": \"2021-05-14\",\n    \"checkout\": \"2021-05-16\",\n    \"adultos\": \"3\",\n    \"ni\\u00f1os\": \"2\",\n    \"cliente_id\": 7,\n    \"habitacion_id\": 8,\n    \"id\": 8\n}"
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "auth": {
+        "type": "noauth"
+    }
+}

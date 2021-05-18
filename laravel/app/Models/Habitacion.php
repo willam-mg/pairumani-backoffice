@@ -9,6 +9,8 @@ class Habitacion extends Model
 {
     use HasFactory;
 
+    const PATH = '/imagenes/habitaciones/';
+
     protected $table = 'habitaciones';
 
     protected $primaryKey = 'id';
@@ -17,12 +19,14 @@ class Habitacion extends Model
 
     protected $fillable = [
         'num_habitacion',
-        'categoria_id',
+        'habitacion_categoria_id',
         'foto',
         'nombre',
         'descripcion',
         'precio',
+        'precio_promocion',
         'capacidad_minima',
+        'capacidad_maxima',
         'estado',
     ];
 
@@ -33,9 +37,41 @@ class Habitacion extends Model
         'habitacion_categoria_id' => 'integer',
     ];
 
-
-    public function habitacionCategoria()
+    public function categoria()
     {
-        return $this->belongsTo(\App\Models\HabitacionCategoria::class,'habitacion_categoria_id','id');
+        return $this->belongsTo(HabitacionCategoria::class,'habitacion_categoria_id','id');
+    }
+
+    public function promocion()
+    {
+        return $this->belongsTo(Promocion::class,'id', 'habitacion_id');
+    }
+
+    public function fotos()
+    {
+        return $this->hasMany(GaleriaHabitacion::class, 'habitacion_id', 'id');
+    }
+
+    public function getFotoUrlAttribute()
+    {
+        if ($this->foto) {
+            return urlpath(self::PATH) . $this->foto;
+        }
+        return null;
+    }
+
+    ///FOTO
+    public static function Namefoto()
+    {
+        return 'habitacion_' . date('ymdHis');
+    }
+
+    public static function Rutafoto()
+    {
+        return public_path() . self::PATH;
+    }
+    public static function Urldeletefoto()
+    {
+        return urlpath(self::PATH);
     }
 }
