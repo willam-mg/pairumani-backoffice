@@ -64,11 +64,11 @@
                             <form method="POST" action="{{ route('hotel_galeria_destroy',$foto->id) }}">
                                 @method('DELETE') @csrf
                                 <div class="col-md-3">
-                                    {{-- @if(kvfj(Auth::user()->rol->permisos,'hotel_galeria_destroy')) --}}
+                                    @if(kvfj(Auth::user()->rol->permisos,'hotel_galeria_destroy'))
                                         <button class="btn btn-danger btn-xs" style="position: absolute" type="submit" title="Eliminar foto">
                                             <i class="material-icons">clear</i>
                                         </button>
-                                    {{-- @endif --}}
+                                    @endif
                                     <img src="{{ $foto->fotourl }}" alt="foto" width="150px" height="150px">
                                 </div>
                             </form>

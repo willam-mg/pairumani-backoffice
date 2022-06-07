@@ -47,11 +47,11 @@
                                         </div>
                                     </div>
                                     <div class="col-lg-3 col-sm-3 col-md-3 col-xs-12" style="margin-top: 20px;">
-                                        <div class="form-group bmd-form-group {{ $errors->has('precio') ? 'has-danger' : '' }}">
+                                        <div class="form-group bmd-form-group {{ $errors->has('pprecio') ? 'has-danger' : '' }}">
                                             <label>Precio</label>
-                                            <input disabled type="number" id="pprecio" name="pprecio" value="{{ old('precio') }}" class="form-control">
+                                            <input disabled type="number" id="pprecio" name="pprecio" value="{{ old('pprecio') }}" class="form-control">
                                             @if ($errors->has('precio'))
-                                                <span id="precio-error" for="preciog" class="error">{{ $errors->first('preciog') }}</span>
+                                                <span id="pprecio-error" for="pprecio" class="error">{{ $errors->first('pprecio') }}</span>
                                             @endif
                                         </div>
                                     </div>
@@ -178,50 +178,32 @@
             
             if (transporte_id!="")
             {
-                if (existTransporteInDetail(transporte_id) == false)
-                {
-                    subtotal[cont]= Number(precio);
-					total=total+subtotal[cont];
-                    fila = '<tr class="selected text-center" id="fila'+cont+'">\
-                                <th>\
-                                    <button type="button" class="btn btn-danger" onclick="eliminar('+cont+');">X</button>\
-                                </th>\
-                                <td>\
-                                    <input type="hidden" name="transporte_id[]" value="'+transporte_id+'">'+transporte+'\
-                                </td>\
-                                <td>\
-                                    <input type="hidden" name="precio[]" value="'+precio+'">'+precio+'\
-                                </td>\
-                                <td>'+subtotal[cont]+'</td>\
-                            </tr>';
-                    cont++;
-                    limpiar();
-                    $('#total').html("Bs/ " + Number(total).toFixed(2));
-					$('#total_venta').val(Number(total).toFixed(2));
-                    evaluar();
-                    $('#detalles').append(fila);
-                }
-                else
-                {
-                    limpiar();
-                    alert("El transporte ya esta agregado");
-                }								
+                subtotal[cont]= Number(precio);
+                total=total+subtotal[cont];
+                fila = '<tr class="selected text-center" id="fila'+cont+'">\
+                            <th>\
+                                <button type="button" class="btn btn-danger" onclick="eliminar('+cont+');">X</button>\
+                            </th>\
+                            <td>\
+                                <input type="hidden" name="transporte_id[]" value="'+transporte_id+'">'+transporte+'\
+                            </td>\
+                            <td>\
+                                <input type="hidden" name="precio[]" value="'+precio+'">'+precio+'\
+                            </td>\
+                            <td>'+subtotal[cont]+'</td>\
+                        </tr>';
+                cont++;
+                limpiar();
+                $('#total').html("Bs/ " + Number(total).toFixed(2));
+                $('#total_venta').val(Number(total).toFixed(2));
+                evaluar();
+                $('#detalles').append(fila);	
             }
             else
             {
                 limpiar();
                 alert("Error al ingresar el transporte");
             }
-        }
-        function existTransporteInDetail(id)
-        {
-            var res = false;
-            $('input[name="transporte_id[]"]').each(function(index, item) {
-                if (item.value == id) {
-                    res = true;
-                }
-            });
-            return res;
         }
         function limpiar()
         {

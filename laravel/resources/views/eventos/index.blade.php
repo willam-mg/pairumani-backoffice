@@ -26,11 +26,11 @@
                             <i class="material-icons">date_range</i>
                         </div>
                         <div style="text-align: right;padding-top: 15px;">
-                            {{-- @if(kvfj(Auth::user()->rol->permisos,'eventos_create')) --}}
+                            @if(kvfj(Auth::user()->rol->permisos,'eventos_create'))
                                 <a class="btn btn-success" href="{{ route('eventos_create') }}" title="Nuevo evento">
                                     <i class="material-icons">add</i> Nuevo
                                 </a>
-                            {{-- @endif --}}
+                            @endif
                         </div>
                     </div>
                     <div class="card-body">
@@ -63,28 +63,28 @@
                                                     <img src="{{ $evento->fotourl }}" alt="{{ $evento->nombre }}" height="120px" width="120px" class="img-">
                                                 </td>
 												<td>{{ $evento->nombre }}</td>
-												<td>{{ $evento->fecha }}</td>
+												<td>{{ \Carbon\Carbon::parse(strtotime($evento->fecha))->formatLocalized('%d de %B del %Y') }}</td>
 												<td style="width: 250px; text-align: center;">
-                                                    {{-- @if(kvfj(Auth::user()->rol->permisos,'eventos_galeria')) --}}
+                                                    @if(kvfj(Auth::user()->rol->permisos,'eventos_galeria'))
                                                         <a href="{{ route('eventos_galeria',$evento->id) }}" class="btn btn-success btn-round btn-just-icon" title="Galeria evento">
                                                             <i class="material-icons">photo_size_select_actual</i>
                                                         </a>
-                                                    {{-- @endif --}}
-                                                    {{-- @if(kvfj(Auth::user()->rol->permisos,'eventos_show')) --}}
+                                                    @endif
+                                                    @if(kvfj(Auth::user()->rol->permisos,'eventos_show'))
                                                         <a href="{{ route('eventos_show',$evento->id) }}" class="btn btn-info btn-round btn-just-icon" title="Detalle evento">
                                                             <i class="material-icons">visibility</i>
                                                         </a>
-                                                    {{-- @endif --}}
-													{{-- @if(kvfj(Auth::user()->rol->permisos,'eventos_edit')) --}}
+                                                    @endif
+													@if(kvfj(Auth::user()->rol->permisos,'eventos_edit'))
 														<a href="{{ route('eventos_edit',$evento->id) }}" class="btn btn-warning btn-round btn-just-icon" title="Editar evento">
 															<i class="material-icons">mode_edit</i>
 														</a>
-													{{-- @endif --}}
-													{{-- @if(kvfj(Auth::user()->rol->permisos,'eventos_destroy')) --}}
+													@endif
+													@if(kvfj(Auth::user()->rol->permisos,'eventos_destroy'))
                                                         <a href="" data-target="#modal-delete-{{$evento->id}}" data-toggle="modal"  class="btn btn-danger btn-round btn-just-icon" title="Eliminar evento">
                                                             <i class="material-icons">delete</i>
                                                         </a>
-													{{-- @endif --}}
+													@endif
 												</td>
 											</tr>
 											@include('eventos.modal')

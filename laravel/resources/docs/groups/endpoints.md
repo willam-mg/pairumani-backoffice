@@ -19,9 +19,9 @@ let headers = {
 };
 
 let body = {
-    "tipo_login": "1,2,3",
+    "tipo_login": 1,
     "email": "cliente@gmail.com",
-    "password": "cliente54782",
+    "password": "cliente1568",
     "nombres": "Jose Rodrigo",
     "apellidos": "Cespedes Rojas",
     "tipo_documento": "Ci,Pasaporte",
@@ -92,8 +92,8 @@ fetch(url, {
 </p>
 <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
 <p>
-<b><code>tipo_login</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
-<input type="text" name="tipo_login" data-endpoint="POSTapi-login" data-component="body" required  hidden>
+<b><code>tipo_login</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+<input type="number" name="tipo_login" data-endpoint="POSTapi-login" data-component="body" required  hidden>
 <br>
 El tipo de login que usara el cliente para iniciar sesion.
 </p>
@@ -107,17 +107,17 @@ Email que usa el cliente para el registro.
 <b><code>password</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
 <input type="password" name="password" data-endpoint="POSTapi-login" data-component="body"  hidden>
 <br>
-La clave que usara para ingresar al sistema el cliente para el registro.
+El password que usara el cliente para iniciar sesion y registro.
 </p>
 <p>
-<b><code>nombres</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
-<input type="text" name="nombres" data-endpoint="POSTapi-login" data-component="body" required  hidden>
+<b><code>nombres</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+<input type="text" name="nombres" data-endpoint="POSTapi-login" data-component="body"  hidden>
 <br>
 Los nombes del cliente para el registro.
 </p>
 <p>
-<b><code>apellidos</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
-<input type="text" name="apellidos" data-endpoint="POSTapi-login" data-component="body" required  hidden>
+<b><code>apellidos</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+<input type="text" name="apellidos" data-endpoint="POSTapi-login" data-component="body"  hidden>
 <br>
 Los apellidos del cliente para el registro.
 </p>
@@ -134,8 +134,8 @@ El tipo de documento que tiene el cliente para el registro .
 Número de documento del cliente para el registro.
 </p>
 <p>
-<b><code>celular</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
-<input type="text" name="celular" data-endpoint="POSTapi-login" data-component="body" required  hidden>
+<b><code>celular</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+<input type="text" name="celular" data-endpoint="POSTapi-login" data-component="body"  hidden>
 <br>
 Número de celular del cliente para el registro.
 </p>
@@ -305,14 +305,14 @@ Los nombes del cliente para el registro.
 Los apellidos del cliente para el registro.
 </p>
 <p>
-<b><code>tipo_documento</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
-<input type="text" name="tipo_documento" data-endpoint="POSTapi-signup" data-component="body"  hidden>
+<b><code>tipo_documento</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<input type="text" name="tipo_documento" data-endpoint="POSTapi-signup" data-component="body" required  hidden>
 <br>
 El tipo de documento que tiene el cliente para el registro .
 </p>
 <p>
-<b><code>num_documento</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
-<input type="text" name="num_documento" data-endpoint="POSTapi-signup" data-component="body"  hidden>
+<b><code>num_documento</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<input type="text" name="num_documento" data-endpoint="POSTapi-signup" data-component="body" required  hidden>
 <br>
 Número de documento del cliente para el registro.
 </p>
@@ -323,32 +323,32 @@ Número de documento del cliente para el registro.
 Número de celular del cliente para el registro.
 </p>
 <p>
-<b><code>direccion</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
-<input type="text" name="direccion" data-endpoint="POSTapi-signup" data-component="body"  hidden>
+<b><code>direccion</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<input type="text" name="direccion" data-endpoint="POSTapi-signup" data-component="body" required  hidden>
 <br>
 Direccón del cliente para el registro.
 </p>
 <p>
-<b><code>ciudad</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
-<input type="text" name="ciudad" data-endpoint="POSTapi-signup" data-component="body"  hidden>
+<b><code>ciudad</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<input type="text" name="ciudad" data-endpoint="POSTapi-signup" data-component="body" required  hidden>
 <br>
 La ciudad donde vive el cliente para el registro.
 </p>
 <p>
-<b><code>pais</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
-<input type="text" name="pais" data-endpoint="POSTapi-signup" data-component="body"  hidden>
+<b><code>pais</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<input type="text" name="pais" data-endpoint="POSTapi-signup" data-component="body" required  hidden>
 <br>
 País donde vive el cliente para el registro.
 </p>
 <p>
-<b><code>oficio</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
-<input type="text" name="oficio" data-endpoint="POSTapi-signup" data-component="body"  hidden>
+<b><code>oficio</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<input type="text" name="oficio" data-endpoint="POSTapi-signup" data-component="body" required  hidden>
 <br>
 El trabajo que realiza el cliente para el registro.
 </p>
 <p>
-<b><code>empresa</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
-<input type="text" name="empresa" data-endpoint="POSTapi-signup" data-component="body"  hidden>
+<b><code>empresa</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<input type="text" name="empresa" data-endpoint="POSTapi-signup" data-component="body" required  hidden>
 <br>
 La empresa donde trabaja actualemnte el cliente para el registro.
 </p>
@@ -359,14 +359,14 @@ La empresa donde trabaja actualemnte el cliente para el registro.
 de telefono fijo del cliente para el registro.
 </p>
 <p>
-<b><code>email</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
-<input type="text" name="email" data-endpoint="POSTapi-signup" data-component="body"  hidden>
+<b><code>email</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<input type="text" name="email" data-endpoint="POSTapi-signup" data-component="body" required  hidden>
 <br>
 Email que usa el cliente para el registro.
 </p>
 <p>
-<b><code>password</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
-<input type="password" name="password" data-endpoint="POSTapi-signup" data-component="body"  hidden>
+<b><code>password</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<input type="password" name="password" data-endpoint="POSTapi-signup" data-component="body" required  hidden>
 <br>
 La clave que usara para ingresar al sistema el cliente para el registro.
 </p>
@@ -377,20 +377,20 @@ La clave que usara para ingresar al sistema el cliente para el registro.
 Fecha de nacimiento del cliente para el registro.
 </p>
 <p>
-<b><code>motivo_viaje</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
-<input type="text" name="motivo_viaje" data-endpoint="POSTapi-signup" data-component="body"  hidden>
+<b><code>motivo_viaje</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<input type="text" name="motivo_viaje" data-endpoint="POSTapi-signup" data-component="body" required  hidden>
 <br>
 Motivo por el cual viaja el cliente para el registro.
 </p>
 <p>
-<b><code>foto</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
-<input type="text" name="foto" data-endpoint="POSTapi-signup" data-component="body"  hidden>
+<b><code>foto</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<input type="text" name="foto" data-endpoint="POSTapi-signup" data-component="body" required  hidden>
 <br>
 Foto que se registrara cuando haga login con sus redes sociales o suba una foto el lciente para el registro.
 </p>
 <p>
-<b><code>imei_celular</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
-<input type="text" name="imei_celular" data-endpoint="POSTapi-signup" data-component="body"  hidden>
+<b><code>imei_celular</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<input type="text" name="imei_celular" data-endpoint="POSTapi-signup" data-component="body" required  hidden>
 <br>
 Se registrara el imei del celular del cliente para el registro.
 </p>

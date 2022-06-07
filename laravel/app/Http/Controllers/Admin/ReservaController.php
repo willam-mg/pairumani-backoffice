@@ -2,16 +2,17 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
-use App\Http\Requests\ReservaFormRequest;
-use App\Models\Acompanante;
 use App\Models\Cliente;
-use App\Models\Habitacion;
-use App\Models\HabitacionCategoria;
-use App\Models\Hospedaje;
-use App\Models\HospedajeDetalleAcompanante;
 use App\Models\Reserva;
+use App\Models\Hospedaje;
+use App\Models\Habitacion;
+use App\Models\Acompanante;
 use Illuminate\Http\Request;
+use App\Models\HabitacionCategoria;
+use App\Http\Controllers\Controller;
+use App\Models\HospedajeAcompanante;
+use App\Http\Requests\ReservaFormRequest;
+use App\Models\HospedajeDetalleAcompanante;
 
 class ReservaController extends Controller
 {
@@ -32,52 +33,6 @@ class ReservaController extends Controller
     {
         return view('reservas.show', compact('reserva','categoria','habitacion'));
     }
-    public function hospedaje(HabitacionCategoria $categoria,Habitacion $habitacion,Reserva $reserva,$acompanante=null)
-    {
-        $hospedaje = new HospedajeDetalleAcompanante();
-        $hospedaje->acompanante_id = $acompanante;
-        return view('reservas.hospedaje',[
-            'categoria' => $categoria,
-            'habitacion' => $habitacion,
-            'reserva' => $reserva,
-            'tipo' => Reserva::TIPO,
-            'hospedaje' => $hospedaje,
-            'acompañantes' => Acompanante::pluck('nombre', 'id'),
-        ]);
-    }
-    public function hospedajestore(HabitacionCategoria $categoria, Habitacion $habitacion, Reserva $reserva, $acompanante = null)
-    {
-        if ($habitacion->estado == 'Ocupado' && $habitacion->estado == 'Reservado') {
-            return redirect()->back()->with('message', 'La habitacion ya fue ocupada')->with('typealert', 'danger');
-        }
-        $hospedaje = new Hospedaje();
-        $hospedaje->cliente_id = $reserva->cliente_id;
-        $hospedaje->fecha_checkin = $reserva->checkin;
-        $hospedaje->fecha_checkout = $reserva->checkout;
-        $hospedaje->habitacion_id = $reserva->habitacion_id;
-        $hospedaje->niños = $reserva->niños;
-        $hospedaje->adultos = $reserva->adultos;
-        $hospedaje->precio = $habitacion->precio;
-        $hospedaje->save();
-        //cambio de estado de la habitación
-        $habitacion->estado = 'Ocupado';
-        $habitacion->save();
-        //registro de los acompañantes
-        $acompañante_id = request()->get('acompañante_id');
-        $cont = 0;
-
-        if($acompañante_id != null){
-            while ($cont < count($acompañante_id)) {
-                $detalle = new HospedajeDetalleAcompanante();
-                $detalle->hospedaje_id = $hospedaje->id;
-                $detalle->acompanante_id = $acompañante_id[$cont];
-                $detalle->save();
-                $cont = $cont + 1;
-            }
-        }
-
-        return redirect()->route('hospedajes_index')->with('message', 'Guardado con éxito')->with('typealert', 'success');
-    }
     public function create(HabitacionCategoria $categoria, Habitacion $habitacion,$cliente=null)
     {
         $reserva = new Reserva();
@@ -97,6 +52,7 @@ class ReservaController extends Controller
         }
         $reserva = (new Reserva())->fill($request->all());
         $reserva->habitacion_id = $habitacion->id;
+        $reserva->estado = 'Reservado';
         $reserva->save();
         //cambio de estado de la habitación
         $habitacion->estado = 'Reservado';
@@ -120,7 +76,52 @@ class ReservaController extends Controller
     }
     public function destroy(HabitacionCategoria $categoria, Habitacion $habitacion,Reserva $reserva)
     {
+        //cambio de estado de la habitación
+        $habitacion->estado = 'Disponible';
+        $habitacion->save();
         $reserva->delete();
         return redirect()->route('reservas_index',[$categoria->id,$habitacion->id])->with('message', 'Eliminado con éxito')->with('typealert', 'success');
+    }
+    public function hospedaje(HabitacionCategoria $categoria, Habitacion $habitacion, Reserva $reserva)
+    {
+        return view('reservas.hospedaje', [
+            'categoria' => $categoria,
+            'habitacion' => $habitacion,
+            'reserva' => $reserva,
+            'tipo' => Reserva::TIPO,
+            'acompañantes' => $reserva->cliente->acompañantes,
+        ]);
+    }
+    public function hospedajestore(HabitacionCategoria $categoria, Habitacion $habitacion, Reserva $reserva)
+    {
+        $hospedaje = new Hospedaje();
+        $hospedaje->cliente_id = $reserva->cliente_id;
+        $hospedaje->fecha_checkin = $reserva->checkin;
+        $hospedaje->fecha_checkout = $reserva->checkout;
+        $hospedaje->niños = $reserva->niños;
+        $hospedaje->adultos = $reserva->adultos;
+        $hospedaje->precio = $habitacion->precio;
+        $hospedaje->precio_promocion = $habitacion->promocion ? $habitacion->promocion->precio : NULL;
+        $hospedaje->habitacion_id = $reserva->habitacion_id;
+        $hospedaje->estado = 'Ocupado';
+        $hospedaje->save();
+        //cambio de estado de la reserva
+        $reserva->estado = 'Activo';
+        $reserva->save();
+        //cambio de estado de la habitación
+        $habitacion->estado = 'Ocupado';
+        $habitacion->save();
+        //registramos los acompañantes del cliente que se hospedara
+        foreach ($reserva->cliente->acompañantes as $acompañante) {
+            $detalle = new HospedajeDetalleAcompanante();
+            $detalle->hospedaje_id = $hospedaje->id;
+            $detalle->nombre = $acompañante->nombre;
+            $detalle->num_documento = $acompañante->num_documento;
+            $detalle->nacionalidad = $acompañante->nacionalidad;
+            $detalle->ciudad = $acompañante->ciudad;
+            $detalle->save();
+        }
+
+        return redirect()->route('hospedajes_index')->with('message', 'Guardado con éxito')->with('typealert', 'success');
     }
 }

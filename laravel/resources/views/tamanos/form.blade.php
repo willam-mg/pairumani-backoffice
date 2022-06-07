@@ -6,23 +6,19 @@
         </div>
     </div>
     <div class="card-body ">
-        <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
-            <div class="form-group bmd-form-group {{ $errors->has('nombre') ? 'has-danger' : '' }}">
-                <label for="nombre" class="bmd-label-floating">Nombre</label>
-                <input type="text" name="nombre" value="{{ old('nombre',$tamano->nombre) }}" class="form-control">
-                @if ($errors->has('nombre'))
-                    <span id="nombre-error" for="nombre" class="error">{{ $errors->first('nombre') }}</span>
-                @endif
-            </div>
+        <div class="form-group bmd-form-group {{ $errors->has('nombre') ? 'has-danger' : '' }}">
+            <label for="nombre" class="bmd-label-floating">Nombre</label>
+            <input type="text" name="nombre" value="{{ old('nombre',$tamano->nombre) }}" class="form-control">
+            @if ($errors->has('nombre'))
+                <span id="nombre-error" for="nombre" class="error">{{ $errors->first('nombre') }}</span>
+            @endif
         </div>
-        <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
-            <div class="form-group bmd-form-group {{ $errors->has('precio') ? 'has-danger' : '' }}">
-                <label for="precio" class="bmd-label-floating">precio</label>
-                <input type="number" min="1" name="precio" value="{{ old('precio',$tamano->precio) }}" class="form-control">
-                @if ($errors->has('precio'))
-                    <span id="precio-error" for="precio" class="error">{{ $errors->first('precio') }}</span>
-                @endif
-            </div>
+        <div class="form-group bmd-form-group {{ $errors->has('precio') ? 'has-danger' : '' }}">
+            <label for="precio" class="bmd-label-floating">precio</label>
+            <input type="text"  name="precio" value="{{ old('precio',$tamano->precio) }}" class="form-control">
+            @if ($errors->has('precio'))
+                <span id="precio-error" for="precio" class="error">{{ $errors->first('precio') }}</span>
+            @endif
         </div>
     </div>
     <div class="card-footer text-right">

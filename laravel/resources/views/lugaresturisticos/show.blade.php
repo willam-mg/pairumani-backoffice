@@ -55,7 +55,9 @@
                 </table>
                 <div class="form-group text-right">
                     <a class="btn btn-default" href="{{ route('lugaresturisticos_index') }}" title="Cerrar"><i class="material-icons">clear</i> Cerrar</a>
-                    <a class="btn btn-warning" href="{{ route('lugaresturisticos_edit',$lugar->id) }}" title="Modificar"><i class="material-icons">edit</i> Modificar</a>                    
+                    @if(kvfj(Auth::user()->rol->permisos,'lugaresturisticos_edit'))
+                        <a class="btn btn-warning" href="{{ route('lugaresturisticos_edit',$lugar->id) }}" title="Modificar"><i class="material-icons">edit</i> Modificar</a>
+                    @endif                    
                 </div>
             </div>
         </div>

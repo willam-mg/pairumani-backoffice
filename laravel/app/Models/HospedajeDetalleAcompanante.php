@@ -9,7 +9,7 @@ class HospedajeDetalleAcompanante extends Model
 {
     use HasFactory;
 
-    protected $table = 'hospedaje_detalle_acompanante';
+    protected $table = 'hospedaje_detalle_acompanantes';
 
     protected $primaryKey = 'id';
 
@@ -17,7 +17,10 @@ class HospedajeDetalleAcompanante extends Model
 
     protected $fillable = [
         'hospedaje_id',
-        'acompanante_id',
+        'nombre',
+        'num_documento',
+        'nacionalidad',
+        'ciudad',
     ];
 
     protected $guarded = [];
@@ -27,13 +30,8 @@ class HospedajeDetalleAcompanante extends Model
         'hospedaje_id' => 'integer',
     ];
 
-    public function acompanante()
-    {
-        return $this->belongsTo(Acompanante::class, 'acompanante_id', 'id');
-    }
-
     public function hospedaje()
     {
-        return $this->belongsTo(Hospedaje::class);
+        return $this->belongsTo(Hospedaje::class, 'hospedaje_id', 'id');
     }
 }

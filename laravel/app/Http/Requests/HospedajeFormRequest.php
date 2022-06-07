@@ -23,16 +23,13 @@ class HospedajeFormRequest extends FormRequest
      */
     public function rules()
     {
-        $rules = [
+        return [
             'fecha_checkin' => 'required',
             'fecha_checkout' => 'required',
+            'niños' => 'required|numeric',
+            'adultos' => 'required|numeric',
+            'cliente_id' => 'required|integer',
+            'habitacion_id' => 'required|integer'
         ];
-
-        if (routerequest('hospedajes_create')) {
-            $rules['cliente_id'] = ['required', 'integer', 'unique:hospedajes'];
-            $rules['habitacion_id'] = ['required', 'integer', 'unique:hospedajes'];
-        }
-
-        return $rules;
     }
 }

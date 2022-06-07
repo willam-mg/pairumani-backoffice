@@ -44,8 +44,10 @@
                     </tbody>
                 </table>
                 <div class="form-group text-right">
-                    <a class="btn btn-default" href="{{ route('tamano_index',[$categoria->id,$producto->id]) }}" title="Cerrar"><i class="material-icons">clear</i> Cerrar</a>
-                    <a class="btn btn-warning" href="{{ route('tamano_edit',[$categoria->id,$producto->id,$tamano->id]) }}" title="Modificar"><i class="material-icons">edit</i> Modificar</a>                    
+                    <a class="btn btn-default" href="{{ route('tamanos_index',[$categoria->id,$producto->id]) }}" title="Cerrar"><i class="material-icons">clear</i> Cerrar</a>
+                    @if(kvfj(Auth::user()->rol->permisos,'tamanos_edit'))
+                        <a class="btn btn-warning" href="{{ route('tamanos_edit',[$categoria->id,$producto->id,$tamano->id]) }}" title="Modificar"><i class="material-icons">edit</i> Modificar</a>
+                    @endif                    
                 </div>
             </div>
         </div>

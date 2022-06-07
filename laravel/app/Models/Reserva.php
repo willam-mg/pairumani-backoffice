@@ -24,14 +24,15 @@ class Reserva extends Model
         'niños',
         'cliente_id',
         'habitacion_id',
+        'estado',
     ];
 
     protected $guarded = [];
 
     protected $casts = [
         'id' => 'integer',
-        // 'checkin' => 'date',
-        // 'checkout' => 'date',
+        'checkin' => 'datetime',
+        'checkout' => 'datetime',
         'cliente_id' => 'integer',
         'habitacion_id' => 'integer',
     ];

@@ -30,11 +30,11 @@
                             <i class="material-icons">date_range</i>
                         </div>
                         <div style="text-align: right;padding-top: 15px;">
-                            {{-- @if(kvfj(Auth::user()->rol->permisos,'tamanos_create')) --}}
+                            @if(kvfj(Auth::user()->rol->permisos,'tamanos_create'))
                                 <a class="btn btn-success" href="{{ route('tamanos_create',[$categoria->id,$producto->id]) }}" title="Nuevo tamaño">
                                     <i class="material-icons">add</i> Nuevo
                                 </a>
-                            {{-- @endif --}}
+                            @endif
                         </div>
                     </div>
                     <div class="card-body">
@@ -67,21 +67,21 @@
                                                 <td>{{ $tamaño->precio }}</td>
 												<td>{{ $tamaño->producto->nombre }}</td>
 												<td>
-                                                    {{-- @if(kvfj(Auth::user()->rol->permisos,'tamanos_show')) --}}
+                                                    @if(kvfj(Auth::user()->rol->permisos,'tamanos_show'))
                                                         <a href="{{ route('tamanos_show',[$categoria->id,$producto->id,$tamaño->id]) }}" class="btn btn-info btn-round btn-just-icon" title="Detalle tamaño">
                                                             <i class="material-icons">visibility</i>
                                                         </a>
-                                                    {{-- @endif --}}
-													{{-- @if(kvfj(Auth::user()->rol->permisos,'tamanos_edit')) --}}
+                                                    @endif
+													@if(kvfj(Auth::user()->rol->permisos,'tamanos_edit'))
 														<a name="editar" href="{{ route('tamanos_edit',[$categoria->id,$producto->id,$tamaño->id]) }}" class="btn btn-warning btn-round btn-just-icon" title="Editar tamaño">
 															<i class="material-icons">mode_edit</i>
 														</a>
-													{{-- @endif --}}
-													{{-- @if(kvfj(Auth::user()->rol->permisos,'tamanos_destroy')) --}}
+													@endif
+													@if(kvfj(Auth::user()->rol->permisos,'tamanos_destroy'))
 														<a name="eliminar" href="" data-target="#modal-delete-{{$tamaño->id}}" data-toggle="modal" class="btn btn-danger btn-round btn-just-icon" title="Eliminar tamaño">
 															<i class="material-icons">delete</i>
 														</a>
-													{{-- @endif --}}
+													@endif
 												</td>
 											</tr>
 											@include('tamanos.modal')

@@ -25,6 +25,7 @@ class ReservaPromocion extends Model
         'checkout',
         'adultos',
         'niños',
+        'estado',
     ];
 
     protected $guarded = [];

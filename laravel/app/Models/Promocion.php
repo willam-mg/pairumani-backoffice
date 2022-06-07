@@ -34,7 +34,7 @@ class Promocion extends Model
 
     public function reservaspromociones()
     {
-        return $this->hasMany(\App\Models\ReservaPromocion::class, 'promocion_id', 'id');
+        return $this->hasMany(ReservaPromocion::class, 'promocion_id', 'id');
     }
 
     public function habitacion()

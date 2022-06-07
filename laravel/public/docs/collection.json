@@ -10,7 +10,7 @@
     ],
     "info": {
         "name": "HOTEL-PAIRUMANI",
-        "_postman_id": "454d3e62-72d8-4b16-9368-4cc21f60290b",
+        "_postman_id": "8ab1c651-7990-43eb-b413-46cb90325334",
         "description": "",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
     },
@@ -208,6 +208,73 @@
                                 "body": {
                                     "mode": "raw",
                                     "raw": "{\n    \"cliente_id\": 7\n}"
+                                },
+                                "description": "",
+                                "auth": {
+                                    "type": "noauth"
+                                }
+                            },
+                            "header": null,
+                            "cookie": [],
+                            "body": "{\n    \"id\": 7,\n    \"nombres\": \"Juan Carlos\",\n    \"apellidos\": \"Espinoza Cespedes\",\n    \"tipo_documento\": \"Ci\",\n    \"num_documento\": \"94564455\",\n    \"celular\": \"65582210\",\n    \"direccion\": \"Av Pando\",\n    \"ciudad\": \"Cochabamba\",\n    \"pais\": \"Bolivia\",\n    \"oficio\": \"Arquitecto\",\n    \"empresa\": \"SOFT\",\n    \"telefono\": \"4444444\",\n    \"email\": \"juan@gmail.com\",\n    \"fecha_nacimiento\": \"1989-05-12\",\n    \"motivo_viaje\": \"Recreacion\",\n    \"foto\": \"foto.jpg\",\n    \"api_token\": \"KjUdFmnlAu7aFjlUXWIuSE1L4wPM8y3oWFacDALHOHKbNlbZGIa6ifz6Ojy4\",\n    \"imei_celular\": \"354651100023680\"\n}"
+                        }
+                    ]
+                },
+                {
+                    "name": "Editar perfil Cliente",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "{{baseUrl}}",
+                            "path": "api\/update",
+                            "query": [],
+                            "raw": "http:\/\/{{baseUrl}}\/api\/update"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"nombres\": \"Jose Rodrigo\",\n    \"apellidos\": \"Cespedes Rojas\",\n    \"tipo_documento\": \"Ci,Pasaporte\",\n    \"num_documento\": \"657848455\",\n    \"celular\": \"65582210\",\n    \"direccion\": \"Av Potosi\",\n    \"ciudad\": \"La Paz\",\n    \"pais\": \"Bolivia\",\n    \"oficio\": \"Ing Civil\",\n    \"empresa\": \"YPFB\",\n    \"telefono\": \"4652588\",\n    \"email\": \"cliente@gmail.com\",\n    \"password\": \"cliente54782\",\n    \"fecha_nacimiento\": \"1985-03-22\",\n    \"motivo_viaje\": \"Recreacion,Negocios,Salud,Otro\",\n    \"foto\": \"foto.jpg\",\n    \"imei_celular\": \"354651100023680\"\n}"
+                        },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "name": "Editar perfil Cliente Response #1",
+                            "originalRequest": {
+                                "url": {
+                                    "protocol": "http",
+                                    "host": "{{baseUrl}}",
+                                    "path": "api\/update",
+                                    "query": [],
+                                    "raw": "http:\/\/{{baseUrl}}\/api\/update"
+                                },
+                                "method": "POST",
+                                "header": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application\/json"
+                                    },
+                                    {
+                                        "key": "Accept",
+                                        "value": "application\/json"
+                                    }
+                                ],
+                                "body": {
+                                    "mode": "raw",
+                                    "raw": "{\n    \"nombres\": \"Jose Rodrigo\",\n    \"apellidos\": \"Cespedes Rojas\",\n    \"tipo_documento\": \"Ci,Pasaporte\",\n    \"num_documento\": \"657848455\",\n    \"celular\": \"65582210\",\n    \"direccion\": \"Av Potosi\",\n    \"ciudad\": \"La Paz\",\n    \"pais\": \"Bolivia\",\n    \"oficio\": \"Ing Civil\",\n    \"empresa\": \"YPFB\",\n    \"telefono\": \"4652588\",\n    \"email\": \"cliente@gmail.com\",\n    \"password\": \"cliente54782\",\n    \"fecha_nacimiento\": \"1985-03-22\",\n    \"motivo_viaje\": \"Recreacion,Negocios,Salud,Otro\",\n    \"foto\": \"foto.jpg\",\n    \"imei_celular\": \"354651100023680\"\n}"
                                 },
                                 "description": "",
                                 "auth": {
@@ -891,6 +958,73 @@
                     ]
                 },
                 {
+                    "name": "Detalle de transporte",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "{{baseUrl}}",
+                            "path": "api\/transportedetalle",
+                            "query": [],
+                            "raw": "http:\/\/{{baseUrl}}\/api\/transportedetalle"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"bearer_token\": \"drWa9YnurQFx6bY8rfsRcdMXsXpLvTUWSEkqQHivBDLJpbFv7E31BxxBcj6z\",\n    \"transporte_id\": 1\n}"
+                        },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "name": "Detalle de transporte Response #1",
+                            "originalRequest": {
+                                "url": {
+                                    "protocol": "http",
+                                    "host": "{{baseUrl}}",
+                                    "path": "api\/transportedetalle",
+                                    "query": [],
+                                    "raw": "http:\/\/{{baseUrl}}\/api\/transportedetalle"
+                                },
+                                "method": "POST",
+                                "header": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application\/json"
+                                    },
+                                    {
+                                        "key": "Accept",
+                                        "value": "application\/json"
+                                    }
+                                ],
+                                "body": {
+                                    "mode": "raw",
+                                    "raw": "{\n    \"bearer_token\": \"drWa9YnurQFx6bY8rfsRcdMXsXpLvTUWSEkqQHivBDLJpbFv7E31BxxBcj6z\",\n    \"transporte_id\": 1\n}"
+                                },
+                                "description": "",
+                                "auth": {
+                                    "type": "noauth"
+                                }
+                            },
+                            "header": null,
+                            "cookie": [],
+                            "body": "{\n    \"nombre\": \"Taxis corona\",\n    \"descripcion\": \"<p>adasdasdasd<\\\/p>\",\n    \"precio\": \"25.00\",\n    \"foto\": \"foto.jpg\"\n}"
+                        }
+                    ]
+                },
+                {
                     "name": "Listado de eventos",
                     "request": {
                         "url": {
@@ -1423,6 +1557,341 @@
                             "header": null,
                             "cookie": [],
                             "body": "{\n    \"checkin\": \"2021-05-14\",\n    \"checkout\": \"2021-05-16\",\n    \"adultos\": \"3\",\n    \"ni\\u00f1os\": \"2\",\n    \"cliente_id\": 7,\n    \"habitacion_id\": 8,\n    \"id\": 8\n}"
+                        }
+                    ]
+                },
+                {
+                    "name": "Reservas Cliente",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "{{baseUrl}}",
+                            "path": "api\/misreservas",
+                            "query": [],
+                            "raw": "http:\/\/{{baseUrl}}\/api\/misreservas"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"bearer_token\": \"drWa9YnurQFx6bY8rfsRcdMXsXpLvTUWSEkqQHivBDLJpbFv7E31BxxBcj6z\",\n    \"cliente_id\": 1\n}"
+                        },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "name": "Reservas Cliente Response #1",
+                            "originalRequest": {
+                                "url": {
+                                    "protocol": "http",
+                                    "host": "{{baseUrl}}",
+                                    "path": "api\/misreservas",
+                                    "query": [],
+                                    "raw": "http:\/\/{{baseUrl}}\/api\/misreservas"
+                                },
+                                "method": "POST",
+                                "header": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application\/json"
+                                    },
+                                    {
+                                        "key": "Accept",
+                                        "value": "application\/json"
+                                    }
+                                ],
+                                "body": {
+                                    "mode": "raw",
+                                    "raw": "{\n    \"bearer_token\": \"drWa9YnurQFx6bY8rfsRcdMXsXpLvTUWSEkqQHivBDLJpbFv7E31BxxBcj6z\",\n    \"cliente_id\": 1\n}"
+                                },
+                                "description": "",
+                                "auth": {
+                                    "type": "noauth"
+                                }
+                            },
+                            "header": null,
+                            "cookie": [],
+                            "body": "{\n    \"id\": 5,\n    \"checkin\": \"2021-05-06\",\n    \"checkout\": \"2021-05-08\",\n    \"adultos\": 3,\n    \"ni\\u00f1os\": 2,\n    \"cliente\": {\n        \"nombre\": \"Paola Montecinos Pardo\",\n        \"celular\": \"8888888\",\n        \"telefono\": \"9999999\",\n        \"ciudad\": \"Cochabamba\",\n        \"pais\": \"Bolivia\",\n        \"oficio\": \"Arquitecto\",\n        \"email\": \"paola@gmail.com\"\n    },\n    \"habitacion\": {\n        \"nombre\": \"Habitacion 20\",\n        \"num_habitacion\": \"20\",\n        \"precio\": \"450.00\",\n        \"foto\": \"http:\\\/\\\/pairumanibackoffice.test\\\/laravel\\\/public\\\/imagenes\\\/habitaciones\\\/habitacion_210506153104.jfif\"\n    }\n}"
+                        }
+                    ]
+                },
+                {
+                    "name": "Hospedajes Cliente",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "{{baseUrl}}",
+                            "path": "api\/mishospedajes",
+                            "query": [],
+                            "raw": "http:\/\/{{baseUrl}}\/api\/mishospedajes"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"bearer_token\": \"drWa9YnurQFx6bY8rfsRcdMXsXpLvTUWSEkqQHivBDLJpbFv7E31BxxBcj6z\",\n    \"cliente_id\": 1\n}"
+                        },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "name": "Hospedajes Cliente Response #1",
+                            "originalRequest": {
+                                "url": {
+                                    "protocol": "http",
+                                    "host": "{{baseUrl}}",
+                                    "path": "api\/mishospedajes",
+                                    "query": [],
+                                    "raw": "http:\/\/{{baseUrl}}\/api\/mishospedajes"
+                                },
+                                "method": "POST",
+                                "header": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application\/json"
+                                    },
+                                    {
+                                        "key": "Accept",
+                                        "value": "application\/json"
+                                    }
+                                ],
+                                "body": {
+                                    "mode": "raw",
+                                    "raw": "{\n    \"bearer_token\": \"drWa9YnurQFx6bY8rfsRcdMXsXpLvTUWSEkqQHivBDLJpbFv7E31BxxBcj6z\",\n    \"cliente_id\": 1\n}"
+                                },
+                                "description": "",
+                                "auth": {
+                                    "type": "noauth"
+                                }
+                            },
+                            "header": null,
+                            "cookie": [],
+                            "body": "{\n    \"id\": 13,\n    \"checkin\": \"2021-05-20\",\n    \"checkout\": \"2021-05-22\",\n    \"adultos\": 4,\n    \"ni\\u00f1os\": 2,\n    \"precio\": \"300.00\",\n    \"estado\": \"Ocupado\",\n    \"cliente\": {\n        \"nombre\": \"Julian Gonzales Llanos\",\n        \"celular\": \"62101485\",\n        \"telefono\": \"42682265\",\n        \"ciudad\": \"La Paz\",\n        \"pais\": \"Bolivia\",\n        \"oficio\": \"Alba\\u00f1il\",\n        \"email\": \"julian@gmail.com\"\n    },\n    \"habitacion\": {\n        \"nombre\": \"Habitacion 26\",\n        \"num_habitacion\": \"26\",\n        \"precio\": \"450.00\",\n        \"foto\": \"http:\\\/\\\/pairumanibackoffice.test\\\/laravel\\\/public\\\/imagenes\\\/habitaciones\\\/habitacion_210521090607.jfif\"\n    },\n    \"transportes\": [],\n    \"lugares\": [\n        {\n            \"nombre\": \"Pairumani\",\n            \"precio\": \"500.00\",\n            \"fecha\": \"2021-06-04\",\n            \"tipo\": \"Gastronomia\",\n            \"foto\": \"http:\\\/\\\/pairumanibackoffice.test\\\/laravel\\\/public\\\/imagenes\\\/lugaresturisticos\\\/lugar_210422114750.jpg\"\n        },\n        {\n            \"nombre\": \"Pairumani\",\n            \"precio\": \"500.00\",\n            \"fecha\": \"2021-06-11\",\n            \"tipo\": \"Gastronomia\",\n            \"foto\": \"http:\\\/\\\/pairumanibackoffice.test\\\/laravel\\\/public\\\/imagenes\\\/lugaresturisticos\\\/lugar_210422114750.jpg\"\n        },\n        {\n            \"nombre\": \"Pairumani\",\n            \"precio\": \"500.00\",\n            \"fecha\": \"2021-06-10\",\n            \"tipo\": \"Gastronomia\",\n            \"foto\": \"http:\\\/\\\/pairumanibackoffice.test\\\/laravel\\\/public\\\/imagenes\\\/lugaresturisticos\\\/lugar_210422114750.jpg\"\n        }\n    ],\n    \"restaurante\": [\n        {\n            \"fecha\": \"2021-06-09\",\n            \"hora\": \"17:35:40\",\n            \"productos\": [\n                {\n                    \"producto\": \"Pique macho\",\n                    \"precio_producto\": \"100.00\",\n                    \"opcion\": \"Papas fritas\",\n                    \"tama\\u00f1o\": {\n                        \"nombre\": \"Peque\\u00f1o\",\n                        \"precio_tama\\u00f1o\": \"40.00\"\n                    }\n                }\n            ]\n        },\n        {\n            \"fecha\": \"2021-06-09\",\n            \"hora\": \"18:40:48\",\n            \"productos\": [\n                {\n                    \"producto\": \"Pique macho\",\n                    \"precio_producto\": \"100.00\",\n                    \"opcion\": \"Papas fritas\",\n                    \"tama\\u00f1o\": {\n                        \"nombre\": \"Peque\\u00f1o\",\n                        \"precio_tama\\u00f1o\": \"40.00\"\n                    }\n                }\n            ]\n        }\n    ],\n    \"totales\": {\n        \"hospedaje\": \"300.00\",\n        \"transportes\": \"0.00\",\n        \"restaurante\": \"980.00\",\n        \"lugarturistico\": \"1,500.00\",\n        \"totalpagar\": \"2,780.00\"\n    }\n}"
+                        }
+                    ]
+                },
+                {
+                    "name": "Reserva transportes",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "{{baseUrl}}",
+                            "path": "api\/reservatransporte",
+                            "query": [],
+                            "raw": "http:\/\/{{baseUrl}}\/api\/reservatransporte"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"bearer_token\": \"drWa9YnurQFx6bY8rfsRcdMXsXpLvTUWSEkqQHivBDLJpbFv7E31BxxBcj6z\",\n    \"datos\": \"{\\n      \\\"datos\\\":[\\n               {\\n\\t              \\\"transporte_id\\\":\\\"2\\\",\\n\\t              \\\"precio\\\":\\\"25\\\",\\n                   \\\"hospedaje_id\\\":\\\"13\\\"\\n               },\\n               {\\n\\t               \\\"transporte_id\\\":\\\"2\\\",\\n\\t               \\\"precio\\\":\\\"25\\\",\\n                    \\\"hospedaje_id\\\":\\\"13\\\"\\n                }\\n              ]\\n           }\"\n}"
+                        },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "name": "Reserva transportes Response #1",
+                            "originalRequest": {
+                                "url": {
+                                    "protocol": "http",
+                                    "host": "{{baseUrl}}",
+                                    "path": "api\/reservatransporte",
+                                    "query": [],
+                                    "raw": "http:\/\/{{baseUrl}}\/api\/reservatransporte"
+                                },
+                                "method": "POST",
+                                "header": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application\/json"
+                                    },
+                                    {
+                                        "key": "Accept",
+                                        "value": "application\/json"
+                                    }
+                                ],
+                                "body": {
+                                    "mode": "raw",
+                                    "raw": "{\n    \"bearer_token\": \"drWa9YnurQFx6bY8rfsRcdMXsXpLvTUWSEkqQHivBDLJpbFv7E31BxxBcj6z\",\n    \"datos\": \"{\\n      \\\"datos\\\":[\\n               {\\n\\t              \\\"transporte_id\\\":\\\"2\\\",\\n\\t              \\\"precio\\\":\\\"25\\\",\\n                   \\\"hospedaje_id\\\":\\\"13\\\"\\n               },\\n               {\\n\\t               \\\"transporte_id\\\":\\\"2\\\",\\n\\t               \\\"precio\\\":\\\"25\\\",\\n                    \\\"hospedaje_id\\\":\\\"13\\\"\\n                }\\n              ]\\n           }\"\n}"
+                                },
+                                "description": "",
+                                "auth": {
+                                    "type": "noauth"
+                                }
+                            },
+                            "header": null,
+                            "cookie": [],
+                            "body": "{\n    \"message\": \"Unauthenticated.\"\n}"
+                        }
+                    ]
+                },
+                {
+                    "name": "Reservas Lugar Turistico",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "{{baseUrl}}",
+                            "path": "api\/reservalugarturistico",
+                            "query": [],
+                            "raw": "http:\/\/{{baseUrl}}\/api\/reservalugarturistico"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"cliente_id\": 5,\n    \"lugar_turistico_id\": 1,\n    \"fecha\": \"2021-06-10\",\n    \"hospedaje_id\": 10,\n    \"precio\": 500\n}"
+                        },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "name": "Reservas Lugar Turistico Response #1",
+                            "originalRequest": {
+                                "url": {
+                                    "protocol": "http",
+                                    "host": "{{baseUrl}}",
+                                    "path": "api\/reservalugarturistico",
+                                    "query": [],
+                                    "raw": "http:\/\/{{baseUrl}}\/api\/reservalugarturistico"
+                                },
+                                "method": "POST",
+                                "header": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application\/json"
+                                    },
+                                    {
+                                        "key": "Accept",
+                                        "value": "application\/json"
+                                    }
+                                ],
+                                "body": {
+                                    "mode": "raw",
+                                    "raw": "{\n    \"cliente_id\": 5,\n    \"lugar_turistico_id\": 1,\n    \"fecha\": \"2021-06-10\",\n    \"hospedaje_id\": 10,\n    \"precio\": 500\n}"
+                                },
+                                "description": "",
+                                "auth": {
+                                    "type": "noauth"
+                                }
+                            },
+                            "header": null,
+                            "cookie": [],
+                            "body": "{\n    \"success\": \"true\",\n    \"data\": \"Lugar Turistico reservado\"\n}"
+                        }
+                    ]
+                },
+                {
+                    "name": "Reservas Restaurante",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "{{baseUrl}}",
+                            "path": "api\/reservarestaurante",
+                            "query": [],
+                            "raw": "http:\/\/{{baseUrl}}\/api\/reservarestaurante"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"hospedaje_id\": 10,\n    \"toal\": 600,\n    \"producto_id\": 1,\n    \"precio\": 100,\n    \"cantidad\": 3,\n    \"opcion_id\": 1,\n    \"tama\\u00f1o_id\": 2,\n    \"preciotama\\u00f1o\": 40,\n    \"datos\": \"{\\n     \\\"hospedaje_id\\\":\\\"10\\\",\\n     \\\"total\\\":\\\"600\\\",\\n      \\\"datos\\\":[\\n          {\\n              \\\"producto_id\\\":\\\"1\\\",\\n              \\\"cantidad\\\":\\\"2\\\",\\n              \\\"precio\\\":\\\"100\\\",\\n              \\\"opcion_id\\\":\\\"2\\\",\\n              \\\"tama\\u00f1o_id\\\":\\\"1\\\",\\n              \\\"preciotama\\u00f1o\\\":\\\"20\\\"\\n          },\\n          {\\n              \\\"producto_id\\\":\\\"1\\\",\\n              \\\"cantidad\\\":\\\"3\\\",\\n              \\\"precio\\\":\\\"100\\\",\\n              \\\"opcion_id\\\":\\\"2\\\",\\n              \\\"tama\\u00f1o_id\\\":\\\"1\\\",\\n              \\\"preciotama\\u00f1o\\\":\\\"20\\\"\\n          }\\n      ]\\n  }\"\n}"
+                        },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "name": "Reservas Restaurante Response #1",
+                            "originalRequest": {
+                                "url": {
+                                    "protocol": "http",
+                                    "host": "{{baseUrl}}",
+                                    "path": "api\/reservarestaurante",
+                                    "query": [],
+                                    "raw": "http:\/\/{{baseUrl}}\/api\/reservarestaurante"
+                                },
+                                "method": "POST",
+                                "header": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application\/json"
+                                    },
+                                    {
+                                        "key": "Accept",
+                                        "value": "application\/json"
+                                    }
+                                ],
+                                "body": {
+                                    "mode": "raw",
+                                    "raw": "{\n    \"hospedaje_id\": 10,\n    \"toal\": 600,\n    \"producto_id\": 1,\n    \"precio\": 100,\n    \"cantidad\": 3,\n    \"opcion_id\": 1,\n    \"tama\\u00f1o_id\": 2,\n    \"preciotama\\u00f1o\": 40,\n    \"datos\": \"{\\n     \\\"hospedaje_id\\\":\\\"10\\\",\\n     \\\"total\\\":\\\"600\\\",\\n      \\\"datos\\\":[\\n          {\\n              \\\"producto_id\\\":\\\"1\\\",\\n              \\\"cantidad\\\":\\\"2\\\",\\n              \\\"precio\\\":\\\"100\\\",\\n              \\\"opcion_id\\\":\\\"2\\\",\\n              \\\"tama\\u00f1o_id\\\":\\\"1\\\",\\n              \\\"preciotama\\u00f1o\\\":\\\"20\\\"\\n          },\\n          {\\n              \\\"producto_id\\\":\\\"1\\\",\\n              \\\"cantidad\\\":\\\"3\\\",\\n              \\\"precio\\\":\\\"100\\\",\\n              \\\"opcion_id\\\":\\\"2\\\",\\n              \\\"tama\\u00f1o_id\\\":\\\"1\\\",\\n              \\\"preciotama\\u00f1o\\\":\\\"20\\\"\\n          }\\n      ]\\n  }\"\n}"
+                                },
+                                "description": "",
+                                "auth": {
+                                    "type": "noauth"
+                                }
+                            },
+                            "header": null,
+                            "cookie": [],
+                            "body": "{\n    \"success\": \"true\",\n    \"data\": \"Productos Agregados\"\n}"
                         }
                     ]
                 }

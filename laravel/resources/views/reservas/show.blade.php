@@ -61,7 +61,9 @@
                 </table>
                 <div class="form-group text-right">
                     <a class="btn btn-default" href="{{ route('reservas_index',[$categoria->id,$habitacion->id]) }}" title="Cerrar"><i class="material-icons">clear</i> Cerrar</a>
-                    <a class="btn btn-warning" href="{{ route('reservas_edit',[$categoria->id,$habitacion->id,$reserva->id]) }}" title="Modificar"><i class="material-icons">edit</i> Modificar</a>                    
+                    @if(kvfj(Auth::user()->rol->permisos,'reservas_edit'))
+                        <a class="btn btn-warning" href="{{ route('reservas_edit',[$categoria->id,$habitacion->id,$reserva->id]) }}" title="Modificar"><i class="material-icons">edit</i> Modificar</a>
+                    @endif                    
                 </div>
             </div>
         </div>

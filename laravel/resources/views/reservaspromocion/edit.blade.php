@@ -22,11 +22,14 @@
 	<div class="content">
 		<div class="container-fluid">
 			<div class="row">
-				<div class="col-md-8 ml-auto mr-auto">
+				<div class="col-xs-12 col-sm-8 col-md-8 col-lg-8 col-centered ml-auto mr-auto">
 					<form method="POST" action="{{ route('promocionreservas_edit',[$promocion->id,$reserva->id]) }}">
 						@include('reservaspromocion.form')
 					</form>
 				</div>
+                <div class="col-md-4">
+                    @include('reservaspromocion.promocion')
+                </div>
 			</div>
     	</div>
 	</div>

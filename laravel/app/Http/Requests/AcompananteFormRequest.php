@@ -28,7 +28,7 @@ class AcompananteFormRequest extends FormRequest
             'num_documento' => 'required|string',
             'nacionalidad' => 'required|max:50',
             'fecha_nacimiento' => 'required',
-            'ciudad' => 'required|max:50'
+            'ciudad' => 'required|max:50',
         ];
 
         if (routerequest('acompanantes_create')) {

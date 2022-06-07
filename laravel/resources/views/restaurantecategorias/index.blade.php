@@ -26,11 +26,11 @@
                             <i class="material-icons">date_range</i>
                         </div>
                         <div style="text-align: right;padding-top: 15px;">
-                            {{-- @if(kvfj(Auth::user()->rol->permisos,'restaurantecategoria_create')) --}}
+                            @if(kvfj(Auth::user()->rol->permisos,'restaurantecategorias_create'))
                                 <a class="btn btn-success" href="{{ route('restaurantecategorias_create') }}" title="Nuevo restaurante categoria">
                                     <i class="material-icons">add</i> Nuevo
                                 </a>
-                            {{-- @endif --}}
+                            @endif
                         </div>
                     </div>
                     <div class="card-body">
@@ -65,26 +65,26 @@
 												<td>{{ $categoria->nombre }}</td>
 												<td>{!! $categoria->descripcion !!}</td>
 												<td style="width: 250px; text-align: center;">
-                                                    {{-- @if(kvfj(Auth::user()->rol->permisos,'productos_index')) --}}
+                                                    @if(kvfj(Auth::user()->rol->permisos,'productos_index'))
                                                         <a href="{{ route('productos_index',$categoria->id) }}" class="btn btn-success btn-round btn-just-icon" title="Restaurante Productos">
                                                             <i class="material-icons">restaurant_menu</i>
                                                         </a>
-                                                    {{-- @endif --}}
-                                                    {{-- @if(kvfj(Auth::user()->rol->permisos,'restaurantecategorias_show')) --}}
+                                                    @endif
+                                                    @if(kvfj(Auth::user()->rol->permisos,'restaurantecategorias_show'))
                                                         <a href="{{ route('restaurantecategorias_show',$categoria->id) }}" class="btn btn-info btn-round btn-just-icon" title="Detalle restaurante categoria">
                                                             <i class="material-icons">visibility</i>
                                                         </a>
-                                                    {{-- @endif --}}
-													{{-- @if(kvfj(Auth::user()->rol->permisos,'restaurantecategorias_edit')) --}}
+                                                    @endif
+													@if(kvfj(Auth::user()->rol->permisos,'restaurantecategorias_edit'))
 														<a href="{{ route('restaurantecategorias_edit',$categoria->id) }}" class="btn btn-warning btn-round btn-just-icon" title="Editar restaurante categoria">
 															<i class="material-icons">mode_edit</i>
 														</a>
-													{{-- @endif --}}
-													{{-- @if(kvfj(Auth::user()->rol->permisos,'restaurantecategorias_destroy')) --}}
+													@endif
+													@if(kvfj(Auth::user()->rol->permisos,'restaurantecategorias_destroy'))
                                                         <a href="" data-target="#modal-delete-{{$categoria->id}}" data-toggle="modal"  class="btn btn-danger btn-round btn-just-icon" title="Eliminar restaurante categoria">
                                                             <i class="material-icons">delete</i>
                                                         </a>
-													{{-- @endif --}}
+													@endif
 												</td>
 											</tr>
 											@include('restaurantecategorias.modal')

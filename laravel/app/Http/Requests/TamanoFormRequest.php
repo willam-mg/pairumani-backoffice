@@ -25,7 +25,7 @@ class TamanoFormRequest extends FormRequest
     {
         return [
             'nombre' => 'required|string|max:50',
-            'precio' => 'required|numeric',
+         
         ];
     }
 }

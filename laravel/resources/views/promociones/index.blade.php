@@ -26,11 +26,11 @@
                             <i class="material-icons">date_range</i>
                         </div>
                         <div style="text-align: right;padding-top: 15px;">
-                            {{-- @if(kvfj(Auth::user()->rol->permisos,'promociones_create')) --}}
+                            @if(kvfj(Auth::user()->rol->permisos,'promociones_create'))
                                 <a class="btn btn-success" href="{{ route('promociones_create') }}" title="Nueva promocion">
                                     <i class="material-icons">add</i> Nuevo
                                 </a>
-                            {{-- @endif --}}
+                            @endif
                         </div>
                     </div>
                     <div class="card-body">
@@ -54,6 +54,7 @@
 									<th>Precio</th>
                                     <th>Estado</th>
                                     <th>Habitacion</th>
+                                    <th>Habitacion Estado</th>
 									<th>Opciones</th>
                                 </thead>
                                <tbody>
@@ -68,34 +69,35 @@
 												<td>{{ $promocion->precio }}</td>
 												<td>{{ $promocion->estado }}</td>
 												<td>{{ $promocion->habitacion->nombre }}</td>
+												<td>{{ $promocion->habitacion->estado }}</td>
 												<td style="width: 250px; text-align: center;">
-                                                    {{-- @if(kvfj(Auth::user()->rol->permisos,'promocionreservas_index')) --}}
+                                                    @if(kvfj(Auth::user()->rol->permisos,'promocionreservas_index'))
                                                         <a href="{{ route('promocionreservas_index',[$promocion->id]) }}" class="btn btn-primary btn-round btn-just-icon" title="Reserva Promocion">
                                                             <i class="material-icons">pending_actions</i>
                                                         </a>
-                                                    {{-- @endif --}}
-                                                    {{-- @if(kvfj(Auth::user()->rol->permisos,'promociones_show')) --}}
+                                                    @endif
+                                                    @if(kvfj(Auth::user()->rol->permisos,'promociones_show'))
                                                         <a href="{{ route('promociones_show',$promocion->id) }}" class="btn btn-info btn-round btn-just-icon" title="Detalle promocion">
                                                             <i class="material-icons">visibility</i>
                                                         </a>
-                                                    {{-- @endif --}}
-													{{-- @if(kvfj(Auth::user()->rol->permisos,'promociones_edit')) --}}
+                                                    @endif
+													@if(kvfj(Auth::user()->rol->permisos,'promociones_edit'))
 														<a href="{{ route('promociones_edit',$promocion->id) }}" class="btn btn-warning btn-round btn-just-icon" title="Editar promocion">
 															<i class="material-icons">mode_edit</i>
 														</a>
-													{{-- @endif --}}
-													{{-- @if(kvfj(Auth::user()->rol->permisos,'promociones_destroy')) --}}
+													@endif
+													@if(kvfj(Auth::user()->rol->permisos,'promociones_destroy'))
                                                         <a href="" data-target="#modal-delete-{{$promocion->id}}" data-toggle="modal"  class="btn btn-danger btn-round btn-just-icon" title="Eliminar promocion">
                                                             <i class="material-icons">delete</i>
                                                         </a>
-													{{-- @endif --}}
+													@endif
 												</td>
 											</tr>
 											@include('promociones.modal')
 										@endforeach
 									@else
 										<tr>
-											<td colspan="6" style="text-align: center;">
+											<td colspan="8" style="text-align: center;">
 												<h2><span class="badge badge-danger" style="font-size: 20px">No Existen promociones</span></h2>
 											</td>
 										</tr>

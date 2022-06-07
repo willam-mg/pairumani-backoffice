@@ -42,7 +42,7 @@
             </div>
             <div class="main-panel">
                 <!-- Navbar -->
-                <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
+                <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top">
                     <div class="container-fluid">
                         <div class="navbar-wrapper">
                             <div class="navbar-minimize">
@@ -51,7 +51,7 @@
                                     <i class="material-icons design_bullet-list-67 visible-on-sidebar-mini">view_list</i>
                                 </button>
                             </div>
-                            <a class="navbar-brand" href="javascript:;">Dashboard</a>
+                            <a class="navbar-brand" href="javascript:;">{{ env('APP_NAME') }}</a>
                         </div>
                         <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
                             <span class="sr-only">Toggle navigation</span>
@@ -131,13 +131,14 @@
         <script src="{{asset('plugins/select2/js/select2.full.min.js')}}"></script>
         <script src='https://maps.googleapis.com/maps/api/js?&libraries=places&key={{ env('GOOGLE_MAPS_KEY')}}'></script>
 	    <script src="{{asset('js/locationpicker.jquery.js')}}"></script>
+        <script src="https://cdn.ckeditor.com/4.16.0/standard/ckeditor.js"></script>
         <script>
-            $(function(){
+            $(function () {
                 //Initialize Select2 Elements
                 $('.select2bs4').select2({
-                    theme: 'bootstrap4',
-                });
-            })
+                theme: 'bootstrap4'
+                })
+            });
         </script>
         @stack('scripts')
     </body>

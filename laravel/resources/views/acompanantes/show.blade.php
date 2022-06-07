@@ -8,7 +8,9 @@
                 <div class="col-sm-12">
                     <ol class="breadcrumb" style="background-color: inherit">
                         <li class="breadcrumb-item"><a href="{{ route('home') }}">Inicio</a></li>
-                        <li class="breadcrumb-item"><a href="{{ route('acompanantes_index') }}"></a>acompanantes</li>
+						<li class="breadcrumb-item"><a href="{{ route('clientes_index') }}">Clientes</a></li>
+						<li class="breadcrumb-item"><a href="{{ route('clientes_show',$cliente->id) }}">Cliente: {{ $cliente->nombres.' '.$cliente->apellidos }}</a></li>
+						<li class="breadcrumb-item"><a href="{{ route('acompanantes_index',$cliente->id) }}">acompanantes</a></li>
                         <li class="breadcrumb-item active">Detalle Acompañante</li>
                     </ol>
                 </div><!-- /.col -->
@@ -52,8 +54,10 @@
                     </tbody>
                 </table>
                 <div class="form-group text-right">
-                    <a class="btn btn-default" href="{{ route('acompanantes_index') }}" title="Cerrar"><i class="material-icons">clear</i> Cerrar</a>
-                    <a class="btn btn-warning" href="{{ route('acompanantes_edit',$acompanante->id) }}" title="Modificar"><i class="material-icons">edit</i> Modificar</a>                    
+                    <a class="btn btn-default" href="{{ route('acompanantes_index',$cliente->id) }}" title="Cerrar"><i class="material-icons">clear</i> Cerrar</a>
+                    @if(kvfj(Auth::user()->rol->permisos,'categorias_edit'))
+                        <a class="btn btn-warning" href="{{ route('acompanantes_edit',[$cliente->id,$acompanante->id]) }}" title="Modificar"><i class="material-icons">edit</i> Modificar</a>
+                    @endif                    
                 </div>
             </div>
         </div>

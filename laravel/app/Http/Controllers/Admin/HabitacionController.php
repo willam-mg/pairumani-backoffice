@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\HabitacionFormRequest;
 use App\Models\GaleriaHabitacion;
 use App\Models\HabitacionCategoria;
+use App\Models\HabitacionFrigobar;
 
 class HabitacionController extends Controller
 {
@@ -35,7 +36,7 @@ class HabitacionController extends Controller
             'habitacion' => new Habitacion(),
         ]);
     }
-    public function store(HabitacionCategoria $categoria, HabitacionFormRequest $request)
+    public function store(HabitacionFormRequest $request,HabitacionCategoria $categoria)
     {
         $habitacion = (new Habitacion())->fill($request->all());
         $habitacion->foto = crearimagen($request->hasFile('foto'), $request->file('foto'), Habitacion::Namefoto(), Habitacion::Rutafoto());
@@ -50,8 +51,13 @@ class HabitacionController extends Controller
             'habitacion' => $habitacion,
         ]);
     }
-    public function update(HabitacionCategoria $categoria,HabitacionFormRequest $request, Habitacion $habitacion)
+    public function update(HabitacionFormRequest $request, HabitacionCategoria $categoria, Habitacion $habitacion)
     {
+        if($habitacion->hospedaje != null){
+            if($habitacion->hospedaje->all()->last()->estado == 'Ocupado' && $habitacion->estado == 'Ocupado'){
+                return redirect()->back()->with('message', 'No se pudo cambiar de estado ya tiene un hospedaje')->with('typealert', 'danger');
+            }
+        }
         $habitacion->foto = editarimagen($request->hasFile('foto'), $request->file('foto'), Habitacion::Namefoto(), Habitacion::Rutafoto(), $habitacion->foto, Habitacion::Urldeletefoto());
         $habitacion->update($request->except('foto'));
         return redirect()->route('habitaciones_index',$categoria->id)->with('message', 'Modificado con éxito')->with('typealert', 'success');

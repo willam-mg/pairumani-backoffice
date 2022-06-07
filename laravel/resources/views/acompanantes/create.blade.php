@@ -9,7 +9,9 @@
                 <div class="col-sm-12">
                     <ol class="breadcrumb" style="background-color: inherit">
                         <li class="breadcrumb-item"><a href="{{ route('home') }}">Inicio</a></li>
-						<li class="breadcrumb-item"><a href="{{ route('acompanantes_index') }}">acompanantes</a></li>
+						<li class="breadcrumb-item"><a href="{{ route('clientes_index') }}">Clientes</a></li>
+						<li class="breadcrumb-item"><a href="{{ route('clientes_show',$cliente->id) }}">Cliente: {{ $cliente->nombres.' '.$cliente->apellidos }}</a></li>
+						<li class="breadcrumb-item"><a href="{{ route('acompanantes_index',$cliente->id) }}">acompanantes</a></li>
                         <li class="breadcrumb-item active">Nuevo Acompañante</li>
                     </ol>
                 </div><!-- /.col -->
@@ -22,8 +24,8 @@
 	<div class="content">
 		<div class="container-fluid">
 			<div class="row">
-				<div class="col-md-8 ml-auto mr-auto">
-					<form method="POST" action="{{ route('acompanantes_create',[$tipo,$categoria,$habitacion,$reserva,$hospedaje]) }}">
+				<div class="col-xs-12 col-sm-8 col-md-8 col-lg-8 col-centered ml-auto mr-auto">
+					<form method="POST" action="{{ route('acompanantes_create',[$cliente->id,$tipo,$categoria,$habitacion,$reserva,$hospedaje,$promocion]) }}">
 						@include('acompanantes.form')
 					</form>
 				</div>

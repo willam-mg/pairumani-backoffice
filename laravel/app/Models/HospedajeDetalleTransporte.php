@@ -18,6 +18,8 @@ class HospedajeDetalleTransporte extends Model
     protected $fillable = [
         'hospedaje_id',
         'transporte_id',
+        'precio',
+        'fecha',
     ];
 
     protected $guarded = [];
@@ -25,6 +27,7 @@ class HospedajeDetalleTransporte extends Model
     protected $casts = [
         'id' => 'integer',
         'transporte_id' => 'integer',
+        'hospedaje_id' => 'integer',
     ];
 
     public function transporte()
@@ -34,6 +37,6 @@ class HospedajeDetalleTransporte extends Model
 
     public function hospedaje()
     {
-        return $this->belongsTo(Hospedaje::class);
+        return $this->belongsTo(Hospedaje::class, 'hospedaje_id', 'id');
     }
 }

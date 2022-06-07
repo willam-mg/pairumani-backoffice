@@ -16,9 +16,10 @@ class RestauranteDetalleReservaProducto extends Model
     public $timestamps = false;
 
     protected $fillable = [
+        'restaurante_detalle_reserva_id',
         'restaurante_producto_opciones_id',
         'restaurante_producto_tamanho_id',
-        'cantidad',
+        'precio_tamanho',
     ];
 
     protected $guarded = [];
@@ -27,14 +28,17 @@ class RestauranteDetalleReservaProducto extends Model
         'id' => 'integer',
     ];
 
-
-    public function restauranteproductoopciones()
+    public function detallereserva()
     {
-        return $this->hasMany(\App\Models\RestauranteProductoOpcion::class,'id', 'restaurante_producto_opciones_id');
+        return $this->belongsTo(RestauranteDetalleReserva::class,'restaurante_detalle_reserva_id','id');
+    }
+    public function opcion()
+    {
+        return $this->belongsTo(RestauranteProductoOpcion::class,'restaurante_producto_opciones_id','id');
     }
 
-    public function restauranteProductoTamanos()
+    public function tamaño()
     {
-        return $this->hasMany(\App\Models\RestauranteProductoTamano::class,'id', 'restaurante_producto_tamanho_id');
+        return $this->belongsTo(RestauranteProductoTamano::class,'restaurante_producto_tamanho_id','id');
     }
 }

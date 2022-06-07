@@ -24,23 +24,22 @@ class HabitacionFormRequest extends FormRequest
     public function rules()
     {
         $rules = [
+            'nombre' => 'required|max:50',
             'descripcion' => 'required',
             'precio' => 'required|numeric',
-            'precio_promocion' => 'required|numeric',
+            'precio_promocion' => 'numeric',
             'capacidad_minima' => 'required|integer',
             'capacidad_maxima' => 'required|integer',
             'estado' => 'required|in:Disponible,Ocupado,Reservado,Limpieza',
         ];
 
         if (routerequest('habitaciones_create')) {
-            $rules['nombre'] = ['required', 'max:50', 'unique:habitaciones'];
-            $rules['num_habitacion'] = ['required','integer', 'unique:habitaciones'];
+            $rules['num_habitacion'] = ['required','max:50', 'unique:habitaciones'];
             $rules['foto'] = ['required', 'mimes:jpeg,png,jpg,gif,svg', 'max:2048'];
         }
 
         if (routerequest('habitaciones_edit')) {
-            $rules['nombre'] = ['required', 'max:50'];
-            $rules['num_habitacion'] = ['required'];
+            $rules['num_habitacion'] = ['required', 'max:50'];
             $rules['foto'] = ['mimes:jpeg,png,jpg,gif,svg', 'max:2048'];
         }
 

@@ -18,6 +18,7 @@ class RestauranteDetalleReserva extends Model
     protected $fillable = [
         'restaurante_reserva_id',
         'restaurante_producto_id',
+        'precio',
         'cantidad',
     ];
 
@@ -26,16 +27,27 @@ class RestauranteDetalleReserva extends Model
     protected $casts = [
         'id' => 'integer',
         'restaurante_reserva_id' => 'integer',
+        'restaurante_producto_id' => 'integer',
     ];
 
 
-    public function restauranteProductos()
+    public function producto()
     {
-        return $this->hasMany(\App\Models\RestauranteProducto::class,'id','restaurante_producto_id');
+        return $this->belongsTo(RestauranteProducto::class,'restaurante_producto_id','id');
     }
 
-    public function restauranteReserva()
+    public function reserva()
     {
-        return $this->belongsTo(\App\Models\RestauranteReserva::class);
+        return $this->belongsTo(RestauranteReserva::class, 'restaurante_reserva_id','id');
+    }
+
+    public function detalleproducto()
+    {
+        return $this->belongsTo(RestauranteDetalleReservaProducto::class,'id', 'restaurante_detalle_reserva_id');
+    }
+
+    public function detallesproductos()
+    {
+        return $this->hasMany(RestauranteDetalleReservaProducto::class, 'restaurante_detalle_reserva_id','id');
     }
 }

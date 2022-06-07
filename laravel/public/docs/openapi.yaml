@@ -384,6 +384,152 @@ paths:
                             required:
                                 - cliente_id
             security: []
+    /api/update:
+        post:
+            summary: 'Editar perfil Cliente'
+            description: ''
+            parameters:
+                -
+                    in: header
+                    name: Content-Type
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Accept
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+            responses:
+                200:
+                    description: '200, success'
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                example:
+                                    id: 7
+                                    nombres: 'Juan Carlos'
+                                    apellidos: 'Espinoza Cespedes'
+                                    tipo_documento: Ci
+                                    num_documento: '94564455'
+                                    celular: '65582210'
+                                    direccion: 'Av Pando'
+                                    ciudad: Cochabamba
+                                    pais: Bolivia
+                                    oficio: Arquitecto
+                                    empresa: SOFT
+                                    telefono: '4444444'
+                                    email: juan@gmail.com
+                                    fecha_nacimiento: '1989-05-12'
+                                    motivo_viaje: Recreacion
+                                    foto: foto.jpg
+                                    api_token: KjUdFmnlAu7aFjlUXWIuSE1L4wPM8y3oWFacDALHOHKbNlbZGIa6ifz6Ojy4
+                                    imei_celular: '354651100023680'
+                                properties:
+                                    id: { type: integer, example: 7 }
+                                    nombres: { type: string, example: 'Juan Carlos' }
+                                    apellidos: { type: string, example: 'Espinoza Cespedes' }
+                                    tipo_documento: { type: string, example: Ci }
+                                    num_documento: { type: string, example: '94564455' }
+                                    celular: { type: string, example: '65582210' }
+                                    direccion: { type: string, example: 'Av Pando' }
+                                    ciudad: { type: string, example: Cochabamba }
+                                    pais: { type: string, example: Bolivia }
+                                    oficio: { type: string, example: Arquitecto }
+                                    empresa: { type: string, example: SOFT }
+                                    telefono: { type: string, example: '4444444' }
+                                    email: { type: string, example: juan@gmail.com }
+                                    fecha_nacimiento: { type: string, example: '1989-05-12' }
+                                    motivo_viaje: { type: string, example: Recreacion }
+                                    foto: { type: string, example: foto.jpg }
+                                    api_token: { type: string, example: KjUdFmnlAu7aFjlUXWIuSE1L4wPM8y3oWFacDALHOHKbNlbZGIa6ifz6Ojy4 }
+                                    imei_celular: { type: string, example: '354651100023680' }
+            tags:
+                - Endpoints
+            requestBody:
+                required: true
+                content:
+                    application/json:
+                        schema:
+                            type: object
+                            properties:
+                                nombres:
+                                    type: string
+                                    description: 'Los nombes del cliente para el registro.'
+                                    example: 'Jose Rodrigo'
+                                apellidos:
+                                    type: string
+                                    description: 'Los apellidos del cliente para el registro.'
+                                    example: 'Cespedes Rojas'
+                                tipo_documento:
+                                    type: string
+                                    description: 'El tipo de documento que tiene el cliente para el registro .'
+                                    example: 'Ci,Pasaporte'
+                                num_documento:
+                                    type: string
+                                    description: 'Número de documento del cliente para el registro.'
+                                    example: '657848455'
+                                celular:
+                                    type: string
+                                    description: 'Número de celular del cliente para el registro.'
+                                    example: '65582210'
+                                direccion:
+                                    type: string
+                                    description: 'Direccón del cliente para el registro.'
+                                    example: 'Av Potosi'
+                                ciudad:
+                                    type: string
+                                    description: 'La ciudad donde vive el cliente para el registro.'
+                                    example: 'La Paz'
+                                pais:
+                                    type: string
+                                    description: 'País donde vive el cliente para el registro.'
+                                    example: Bolivia
+                                oficio:
+                                    type: string
+                                    description: 'El trabajo que realiza el cliente para el registro.'
+                                    example: 'Ing Civil'
+                                empresa:
+                                    type: string
+                                    description: 'La empresa donde trabaja actualemnte el cliente para el registro.'
+                                    example: YPFB
+                                telefono:
+                                    type: Número
+                                    description: 'de telefono fijo del cliente para el registro.'
+                                    example: '4652588'
+                                email:
+                                    type: string
+                                    description: 'Email que usa el cliente para el registro.'
+                                    example: cliente@gmail.com
+                                password:
+                                    type: string
+                                    description: 'La clave que usara para ingresar al sistema el cliente para el registro.'
+                                    example: cliente54782
+                                fecha_nacimiento:
+                                    type: date
+                                    description: 'Fecha de nacimiento del cliente para el registro.'
+                                    example: '1985-03-22'
+                                motivo_viaje:
+                                    type: string
+                                    description: 'Motivo por el cual viaja el cliente para el registro.'
+                                    example: 'Recreacion,Negocios,Salud,Otro'
+                                foto:
+                                    type: string
+                                    description: 'Foto que se registrara cuando haga login con sus redes sociales o suba una foto el lciente para el registro.'
+                                    example: foto.jpg
+                                imei_celular:
+                                    type: string
+                                    description: 'Se registrara el imei del celular del cliente para el registro.'
+                                    example: '354651100023680'
+                            required:
+                                - nombres
+                                - apellidos
+                                - celular
+            security: []
     /api/verificaremail:
         post:
             summary: 'Verificacion de email para cambio de password'
@@ -927,6 +1073,63 @@ paths:
                             required:
                                 - bearer_token
             security: []
+    /api/transportedetalle:
+        post:
+            summary: 'Detalle de transporte'
+            description: ''
+            parameters:
+                -
+                    in: header
+                    name: Content-Type
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Accept
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+            responses:
+                200:
+                    description: '200, success'
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                example:
+                                    nombre: 'Taxis corona'
+                                    descripcion: '<p>adasdasdasd</p>'
+                                    precio: '25.00'
+                                    foto: foto.jpg
+                                properties:
+                                    nombre: { type: string, example: 'Taxis corona' }
+                                    descripcion: { type: string, example: '<p>adasdasdasd</p>' }
+                                    precio: { type: string, example: '25.00' }
+                                    foto: { type: string, example: foto.jpg }
+            tags:
+                - Endpoints
+            requestBody:
+                required: true
+                content:
+                    application/json:
+                        schema:
+                            type: object
+                            properties:
+                                bearer_token:
+                                    type: string
+                                    description: 'Campo unico del cliente autenticado para acceder a esta ruta.'
+                                    example: drWa9YnurQFx6bY8rfsRcdMXsXpLvTUWSEkqQHivBDLJpbFv7E31BxxBcj6z
+                                transporte_id:
+                                    type: integer
+                                    description: 'Id del transporte para ver su detalle.'
+                                    example: 1
+                            required:
+                                - bearer_token
+                                - transporte_id
+            security: []
     /api/eventos:
         get:
             summary: 'Listado de eventos'
@@ -1408,4 +1611,347 @@ paths:
                                 - niños
                                 - cliente_id
                                 - habitacion_id
+            security: []
+    /api/misreservas:
+        post:
+            summary: 'Reservas Cliente'
+            description: ''
+            parameters:
+                -
+                    in: header
+                    name: Content-Type
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Accept
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+            responses:
+                200:
+                    description: '200, success'
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                example:
+                                    id: 5
+                                    checkin: '2021-05-06'
+                                    checkout: '2021-05-08'
+                                    adultos: 3
+                                    niños: 2
+                                    cliente: { nombre: 'Paola Montecinos Pardo', celular: '8888888', telefono: '9999999', ciudad: Cochabamba, pais: Bolivia, oficio: Arquitecto, email: paola@gmail.com }
+                                    habitacion: { nombre: 'Habitacion 20', num_habitacion: '20', precio: '450.00', foto: 'http://pairumanibackoffice.test/laravel/public/imagenes/habitaciones/habitacion_210506153104.jfif' }
+                                properties:
+                                    id: { type: integer, example: 5 }
+                                    checkin: { type: string, example: '2021-05-06' }
+                                    checkout: { type: string, example: '2021-05-08' }
+                                    adultos: { type: integer, example: 3 }
+                                    niños: { type: integer, example: 2 }
+                                    cliente: { type: object, example: { nombre: 'Paola Montecinos Pardo', celular: '8888888', telefono: '9999999', ciudad: Cochabamba, pais: Bolivia, oficio: Arquitecto, email: paola@gmail.com } }
+                                    habitacion: { type: object, example: { nombre: 'Habitacion 20', num_habitacion: '20', precio: '450.00', foto: 'http://pairumanibackoffice.test/laravel/public/imagenes/habitaciones/habitacion_210506153104.jfif' } }
+            tags:
+                - Endpoints
+            requestBody:
+                required: true
+                content:
+                    application/json:
+                        schema:
+                            type: object
+                            properties:
+                                bearer_token:
+                                    type: string
+                                    description: 'Campo unico del cliente autenticado para acceder a esta ruta.'
+                                    example: drWa9YnurQFx6bY8rfsRcdMXsXpLvTUWSEkqQHivBDLJpbFv7E31BxxBcj6z
+                                cliente_id:
+                                    type: integer
+                                    description: 'Id del cliente.'
+                                    example: 1
+                            required:
+                                - bearer_token
+                                - cliente_id
+            security: []
+    /api/mishospedajes:
+        post:
+            summary: 'Hospedajes Cliente'
+            description: ''
+            parameters:
+                -
+                    in: header
+                    name: Content-Type
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Accept
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+            responses:
+                200:
+                    description: '200, success'
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                example:
+                                    id: 13
+                                    checkin: '2021-05-20'
+                                    checkout: '2021-05-22'
+                                    adultos: 4
+                                    niños: 2
+                                    precio: '300.00'
+                                    estado: Ocupado
+                                    cliente: { nombre: 'Julian Gonzales Llanos', celular: '62101485', telefono: '42682265', ciudad: 'La Paz', pais: Bolivia, oficio: Albañil, email: julian@gmail.com }
+                                    habitacion: { nombre: 'Habitacion 26', num_habitacion: '26', precio: '450.00', foto: 'http://pairumanibackoffice.test/laravel/public/imagenes/habitaciones/habitacion_210521090607.jfif' }
+                                    transportes: []
+                                    lugares: [{ nombre: Pairumani, precio: '500.00', fecha: '2021-06-04', tipo: Gastronomia, foto: 'http://pairumanibackoffice.test/laravel/public/imagenes/lugaresturisticos/lugar_210422114750.jpg' }, { nombre: Pairumani, precio: '500.00', fecha: '2021-06-11', tipo: Gastronomia, foto: 'http://pairumanibackoffice.test/laravel/public/imagenes/lugaresturisticos/lugar_210422114750.jpg' }, { nombre: Pairumani, precio: '500.00', fecha: '2021-06-10', tipo: Gastronomia, foto: 'http://pairumanibackoffice.test/laravel/public/imagenes/lugaresturisticos/lugar_210422114750.jpg' }]
+                                    restaurante: [{ fecha: '2021-06-09', hora: '17:35:40', productos: [{ producto: 'Pique macho', precio_producto: '100.00', opcion: 'Papas fritas', tamaño: { nombre: Pequeño, precio_tamaño: '40.00' } }] }, { fecha: '2021-06-09', hora: '18:40:48', productos: [{ producto: 'Pique macho', precio_producto: '100.00', opcion: 'Papas fritas', tamaño: { nombre: Pequeño, precio_tamaño: '40.00' } }] }]
+                                    totales: { hospedaje: '300.00', transportes: '0.00', restaurante: '980.00', lugarturistico: '1,500.00', totalpagar: '2,780.00' }
+                                properties:
+                                    id: { type: integer, example: 13 }
+                                    checkin: { type: string, example: '2021-05-20' }
+                                    checkout: { type: string, example: '2021-05-22' }
+                                    adultos: { type: integer, example: 4 }
+                                    niños: { type: integer, example: 2 }
+                                    precio: { type: string, example: '300.00' }
+                                    estado: { type: string, example: Ocupado }
+                                    cliente: { type: object, example: { nombre: 'Julian Gonzales Llanos', celular: '62101485', telefono: '42682265', ciudad: 'La Paz', pais: Bolivia, oficio: Albañil, email: julian@gmail.com } }
+                                    habitacion: { type: object, example: { nombre: 'Habitacion 26', num_habitacion: '26', precio: '450.00', foto: 'http://pairumanibackoffice.test/laravel/public/imagenes/habitaciones/habitacion_210521090607.jfif' } }
+                                    transportes: { type: array, example: [] }
+                                    lugares: { type: array, example: [{ nombre: Pairumani, precio: '500.00', fecha: '2021-06-04', tipo: Gastronomia, foto: 'http://pairumanibackoffice.test/laravel/public/imagenes/lugaresturisticos/lugar_210422114750.jpg' }, { nombre: Pairumani, precio: '500.00', fecha: '2021-06-11', tipo: Gastronomia, foto: 'http://pairumanibackoffice.test/laravel/public/imagenes/lugaresturisticos/lugar_210422114750.jpg' }, { nombre: Pairumani, precio: '500.00', fecha: '2021-06-10', tipo: Gastronomia, foto: 'http://pairumanibackoffice.test/laravel/public/imagenes/lugaresturisticos/lugar_210422114750.jpg' }], items: { type: object } }
+                                    restaurante: { type: array, example: [{ fecha: '2021-06-09', hora: '17:35:40', productos: [{ producto: 'Pique macho', precio_producto: '100.00', opcion: 'Papas fritas', tamaño: { nombre: Pequeño, precio_tamaño: '40.00' } }] }, { fecha: '2021-06-09', hora: '18:40:48', productos: [{ producto: 'Pique macho', precio_producto: '100.00', opcion: 'Papas fritas', tamaño: { nombre: Pequeño, precio_tamaño: '40.00' } }] }], items: { type: object } }
+                                    totales: { type: object, example: { hospedaje: '300.00', transportes: '0.00', restaurante: '980.00', lugarturistico: '1,500.00', totalpagar: '2,780.00' } }
+            tags:
+                - Endpoints
+            requestBody:
+                required: true
+                content:
+                    application/json:
+                        schema:
+                            type: object
+                            properties:
+                                bearer_token:
+                                    type: string
+                                    description: 'Campo unico del cliente autenticado para acceder a esta ruta.'
+                                    example: drWa9YnurQFx6bY8rfsRcdMXsXpLvTUWSEkqQHivBDLJpbFv7E31BxxBcj6z
+                                cliente_id:
+                                    type: integer
+                                    description: 'Id del cliente.'
+                                    example: 1
+                            required:
+                                - bearer_token
+                                - cliente_id
+            security: []
+    /api/reservatransporte:
+        post:
+            summary: 'Reserva transportes'
+            description: ''
+            parameters:
+                -
+                    in: header
+                    name: Content-Type
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Accept
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+            responses:
+                401:
+                    description: ''
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                example:
+                                    message: Unauthenticated.
+                                properties:
+                                    message: { type: string, example: Unauthenticated. }
+            tags:
+                - Endpoints
+            requestBody:
+                required: true
+                content:
+                    application/json:
+                        schema:
+                            type: object
+                            properties:
+                                bearer_token:
+                                    type: string
+                                    description: 'Campo unico del cliente autenticado para acceder a esta ruta.'
+                                    example: drWa9YnurQFx6bY8rfsRcdMXsXpLvTUWSEkqQHivBDLJpbFv7E31BxxBcj6z
+                                datos:
+                                    type: array
+                                    description: 'datos transporte.'
+                                    example: "{\n      \"datos\":[\n               {\n\t              \"transporte_id\":\"2\",\n\t              \"precio\":\"25\",\n                   \"hospedaje_id\":\"13\"\n               },\n               {\n\t               \"transporte_id\":\"2\",\n\t               \"precio\":\"25\",\n                    \"hospedaje_id\":\"13\"\n                }\n              ]\n           }"
+                            required:
+                                - bearer_token
+            security: []
+    /api/reservalugarturistico:
+        post:
+            summary: 'Reservas Lugar Turistico'
+            description: ''
+            parameters:
+                -
+                    in: header
+                    name: Content-Type
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Accept
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+            responses:
+                200:
+                    description: '200, success'
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                example:
+                                    success: 'true'
+                                    data: 'Lugar Turistico reservado'
+                                properties:
+                                    success: { type: string, example: 'true' }
+                                    data: { type: string, example: 'Lugar Turistico reservado' }
+            tags:
+                - Endpoints
+            requestBody:
+                required: true
+                content:
+                    application/json:
+                        schema:
+                            type: object
+                            properties:
+                                cliente_id:
+                                    type: integer
+                                    description: 'Id del cliente.'
+                                    example: 5
+                                lugar_turistico_id:
+                                    type: integer
+                                    description: 'Id del lugar turistico.'
+                                    example: 1
+                                fecha:
+                                    type: date
+                                    description: 'Fecha de registro reserva .'
+                                    example: '2021-06-10'
+                                hospedaje_id:
+                                    type: integer
+                                    description: 'Id del hospedaje.'
+                                    example: 10
+                                precio:
+                                    type: number
+                                    description: 'Precio del recorrido Lugar Turistico.'
+                                    example: !!float 500
+                            required:
+                                - cliente_id
+                                - lugar_turistico_id
+                                - fecha
+                                - hospedaje_id
+                                - precio
+            security: []
+    /api/reservarestaurante:
+        post:
+            summary: 'Reservas Restaurante'
+            description: ''
+            parameters:
+                -
+                    in: header
+                    name: Content-Type
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Accept
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+            responses:
+                200:
+                    description: '200, success'
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                example:
+                                    success: 'true'
+                                    data: 'Productos Agregados'
+                                properties:
+                                    success: { type: string, example: 'true' }
+                                    data: { type: string, example: 'Productos Agregados' }
+            tags:
+                - Endpoints
+            requestBody:
+                required: true
+                content:
+                    application/json:
+                        schema:
+                            type: object
+                            properties:
+                                hospedaje_id:
+                                    type: integer
+                                    description: 'Id del hospedaje.'
+                                    example: 10
+                                toal:
+                                    type: number
+                                    description: 'Total pedidos productos restaurante.'
+                                    example: !!float 600
+                                producto_id:
+                                    type: integer
+                                    description: 'Id del producto reservado .'
+                                    example: 1
+                                precio:
+                                    type: number
+                                    description: 'Precio del producto.'
+                                    example: !!float 100
+                                cantidad:
+                                    type: number
+                                    description: 'Cantidad de productos reservados.'
+                                    example: !!float 3
+                                opcion_id:
+                                    type: integer
+                                    description: 'Id de la opcion del producto.'
+                                    example: 1
+                                tamaño_id:
+                                    type: integer
+                                    description: 'Ide del tamaño producto.'
+                                    example: 2
+                                preciotamaño:
+                                    type: number
+                                    description: 'Precio del tamaño producto.'
+                                    example: !!float 40
+                                datos:
+                                    type: array
+                                    description: 'datos transporte.'
+                                    example: "{\n     \"hospedaje_id\":\"10\",\n     \"total\":\"600\",\n      \"datos\":[\n          {\n              \"producto_id\":\"1\",\n              \"cantidad\":\"2\",\n              \"precio\":\"100\",\n              \"opcion_id\":\"2\",\n              \"tamaño_id\":\"1\",\n              \"preciotamaño\":\"20\"\n          },\n          {\n              \"producto_id\":\"1\",\n              \"cantidad\":\"3\",\n              \"precio\":\"100\",\n              \"opcion_id\":\"2\",\n              \"tamaño_id\":\"1\",\n              \"preciotamaño\":\"20\"\n          }\n      ]\n  }"
+                            required:
+                                - hospedaje_id
+                                - toal
+                                - producto_id
+                                - precio
+                                - cantidad
+                                - opcion_id
+                                - tamaño_id
+                                - preciotamaño
             security: []

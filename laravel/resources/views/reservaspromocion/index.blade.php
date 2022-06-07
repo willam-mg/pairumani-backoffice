@@ -28,11 +28,11 @@
                             <i class="material-icons">date_range</i>
                         </div>
                         <div style="text-align: right;padding-top: 15px;">
-                            {{-- @if(kvfj(Auth::user()->rol->permisos,'promocionreservas_create')) --}}
+                            @if(kvfj(Auth::user()->rol->permisos,'promocionreservas_create'))
                                 <a class="btn btn-success" href="{{ route('promocionreservas_create',$promocion->id) }}" title="Nueva reserva">
                                     <i class="material-icons">add</i> Nuevo
                                 </a>
-                            {{-- @endif --}}
+                            @endif
                         </div>
                     </div>
                     <div class="card-body">
@@ -73,27 +73,27 @@
 												<td>{{ $reserva->habitacion->nombre }}</td>
 												<td>{{ $reserva->habitacion->num_habitacion }}</td>
 												<td style="width: 250px; text-align: center;">
-                                                    {{-- @if(kvfj(Auth::user()->rol->permisos,'promocionreservas_show')) --}}
+                                                    @if(kvfj(Auth::user()->rol->permisos,'promocionreservas_show'))
                                                         <a href="{{ route('promocionreservas_show',[$promocion->id,$reserva->id]) }}" class="btn btn-info btn-round btn-just-icon" title="Detalle reserva">
                                                             <i class="material-icons">visibility</i>
                                                         </a>
-                                                    {{-- @endif --}}
-                                                    @if($reserva->habitacion->estado != 'Ocupado')
-                                                        {{-- @if(kvfj(Auth::user()->rol->permisos,'promocionreservas_hospedaje')) --}}
-                                                            {{-- <a href="{{ route('promocionreservas_hospedaje',[$promocion->id,$reserva->id]) }}" class="btn btn-success btn-round btn-just-icon" title="Reserva hospedaje">
+                                                    @endif
+                                                    @if($reserva->estado == 'Reservado')
+                                                        @if(kvfj(Auth::user()->rol->permisos,'promocionreservas_hospedaje'))
+                                                            <a href="{{ route('promocionreservas_hospedaje',[$promocion->id,$reserva->id]) }}" class="btn btn-success btn-round btn-just-icon" title="Reserva hospedaje">
                                                                 <i class="material-icons">hotel</i>
-                                                            </a>                                                             --}}
-                                                        {{-- @endif --}}
-                                                        {{-- @if(kvfj(Auth::user()->rol->permisos,'promocionreservas_edit')) --}}
+                                                            </a>                                                            
+                                                        @endif
+                                                        @if(kvfj(Auth::user()->rol->permisos,'promocionreservas_edit'))
                                                             <a href="{{ route('promocionreservas_edit',[$promocion->id,$reserva->id]) }}" class="btn btn-warning btn-round btn-just-icon" title="Editar reserva">
                                                                 <i class="material-icons">mode_edit</i>
                                                             </a>
-                                                        {{-- @endif --}}
-                                                        {{-- @if(kvfj(Auth::user()->rol->permisos,'promocionreservas_destroy')) --}}
+                                                        @endif
+                                                        @if(kvfj(Auth::user()->rol->permisos,'promocionreservas_destroy'))
                                                             <a href="" data-target="#modal-delete-{{$reserva->id}}" data-toggle="modal"  class="btn btn-danger btn-round btn-just-icon" title="Eliminar reserva">
                                                                 <i class="material-icons">delete</i>
                                                             </a>
-                                                        {{-- @endif --}}
+                                                        @endif
                                                     @endif
 												</td>
 											</tr>

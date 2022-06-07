@@ -26,11 +26,11 @@
                             <i class="material-icons">date_range</i>
                         </div>
                         <div style="text-align: right;padding-top: 15px;">
-                            {{-- @if(kvfj(Auth::user()->rol->permisos,'transportes_create')) --}}
+                            @if(kvfj(Auth::user()->rol->permisos,'transportes_create'))
                                 <a class="btn btn-success" href="{{ route('transportes_create') }}" title="Nuevo transporte">
                                     <i class="material-icons">add</i> Nuevo
                                 </a>
-                            {{-- @endif --}}
+                            @endif
                         </div>
                     </div>
                     <div class="card-body">
@@ -67,21 +67,21 @@
 												<td>{!! $transporte->descripcion !!}</td>
 												<td>{{ $transporte->precio }}</td>
 												<td>
-                                                    {{-- @if(kvfj(Auth::user()->rol->permisos,'transportes_show')) --}}
+                                                    @if(kvfj(Auth::user()->rol->permisos,'transportes_show'))
                                                         <a href="{{ route('transportes_show',$transporte->id) }}" class="btn btn-info btn-round btn-just-icon" title="Detalle transporte">
                                                             <i class="material-icons">visibility</i>
                                                         </a>
-                                                    {{-- @endif --}}
-													{{-- @if(kvfj(Auth::user()->rol->permisos,'categorias_edit')) --}}
+                                                    @endif
+													@if(kvfj(Auth::user()->rol->permisos,'transportes_edit'))
 														<a name="editar" href="{{ route('transportes_edit',$transporte->id) }}" class="btn btn-warning btn-round btn-just-icon" title="Editar transporte">
 															<i class="material-icons">mode_edit</i>
 														</a>
-													{{-- @endif --}}
-													{{-- @if(kvfj(Auth::user()->rol->permisos,'categorias_destroy')) --}}
+													@endif
+													@if(kvfj(Auth::user()->rol->permisos,'transportes_destroy'))
 														<a name="eliminar" href="" data-target="#modal-delete-{{$transporte->id}}" data-toggle="modal" class="btn btn-danger btn-round btn-just-icon" title="Eliminar transporte">
 															<i class="material-icons">delete</i>
 														</a>
-													{{-- @endif --}}
+													@endif
 												</td>
 											</tr>
 											@include('transportes.modal')

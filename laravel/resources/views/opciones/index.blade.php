@@ -30,11 +30,11 @@
                             <i class="material-icons">date_range</i>
                         </div>
                         <div style="text-align: right;padding-top: 15px;">
-                            {{-- @if(kvfj(Auth::user()->rol->permisos,'opciones_create')) --}}
-                                <a class="btn btn-success" href="{{ route('opciones_create',[$categoria->id,$producto->id]) }}" title="Nueva Opion">
+                            @if(kvfj(Auth::user()->rol->permisos,'opciones_create'))
+                                <a class="btn btn-success" href="{{ route('opciones_create',[$categoria->id,$producto->id]) }}" title="Nueva Opcion">
                                     <i class="material-icons">add</i> Nuevo
                                 </a>
-                            {{-- @endif --}}
+                            @endif
                         </div>
                     </div>
                     <div class="card-body">
@@ -65,21 +65,21 @@
                                                 <td>{{ $opcion->nombre }}</td>
 												<td>{{ $opcion->producto->nombre }}</td>
 												<td>
-                                                    {{-- @if(kvfj(Auth::user()->rol->permisos,'opciones_show')) --}}
+                                                    @if(kvfj(Auth::user()->rol->permisos,'opciones_show'))
                                                         <a href="{{ route('opciones_show',[$categoria->id,$producto->id,$opcion->id]) }}" class="btn btn-info btn-round btn-just-icon" title="Detalle opcion">
                                                             <i class="material-icons">visibility</i>
                                                         </a>
-                                                    {{-- @endif --}}
-													{{-- @if(kvfj(Auth::user()->rol->permisos,'opciones_edit')) --}}
+                                                    @endif
+													@if(kvfj(Auth::user()->rol->permisos,'opciones_edit'))
 														<a name="editar" href="{{ route('opciones_edit',[$categoria->id,$producto->id,$opcion->id]) }}" class="btn btn-warning btn-round btn-just-icon" title="Editar opcion">
 															<i class="material-icons">mode_edit</i>
 														</a>
-													{{-- @endif --}}
-													{{-- @if(kvfj(Auth::user()->rol->permisos,'opciones_destroy')) --}}
+													@endif
+													@if(kvfj(Auth::user()->rol->permisos,'opciones_destroy'))
 														<a name="eliminar" href="" data-target="#modal-delete-{{$opcion->id}}" data-toggle="modal" class="btn btn-danger btn-round btn-just-icon" title="Eliminar opcion">
 															<i class="material-icons">delete</i>
 														</a>
-													{{-- @endif --}}
+													@endif
 												</td>
 											</tr>
 											@include('opciones.modal')
@@ -87,7 +87,7 @@
 									@else
 										<tr>
 											<td colspan="4" style="text-align: center;">
-												<h2><span class="badge badge-danger" style="font-size: 20px">No Existen opcions</span></h2>
+												<h2><span class="badge badge-danger" style="font-size: 20px">No Existen opciones</span></h2>
 											</td>
 										</tr>
 									@endif

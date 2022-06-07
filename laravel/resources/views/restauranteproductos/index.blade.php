@@ -28,11 +28,11 @@
                             <i class="material-icons">date_range</i>
                         </div>
                         <div style="text-align: right;padding-top: 15px;">
-                            {{-- @if(kvfj(Auth::user()->rol->permisos,'productos_create')) --}}
+                            @if(kvfj(Auth::user()->rol->permisos,'productos_create'))
                                 <a class="btn btn-success" href="{{ route('productos_create',$categoria->id) }}" title="Nuevo producto">
                                     <i class="material-icons">add</i> Nuevo
                                 </a>
-                            {{-- @endif --}}
+                            @endif
                         </div>
                     </div>
                     <div class="card-body">
@@ -69,36 +69,36 @@
 												<td>{{ $producto->precio }}</td>
 												<td>{{ $producto->categoria->nombre }}</td>
 												<td style="width: 250px; text-align: center;">
-                                                    {{-- @if(kvfj(Auth::user()->rol->permisos,'opciones_index')) --}}
+                                                    @if(kvfj(Auth::user()->rol->permisos,'opciones_index'))
                                                         <a href="{{ route('opciones_index',[$categoria->id,$producto->id]) }}" class="btn btn-primary btn-round btn-just-icon" title="Producto opciones">
                                                             <i class="material-icons">grading</i>
                                                         </a>
-                                                    {{-- @endif --}}
-                                                    {{-- @if(kvfj(Auth::user()->rol->permisos,'tamanos_index')) --}}
+                                                    @endif
+                                                    @if(kvfj(Auth::user()->rol->permisos,'tamanos_index'))
                                                         <a href="{{ route('tamanos_index',[$categoria->id,$producto->id]) }}" class="btn btn-info btn-round btn-just-icon" title="Producto tamaño">
                                                             <i class="material-icons">fastfood</i>
                                                         </a>
-                                                    {{-- @endif --}}
-                                                    {{-- @if(kvfj(Auth::user()->rol->permisos,'productos_galeria')) --}}
+                                                    @endif
+                                                    @if(kvfj(Auth::user()->rol->permisos,'productos_galeria'))
                                                         <a href="{{ route('productos_galeria',[$categoria->id,$producto->id]) }}" class="btn btn-success btn-round btn-just-icon" title="Galeria producto">
                                                             <i class="material-icons">photo_size_select_actual</i>
                                                         </a>
-                                                    {{-- @endif --}}
-                                                    {{-- @if(kvfj(Auth::user()->rol->permisos,'productos_show')) --}}
+                                                    @endif
+                                                    @if(kvfj(Auth::user()->rol->permisos,'productos_show'))
                                                         <a href="{{ route('productos_show',[$categoria->id,$producto->id]) }}" class="btn btn-info btn-round btn-just-icon" title="Detalle producto">
                                                             <i class="material-icons">visibility</i>
                                                         </a>
-                                                    {{-- @endif --}}
-													{{-- @if(kvfj(Auth::user()->rol->permisos,'productos_edit')) --}}
+                                                    @endif
+													@if(kvfj(Auth::user()->rol->permisos,'productos_edit'))
 														<a href="{{ route('productos_edit',[$categoria->id,$producto->id]) }}" class="btn btn-warning btn-round btn-just-icon" title="Editar producto">
 															<i class="material-icons">mode_edit</i>
 														</a>
-													{{-- @endif --}}
-													{{-- @if(kvfj(Auth::user()->rol->permisos,'productos_destroy')) --}}
+													@endif
+													@if(kvfj(Auth::user()->rol->permisos,'productos_destroy'))
                                                         <a href="" data-target="#modal-delete-{{$producto->id}}" data-toggle="modal"  class="btn btn-danger btn-round btn-just-icon" title="Eliminar producto">
                                                             <i class="material-icons">delete</i>
                                                         </a>
-													{{-- @endif --}}
+													@endif
 												</td>
 											</tr>
 											@include('restauranteproductos.modal')

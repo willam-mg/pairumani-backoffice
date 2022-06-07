@@ -26,7 +26,7 @@
 	<div class="content">
 		<div class="container-fluid">
 			<div class="row">
-				<div class="col-md-8 ml-auto mr-auto">
+				<div class="col-xs-12 col-sm-8 col-md-8 col-lg-8 col-centered ml-auto mr-auto">
 					<form method="POST" action="{{ route('opciones_create',[$categoria->id,$producto->id]) }}">
 						@include('opciones.form')
 					</form>

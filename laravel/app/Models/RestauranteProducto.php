@@ -43,6 +43,26 @@ class RestauranteProducto extends Model
         return $this->hasMany(GaleriaRestauranteProducto::class, 'restaurante_producto_id', 'id');
     }
 
+    public function opciones()
+    {
+        return $this->hasMany(RestauranteProductoOpcion::class,'restaurante_producto_id','id');
+    }
+
+    public function opcion()
+    {
+        return $this->belongsTo(RestauranteProductoOpcion::class,'id', 'restaurante_producto_id');
+    }
+
+    public function tamanos()
+    {
+        return $this->hasMany(RestauranteProductoTamano::class,'restaurante_producto_id','id');
+    }
+
+    public function tamano()
+    {
+        return $this->belongsTo(RestauranteProductoTamano::class,'id', 'restaurante_producto_id');
+    }
+
     public function getFotoUrlAttribute()
     {
         if ($this->foto) {

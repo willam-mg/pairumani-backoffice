@@ -8,7 +8,7 @@
                 <div class="col-sm-12">
                     <ol class="breadcrumb" style="background-color: inherit">
                         <li class="breadcrumb-item"><a href="{{ route('home') }}">Inicio</a></li>
-                        <li class="breadcrumb-item"><a href="{{ route('promociones_index') }}"></a>Promociones</li>
+                        <li class="breadcrumb-item"><a href="{{ route('promociones_index') }}">Promociones</a></li>
                         <li class="breadcrumb-item active">Detalle Promocion</li>
                     </ol>
                 </div><!-- /.col -->
@@ -51,7 +51,9 @@
                 </table>
                 <div class="form-group text-right">
                     <a class="btn btn-default" href="{{ route('promociones_index') }}" title="Cerrar"><i class="material-icons">clear</i> Cerrar</a>
-                    <a class="btn btn-warning" href="{{ route('promociones_edit',$promocion->id) }}" title="Modificar"><i class="material-icons">edit</i> Modificar</a>                    
+                    @if(kvfj(Auth::user()->rol->permisos,'promociones_edit'))
+                        <a class="btn btn-warning" href="{{ route('promociones_edit',$promocion->id) }}" title="Modificar"><i class="material-icons">edit</i> Modificar</a>  
+                    @endif                  
                 </div>
             </div>
         </div>

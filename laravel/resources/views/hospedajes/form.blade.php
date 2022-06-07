@@ -6,106 +6,73 @@
         </div>
     </div>
     <div class="card-body">
-        <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
-            <div class="row">
-                <div class="col-lg-8 col-sm-8 col-md-8 col-xs-12">
-                    <div class="form-group bmd-form-group {{ $errors->has('cliente_id') ? 'has-danger' : '' }}">
-                        <label>Cliente</label>
-                        <select name="cliente_id" class="form-control select2bs4" id="cliente_id">
-                            <option value>Seleccione un Cliente</option>
-                            @foreach($clientes as $key => $value)
-                                <option value="{{ $key }}" {{ old('cliente_id', $hospedaje->cliente_id) == $key ? 'selected' : '' }}>{{ $value }}</option>
-                            @endforeach
-                        </select>
-                        @if ($errors->has('cliente_id'))
-                            <span id="cliente_id-error" for="cliente_id" class="error">{{ $errors->first('cliente_id') }}</span>
-                        @endif
-                    </div>
+        <div class="row">
+            <div class="col-lg-8 col-sm-8 col-md-8 col-xs-8">
+                <div class="form-group bmd-form-group {{ $errors->has('cliente_id') ? 'has-danger' : '' }}">
+                    <label>Cliente</label>
+                    <select name="cliente_id" class="form-control select2bs4" id="cliente_id">
+                        <option>Seleccione un Cliente</option>
+                        @foreach($clientes as $key => $value)
+                            <option value="{{ $key }}" {{ old('cliente_id', $hospedaje->cliente_id) == $key ? 'selected' : '' }}>{{ $value }}</option>
+                        @endforeach
+                    </select>
+                    @if ($errors->has('cliente_id'))
+                        <span id="cliente_id-error" for="cliente_id" class="error">{{ $errors->first('cliente_id') }}</span>
+                    @endif
                 </div>
-                @if (routerequest('hospedajes_create'))
-                    <div class="col-lg-4 col-sm-4 col-md-4 col-xs-12" style="margin-top: 20px;">
-                        <div class="form-group">
-                            <a class="btn btn-success" href="{{ route('clientes_create',$tipo) }}">Nuevo cliente</a>
-                        </div>
-                    </div>                    
-                @endif
             </div>
+            @if (routerequest('hospedajes_create'))
+                <div class="col-lg-4 col-sm-4 col-md-4 col-xs-4" style="margin-top: 20px;">
+                    <div class="form-group">
+                        <a class="btn btn-success" href="{{ route('clientes_create',$tipo) }}">Nuevo cliente</a>
+                    </div>
+                </div>                    
+            @endif
         </div>
-        <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
-            <div class="form-group bmd-form-group {{ $errors->has('habitacion_id') ? 'has-danger' : '' }}">
-                <label>Habitacion</label>
-                <select name="habitacion_id" class="form-control select2bs4" id="habitacion_id">
-                    <option value>Seleccione una Habitacion</option>
+        <div class="form-group bmd-form-group {{ $errors->has('habitacion_id') ? 'has-danger' : '' }}">
+            <label>Habitacion</label>
+            <select name="habitacion_id" class="form-control select2bs4" id="habitacion_id">
+                @if(routerequest('hospedajes_edit') == 'true')
+                    {{-- <option value>Seleccione una Habitacion</option> --}}
+                    <option selected value="{{ $hospedaje->habitacion_id }}">{{ $hospedaje->habitacion->nombre }}</option>
+                @else
+                    <option>Seleccione una Habitacion</option>
                     @foreach($habitaciones as $key => $value)
                         <option value="{{ $key }}" {{ old('habitacion_id', $hospedaje->habitacion_id) == $key ? 'selected' : '' }}>{{ $value }}</option>
                     @endforeach
-                </select>
-                @if ($errors->has('habitacion_id'))
-                    <span id="habitacion_id-error" for="habitacion_id" class="error">{{ $errors->first('habitacion_id') }}</span>
                 @endif
-            </div>
+            </select>
+            @if ($errors->has('habitacion_id'))
+                <span id="habitacion_id-error" for="habitacion_id" class="error">{{ $errors->first('habitacion_id') }}</span>
+            @endif
         </div>
-        <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
-            <div class="form-group bmd-form-group {{ $errors->has('fecha_checkin') ? 'has-danger' : '' }}">
-                <label for="fecha_checkin" class="bmd-label-floating">Fecha Checkin</label>
-                <input type="date" name="fecha_checkin" value="{{ old('fecha_checkin', $hospedaje->fecha_checkin) }}" class="form-control">
-                @if ($errors->has('fecha_checkin'))
-                    <span id="fecha_checkin-error" for="fecha_checking" class="error">{{ $errors->first('fecha_checking') }}</span>
-                @endif
-            </div>
+        <div class="form-group bmd-form-group {{ $errors->has('fecha_checkin') ? 'has-danger' : '' }}">
+            <label for="fecha"><strong>Fecha Checkin</strong></label><br>
+            <input type="datetime-local" name="fecha_checkin" value="{{ old('fecha_checkin',  datetime($hospedaje->fecha_checkin)) }}" class="form-control">
+            @if ($errors->has('fecha_checkin'))
+                <span id="fecha_checkin-error" for="fecha_checkin" class="error">{{ $errors->first('fecha_checkin') }}</span>
+            @endif
         </div>
-        <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
-            <div class="form-group bmd-form-group {{ $errors->has('fecha_checkout') ? 'has-danger' : '' }}">
-                <label for="fecha_checkout" class="bmd-label-floating">Fecha Checkout</label>
-                <input type="date" name="fecha_checkout" value="{{ old('fecha_checkout', $hospedaje->fecha_checkout) }}" class="form-control">
-                @if ($errors->has('fecha_checkout'))
-                    <span id="fecha_checkout-error" for="fecha_checkout" class="error">{{ $errors->first('fecha_checkout') }}</span>
-                @endif
-            </div>
+        <div class="form-group bmd-form-group {{ $errors->has('fecha_checkout') ? 'has-danger' : '' }}">
+             <label for="fecha"><strong>Fecha Checkout</strong></label><br>
+            <input type="datetime-local" name="fecha_checkout" value="{{ old('fecha_checkout', datetime($hospedaje->fecha_checkout)) }}" class="form-control">
+            @if ($errors->has('fecha_checkout'))
+                <span id="fecha_checkout-error" for="fecha_checkout" class="error">{{ $errors->first('fecha_checkout') }}</span>
+            @endif
         </div>
-        <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
-            <h3>Acompañantes</h3>
-            <div class="row">
-                <div class="col-lg-5 col-sm-5 col-md-5 col-xs-12">
-                    <div class="form-group">
-                        <label>Acompañante</label>
-                        <select name="pacompañante_id" class="form-control select2bs4" id="pacompañante_id">
-                            <option value>Seleccione un Acompañante</option>
-                            @foreach($acompañantes as $key=>$value)
-                                <option value="{{ $key }}" {{ old('acompanante_id', $detalle->acompanante_id) == $key ? 'selected' : '' }}>{{ $value }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-sm-3 col-md-3 col-xs-12">
-                    <div class="form-group">
-                        <button type="button" class="btn btn-primary" id="bt_agregar" style="margin-top: 25px">Agregar</button>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-sm-4 col-md-4 col-xs-12">
-                    <div class="form-group">
-                        <a class="btn btn-success" href="{{ route('acompanantes_create',[$tipo,0,0,0,$hospedaje->id]) }}" style="margin-top: 25px">Nuevo</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
-                <table id="detalles" class="table table-striped table-bordered table-condensed table-hover text-center">
-                    <thead>
-                        <tr>
-                            <th>Opcion</th>
-                            <th>Acompañante</th>
-                        </tr>
-                    </thead>
-                    <tbody></tbody>
-                </table>
-            </div>
-            {{-- <div class="card">
-                <div class="card-header bg-info">
-                    <h5>Acompañantes:</h5>
-                </div>
-                <div class="card-body">
-                </div>
-            </div> --}}
+        <div class="form-group bmd-form-group {{ $errors->has('niños') ? 'has-danger' : '' }}">
+            <label for="niños" class="bmd-label-floating">Niños</label>
+            <input type="number" min="1" name="niños" value="{{ old('niños', $hospedaje->niños) }}" class="form-control">
+            @if ($errors->has('niños'))
+                <span id="niños-error" for="niños" class="error">{{ $errors->first('niños') }}</span>
+            @endif
+        </div>
+        <div class="form-group bmd-form-group {{ $errors->has('adultos') ? 'has-danger' : '' }}">
+            <label for="adultos" class="bmd-label-floating">Adultos</label>
+            <input type="number" min="1" name="adultos" value="{{ old('adultos', $hospedaje->adultos) }}" class="form-control">
+            @if ($errors->has('adultos'))
+                <span id="adultos-error" for="adultos" class="error">{{ $errors->first('adultos') }}</span>
+            @endif
         </div>
     </div>
     <div class="card-footer text-right">
@@ -121,88 +88,64 @@
 </div>
 @push('scripts')
     <script>
-        function deleteItem(hospedaje,detalle,acompanante)
+        $(document).ready(function(){
+            $('#habitacion_id').change(function(){
+                $('#promocion').empty();
+                promocion();
+            });
+        });
+        function promocion()
         {
-            $.ajax({ 
-                // url:"{{route('hospedajes_acompanante_destroy',["hospedaje","detalle","acompanante"])}}",
-                url:"/hospedajes/"+hospedaje+"/detalle/"+detalle+"/acompanante/"+acompanante+"/destroy",
-                type: "POST", 
+            var id = $('#habitacion_id').val();
+            var url = '{{ route("hospedajes_promocion", ":id") }}';
+            url = url.replace(':id', id );
+            $.ajax({
+                url: url,
+                type:'POST',
                 data:{
                     '_token': $('meta[name=csrf-token]').attr("content"),
-                    'hospedaje':hospedaje,
-                    'detalle':detalle,
-                    'acompanante':acompanante,
-                    '_method':'DELETE'
+                    'id':id
                 },
-                success: function(result) {
-                    location.reload();
-                }
-            }); 
-        } 
+            }).done(function(data){
+                var todo = '<tr><td>'+data.nombre+'</td>';
+                todo+='<td>'+data.precio+'</td>';
+                todo+='<td>'+data.habitacion.num_habitacion+'</td></tr>';
+                $('#promocion').append(todo);
+            });
+        }
     </script>
     <script>
         $(document).ready(function(){
-            $('#bt_agregar').click(function(){
-                agregar();
+            $('#cliente_id').change(function(){
+                $('#acompañantes').empty();
+                $('#nuevo').empty();
+                acompañante();
             });
         });
-        var cont=0;
-        var fila = 0;
-        total=0;
-        subtotal=[];
-        $("#cancelar").show();
-        $("#guardar").hide();
-        function agregar()
+        function acompañante()
         {
-            acompañante_id = $('#pacompañante_id').val();
-            acompañante=$("#pacompañante_id option:selected").text();
-            console.log(acompañante_id);
-            
-            if (acompañante_id!="")
-            {
-                if (existAcompañanteInDetail(acompañante_id) == false)
-                {
-                    fila = '<tr class="selected text-center" id="fila'+cont+'">\
-                                <th>\
-                                    <button type="button" class="btn btn-danger" onclick="eliminar('+cont+');">X</button>\
-                                </th>\
-                                <td>\
-                                    <input type="hidden" name="acompañante_id[]" value="'+acompañante_id+'">'+acompañante+'\
-                                </td>\
-                            </tr>';
-                    cont++;
-                    limpiar();
-                    $('#detalles').append(fila);
+            var id = $('#cliente_id').val();
+            var url = '{{ route("promocionreservas_acompanante", ":id") }}';
+            url = url.replace(':id', id );
+            $.ajax({
+                url: url,
+                type:'POST',
+                data:{
+                    '_token': $('meta[name=csrf-token]').attr("content"),
+                    'id':id
+                },
+            }).done(function(data){
+                var arreglo = JSON.parse(data);
+                // var tipo = '{{$tipo}}';
+                var route = '{{ route("acompanantes_create", [":id","hospedaje","0","0","0","0","0"]) }}';
+                route = route.replace(':id', id );
+                for(var i = 0; i < arreglo.length; i++){
+                    var todo = '<tr><td>'+arreglo[i].nombre+'</td>';
+                    todo+='<td>'+arreglo[i].nacionalidad+'</td></tr>';
+                    $('#acompañantes').append(todo);
                 }
-                else
-                {
-                    limpiar();
-                    alert("El acompañante ya esta agregado");
-                }								
-            }
-            else
-            {
-                limpiar();
-                alert("Error al ingresar el acompañante");
-            }
-        }
-        function existAcompañanteInDetail(id)
-        {
-            var res = false;
-            $('input[name="acompañante_id[]"]').each(function(index, item) {
-                if (item.value == id) {
-                    res = true;
-                }
+                $('#nuevo').append('<a href="'+route+'" class="btn btn-success">Nuevo Acompañante</a>');                
             });
-            return res;
-        }
-        function limpiar()
-        {
-            $('#pacompañante_id').val('').change();
-        }
-        function eliminar(index)
-        {
-            $('#fila'+index).remove();
         }
     </script>
 @endpush

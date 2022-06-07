@@ -8,6 +8,8 @@
                 <div class="col-sm-12">
                     <ol class="breadcrumb" style="background-color: inherit">
                         <li class="breadcrumb-item"><a href="{{ route('home') }}">Inicio</a></li>
+                        <li class="breadcrumb-item"><a href="{{ route('clientes_index') }}">Clientes</a></li>
+                        <li class="breadcrumb-item"><a href="{{ route('clientes_show',$cliente->id) }}">Cliente: {{ $cliente->nombres.' '.$cliente->apellidos }}</a></li>
                         <li class="breadcrumb-item active">Acompañantes</li>
                     </ol>
                 </div><!-- /.col -->
@@ -26,11 +28,11 @@
                             <i class="material-icons">date_range</i>
                         </div>
                         <div style="text-align: right;padding-top: 15px;">
-                            {{-- @if(kvfj(Auth::user()->rol->permisos,'acompanantes_create')) --}}
-                                <a class="btn btn-success" href="{{ route('acompanantes_create') }}" title="Nuevo acompañante">
+                            @if(kvfj(Auth::user()->rol->permisos,'acompanantes_create'))
+                                <a class="btn btn-success" href="{{ route('acompanantes_create',$cliente->id) }}" title="Nuevo acompañante">
                                     <i class="material-icons">add</i> Nuevo
                                 </a>
-                            {{-- @endif --}}
+                            @endif
                         </div>
                     </div>
                     <div class="card-body">
@@ -51,6 +53,7 @@
                                     <th>Id</th>
 									<th>Nombre</th>
 									<th>Tipo Documento</th>
+                                    <th>Número Documento</th>
 									<th>Nacionalidad</th>
 									<th>Fecha Nacimiento</th>
                                     <th>Ciudad</th>
@@ -68,21 +71,21 @@
 												<td>{{ $acompañante->fecha_nacimiento }}</td>
 												<td>{{ $acompañante->ciudad }}</td>
 												<td>
-                                                    {{-- @if(kvfj(Auth::user()->rol->permisos,'acompanantes_show')) --}}
-                                                        <a href="{{ route('acompanantes_show',$acompañante->id) }}" class="btn btn-info btn-round btn-just-icon" title="Detalle acompañante">
+                                                    @if(kvfj(Auth::user()->rol->permisos,'acompanantes_show'))
+                                                        <a href="{{ route('acompanantes_show',[$cliente->id,$acompañante->id]) }}" class="btn btn-info btn-round btn-just-icon" title="Detalle acompañante">
                                                             <i class="material-icons">visibility</i>
                                                         </a>
-                                                    {{-- @endif --}}
-													{{-- @if(kvfj(Auth::user()->rol->permisos,'categorias_edit')) --}}
-														<a name="editar" href="{{ route('acompanantes_edit',$acompañante->id) }}" class="btn btn-warning btn-round btn-just-icon" title="Editar acompañante">
+                                                    @endif
+													@if(kvfj(Auth::user()->rol->permisos,'acompanantes_edit'))
+														<a name="editar" href="{{ route('acompanantes_edit',[$cliente->id,$acompañante->id]) }}" class="btn btn-warning btn-round btn-just-icon" title="Editar acompañante">
 															<i class="material-icons">mode_edit</i>
 														</a>
-													{{-- @endif --}}
-													{{-- @if(kvfj(Auth::user()->rol->permisos,'categorias_destroy')) --}}
+													@endif
+													@if(kvfj(Auth::user()->rol->permisos,'acompanantes_destroy'))
 														<a name="eliminar" href="" data-target="#modal-delete-{{$acompañante->id}}" data-toggle="modal" class="btn btn-danger btn-round btn-just-icon" title="Eliminar acompañante">
 															<i class="material-icons">delete</i>
 														</a>
-													{{-- @endif --}}
+													@endif
 												</td>
 											</tr>
 											@include('acompanantes.modal')

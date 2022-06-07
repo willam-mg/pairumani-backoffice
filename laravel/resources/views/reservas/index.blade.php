@@ -30,11 +30,11 @@
                             <i class="material-icons">date_range</i>
                         </div>
                         <div style="text-align: right;padding-top: 15px;">
-                            {{-- @if(kvfj(Auth::user()->rol->permisos,'reservas_create')) --}}
+                            @if(kvfj(Auth::user()->rol->permisos,'reservas_create'))
                                 <a class="btn btn-success" href="{{ route('reservas_create',[$categoria->id,$habitacion->id]) }}" title="Nueva reserva">
                                     <i class="material-icons">add</i> Nuevo
                                 </a>
-                            {{-- @endif --}}
+                            @endif
                         </div>
                     </div>
                     <div class="card-body">
@@ -75,27 +75,27 @@
 												<td>{{ $reserva->habitacion->nombre }}</td>
 												<td>{{ $reserva->habitacion->num_habitacion }}</td>
 												<td style="width: 250px; text-align: center;">
-                                                    {{-- @if(kvfj(Auth::user()->rol->permisos,'reservas_show')) --}}
+                                                    @if(kvfj(Auth::user()->rol->permisos,'reservas_show'))
                                                         <a href="{{ route('reservas_show',[$categoria->id,$habitacion->id,$reserva->id]) }}" class="btn btn-info btn-round btn-just-icon" title="Detalle reserva">
                                                             <i class="material-icons">visibility</i>
                                                         </a>
-                                                    {{-- @endif --}}
-                                                    @if($reserva->habitacion->estado != 'Ocupado')
-                                                        {{-- @if(kvfj(Auth::user()->rol->permisos,'reservas_hospedaje')) --}}
+                                                    @endif
+                                                    @if($reserva->estado == 'Reservado')
+                                                        @if(kvfj(Auth::user()->rol->permisos,'reservas_hospedaje'))
                                                             <a href="{{ route('reservas_hospedaje',[$categoria->id,$habitacion->id,$reserva->id]) }}" class="btn btn-success btn-round btn-just-icon" title="Reserva hospedaje">
                                                                 <i class="material-icons">hotel</i>
                                                             </a>                                                            
-                                                        {{-- @endif --}}
-                                                        {{-- @if(kvfj(Auth::user()->rol->permisos,'reservas_edit')) --}}
+                                                        @endif
+                                                        @if(kvfj(Auth::user()->rol->permisos,'reservas_edit'))
                                                             <a href="{{ route('reservas_edit',[$categoria->id,$habitacion->id,$reserva->id]) }}" class="btn btn-warning btn-round btn-just-icon" title="Editar reserva">
                                                                 <i class="material-icons">mode_edit</i>
                                                             </a>
-                                                        {{-- @endif --}}
-                                                        {{-- @if(kvfj(Auth::user()->rol->permisos,'reservas_destroy')) --}}
+                                                        @endif
+                                                        @if(kvfj(Auth::user()->rol->permisos,'reservas_destroy'))
                                                             <a href="" data-target="#modal-delete-{{$reserva->id}}" data-toggle="modal"  class="btn btn-danger btn-round btn-just-icon" title="Eliminar reserva">
                                                                 <i class="material-icons">delete</i>
                                                             </a>
-                                                        {{-- @endif --}}
+                                                        @endif
                                                     @endif
 												</td>
 											</tr>

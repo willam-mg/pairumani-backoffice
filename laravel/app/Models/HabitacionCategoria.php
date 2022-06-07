@@ -29,6 +29,11 @@ class HabitacionCategoria extends Model
         'id' => 'integer',
     ];
 
+    public function habitaciones()
+    {
+        return $this->hasMany(habitacion::class, 'habitacion_categoria_id', 'id');
+    }
+
     public function getFotoUrlAttribute()
     {
         if ($this->foto) {

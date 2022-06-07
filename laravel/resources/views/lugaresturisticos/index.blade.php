@@ -26,11 +26,11 @@
                             <i class="material-icons">date_range</i>
                         </div>
                         <div style="text-align: right;padding-top: 15px;">
-                            {{-- @if(kvfj(Auth::user()->rol->permisos,'lugaresturisticos_create')) --}}
+                            @if(kvfj(Auth::user()->rol->permisos,'lugaresturisticos_create'))
                                 <a class="btn btn-success" href="{{ route('lugaresturisticos_create') }}" title="Nuevo lugar turistico">
                                     <i class="material-icons">add</i> Nuevo
                                 </a>
-                            {{-- @endif --}}
+                            @endif
                         </div>
                     </div>
                     <div class="card-body">
@@ -71,26 +71,31 @@
 												<td>{{ $lugar->precio_recorrido }}</td>
 												<td>{{ $lugar->tipo }}</td>
 												<td style="width: 250px; text-align: center;">
-                                                    {{-- @if(kvfj(Auth::user()->rol->permisos,'lugaresturisticos_galeria')) --}}
+                                                    @if(kvfj(Auth::user()->rol->permisos,'reservaslugaresturisticos_index'))
+                                                        <a href="{{ route('reservaslugaresturisticos_index',$lugar->id) }}" class="btn btn-primary btn-round btn-just-icon" title="Reservas Lugar Turistico">
+                                                            <i class="material-icons">pending_actions</i>
+                                                        </a>
+                                                    @endif
+                                                    @if(kvfj(Auth::user()->rol->permisos,'lugaresturisticos_galeria'))
                                                         <a href="{{ route('lugaresturisticos_galeria',$lugar->id) }}" class="btn btn-success btn-round btn-just-icon" title="Galeria lugar turistico">
                                                             <i class="material-icons">photo_size_select_actual</i>
                                                         </a>
-                                                    {{-- @endif --}}
-                                                    {{-- @if(kvfj(Auth::user()->rol->permisos,'lugaresturisticos_show')) --}}
+                                                    @endif
+                                                    @if(kvfj(Auth::user()->rol->permisos,'lugaresturisticos_show'))
                                                         <a href="{{ route('lugaresturisticos_show',$lugar->id) }}" class="btn btn-info btn-round btn-just-icon" title="Detalle lugar turistico">
                                                             <i class="material-icons">visibility</i>
                                                         </a>
-                                                    {{-- @endif --}}
-													{{-- @if(kvfj(Auth::user()->rol->permisos,'lugaresturisticos_edit')) --}}
+                                                    @endif
+													@if(kvfj(Auth::user()->rol->permisos,'lugaresturisticos_edit'))
 														<a href="{{ route('lugaresturisticos_edit',$lugar->id) }}" class="btn btn-warning btn-round btn-just-icon" title="Editar lugar turistico">
 															<i class="material-icons">mode_edit</i>
 														</a>
-													{{-- @endif --}}
-													{{-- @if(kvfj(Auth::user()->rol->permisos,'lugaresturisticos_destroy')) --}}
+													@endif
+													@if(kvfj(Auth::user()->rol->permisos,'lugaresturisticos_destroy'))
                                                         <a href="" data-target="#modal-delete-{{$lugar->id}}" data-toggle="modal"  class="btn btn-danger btn-round btn-just-icon" title="Eliminar lugar turistico">
                                                             <i class="material-icons">delete</i>
                                                         </a>
-													{{-- @endif --}}
+													@endif
 												</td>
 											</tr>
 											@include('lugaresturisticos.modal')

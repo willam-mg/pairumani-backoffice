@@ -60,19 +60,24 @@ class Cliente extends Authenticatable
         return $this->nombres . ' ' . $this->apellidos;
     }
 
+    public function acompañantes()
+    {
+        return $this->hasMany(Acompanante::class,'cliente_id','id');
+    }
+
     public function reservas()
     {
-        return $this->hasMany(\App\Models\Reserva::class, 'cliente_id', 'id');
+        return $this->hasMany(Reserva::class, 'cliente_id', 'id');
     }
 
     public function reservaslugaresturisticos()
     {
-        return $this->hasMany(\App\Models\ReservaLugarTuristico::class, 'cliente_id', 'id');
+        return $this->hasMany(ReservaLugarTuristico::class, 'cliente_id', 'id');
     }
 
     public function reservaspromociones()
     {
-        return $this->hasMany(\App\Models\ReservaPromocion::class, 'cliente_id', 'id');
+        return $this->hasMany(ReservaPromocion::class, 'cliente_id', 'id');
     }
 
     public function getFotoUrlAttribute()

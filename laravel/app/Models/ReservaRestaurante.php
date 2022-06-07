@@ -16,6 +16,7 @@ class ReservaRestaurante extends Model
     public $timestamps = false;
 
     protected $fillable = [
+        'cliente_id',
         'hospedaje_id',
         'fecha',
         'hora',
@@ -27,11 +28,27 @@ class ReservaRestaurante extends Model
     protected $casts = [
         'id' => 'integer',
         'hospedaje_id' => 'integer',
-        'fecha' => 'date',
+        'cliente_id' => 'integer',
+        // 'fecha' => 'date',
     ];
 
     public function hospedaje()
     {
-        return $this->belongsTo(\App\Models\Hospedaje::class);
+        return $this->belongsTo(Hospedaje::class, 'hospedaje_id', 'id');
+    }
+
+    public function cliente()
+    {
+        return $this->belongsTo(Cliente::class, 'cliente_id', 'id');
+    }
+
+    public function detalle()
+    {
+        return $this->belongsTo(RestauranteDetalleReserva::class, 'id', 'restaurante_reserva_id');
+    }
+
+    public function detalles()
+    {
+        return $this->hasMany(RestauranteDetalleReserva::class, 'restaurante_reserva_id', 'id');
     }
 }

@@ -9,6 +9,8 @@ class ReservaLugarTuristico extends Model
 {
     use HasFactory;
 
+    const TIPO = 'lugar';
+
     protected $table = 'reservas_lugares_turisticos';
 
     protected $primaryKey = 'id';
@@ -20,6 +22,8 @@ class ReservaLugarTuristico extends Model
         'fecha',
         'lugar_turistico_id',
         'estado',
+        'hospedaje_id',
+        'precio',
     ];
 
     protected $guarded = [];
@@ -27,18 +31,24 @@ class ReservaLugarTuristico extends Model
     protected $casts = [
         'id' => 'integer',
         'cliente_id' => 'integer',
-        'fecha' => 'date',
+        // 'fecha' => 'date',
         'lugar_turistico_id' => 'integer',
+        'hospedaje_id' => 'integer',
     ];
 
 
     public function cliente()
     {
-        return $this->belongsTo(\App\Models\Cliente::class);
+        return $this->belongsTo(Cliente::class, 'cliente_id', 'id');
     }
 
-    public function lugarTuristico()
+    public function lugarturistico()
     {
-        return $this->belongsTo(\App\Models\LugarTuristico::class);
+        return $this->belongsTo(LugarTuristico::class, 'lugar_turistico_id', 'id');
+    }
+
+    public function hospedaje()
+    {
+        return $this->belongsTo(Hospedaje::class, 'hospedaje_id', 'id');
     }
 }

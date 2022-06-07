@@ -34,10 +34,12 @@
                             <div class="row">
                                 @foreach(user_permissions() as $key => $value)
                                     <div class="col-md-4">
-                                        <div class="card card-nav-tabs">
-                                            <div class="card-header card-header-primary d-flex align-items-center">
-                                                {!! $value['icon'] !!}
-                                                <p class="mb-0" style="font-size: 30px">
+                                        <div class="card card-nav-tabs shadow-normal">
+                                            <div class="card-header card-header-primary d-flex align-items-center pt-2 pb-2">
+                                                <div class="mr-1">
+                                                    {!! $value['icon'] !!}
+                                                </div>
+                                                <p class="mb-0" style="font-size: 25px">
                                                     {{ $value['title'] }}
                                                 </p>
                                             </div>
@@ -58,7 +60,8 @@
                                     </div>
                                 @endforeach
                             </div>
-                            <input type="submit" value="Guardar" class="btn btn-primary">
+                            <button type="submit" class="btn btn-primary">Guardar</button>
+                            <a href="{{ route('roles_index') }}" class="btn btn-danger">Cancelar</a>
                         </form>
                     </div>
                 </div>

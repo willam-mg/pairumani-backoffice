@@ -26,11 +26,11 @@
                             <i class="material-icons">date_range</i>
                         </div>
                         <div style="text-align: right;padding-top: 15px;">
-                            {{-- @if(kvfj(Auth::user()->rol->permisos,'habitacioncategorias_create')) --}}
+                            @if(kvfj(Auth::user()->rol->permisos,'habitacioncategorias_create'))
                                 <a class="btn btn-success" href="{{ route('habitacioncategorias_create') }}" title="Nuevo habitacion categoria">
                                     <i class="material-icons">add</i> Nuevo
                                 </a>
-                            {{-- @endif --}}
+                            @endif
                         </div>
                     </div>
                     <div class="card-body">
@@ -51,7 +51,6 @@
                                     <th>Id</th>
                                     <th>Imagen</th>
 									<th>Nombre</th>
-									<th>Descripcion</th>
 									<th>Opciones</th>
                                 </thead>
 								<tbody>
@@ -63,35 +62,34 @@
                                                     <img src="{{ $categoria->fotourl }}" alt="{{ $categoria->nombre }}" height="120px" width="120px" class="img-">
                                                 </td>
 												<td>{{ $categoria->nombre }}</td>
-												<td>{!! $categoria->descripcion !!}</td>
 												<td>
-                                                    {{-- @if(kvfj(Auth::user()->rol->permisos,'habitaciones_index')) --}}
+                                                    @if(kvfj(Auth::user()->rol->permisos,'habitaciones_index'))
                                                         <a href="{{ route('habitaciones_index',$categoria->id) }}" class="btn btn-success btn-round btn-just-icon" title="Habitaciones">
                                                             <i class="material-icons">meeting_room</i>
                                                         </a>
-                                                    {{-- @endif --}}
-                                                    {{-- @if(kvfj(Auth::user()->rol->permisos,'habitacioncategorias_show')) --}}
+                                                    @endif
+                                                    @if(kvfj(Auth::user()->rol->permisos,'habitacioncategorias_show'))
                                                         <a href="{{ route('habitacioncategorias_show',$categoria->id) }}" class="btn btn-info btn-round btn-just-icon" title="Detalle habitacion categoria">
                                                             <i class="material-icons">visibility</i>
                                                         </a>
-                                                    {{-- @endif --}}
-													{{-- @if(kvfj(Auth::user()->rol->permisos,'categorias_edit')) --}}
+                                                    @endif
+													@if(kvfj(Auth::user()->rol->permisos,'habitacioncategorias_edit'))
 														<a name="editar" href="{{ route('habitacioncategorias_edit',$categoria->id) }}" class="btn btn-warning btn-round btn-just-icon" title="Editar habitacion categoria">
 															<i class="material-icons">mode_edit</i>
 														</a>
-													{{-- @endif --}}
-													{{-- @if(kvfj(Auth::user()->rol->permisos,'categorias_destroy')) --}}
+													@endif
+													@if(kvfj(Auth::user()->rol->permisos,'habitacioncategorias_destroy'))
 														<a name="eliminar" href="" data-target="#modal-delete-{{$categoria->id}}" data-toggle="modal" class="btn btn-danger btn-round btn-just-icon" title="Eliminar habitacion categoria">
 															<i class="material-icons">delete</i>
 														</a>
-													{{-- @endif --}}
+													@endif
 												</td>
 											</tr>
 											@include('habitacioncategorias.modal')
 										@endforeach
 									@else
 										<tr>
-											<td colspan="5" style="text-align: center;">
+											<td colspan="4" style="text-align: center;">
 												<h2><span class="badge badge-danger" style="font-size: 20px">No Existen habitacion categorias</span></h2>
 											</td>
 										</tr>

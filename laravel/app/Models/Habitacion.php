@@ -24,7 +24,6 @@ class Habitacion extends Model
         'nombre',
         'descripcion',
         'precio',
-        'precio_promocion',
         'capacidad_minima',
         'capacidad_maxima',
         'estado',
@@ -42,9 +41,19 @@ class Habitacion extends Model
         return $this->belongsTo(HabitacionCategoria::class,'habitacion_categoria_id','id');
     }
 
+    public function hospedaje()
+    {
+        return $this->belongsTo(Hospedaje::class, 'id', 'habitacion_id');
+    }
+
     public function promocion()
     {
         return $this->belongsTo(Promocion::class,'id', 'habitacion_id');
+    }
+
+    public function frigobars()
+    {
+        return $this->hasMany(HabitacionFrigobar::class,'habitacion_id','id');
     }
 
     public function fotos()

@@ -80,11 +80,11 @@
                             <form method="POST" action="{{ route('habitaciones_galeria_destroy',[$categoria->id,$habitacion->id,$foto->id]) }}">
                                 @method('DELETE') @csrf
                                 <div class="col-lg-3 col-sm-3 col-md-3 col-xs-12">
-                                    {{-- @if(kvfj(Auth::user()->rol->permisos,'galerias_destroy')) --}}
+                                    @if(kvfj(Auth::user()->rol->permisos,'habitaciones_galeria_destroy'))
                                         <button class="btn btn-danger btn-xs" style="position: absolute" type="submit" title="Eliminar foto">
                                             <i class="material-icons">clear</i>
                                         </button>
-                                    {{-- @endif --}}
+                                    @endif
                                     <img src="{{ $foto->fotourl }}" alt="{{ $habitacion->nombre }}" width="150px" height="150px">
                                 </div>
                             </form>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\PromocionFormRequest;
+use App\Models\Acompanante;
 use App\Models\Habitacion;
 use App\Models\Promocion;
 use App\Models\Reserva;
@@ -30,7 +31,7 @@ class PromocionController extends Controller
     {
         return view('promociones.create', [
             'promocion' => new Promocion(),
-            'habitaciones' => Habitacion::pluck('nombre','id'),
+            'habitaciones' => Habitacion::where('estado','Disponible')->pluck('nombre', 'id'),
         ]);
     }
     public function store(PromocionFormRequest $request)
@@ -49,6 +50,13 @@ class PromocionController extends Controller
     }
     public function update(PromocionFormRequest $request, Promocion $promocion)
     {
+        $reserva = ReservaPromocion::where('promocion_id',$promocion->id)->first();
+        $estado = $reserva->promocion::where('estado','!=',$request->get('estado'))->first();
+        if($reserva != NULL){
+            if($estado){
+                return redirect()->back()->with('message', 'No se pudo cambiar de estado ya tiene reservas')->with('typealert', 'danger');
+            }
+        }
         $promocion->foto = editarimagen($request->hasFile('foto'), $request->file('foto'), Promocion::Namefoto(), Promocion::Rutafoto(), $promocion->foto, Promocion::Urldeletefoto());
         $promocion->update($request->except('foto'));
         return redirect()->route('promociones_index')->with('message', 'Modificado con éxito')->with('typealert', 'success');

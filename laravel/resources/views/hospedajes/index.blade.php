@@ -26,11 +26,11 @@
                             <i class="material-icons">date_range</i>
                         </div>
                         <div style="text-align: right;padding-top: 15px;">
-                            {{-- @if(kvfj(Auth::user()->rol->permisos,'hospedajes_create')) --}}
+                            @if(kvfj(Auth::user()->rol->permisos,'hospedajes_create'))
                                 <a class="btn btn-success" href="{{ route('hospedajes_create') }}" title="Nuevo hospedaje">
                                     <i class="material-icons">add</i> Nuevo
                                 </a>
-                            {{-- @endif --}}
+                            @endif
                         </div>
                     </div>
                     <div class="card-body">
@@ -53,9 +53,12 @@
 									<th>Habitacion</th>
 									<th>Checkin</th>
 									<th>Checkout</th>
-                                    <th>Transporte</th>
-                                    <th>Lugar Turistico</th>
-                                    <th>Restaurante</th>
+                                    <th>Adultos</th>
+                                    <th>Niños</th>
+                                    <th>Precio</th>
+                                    <th>Precio Promocion</th>
+                                    <th>Estado</th>
+                                    <th>Total Hospedaje</th>
 									<th>Opciones</th>
                                 </thead>
 								<tbody>
@@ -67,37 +70,68 @@
 												<td>{{ $hospedaje->habitacion->nombre }}</td>
 												<td>{{ $hospedaje->fecha_checkin }}</td>
 												<td>{{ $hospedaje->fecha_checkout }}</td>
-												<td>{{ $hospedaje->transporte ? $hospedaje->transporte->nombre : '' }}</td>
-												<td>{{ $hospedaje->reservalugarturistico ? $hospedaje->reservalugarturistico->fecha : '' }}</td>
-												<td>{{ $hospedaje->reservarestaurante ? $hospedaje->reservarestaurante->fecha : '' }}</td>
+												<td>{{ $hospedaje->adultos }}</td>
+												<td>{{ $hospedaje->niños }}</td>
+												<td>{{ $hospedaje->precio }}</td>
+												<td>{{ $hospedaje->precio_promocion ? $hospedaje->precio_promocion : '(ND)' }}</td>
+                                                <td>{{ $hospedaje->estado }}</td>
+                                                <td>{{ env('MONEYLOCAL') }} {{ number_format($hospedaje->total(),2) }}</td>
 												<td>
-                                                    {{-- @if(kvfj(Auth::user()->rol->permisos,'hospedajes_transporte')) --}}
-                                                        <a href="{{ route('hospedajes_transporte',$hospedaje->id) }}" class="btn btn-success btn-round btn-just-icon" title="Hospedaje Transportes">
-                                                            <i class="material-icons">directions_car</i>
-                                                        </a>
-                                                    {{-- @endif --}}
-                                                    {{-- @if(kvfj(Auth::user()->rol->permisos,'hospedajes_show')) --}}
-                                                        <a href="{{ route('hospedajes_show',$hospedaje->id) }}" class="btn btn-info btn-round btn-just-icon" title="Detalle hospedaje">
-                                                            <i class="material-icons">visibility</i>
-                                                        </a>
-                                                    {{-- @endif --}}
-													{{-- @if(kvfj(Auth::user()->rol->permisos,'categorias_edit')) --}}
-														<a name="editar" href="{{ route('hospedajes_edit',$hospedaje->id) }}" class="btn btn-warning btn-round btn-just-icon" title="Editar hospedaje">
-															<i class="material-icons">mode_edit</i>
-														</a>
-													{{-- @endif --}}
-													{{-- @if(kvfj(Auth::user()->rol->permisos,'categorias_destroy')) --}}
-														<a name="eliminar" href="" data-target="#modal-delete-{{$hospedaje->id}}" data-toggle="modal" class="btn btn-danger btn-round btn-just-icon" title="Eliminar hospedaje">
-															<i class="material-icons">delete</i>
-														</a>
-													{{-- @endif --}}
+                                                    @if($hospedaje->estado == 'Ocupado')
+                                                        @if(kvfj(Auth::user()->rol->permisos,'hospedajes_frigobar'))
+                                                            <a href="{{ route('hospedajes_frigobar',$hospedaje->id) }}" class="btn btn-primary btn-round btn-just-icon" title="Hospedaje Frigobar Productos">
+                                                                <i class="material-icons">kitchen</i>
+                                                            </a>
+                                                        @endif
+                                                        @if(kvfj(Auth::user()->rol->permisos,'hospedajes_reserva_cafeteria_productos'))
+                                                            <a href="{{ route('hospedajes_reserva_cafeteria_productos',$hospedaje->id) }}" class="btn btn-danger btn-round btn-just-icon" title="Hospedaje Reserva Cafeteria Productos">
+                                                                <i class="material-icons">storefront</i>
+                                                            </a>
+                                                        @endif
+                                                        @if(kvfj(Auth::user()->rol->permisos,'hospedajes_reserva_productos'))
+                                                            <a href="{{ route('hospedajes_reserva_productos',$hospedaje->id) }}" class="btn btn-warning btn-round btn-just-icon" title="Hospedaje Reserva Productos">
+                                                                <i class="material-icons">restaurant</i>
+                                                            </a>
+                                                        @endif
+                                                        @if(kvfj(Auth::user()->rol->permisos,'hospedajes_reserva_lugar'))
+                                                            <a href="{{ route('hospedajes_reserva_lugar',$hospedaje->id) }}" class="btn btn-primary btn-round btn-just-icon" title="Hospedaje Reserva Lugar Turistico">
+                                                                <i class="material-icons">pending_actions</i>
+                                                            </a>
+                                                        @endif
+                                                        @if(kvfj(Auth::user()->rol->permisos,'hospedajes_transporte'))
+                                                            <a href="{{ route('hospedajes_transporte',$hospedaje->id) }}" class="btn btn-success btn-round btn-just-icon" title="Hospedaje Transportes">
+                                                                <i class="material-icons">directions_car</i>
+                                                            </a>
+                                                        @endif
+                                                        @if(kvfj(Auth::user()->rol->permisos,'hospedajes_show'))
+                                                            <a href="{{ route('hospedajes_show',$hospedaje->id) }}" class="btn btn-info btn-round btn-just-icon" title="Detalle hospedaje">
+                                                                <i class="material-icons">visibility</i>
+                                                            </a>
+                                                        @endif
+                                                        @if(kvfj(Auth::user()->rol->permisos,'categorias_edit'))
+                                                            <a name="editar" href="{{ route('hospedajes_edit',$hospedaje->id) }}" class="btn btn-warning btn-round btn-just-icon" title="Editar hospedaje">
+                                                                <i class="material-icons">mode_edit</i>
+                                                            </a>
+                                                        @endif
+                                                        @if(kvfj(Auth::user()->rol->permisos,'hospedajes_destroy'))
+                                                            <a name="eliminar" href="" data-target="#modal-delete-{{$hospedaje->id}}" data-toggle="modal" class="btn btn-danger btn-round btn-just-icon" title="Eliminar hospedaje">
+                                                                <i class="material-icons">delete</i>
+                                                            </a>
+                                                        @endif                                                        
+                                                    @else
+                                                        @if(kvfj(Auth::user()->rol->permisos,'hospedajes_show'))
+                                                            <a href="{{ route('hospedajes_show',$hospedaje->id) }}" class="btn btn-info btn-round btn-just-icon" title="Detalle hospedaje">
+                                                                <i class="material-icons">visibility</i>
+                                                            </a>
+                                                        @endif
+                                                    @endif
 												</td>
 											</tr>
 											@include('hospedajes.modal')
 										@endforeach
 									@else
 										<tr>
-											<td colspan="9" style="text-align: center;">
+											<td colspan="12" style="text-align: center;">
 												<h2><span class="badge badge-danger" style="font-size: 20px">No Existen hospedajes</span></h2>
 											</td>
 										</tr>

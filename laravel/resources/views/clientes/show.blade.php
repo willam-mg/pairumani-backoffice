@@ -8,7 +8,7 @@
                 <div class="col-sm-12">
                     <ol class="breadcrumb" style="background-color: inherit">
                         <li class="breadcrumb-item"><a href="{{ route('home') }}">Inicio</a></li>
-                        <li class="breadcrumb-item"><a href="{{ route('clientes_index') }}"></a>Clientes</li>
+                        <li class="breadcrumb-item"><a href="{{ route('clientes_index') }}">Clientes</a></li>
                         <li class="breadcrumb-item active">Detalle Cliente</li>
                     </ol>
                 </div><!-- /.col -->
@@ -81,51 +81,11 @@
                 </table>
                 <div class="form-group text-right">
                     <a class="btn btn-default" href="{{ route('clientes_index') }}" title="Cerrar"><i class="material-icons">clear</i> Cerrar</a>
-                    <a class="btn btn-warning" href="{{ route('clientes_edit',$cliente->id) }}" title="Modificar"><i class="material-icons">edit</i> Modificar</a>                    
+                    @if(kvfj(Auth::user()->rol->permisos,'clientes_edit'))
+                        <a class="btn btn-warning" href="{{ route('clientes_edit',$cliente->id) }}" title="Modificar"><i class="material-icons">edit</i> Modificar</a> 
+                    @endif                   
                 </div>
             </div>
         </div>
-        {{-- <div class="card">
-            <div class="card-content">
-                <h4>Pacientes 1</h4>
-                <hr>
-                <table class="table table-striped table-bordered">
-                    <tbody>
-                        <tr>
-                            <th>Nombres</th>
-                            <td>Oscar Alberto</td>
-                        </tr>
-                        <tr>
-                            <th>Apellidos</th>
-                            <td>Cabrera Solíz</td>
-                        </tr>
-                        <tr>
-                            <th>Fecha Nacimiento</th>
-                            <td>1992-05-24</td>
-                        </tr>
-                        <tr>
-                            <th>Edad</th>
-                            <td>29</td>
-                        </tr>
-                        <tr>
-                            <th>Telefono</th>
-                            <td>4370629</td>
-                        </tr>
-                        <tr>
-                            <th>Celular</th>
-                            <td>60399869</td>
-                        </tr>
-                        <tr>
-                            <th>Tipo Paciente</th>
-                            <td>ELFEC</td>
-                        </tr>
-                    </tbody>
-                </table>
-                <div class="form-group text-right">
-                    <a class="btn btn-default" href="/paciente/index" title="Cerrar"><i class="material-icons">clear</i> Cerrar</a>
-                    <a class="btn btn-warning" href="/paciente/update?id=1" title="Modificar"><i class="material-icons">edit</i> Modificar</a>                    
-                </div>
-            </div>
-        </div> --}}
     </div>
 @endsection

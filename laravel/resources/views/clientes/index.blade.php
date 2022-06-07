@@ -26,11 +26,11 @@
                             <i class="material-icons">date_range</i>
                         </div>
                         <div style="text-align: right;padding-top: 15px;">
-                            {{-- @if(kvfj(Auth::user()->rol->permisos,'clientes_create')) --}}
+                            @if(kvfj(Auth::user()->rol->permisos,'clientes_create'))
                                 <a class="btn btn-success" href="{{ route('clientes_create') }}" title="Nuevo cliente">
                                     <i class="material-icons">add</i> Nuevo
                                 </a>
-                            {{-- @endif --}}
+                            @endif
                         </div>
                     </div>
                     <div class="card-body">
@@ -69,21 +69,26 @@
 												<td>{{ $cliente->oficio }}</td>
 												<td>{{ $cliente->empresa }}</td>
 												<td style="width: 250px; text-align: center;">
-                                                    {{-- @if(kvfj(Auth::user()->rol->permisos,'clientes_show')) --}}
+                                                    @if(kvfj(Auth::user()->rol->permisos,'acompanantes_index'))
+                                                        <a href="{{ route('acompanantes_index',$cliente->id) }}" class="btn btn-success btn-round btn-just-icon" title="Acompañantes cliente">
+                                                            <i class="material-icons">people_alt</i>
+                                                        </a>
+                                                    @endif
+                                                    @if(kvfj(Auth::user()->rol->permisos,'clientes_show'))
                                                         <a href="{{ route('clientes_show',$cliente->id) }}" class="btn btn-info btn-round btn-just-icon" title="Detalle cliente">
                                                             <i class="material-icons">visibility</i>
                                                         </a>
-                                                    {{-- @endif --}}
-													{{-- @if(kvfj(Auth::user()->rol->permisos,'clientes_edit')) --}}
+                                                    @endif
+													@if(kvfj(Auth::user()->rol->permisos,'clientes_edit'))
 														<a href="{{ route('clientes_edit',$cliente->id) }}" class="btn btn-warning btn-round btn-just-icon" title="Editar cliente">
 															<i class="material-icons">mode_edit</i>
 														</a>
-													{{-- @endif --}}
-													{{-- @if(kvfj(Auth::user()->rol->permisos,'clientes_destroy')) --}}
+													@endif
+													@if(kvfj(Auth::user()->rol->permisos,'clientes_destroy'))
                                                         <a href="" data-target="#modal-delete-{{$cliente->id}}" data-toggle="modal"  class="btn btn-danger btn-round btn-just-icon" title="Eliminar cliente">
                                                             <i class="material-icons">delete</i>
                                                         </a>
-													{{-- @endif --}}
+													@endif
 												</td>
 											</tr>
 											@include('clientes.modal')

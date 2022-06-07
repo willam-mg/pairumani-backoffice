@@ -28,7 +28,7 @@ class Evento extends Model
 
     protected $casts = [
         'id' => 'integer',
-        // 'fecha' => 'date',
+        'fecha' => 'date',
     ];
 
     public function fotos()
