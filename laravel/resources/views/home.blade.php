@@ -3,6 +3,137 @@
 @section('contenido')
 	<div class="section">
 		<div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
+			<div class="content">
+				<div class="row">
+					<div class="col-xs-12 col-sm-4 col-md-6 col-lg-6">
+						<div class="card">
+							<div class="card-header  card-header-rose">
+								Reservas de lugares turisticos
+							</div>
+							<div class="card-body">
+								<table class="table table-light">
+									<thead class="thead-light">
+										<tr>
+											<th>Cliente</th>
+											<th>Fecha</th>
+											<th>Lugar turistico</th>
+										</tr>
+									</thead>
+									<tbody>
+										@foreach ($reservasLugaresTuristicos as $item)
+											<tr>
+												<td>{{$item->cliente?$item->cliente->nombrecompleto:'Sin cliente'}}</td>
+												<td>{{$item->fecha}}</td>
+												<td>{{$item->lugarturistico->nombre}}</td>
+											</tr>
+										@endforeach
+									</tbody>
+								</table>
+
+								<div class="p3 text-center">
+									<a href="{{route('lugaresturisticos_index')}}" class="btn btn-primary btn-link">Ver mas</a>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-xs-12 col-sm-4 col-md-6 col-lg-6">
+						<div class="card">
+							<div class="card-header  card-header-rose">
+								Reservas de restaurantes
+							</div>
+							<div class="card-body">
+								<table class="table table-light">
+									<thead class="thead-light">
+										<tr>
+											<th>Cliente</th>
+											<th>Fecha</th>
+											<th>Hora de ospedaje</th>
+										</tr>
+									</thead>
+									<tbody>
+										@foreach ($reservasRestaurante as $item)
+											<tr>
+												<td>{{$item->cliente?$item->cliente->nombrecompleto:'Sin cliente'}}</td>
+												<td>{{$item->fecha}}</td>
+												<td>{{$item->hora}}</td>
+											</tr>
+										@endforeach
+									</tbody>
+								</table>
+								<div class="p3 text-center">
+									<a href="{{route('restaurantes_index')}}" class="btn btn-primary btn-link">Ver mas</a>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-xs-12 col-sm-4 col-md-6 col-lg-6">
+						<div class="card">
+							<div class="card-header  card-header-rose">
+								Reservas de cafeteria
+							</div>
+							<div class="card-body">
+								<table class="table table-light">
+									<thead class="thead-light">
+										<tr>
+											<th>Cliente</th>
+											<th>Fecha</th>
+											<th>Hora de ospedaje</th>
+										</tr>
+									</thead>
+									<tbody>
+										@foreach ($reservasCafeteria as $item)
+											<tr>
+												<td>{{$item->cliente?$item->cliente->nombrecompleto:'Sin cliente'}}</td>
+												<td>{{$item->fecha}}</td>
+												<td>{{$item->hora}}</td>
+											</tr>
+										@endforeach
+									</tbody>
+								</table>
+								<div class="p3 text-center">
+									<a href="{{route('cafeteria_index')}}" class="btn btn-primary btn-link">Ver mas</a>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-xs-12 col-sm-4 col-md-6 col-lg-6">
+						<div class="card">
+							<div class="card-header  card-header-rose">
+								Reservas de habitacion
+							</div>
+							<div class="card-body">
+								<table class="table table-light">
+									<thead class="thead-light">
+										<tr>
+											<th>Checkin</th>
+											<th>Checkout</th>
+											<th>Cliente</th>
+											<th>Habitacion</th>
+										</tr>
+									</thead>
+									<tbody>
+										@foreach ($reservasHabitaciones as $item)
+											<tr>
+												<td>{{$item->checkin}}</td>
+												<td>{{$item->checkout}}</td>
+												<td>{{$item->cliente?$item->cliente->nombrecompleto:'Sin cliente'}}</td>
+												<td>{{$item->habitacion?$item->habitacion->num_habitacion:'Sin habitacion'}}</td>
+											</tr>
+											@endforeach
+										</tbody>
+									</table>
+									<div class="p3 text-center">
+										<a href="{{route('habitacioncategorias_index')}}" class="btn btn-primary btn-link">Ver mas</a>
+									</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="section">
+		<div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
 			<section class="content">
 				<div class="row">
 					@if(Auth::user()->rol_id == null)

@@ -16,6 +16,10 @@ use App\Models\CafeteriaCategoria;
 use App\Models\HabitacionCategoria;
 use App\Models\RestauranteProducto;
 use App\Models\RestauranteCategoria;
+use App\Models\ReservaLugarTuristico;
+use App\Models\ReservaRestaurante;
+use App\Models\ReservaCafeteria;
+use App\Models\Reserva;
 
 class HomeController extends Controller
 {
@@ -36,6 +40,11 @@ class HomeController extends Controller
      */
     public function index()
     {
+        $limitPage = 5;
+        $reservasLugaresTuristicos = ReservaLugarTuristico::orderBy('.id', 'desc')->paginate($limitPage);
+        $reservasRestaurante = ReservaRestaurante::orderBy('.id', 'desc')->paginate($limitPage);
+        $reservasCafeteria = ReservaCafeteria::orderBy('.id', 'desc')->paginate($limitPage);
+        $reservasHabitaciones = Reserva::orderBy('.id', 'desc')->paginate($limitPage);
         return view('home',[
             'usuarios' => User::all(),
             'roles' => Rol::all(),
@@ -51,6 +60,10 @@ class HomeController extends Controller
             'clientes' => Cliente::all(),
             'acompañantes' => Acompanante::all(),
             'promociones' => Promocion::all(),
+            'reservasLugaresTuristicos' => $reservasLugaresTuristicos,
+            'reservasRestaurante' => $reservasRestaurante,
+            'reservasCafeteria' => $reservasCafeteria,
+            'reservasHabitaciones' => $reservasHabitaciones,
         ]);
     }
 }
