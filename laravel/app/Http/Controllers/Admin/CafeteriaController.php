@@ -13,6 +13,7 @@ use App\Models\CafeteriaProductoOpcion;
 use App\Models\CafeteriaProductoTamano;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade as PDF;
+use App\View\Components\Socket;
 
 class CafeteriaController extends Controller
 {
@@ -97,6 +98,7 @@ class CafeteriaController extends Controller
             $cont = $cont + 1;
         }
 
+        Socket::emmit();
         return redirect()->route('cafeteria_index')->with('message', 'Guardado con éxito')->with('typealert', 'success');
     }
     public function destroy(ReservaCafeteria $Cafeteria)

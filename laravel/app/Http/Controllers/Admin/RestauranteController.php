@@ -13,6 +13,7 @@ use App\Models\RestauranteProductoOpcion;
 use App\Models\RestauranteProductoTamano;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade as PDF;
+use App\View\Components\Socket;
 
 class RestauranteController extends Controller
 {
@@ -97,6 +98,7 @@ class RestauranteController extends Controller
             $cont = $cont + 1;
         }
 
+        Socket::emmit();
         return redirect()->route('restaurantes_index')->with('message', 'Guardado con éxito')->with('typealert', 'success');
     }
     public function destroy(ReservaRestaurante $restaurante)

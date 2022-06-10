@@ -3,6 +3,72 @@
 @section('contenido')
 	<div class="section">
 		<div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
+			<div class="content">
+				<div id="message"></div>
+				<div class="row">
+					<div class="col-xs-12 col-sm-4 col-md-6 col-lg-6">
+						<div class="card">
+							<div class="card-header  card-header-rose">
+								Reservas de lugares turisticos
+							</div>
+							<div class="card-body">
+								<div id="tb_reservas_lugares">
+								</div>
+
+								<div class="p3 text-center">
+									<a href="{{route('lugaresturisticos_index')}}" class="btn btn-primary btn-link">Ver mas</a>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-xs-12 col-sm-4 col-md-6 col-lg-6">
+						<div class="card">
+							<div class="card-header  card-header-rose">
+								Reservas de restaurantes
+							</div>
+							<div class="card-body">
+								<div id="tb_reservas_restaurante">
+								</div>
+								<div class="p3 text-center">
+									<a href="{{route('restaurantes_index')}}" class="btn btn-primary btn-link">Ver mas</a>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-xs-12 col-sm-4 col-md-6 col-lg-6">
+						<div class="card">
+							<div class="card-header  card-header-rose">
+								Reservas de cafeteria
+							</div>
+							<div class="card-body">
+								<div id="tb_reservas_cafeteria">
+								</div>
+								<div class="p3 text-center">
+									<a href="{{route('cafeteria_index')}}" class="btn btn-primary btn-link">Ver mas</a>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-xs-12 col-sm-4 col-md-6 col-lg-6">
+						<div class="card">
+							<div class="card-header  card-header-rose">
+								Reservas de habitacion
+							</div>
+							<div class="card-body">
+								<div id="tb_reservas_habitacion">
+								</div>
+								<div class="p3 text-center">
+									<a href="{{route('habitacioncategorias_index')}}" class="btn btn-primary btn-link">Ver mas</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="section">
+		<div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
 			<section class="content">
 				<div class="row">
 					@if(Auth::user()->rol_id == null)
@@ -278,4 +344,62 @@
 			</div>
 		</div>
 	@endif
+
+	<audio id="sonido" muted="muted">
+		<source src="{{ asset('/sound/pedido.wav') }}" type="audio/wav">
+	</audio>
+	
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.0.1/socket.io.js"></script>
+	
+	<script>
+		var APP_URL = {!! json_encode(url('/')) !!}
+
+		const socket = io('http://socket.pairumani.rnova-services.com/');
+		let message = document.getElementById('message');
+		
+		const audio = document.getElementById("sonido");
+		loadTables();
+
+		socket.on('chat:message', function (data) {
+			message.innerHTML += `<div class="alert alert-success" role="alert">
+				<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+				Se registraron nuevas reservas
+				</div>`;
+			
+			audio.play();
+			loadTables();
+			setTimeout(() => {
+				message.innerHTML = '';
+			}, 5000);
+			
+		});
+
+		function loadTables(){
+			loadData('tb_reservas_lugares', '/ajax/reservas-lugares');
+			loadData('tb_reservas_restaurante', '/ajax/reservas-restaurante');
+			loadData('tb_reservas_cafeteria', '/ajax/reservas-cafeteria');
+			loadData('tb_reservas_habitacion', '/ajax/reservas-habitacion');
+		}
+
+
+		function loadData(tableElement, url) {
+			$.ajax({
+				type: 'GET',
+				url: APP_URL+url,
+				dataType: 'html',
+				success: function (data) {
+					$('#'+tableElement).empty().append($(data)); 
+				},
+				error: function (data) {
+					var errors = data.responseJSON;
+					if (errors) {
+						$.each(errors, function (i) {
+							console.log(errors[i]);
+						});
+					}
+				}
+			});
+		}
+	</script>
 @endsection
+

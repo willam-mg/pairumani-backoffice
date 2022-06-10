@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use App\Models\ReservaLugarTuristico;
 use App\Http\Requests\LugarTuristicoReservaFormRequest;
 use App\Models\Hospedaje;
+use App\View\Components\Socket;
 
 class LugarTuristicoReservaController extends Controller
 {
@@ -45,6 +46,8 @@ class LugarTuristicoReservaController extends Controller
         $reserva->hospedaje_id = NULL;
         $reserva->precio = $lugar->precio_recorrido;
         $reserva->save();
+        
+        Socket::emmit();
         return redirect()->route('reservaslugaresturisticos_index', $lugar->id)->with('message', 'Guardado con éxito')->with('typealert', 'success');
     }
     public function edit(LugarTuristico $lugar, ReservaLugarTuristico $reserva)

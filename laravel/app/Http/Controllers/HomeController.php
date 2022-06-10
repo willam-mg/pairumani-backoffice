@@ -16,6 +16,10 @@ use App\Models\CafeteriaCategoria;
 use App\Models\HabitacionCategoria;
 use App\Models\RestauranteProducto;
 use App\Models\RestauranteCategoria;
+use App\Models\ReservaLugarTuristico;
+use App\Models\ReservaRestaurante;
+use App\Models\ReservaCafeteria;
+use App\Models\Reserva;
 
 class HomeController extends Controller
 {
@@ -52,5 +56,45 @@ class HomeController extends Controller
             'acompañantes' => Acompanante::all(),
             'promociones' => Promocion::all(),
         ]);
+    }
+
+    /**
+     * reservas de lugares turisticos.
+     * retorna las 5 ultimas reservas de lugares turisticos.
+     * @return Html
+     */
+    public function ajaxReservasLugares() {
+        $reservas =  ReservaLugarTuristico::orderBy('.id', 'desc')->paginate(5);
+        return view('home/_reservas_lugares', ['datos'=>$reservas]);
+    }
+    
+    /**
+     * reservas de retaurante.
+     * retorna las 5 ultimas reservas de restaurante.
+     * @return Html
+     */
+    public function ajaxReservasRestaurante() {
+        $reservas =  ReservaRestaurante::orderBy('.id', 'desc')->paginate(5);
+        return view('home/_reservas_restaurante', ['datos'=>$reservas]);
+    }
+    
+    /**
+     * reservas de cafeteria.
+     * retorna las 5 ultimas reservas de cafeteria.
+     * @return Html
+     */
+    public function ajaxReservasCafeteria() {
+        $reservas =  ReservaCafeteria::orderBy('.id', 'desc')->paginate(5);
+        return view('home/_reservas_cafeteria', ['datos'=>$reservas]);
+    }
+    
+    /**
+     * reservas de habitaciones.
+     * retorna las 5 ultimas reservas de habitaciones.
+     * @return Html
+     */
+    public function ajaxReservasHabitacion() {
+        $reservas =  Reserva::orderBy('.id', 'desc')->paginate(5);
+        return view('home/_reservas_habitacion', ['datos'=>$reservas]);
     }
 }
