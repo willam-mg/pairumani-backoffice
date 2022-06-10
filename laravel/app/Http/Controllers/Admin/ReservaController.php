@@ -13,7 +13,7 @@ use App\Http\Controllers\Controller;
 use App\Models\HospedajeAcompanante;
 use App\Http\Requests\ReservaFormRequest;
 use App\Models\HospedajeDetalleAcompanante;
-
+use App\View\Components\Socket;
 class ReservaController extends Controller
 {
     public function index(Request $request,HabitacionCategoria $categoria,Habitacion $habitacion)
@@ -57,6 +57,7 @@ class ReservaController extends Controller
         //cambio de estado de la habitación
         $habitacion->estado = 'Reservado';
         $habitacion->save();
+        Socket::emmit();
         return redirect()->route('reservas_index',[$categoria->id,$habitacion->id])->with('message', 'Guardado con éxito')->with('typealert', 'success');
     }
     public function edit(HabitacionCategoria $categoria, Habitacion $habitacion,Reserva $reserva)
