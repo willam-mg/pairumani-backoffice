@@ -360,8 +360,6 @@
 		const audio = document.getElementById("sonido");
 
 		socket.on('chat:message', function (data) {
-			console.log(data);
-
 			message.innerHTML += `<div class="alert alert-success" role="alert">
 				<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
 				Se registraron nuevas reservas
