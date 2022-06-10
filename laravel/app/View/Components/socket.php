@@ -6,7 +6,7 @@ use Illuminate\View\Component;
 
 class Socket extends Component
 {
-    const url_socket = 'http://localhost:3000/refrescame-esta';
+    const url_socket = 'http://socket.pairumani.rnova-services.com/refresh';
     /**
      * Create a new component instance.
      *
