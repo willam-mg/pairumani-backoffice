@@ -354,10 +354,11 @@
 	<script>
 		var APP_URL = {!! json_encode(url('/')) !!}
 
-		const socket = io('http://localhost:3000/');
+		const socket = io('http://socket.pairumani.rnova-services.com/');
 		let message = document.getElementById('message');
 		
 		const audio = document.getElementById("sonido");
+		loadTables();
 
 		socket.on('chat:message', function (data) {
 			message.innerHTML += `<div class="alert alert-success" role="alert">
@@ -366,15 +367,19 @@
 				</div>`;
 			
 			audio.play();
-			loadData('tb_reservas_lugares', '/ajax/reservas-lugares');
-			loadData('tb_reservas_restaurante', '/ajax/reservas-restaurante');
-			loadData('tb_reservas_cafeteria', '/ajax/reservas-cafeteria');
-			loadData('tb_reservas_habitacion', '/ajax/reservas-habitacion');
+			loadTables();
 			setTimeout(() => {
 				message.innerHTML = '';
 			}, 5000);
 			
 		});
+
+		function loadTables(){
+			loadData('tb_reservas_lugares', '/ajax/reservas-lugares');
+			loadData('tb_reservas_restaurante', '/ajax/reservas-restaurante');
+			loadData('tb_reservas_cafeteria', '/ajax/reservas-cafeteria');
+			loadData('tb_reservas_habitacion', '/ajax/reservas-habitacion');
+		}
 
 
 		function loadData(tableElement, url) {
