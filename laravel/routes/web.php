@@ -329,6 +329,12 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('usuarios/{usuario}/edit', [UsuarioController::class, 'edit'])->name('usuarios_edit');
     Route::post('usuarios/{usuario}/edit', [UsuarioController::class, 'update'])->name('usuarios_edit');
     Route::delete('usuarios/{usuario}', [UsuarioController::class, 'destroy'])->name('usuarios_destroy');
+
+    // AJAX REQUEST 
+    Route::get('ajax/reservas-lugares', [HomeController::class, 'ajaxReservasLugares']);
+    Route::get('ajax/reservas-restaurante', [HomeController::class, 'ajaxReservasRestaurante']);
+    Route::get('ajax/reservas-cafeteria', [HomeController::class, 'ajaxReservasCafeteria']);
+    Route::get('ajax/reservas-habitacion', [HomeController::class, 'ajaxReservasHabitacion']);
 });
 
 
