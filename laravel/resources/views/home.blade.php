@@ -58,7 +58,7 @@
 								<div id="tb_reservas_habitacion">
 								</div>
 								<div class="p3 text-center">
-									<a href="{{route('habitacioncategorias_index')}}" class="btn btn-primary btn-link">Ver mas</a>
+									<a href="{{route('reservas')}}" class="btn btn-primary btn-link">Ver mas</a>
 								</div>
 							</div>
 						</div>

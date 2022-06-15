@@ -3,7 +3,7 @@
         <tr>
             <th>Cliente</th>
             <th>Fecha</th>
-            <th>Hora de ospedaje</th>
+            <th>Hora de reserva</th>
         </tr>
     </thead>
     <tbody>

@@ -96,6 +96,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('habitacioncategorias/{categoria}/habitaciones/{habitacion}/reservas/{reserva}/edit', [ReservaController::class, 'edit'])->name('reservas_edit');
     Route::post('habitacioncategorias/{categoria}/habitaciones/{habitacion}/reservas/{reserva}/edit', [ReservaController::class, 'update'])->name('reservas_edit');
     Route::delete('habitacioncategorias/{categoria}/habitaciones/{habitacion}/reservas/{reserva}', [ReservaController::class, 'destroy'])->name('reservas_destroy');
+    Route::get('reservas', [ReservaController::class, 'todas'])->name('reservas');
 
     //RUTAS HABITACION FRIGOBAR
     Route::get('habitacioncategorias/{categoria}/habitaciones/{habitacion}/frigobar', [HabitacionFrigobarController::class, 'index'])->name('habitacionfrigobar_index');

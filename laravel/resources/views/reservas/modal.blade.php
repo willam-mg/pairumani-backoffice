@@ -1,5 +1,5 @@
 <div class="modal fade modal-slide-in-rigth" aria-hidden="true" role="dialog" tabindex="-1" id="modal-delete-{{$reserva->id}}">
-	<form method="POST" action="{{ route('reservas_destroy',[$categoria->id,$habitacion->id,$reserva->id]) }}">
+	<form method="POST" action="{{ route('reservas_destroy',[$reserva->habitacion->categoria->id,$reserva->habitacion->id,$reserva->id]) }}">
 		@csrf @method('DELETE')
 		<div class="modal-dialog">
 			<div class="modal-content">

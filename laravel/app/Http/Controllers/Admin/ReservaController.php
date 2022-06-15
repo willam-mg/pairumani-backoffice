@@ -125,4 +125,14 @@ class ReservaController extends Controller
 
         return redirect()->route('hospedajes_index')->with('message', 'Guardado con éxito')->with('typealert', 'success');
     }
+
+    public function todas(Request $request)
+    {
+        if ($request) {
+            $query = trim($request->get('searchText'));
+            $reservas = Reserva::orderBy('id', 'desc')
+                ->paginate(7);
+            return view('reservas.todos', ['reservas' => $reservas,'searchText' => $query]);
+        }
+    }
 }

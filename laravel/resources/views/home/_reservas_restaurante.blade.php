@@ -1,9 +1,10 @@
 <table class="table table-light">
     <thead class="thead-light">
         <tr>
+        <tr>
             <th>Cliente</th>
             <th>Fecha</th>
-            <th>Hora de hospedaje</th>
+            <th>Hora de reserva</th>
         </tr>
     </thead>
     <tbody>
