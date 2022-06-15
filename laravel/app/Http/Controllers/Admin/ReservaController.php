@@ -131,6 +131,7 @@ class ReservaController extends Controller
         if ($request) {
             $query = trim($request->get('searchText'));
             $reservas = Reserva::orderBy('id', 'desc')
+                ->where('estado', 'Reservado')
                 ->paginate(7);
             return view('reservas.todos', ['reservas' => $reservas,'searchText' => $query]);
         }

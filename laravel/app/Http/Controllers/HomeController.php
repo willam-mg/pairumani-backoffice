@@ -94,7 +94,8 @@ class HomeController extends Controller
      * @return Html
      */
     public function ajaxReservasHabitacion() {
-        $reservas =  Reserva::orderBy('.id', 'desc')->paginate(5);
+        $reservas =  Reserva::orderBy('.id', 'desc')
+            ->where('estado', 'Reservado')->paginate(5);
         return view('home/_reservas_habitacion', ['datos'=>$reservas]);
     }
 }
