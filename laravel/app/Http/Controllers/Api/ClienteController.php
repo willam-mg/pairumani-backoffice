@@ -34,6 +34,7 @@ use Illuminate\Support\Facades\Validator;
 use App\Models\HospedajeDetalleTransporte;
 use App\Models\CafeteriaDetalleReservaProducto;
 use App\Models\RestauranteDetalleReservaProducto;
+use App\View\Components\Socket;
 
 class ClienteController extends Controller
 {
@@ -1034,7 +1035,7 @@ class ClienteController extends Controller
         //cambio de estado de la habitacion
         $habitacion->estado = 'Reservado';
         $habitacion->save();
-
+        Socket::emmit();
         return response()->json(['success' => 'true', 'data' => $reserva], 200);
     }
     /**
@@ -1368,6 +1369,7 @@ class ClienteController extends Controller
         $reserva->hospedaje_id = $request->post('hospedaje_id');
         $reserva->precio = $request->post('precio');
         $reserva->save();
+        Socket::emmit();
         return response()->json(['success' => 'true', 'data' => 'Lugar Turistico reservado'], 200);
     }
     /**
@@ -1435,6 +1437,7 @@ class ClienteController extends Controller
             $detalleproducto->precio_tamanho = $value['preciotamano'];
             $detalleproducto->save();
         }
+        Socket::emmit();
         return response()->json(['success' => 'true', 'data' => 'Productos Agregados'], 200);
     }
     /**
@@ -1596,6 +1599,7 @@ class ClienteController extends Controller
             $detalleproducto->precio_tamanho = $value['preciotamano'];
             $detalleproducto->save();
         }
+        Socket::emmit();
         return response()->json(['success' => 'true', 'data' => 'Productos Agregados'], 200);
     }
 
