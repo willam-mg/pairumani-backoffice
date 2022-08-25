@@ -4,9 +4,9 @@ namespace App\View\Components;
 
 use Illuminate\View\Component;
 
-class Socket extends Component
+class Socket
 {
-    const url_socket = 'http://socket.pairumani.rnova-services.com/refresh';
+    const url_socket = 'https://socket.pairumani.rnova-services.com/refresh';
     /**
      * Create a new component instance.
      *

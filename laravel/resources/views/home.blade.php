@@ -354,7 +354,7 @@
 	<script>
 		var APP_URL = {!! json_encode(url('/')) !!}
 
-		const socket = io('http://socket.pairumani.rnova-services.com/');
+		const socket = io('https://socket.pairumani.rnova-services.com/');
 		let message = document.getElementById('message');
 		
 		const audio = document.getElementById("sonido");
