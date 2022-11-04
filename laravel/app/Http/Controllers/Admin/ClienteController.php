@@ -51,7 +51,7 @@ class ClienteController extends Controller
         $cliente->password = Hash::make($request->get('email'));
         $cliente->save();
         if($tipo == Reserva::TIPO){
-            return redirect()->route('reservas_create',[$categoria,$habitacion,$reserva,$cliente]);
+            return redirect()->route('reservas_create',[$categoria,$habitacion,$cliente]);
         }elseif($tipo == Hospedaje::TIPO){
             return redirect()->route('hospedajes_create',$cliente);
         }elseif($tipo == ReservaPromocion::TIPO){
