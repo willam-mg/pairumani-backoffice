@@ -85,7 +85,6 @@
 													@endif
 												</td>
 											</tr>
-											@include('habitacioncategorias.modal')
 										@endforeach
 									@else
 										<tr>
@@ -103,4 +102,9 @@
             </div>
         </div>
     </div>
+    @if(count($categorias) > 0)
+        @foreach ($categorias as $categoria)
+            <x-page.delete-modal route="habitacioncategorias_destroy" :model="$categoria" />
+        @endforeach
+    @endif
 @endsection

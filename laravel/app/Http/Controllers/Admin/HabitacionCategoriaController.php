@@ -8,6 +8,7 @@ use App\Models\GaleriaHabitacion;
 use App\Models\Habitacion;
 use App\Models\HabitacionCategoria;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class HabitacionCategoriaController extends Controller
 {
@@ -51,13 +52,19 @@ class HabitacionCategoriaController extends Controller
     }
     public function destroy(HabitacionCategoria $categoria)
     {
-        $existe = Habitacion::where('habitacion_categoria_id', $categoria->id)->exists();
-        if ($existe) {
-            return back()->with('message', 'No se puede eliminar la categoria')->with('typealert', 'danger');
+        try {
+            DB::beginTransaction();
+            if (Habitacion::where('habitacion_categoria_id', $categoria->id)->exists()) {
+                throw new \Exception("No se puede eliminar la categoria");
+            }
+            ///ELIMINAR FOTO
+            eliminarimagen($categoria->foto, HabitacionCategoria::Rutafoto(), HabitacionCategoria::Urldeletefoto());
+            $categoria->delete();
+            DB::commit();
+            return redirect()->route('habitacioncategorias_index')->with('message', 'Eliminado con éxito')->with('typealert', 'success');
+        } catch (\Throwable $th) {
+            DB::rollback();
+            return back()->with('message', $th->getMessage())->with('typealert', 'danger');
         }
-        ///ELIMINAR FOTO
-        eliminarimagen($categoria->foto, HabitacionCategoria::Rutafoto(), HabitacionCategoria::Urldeletefoto());
-        $categoria->delete();
-        return redirect()->route('habitacioncategorias_index')->with('message', 'Eliminado con éxito')->with('typealert', 'success');
     }
 }
