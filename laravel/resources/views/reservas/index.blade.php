@@ -8,10 +8,6 @@
                 <div class="col-sm-12">
                     <ol class="breadcrumb" style="background-color: inherit">
                         <li class="breadcrumb-item"><a href="{{ route('home') }}">Inicio</a></li>
-                        <li class="breadcrumb-item"><a href="{{ route('habitacioncategorias_index') }}">Categorias</a></li>
-                        <li class="breadcrumb-item"><a href="{{ route('habitacioncategorias_show',$categoria->id) }}">Categoria: {{ $categoria->nombre }}</a></li>
-                        <li class="breadcrumb-item"><a href="{{ route('habitaciones_index',$categoria->id) }}">habitaciones</a></li>
-                        <li class="breadcrumb-item"><a href="{{ route('habitaciones_show',[$categoria->id,$habitacion->id]) }}">Habitacion: {{ $habitacion->nombre }}</a></li>
                         <li class="breadcrumb-item active">Reservas</li>
                     </ol>
                 </div><!-- /.col -->
@@ -31,7 +27,7 @@
                         </div>
                         <div style="text-align: right;padding-top: 15px;">
                             @if(kvfj(Auth::user()->rol->permisos,'reservas_create'))
-                                <a class="btn btn-success" href="{{ route('reservas_create',[$categoria->id,$habitacion->id]) }}" title="Nueva reserva">
+                                <a class="btn btn-success" href="{{ route('reservas_create', [$habitacion->id]) }}" title="Nueva reserva">
                                     <i class="material-icons">add</i> Nuevo
                                 </a>
                             @endif
@@ -76,18 +72,18 @@
 												<td>{{ $reserva->habitacion->num_habitacion }}</td>
 												<td style="width: 250px; text-align: center;">
                                                     @if(kvfj(Auth::user()->rol->permisos,'reservas_show'))
-                                                        <a href="{{ route('reservas_show',[$categoria->id,$habitacion->id,$reserva->id]) }}" class="btn btn-info btn-round btn-just-icon" title="Detalle reserva">
+                                                        <a href="{{ route('reservas_show',[$habitacion->id,$reserva->id]) }}" class="btn btn-info btn-round btn-just-icon" title="Detalle reserva">
                                                             <i class="material-icons">visibility</i>
                                                         </a>
                                                     @endif
                                                     @if($reserva->estado == 'Reservado')
                                                         @if(kvfj(Auth::user()->rol->permisos,'reservas_hospedaje'))
-                                                            <a href="{{ route('reservas_hospedaje',[$categoria->id,$habitacion->id,$reserva->id]) }}" class="btn btn-success btn-round btn-just-icon" title="Reserva hospedaje">
+                                                            <a href="{{ route('reservas_hospedaje',[$habitacion->id,$reserva->id]) }}" class="btn btn-success btn-round btn-just-icon" title="Reserva hospedaje">
                                                                 <i class="material-icons">hotel</i>
                                                             </a>                                                            
                                                         @endif
                                                         @if(kvfj(Auth::user()->rol->permisos,'reservas_edit'))
-                                                            <a href="{{ route('reservas_edit',[$categoria->id,$habitacion->id,$reserva->id]) }}" class="btn btn-warning btn-round btn-just-icon" title="Editar reserva">
+                                                            <a href="{{ route('reservas_edit',[$habitacion->id,$reserva->id]) }}" class="btn btn-warning btn-round btn-just-icon" title="Editar reserva">
                                                                 <i class="material-icons">mode_edit</i>
                                                             </a>
                                                         @endif

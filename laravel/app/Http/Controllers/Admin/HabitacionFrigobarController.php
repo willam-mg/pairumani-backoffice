@@ -36,7 +36,7 @@ class HabitacionFrigobarController extends Controller
             'frigobar' => new HabitacionFrigobar(),
         ]);
     }
-    public function store(HabitacionFrigobarFormRequest $request, HabitacionCategoria $categoria,Habitacion $habitacion)
+    public function store(HabitacionFrigobarFormRequest $request,Habitacion $habitacion)
     {
         $existe = HabitacionFrigobar::where('nombre',$request->get('nombre'))->exists();
         if ($existe) {
@@ -45,20 +45,21 @@ class HabitacionFrigobarController extends Controller
         $frigobar = (new HabitacionFrigobar())->fill($request->all());
         $frigobar->habitacion_id = $habitacion->id;
         $frigobar->save();
-        return redirect()->route('habitacionfrigobar_index', [$categoria->id,$habitacion->id])->with('message', 'Guardado con éxito')->with('typealert', 'success');
+        return redirect()->route('habitacionfrigobar_index', [$habitacion->id])->with('message', 'Guardado con éxito')->with('typealert', 'success');
     }
-    public function edit(HabitacionCategoria $categoria, Habitacion $habitacion,HabitacionFrigobar $frigobar)
+    public function edit(Habitacion $habitacion,HabitacionFrigobar $frigobar)
     {
-        return view('habitacionfrigobar.edit', compact('categoria','habitacion','frigobar'));
+        return view('habitacionfrigobar.edit', compact('habitacion','frigobar'));
     }
-    public function update(HabitacionFrigobarFormRequest $request, HabitacionCategoria $categoria, Habitacion $habitacion,HabitacionFrigobar $frigobar)
+    public function update(HabitacionFrigobarFormRequest $request, Habitacion $habitacion,HabitacionFrigobar $frigobar)
     {
         $frigobar->update($request->all());
-        return redirect()->route('habitacionfrigobar_index', [$categoria->id,$habitacion->id])->with('message', 'Modificado con éxito')->with('typealert', 'success');
+        return redirect()->route('habitacionfrigobar_index', [$habitacion->id])->with('message', 'Modificado con éxito')->with('typealert', 'success');
     }
-    public function destroy(HabitacionCategoria $categoria, Habitacion $habitacion, HabitacionFrigobar $frigobar)
+    public function destroy(HabitacionFrigobar $frigobar)
     {
+        $habitacionId = $frigobar->habitacion_id;
         $frigobar->delete();
-        return redirect()->route('habitacionfrigobar_index', [$categoria->id, $habitacion->id])->with('message', 'Eliminado con éxito')->with('typealert', 'success');
+        return redirect()->route('habitacionfrigobar_index', [$habitacionId])->with('message', 'Eliminado con éxito')->with('typealert', 'success');
     }
 }

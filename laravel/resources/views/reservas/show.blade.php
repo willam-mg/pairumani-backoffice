@@ -10,9 +10,9 @@
                         <li class="breadcrumb-item"><a href="{{ route('home') }}">Inicio</a></li>
                         <li class="breadcrumb-item"><a href="{{ route('habitacioncategorias_index') }}">Categorias</a></li>
                         <li class="breadcrumb-item"><a href="{{ route('habitacioncategorias_show',$categoria->id) }}">Categoria: {{ $categoria->nombre }}</a></li>
-                        <li class="breadcrumb-item"><a href="{{ route('habitaciones_index',$categoria->id) }}">Habitaciones</a></li>
-                        <li class="breadcrumb-item"><a href="{{ route('habitaciones_show',[$categoria->id,$habitacion->id]) }}">Habitacion {{ $habitacion->nombre }}</a></li>
-                        <li class="breadcrumb-item"><a href="{{ route('reservas_index',[$categoria->id,$habitacion->id]) }}">Reservas</a></li>
+                        <li class="breadcrumb-item"><a href="{{ route('habitaciones_index') }}">Habitaciones</a></li>
+                        <li class="breadcrumb-item"><a href="{{ route('habitaciones_show',[$habitacion->id]) }}">Habitacion {{ $habitacion->nombre }}</a></li>
+                        <li class="breadcrumb-item"><a href="{{ route('reservas_index',[$habitacion->id]) }}">Reservas</a></li>
                         <li class="breadcrumb-item active">Detalle Reserva</li>
                     </ol>
                 </div><!-- /.col -->
@@ -60,7 +60,7 @@
                     </tbody>
                 </table>
                 <div class="form-group text-right">
-                    <a class="btn btn-default" href="{{ route('reservas_index',[$categoria->id,$habitacion->id]) }}" title="Cerrar"><i class="material-icons">clear</i> Cerrar</a>
+                    <a class="btn btn-default" href="{{ route('reservas_index',[$habitacion->id]) }}" title="Cerrar"><i class="material-icons">clear</i> Cerrar</a>
                     @if(kvfj(Auth::user()->rol->permisos,'reservas_edit'))
                         <a class="btn btn-warning" href="{{ route('reservas_edit',[$categoria->id,$habitacion->id,$reserva->id]) }}" title="Modificar"><i class="material-icons">edit</i> Modificar</a>
                     @endif                    

@@ -37,8 +37,8 @@ Route::group(['middleware' => ['auth']], function () {
     
     //RUTAS CLIENTES
     Route::get('clientes', [ClienteController::class, 'index'])->name('clientes_index');
-    Route::get('clientes/create/{tipo?}/{categoria?}/{habitacion?}/{reserva?}/{promocion?}', [ClienteController::class, 'create'])->name('clientes_create');
-    Route::post('clientes/create/{tipo?}/{categoria?}/{habitacion?}/{reserva?}/{promocion?}', [ClienteController::class, 'store'])->name('clientes_create');
+    Route::get('clientes/create/{tipo?}/{habitacion?}/{reserva?}/{promocion?}', [ClienteController::class, 'create'])->name('clientes_create');
+    Route::post('clientes/create/{tipo?}/{habitacion?}/{reserva?}/{promocion?}', [ClienteController::class, 'store'])->name('clientes_create');
     Route::get('clientes/{cliente}', [ClienteController::class, 'show'])->name('clientes_show');
     Route::get('clientes/{cliente}/edit', [ClienteController::class, 'edit'])->name('clientes_edit');
     Route::post('clientes/{cliente}/edit', [ClienteController::class, 'update'])->name('clientes_edit');
@@ -75,38 +75,37 @@ Route::group(['middleware' => ['auth']], function () {
     Route::delete('habitacioncategorias/{categoria}', [HabitacionCategoriaController::class, 'destroy'])->name('habitacioncategorias_destroy');
 
     //RUTAS HABITACIONES
-    Route::get('habitacioncategorias/{categoria}/habitaciones', [HabitacionController::class, 'index'])->name('habitaciones_index');
-    Route::get('habitacioncategorias/{categoria}/habitaciones/create', [HabitacionController::class, 'create'])->name('habitaciones_create');
-    Route::post('habitacioncategorias/{categoria}/habitaciones/create', [HabitacionController::class, 'store'])->name('habitaciones_create');
-    Route::get('habitacioncategorias/{categoria}/habitaciones/{habitacion}', [HabitacionController::class, 'show'])->name('habitaciones_show');
-    Route::get('habitacioncategorias/{categoria}/habitaciones/{habitacion}/edit', [HabitacionController::class, 'edit'])->name('habitaciones_edit');
-    Route::post('habitacioncategorias/{categoria}/habitaciones/{habitacion}/edit', [HabitacionController::class, 'update'])->name('habitaciones_edit');
-    Route::get('habitacioncategorias/{categoria}/habitaciones/{habitacion}/fotos', [HabitacionController::class, 'fotos'])->name('habitaciones_galeria');
-    Route::post('habitacioncategorias/{categoria}/habitaciones/{habitacion}/fotos', [HabitacionController::class, 'fotosstore'])->name('habitaciones_galeria');
-    Route::delete('habitacioncategorias/{categoria}/habitaciones/{habitacion}/fotos/{galeria}', [HabitacionController::class, 'fotosdelete'])->name('habitaciones_galeria_destroy');
-    Route::delete('habitacioncategorias/{categoria}/habitaciones/{habitacion}', [HabitacionController::class, 'destroy'])->name('habitaciones_destroy');
+    Route::get('habitaciones', [HabitacionController::class, 'index'])->name('habitaciones_index');
+    Route::get('habitaciones/create', [HabitacionController::class, 'create'])->name('habitaciones_create');
+    Route::post('habitaciones/create', [HabitacionController::class, 'store'])->name('habitaciones_create');
+    Route::get('habitaciones/{habitacion}', [HabitacionController::class, 'show'])->name('habitaciones_show');
+    Route::get('habitaciones/{habitacion}/edit', [HabitacionController::class, 'edit'])->name('habitaciones_edit');
+    Route::post('habitaciones/{habitacion}/edit', [HabitacionController::class, 'update'])->name('habitaciones_edit');
+    Route::get('habitaciones/{habitacion}/fotos', [HabitacionController::class, 'fotos'])->name('habitaciones_galeria');
+    Route::post('habitaciones/{habitacion}/fotos', [HabitacionController::class, 'fotosstore'])->name('habitaciones_galeria');
+    Route::delete('habitaciones/{habitacion}/fotos/{galeria}', [HabitacionController::class, 'fotosdelete'])->name('habitaciones_galeria_destroy');
+    Route::delete('habitaciones/{habitacion}', [HabitacionController::class, 'destroy'])->name('habitaciones_destroy');
 
     //RUTAS HABITACIONES RESERVAS
-    Route::get('habitacioncategorias/{categoria}/habitaciones/{habitacion}/reservas', [ReservaController::class, 'index'])->name('reservas_index');
-    Route::get('habitacioncategorias/{categoria}/habitaciones/{habitacion}/reservas/create/{cliente?}', [ReservaController::class, 'create'])->name('reservas_create');
-    Route::post('habitacioncategorias/{categoria}/habitaciones/{habitacion}/reservas/create/{cliente?}', [ReservaController::class, 'store'])->name('reservas_create');
-    Route::get('habitacioncategorias/{categoria}/habitaciones/{habitacion}/reservas/{reserva}', [ReservaController::class, 'show'])->name('reservas_show');
-    Route::get('habitacioncategorias/{categoria}/habitaciones/{habitacion}/reservas/{reserva}/hospedaje', [ReservaController::class, 'hospedaje'])->name('reservas_hospedaje');
-    Route::post('habitacioncategorias/{categoria}/habitaciones/{habitacion}/reservas/{reserva}/hospedaje', [ReservaController::class, 'hospedajestore'])->name('reservas_hospedaje');
-    Route::get('habitacioncategorias/{categoria}/habitaciones/{habitacion}/reservas/{reserva}/edit', [ReservaController::class, 'edit'])->name('reservas_edit');
-    Route::post('habitacioncategorias/{categoria}/habitaciones/{habitacion}/reservas/{reserva}/edit', [ReservaController::class, 'update'])->name('reservas_edit');
-    Route::delete('habitacioncategorias/{categoria}/habitaciones/{habitacion}/reservas/{reserva}', [ReservaController::class, 'destroy'])->name('reservas_destroy');
+    Route::get('reservas/{habitacion}', [ReservaController::class, 'index'])->name('reservas_index');
+    Route::get('reservas/create/{habitacion?}/{cliente?}', [ReservaController::class, 'create'])->name('reservas_create');
+    Route::post('reservas/create/{habitacion?}/{cliente?}', [ReservaController::class, 'store'])->name('reservas_create');
+    Route::get('reservas/{reserva}', [ReservaController::class, 'show'])->name('reservas_show');
+    Route::get('reservas/{reserva}/hospedaje', [ReservaController::class, 'hospedaje'])->name('reservas_hospedaje');
+    Route::post('reservas/{reserva}/hospedaje', [ReservaController::class, 'hospedajestore'])->name('reservas_hospedaje');
+    Route::get('reservas/{reserva}/edit', [ReservaController::class, 'edit'])->name('reservas_edit');
+    Route::post('reservas/{reserva}/edit', [ReservaController::class, 'update'])->name('reservas_edit');
+    Route::delete('reservas/{reserva}', [ReservaController::class, 'destroy'])->name('reservas_destroy');
     Route::get('reservas', [ReservaController::class, 'todas'])->name('reservas');
-
+    
     //RUTAS HABITACION FRIGOBAR
-    Route::get('habitacioncategorias/{categoria}/habitaciones/{habitacion}/frigobar', [HabitacionFrigobarController::class, 'index'])->name('habitacionfrigobar_index');
-    Route::get('habitacioncategorias/{categoria}/habitaciones/{habitacion}/frigobar/create', [HabitacionFrigobarController::class, 'create'])->name('habitacionfrigobar_create');
-    Route::post('habitacioncategorias/{categoria}/habitaciones/{habitacion}/frigobar/create', [HabitacionFrigobarController::class, 'store'])->name('habitacionfrigobar_create');
-    Route::get('habitacioncategorias/{categoria}/habitaciones/{habitacion}/frigobar/{frigobar}', [HabitacionFrigobarController::class, 'show'])->name('habitacionfrigobar_show');
-    Route::get('habitacioncategorias/{categoria}/habitaciones/{habitacion}/frigobar/{frigobar}/edit', [HabitacionFrigobarController::class, 'edit'])->name('habitacionfrigobar_edit');
-    Route::post('habitacioncategorias/{categoria}/habitaciones/{habitacion}/frigobar/{frigobar}/edit', [HabitacionFrigobarController::class, 'update'])->name('habitacionfrigobar_edit');
-    Route::delete('habitacioncategorias/{categoria}/habitaciones/{habitacion}/frigobar/{frigobar}', [HabitacionFrigobarController::class, 'destroy'])->name('habitacionfrigobar_destroy');
-
+    Route::get('habitaciones/{habitacion}/frigobar', [HabitacionFrigobarController::class, 'index'])->name('habitacionfrigobar_index');
+    Route::get('habitaciones/{habitacion}/frigobar/create', [HabitacionFrigobarController::class, 'create'])->name('habitacionfrigobar_create');
+    Route::post('habitaciones/{habitacion}/frigobar/create', [HabitacionFrigobarController::class, 'store'])->name('habitacionfrigobar_create');
+    Route::get('habitaciones/{habitacion}/frigobar/{frigobar}', [HabitacionFrigobarController::class, 'show'])->name('habitacionfrigobar_show');
+    Route::get('habitaciones/{habitacion}/frigobar/{frigobar}/edit', [HabitacionFrigobarController::class, 'edit'])->name('habitacionfrigobar_edit');
+    Route::post('habitaciones/{habitacion}/frigobar/{frigobar}/edit', [HabitacionFrigobarController::class, 'update'])->name('habitacionfrigobar_edit');
+    Route::delete('habitaciones/frigobar/{frigobar}', [HabitacionFrigobarController::class, 'destroy'])->name('habitacionfrigobar_destroy');
     
     //RUTAS HOSPEDAJES
     Route::get('hospedajes', [HospedajeController::class, 'index'])->name('hospedajes_index');

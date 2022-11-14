@@ -26,7 +26,7 @@
             <button class="btn btn-primary" type="submit">
                 <i class="material-icons">save</i> Guardar
             </button>
-            <a href="{{ route('habitacionfrigobar_index',[$categoria->id,$habitacion->id]) }}" class="btn btn-danger">
+            <a href="{{ route('habitacionfrigobar_index',[$habitacion->id]) }}" class="btn btn-danger">
                 <i class="material-icons">clear</i> Cancelar
             </a>
         </div>

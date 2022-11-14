@@ -208,7 +208,7 @@ CREATE TABLE `clientes` (
   `tipo_documento` enum('Ci','Pasaporte') DEFAULT NULL,
   `num_documento` varchar(50) DEFAULT NULL,
   `celular` varchar(50) DEFAULT NULL,
-  `direccion` varchar(50) DEFAULT NULL,
+  `direccion` varchar(200) DEFAULT NULL,
   `ciudad` varchar(50) DEFAULT NULL,
   `pais` varchar(50) DEFAULT NULL,
   `oficio` varchar(50) DEFAULT NULL,

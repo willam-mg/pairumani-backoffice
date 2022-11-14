@@ -8,10 +8,10 @@
                 <div class="col-sm-12">
                     <ol class="breadcrumb" style="background-color: inherit">
                         <li class="breadcrumb-item"><a href="{{ route('home') }}">Inicio</a></li>
-                        <li class="breadcrumb-item"><a href="{{ route('habitacioncategorias_index') }}">Categorias</a></li>
-                        <li class="breadcrumb-item"><a href="{{ route('habitacioncategorias_show',$categoria->id) }}">Categoria: {{ $categoria->nombre }}</a></li>
-						<li class="breadcrumb-item"><a href="{{ route('habitaciones_index',$categoria->id) }}">habitaciones</a></li>
-						<li class="breadcrumb-item"><a href="{{ route('habitaciones_show',[$categoria->id,$habitacion->id]) }}">habitacion: {{ $habitacion->nombre }}</a></li>
+                        @if ($habitacion)
+                            <li class="breadcrumb-item"><a href="{{ route('habitaciones_index') }}">habitaciones</a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('habitaciones_show',[$habitacion->id]) }}">habitacion: {{ $habitacion->nombre }}</a></li>
+                        @endif
                         <li class="breadcrumb-item active">Nueva Reserva</li>
                     </ol>
                 </div><!-- /.col -->
@@ -25,15 +25,17 @@
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col-xs-12 col-sm-8 col-md-8 col-lg-8 col-centered ml-auto mr-auto">
-					<form method="POST" action="{{ route('reservas_create',[$categoria->id,$habitacion->id]) }}">
+					<form method="POST" action="{{ route('reservas_create',[$habitacion->id]) }}">
 						@include('reservas.form')
 					</form>
 				</div>
-                @if($habitacion->promocion != NULL)
-                    @if($habitacion->promocion->estado == 'Activo')
-                        <div class="col-md-4">
-                            @include('reservas.promocion')
-                        </div>
+                @if($habitacion)
+                    @if($habitacion->promocion != NULL)
+                        @if($habitacion->promocion->estado == 'Activo')
+                            <div class="col-md-4">
+                                @include('reservas.promocion')
+                            </div>
+                        @endif
                     @endif
                 @endif
 			</div>

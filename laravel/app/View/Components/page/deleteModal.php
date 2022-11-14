@@ -8,15 +8,17 @@ class deleteModal extends Component
 {
     public $model;
     public $route;
+    public $nombre;
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($model, $route)
+    public function __construct($model, $route, $nombre = "")
     {
         $this->model = $model;
         $this->route = $route;
+        $this->nombre = $nombre;
     }
 
     /**

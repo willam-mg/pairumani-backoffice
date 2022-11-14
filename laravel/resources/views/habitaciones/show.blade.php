@@ -8,9 +8,9 @@
                 <div class="col-sm-12">
                     <ol class="breadcrumb" style="background-color: inherit">
                         <li class="breadcrumb-item"><a href="{{ route('home') }}">Inicio</a></li>
-                        <li class="breadcrumb-item"><a href="{{ route('habitacioncategorias_index') }}">Categorias</a></li>
-                        <li class="breadcrumb-item"><a href="{{ route('habitacioncategorias_show',$categoria->id) }}">Categoria: {{ $categoria->nombre }}</a></li>
-                        <li class="breadcrumb-item"><a href="{{ route('habitaciones_index',$categoria->id) }}">Habitaciones</a></li>
+                        {{-- <li class="breadcrumb-item"><a href="{{ route('habitacioncategorias_index') }}">Categorias</a></li>
+                        <li class="breadcrumb-item"><a href="{{ route('habitacioncategorias_show',$categoria->id) }}">Categoria: {{ $categoria->nombre }}</a></li> --}}
+                        <li class="breadcrumb-item"><a href="{{ route('habitaciones_index') }}">Habitaciones</a></li>
                         <li class="breadcrumb-item active">Detalle Habitacion</li>
                     </ol>
                 </div><!-- /.col -->
@@ -64,9 +64,9 @@
                     </tbody>
                 </table>
                 <div class="form-group text-right">
-                    <a class="btn btn-default" href="{{ route('habitaciones_index',$categoria->id) }}" title="Cerrar"><i class="material-icons">clear</i> Cerrar</a>
+                    <a class="btn btn-default" href="{{ route('habitaciones_index') }}" title="Cerrar"><i class="material-icons">clear</i> Cerrar</a>
                     @if(kvfj(Auth::user()->rol->permisos,'habitaciones_edit'))
-                        <a class="btn btn-warning" href="{{ route('habitaciones_edit',[$categoria->id,$habitacion->id]) }}" title="Modificar"><i class="material-icons">edit</i> Modificar</a>  
+                        <a class="btn btn-warning" href="{{ route('habitaciones_edit',[$habitacion->id]) }}" title="Modificar"><i class="material-icons">edit</i> Modificar</a>  
                     @endif                  
                 </div>
             </div>

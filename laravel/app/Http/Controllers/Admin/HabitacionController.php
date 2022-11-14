@@ -12,14 +12,16 @@ use App\Models\HabitacionFrigobar;
 
 class HabitacionController extends Controller
 {
-    public function index(HabitacionCategoria $categoria, Request $request)
+    public function index(HabitacionCategoria $categoria = null, Request $request)
     {
         if ($request) {
             $query = trim($request->get('searchText'));
-            $habitaciones = Habitacion::where('habitacion_categoria_id',$categoria->id)
-                ->where('nombre', 'LIKE', '%' . $query . '%')
+            $habitaciones = Habitacion::when($categoria, function($query) use ($categoria) {
+                    $query->where('habitacion_categoria_id',$categoria->id);
+                })
+                ->orwhere('nombre', 'LIKE', '%' . $query . '%')
                 ->orwhere('num_habitacion','LIKE','%'. $query .'%')
-                ->where('habitacion_categoria_id', $categoria->id)
+                // ->where('habitacion_categoria_id', $categoria->id)
                 ->orderBy('id', 'desc')
                 ->paginate(7);
             return view('habitaciones.index', ["habitaciones" => $habitaciones,'categoria' => $categoria, "searchText" => $query]);
@@ -29,29 +31,30 @@ class HabitacionController extends Controller
     {
         return view('habitaciones.show',compact('habitacion','categoria'));
     }
-    public function create(HabitacionCategoria $categoria)
+    public function create()
     {
+        $categorias = HabitacionCategoria::all();
         return view('habitaciones.create', [
-            'categoria' => $categoria,
+            'categorias' => $categorias,
             'habitacion' => new Habitacion(),
         ]);
     }
-    public function store(HabitacionFormRequest $request,HabitacionCategoria $categoria)
+    public function store(HabitacionFormRequest $request)
     {
         $habitacion = (new Habitacion())->fill($request->all());
         $habitacion->foto = crearimagen($request->hasFile('foto'), $request->file('foto'), Habitacion::Namefoto(), Habitacion::Rutafoto());
-        $habitacion->habitacion_categoria_id = $categoria->id;
         $habitacion->save();
-        return redirect()->route('habitaciones_index',$categoria->id)->with('message', 'Guardado con éxito')->with('typealert', 'success');
+        return redirect()->route('habitaciones_index')->with('message', 'Guardado con éxito')->with('typealert', 'success');
     }
-    public function edit(HabitacionCategoria $categoria, Habitacion $habitacion)
+    public function edit(Habitacion $habitacion)
     {
+        $categorias = HabitacionCategoria::all();
         return view('habitaciones.edit',[
-            'categoria' => $categoria,
+            'categorias' => $categorias,
             'habitacion' => $habitacion,
         ]);
     }
-    public function update(HabitacionFormRequest $request, HabitacionCategoria $categoria, Habitacion $habitacion)
+    public function update(HabitacionFormRequest $request, Habitacion $habitacion)
     {
         if($habitacion->hospedaje != null){
             if($habitacion->hospedaje->all()->last()->estado == 'Ocupado' && $habitacion->estado == 'Ocupado'){
@@ -60,16 +63,15 @@ class HabitacionController extends Controller
         }
         $habitacion->foto = editarimagen($request->hasFile('foto'), $request->file('foto'), Habitacion::Namefoto(), Habitacion::Rutafoto(), $habitacion->foto, Habitacion::Urldeletefoto());
         $habitacion->update($request->except('foto'));
-        return redirect()->route('habitaciones_index',$categoria->id)->with('message', 'Modificado con éxito')->with('typealert', 'success');
+        return redirect()->route('habitaciones_index')->with('message', 'Modificado con éxito')->with('typealert', 'success');
     }
-    public function fotos(HabitacionCategoria $categoria, Habitacion $habitacion)
+    public function fotos(Habitacion $habitacion)
     {
         return view('habitaciones.fotos', [
-            'categoria' => $categoria,
             'habitacion' => $habitacion
         ]);
     }
-    public function fotosstore(HabitacionCategoria $categoria, Habitacion $habitacion)
+    public function fotosstore(Habitacion $habitacion)
     {
         $this->validate(request(), [
             'foto' => 'required|mimes:jpeg,png,jpg,gif,svg|max:2048'
@@ -84,13 +86,13 @@ class HabitacionController extends Controller
 
         return redirect()->back()->with('message', 'Foto subida')->with('typealert', 'success');
     }
-    public function fotosdelete(HabitacionCategoria $categoria, Habitacion $habitacion, GaleriaHabitacion $galeria)
+    public function fotosdelete(Habitacion $habitacion, GaleriaHabitacion $galeria)
     {
         eliminarimagen($galeria->foto, GaleriaHabitacion::Ruta(), GaleriaHabitacion::Urldelete());
         $galeria->delete();
         return redirect()->back()->with('message', 'Foto eliminada')->with('typealert', 'success');
     }
-    public function destroy(HabitacionCategoria $categoria, Habitacion $habitacion)
+    public function destroy(Habitacion $habitacion)
     {
         $existe = GaleriaHabitacion::where('habitacion_id', $habitacion->id)->exists();
         if ($existe) {
@@ -99,6 +101,6 @@ class HabitacionController extends Controller
         ///ELIMINAR FOTO
         eliminarimagen($habitacion->foto, Habitacion::Rutafoto(), Habitacion::Urldeletefoto());
         $habitacion->delete();
-        return redirect()->route('habitaciones_index',$categoria->id)->with('message', 'Eliminado con éxito')->with('typealert', 'success');
+        return redirect()->route('habitaciones_index')->with('message', 'Eliminado con éxito')->with('typealert', 'success');
     }
 }

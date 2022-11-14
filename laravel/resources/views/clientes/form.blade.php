@@ -128,7 +128,7 @@
                 <i class="material-icons">save</i> Guardar
             </button>
             @if($tipo == 'reserva')
-                <a href="{{ route('reservas_create',[$categoria,$habitacion,$reserva]) }}" class="btn btn-danger">
+                <a href="{{ route('reservas_create',[$habitacion,$reserva]) }}" class="btn btn-danger">
                     <i class="material-icons">clear</i> Cancelar
                 </a>
             @elseif($tipo == 'hospedaje')

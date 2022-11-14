@@ -10,10 +10,10 @@
                         <li class="breadcrumb-item"><a href="{{ route('home') }}">Inicio</a></li>
                         <li class="breadcrumb-item"><a href="{{ route('habitacioncategorias_index') }}">Categorias</a></li>
                         <li class="breadcrumb-item"><a href="{{ route('habitacioncategorias_show',$categoria->id) }}">Categoria: {{ $categoria->nombre }}</a></li>
-                        <li class="breadcrumb-item"><a href="{{ route('habitaciones_index',$categoria->id) }}">Habitaciones</a></li>
-                        <li class="breadcrumb-item"><a href="{{ route('habitaciones_show',[$categoria->id,$habitacion->id]) }}">Habitacion {{ $habitacion->nombre }}</a></li>
-                        <li class="breadcrumb-item"><a href="{{ route('reservas_index',[$categoria->id,$habitacion->id]) }}">Reservas</a></li>
-                        <li class="breadcrumb-item"><a href="{{ route('reservas_show',[$categoria->id,$habitacion->id,$reserva->id]) }}">Reserva {{ $reserva->id }}</a></li>
+                        <li class="breadcrumb-item"><a href="{{ route('habitaciones_index') }}">Habitaciones</a></li>
+                        <li class="breadcrumb-item"><a href="{{ route('habitaciones_show',[$habitacion->id]) }}">Habitacion {{ $habitacion->nombre }}</a></li>
+                        <li class="breadcrumb-item"><a href="{{ route('reservas_index',[$habitacion->id]) }}">Reservas</a></li>
+                        <li class="breadcrumb-item"><a href="{{ route('reservas_show',[$habitacion->id,$reserva->id]) }}">Reserva {{ $reserva->id }}</a></li>
                         <li class="breadcrumb-item active">Reserva hospedaje</li>
                     </ol>
                 </div><!-- /.col -->
@@ -70,7 +70,7 @@
                                 <button class="btn btn-primary" type="submit">
                                     <i class="material-icons">save</i> Guardar
                                 </button>
-                                <a href="{{ route('reservas_index',[$categoria->id,$habitacion->id]) }}" class="btn btn-danger">
+                                <a href="{{ route('reservas_index',[$habitacion->id]) }}" class="btn btn-danger">
                                     <i class="material-icons">clear</i> Cancelar
                                 </a><br><br>
                             </div>
