@@ -1,0 +1,31 @@
+{
+    "remotePath": "./public_html",
+    "host": "c2210260.ferozo.com",
+    "username": "ftp@c2210260.ferozo.com",
+    "password": "BAza72daso",
+    "port": 21,
+    "secure": false,
+    "protocol": "ftp",
+    "uploadOnSave": false,
+    "passive": false,
+    "debug": false,
+    "privateKeyPath": null,
+    "passphrase": null,
+    "agent": null,
+    "allow": [],
+    "ignore": [
+        "\\.vscode",
+        "\\.git",
+        "\\.env",
+        "\\.gitignore",
+        "\\.laravel\\vendor",
+        "\\.node_modules",
+        "\\.app\\public\\images"
+    ],
+    "generatedFiles": {
+        "extensionsToInclude": [
+            ""
+        ],
+        "path": ""
+    }
+}
