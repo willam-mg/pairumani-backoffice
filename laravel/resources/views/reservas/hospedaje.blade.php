@@ -8,12 +8,10 @@
                 <div class="col-sm-12">
                     <ol class="breadcrumb" style="background-color: inherit">
                         <li class="breadcrumb-item"><a href="{{ route('home') }}">Inicio</a></li>
-                        <li class="breadcrumb-item"><a href="{{ route('habitacioncategorias_index') }}">Categorias</a></li>
-                        <li class="breadcrumb-item"><a href="{{ route('habitacioncategorias_show',$categoria->id) }}">Categoria: {{ $categoria->nombre }}</a></li>
                         <li class="breadcrumb-item"><a href="{{ route('habitaciones_index') }}">Habitaciones</a></li>
-                        <li class="breadcrumb-item"><a href="{{ route('habitaciones_show',[$habitacion->id]) }}">Habitacion {{ $habitacion->nombre }}</a></li>
-                        <li class="breadcrumb-item"><a href="{{ route('reservas_index',[$habitacion->id]) }}">Reservas</a></li>
-                        <li class="breadcrumb-item"><a href="{{ route('reservas_show',[$habitacion->id,$reserva->id]) }}">Reserva {{ $reserva->id }}</a></li>
+                        <li class="breadcrumb-item"><a href="{{ route('habitaciones_show',[$reserva->habitacion->id]) }}">Habitacion {{ $reserva->habitacion->nombre }}</a></li>
+                        <li class="breadcrumb-item"><a href="{{ route('reservas_index',[$reserva->habitacion->id]) }}">Reservas</a></li>
+                        <li class="breadcrumb-item"><a href="{{ route('reservas_show',[$reserva->habitacion->id,$reserva->id]) }}">Reserva {{ $reserva->id }}</a></li>
                         <li class="breadcrumb-item active">Reserva hospedaje</li>
                     </ol>
                 </div><!-- /.col -->
@@ -23,7 +21,7 @@
     <!-- /.content-header -->
 @endsection
 @section('contenido')
-    <form method="POST" action="{{ route('reservas_hospedaje',[$categoria->id,$habitacion->id,$reserva->id]) }}">
+    <form method="POST" action="{{ route('reservas_hospedaje',[$reserva->habitacion->id,$reserva->id]) }}">
         @csrf
         <div class="row">
             <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
@@ -70,7 +68,7 @@
                                 <button class="btn btn-primary" type="submit">
                                     <i class="material-icons">save</i> Guardar
                                 </button>
-                                <a href="{{ route('reservas_index',[$habitacion->id]) }}" class="btn btn-danger">
+                                <a href="{{ route('reservas_index',[$reserva->habitacion->id]) }}" class="btn btn-danger">
                                     <i class="material-icons">clear</i> Cancelar
                                 </a><br><br>
                             </div>
@@ -87,7 +85,7 @@
                         <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
                             <div class="col-lg-4 col-sm-4 col-md-4 col-xs-4">
                                 <div class="form-group">
-                                    <a class="btn btn-success" href="{{ route('acompanantes_create',[$reserva->cliente->id,$tipo,$categoria->id,$habitacion->id,$reserva->id]) }}" style="margin-top: 25px">Nuevo Acompañante</a>
+                                    <a class="btn btn-success" href="{{ route('acompanantes_create',[$reserva->cliente->id,$tipo,$reserva->habitacion->categoria->id,$reserva->habitacion->id,$reserva->id]) }}" style="margin-top: 25px">Nuevo Acompañante</a>
                                 </div>
                             </div>
                             <table id="detalles" class="table table-striped table-bordered table-condensed table-hover text-center">

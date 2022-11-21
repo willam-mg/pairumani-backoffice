@@ -87,12 +87,12 @@ Route::group(['middleware' => ['auth']], function () {
     Route::delete('habitaciones/{habitacion}', [HabitacionController::class, 'destroy'])->name('habitaciones_destroy');
 
     //RUTAS HABITACIONES RESERVAS
-    Route::get('reservas/{habitacion}', [ReservaController::class, 'index'])->name('reservas_index');
+    Route::get('reservas/index/{habitacion}', [ReservaController::class, 'index'])->name('reservas_index');
     Route::get('reservas/create/{habitacion?}/{cliente?}', [ReservaController::class, 'create'])->name('reservas_create');
     Route::post('reservas/create/{habitacion?}/{cliente?}', [ReservaController::class, 'store'])->name('reservas_create');
     Route::get('reservas/{reserva}', [ReservaController::class, 'show'])->name('reservas_show');
-    Route::get('reservas/{reserva}/hospedaje', [ReservaController::class, 'hospedaje'])->name('reservas_hospedaje');
-    Route::post('reservas/{reserva}/hospedaje', [ReservaController::class, 'hospedajestore'])->name('reservas_hospedaje');
+    Route::get('reservas/{habitacion}/{reserva}/hospedaje', [ReservaController::class, 'hospedaje'])->name('reservas_hospedaje');
+    Route::post('reservas/{habitacion}/{reserva}/hospedaje', [ReservaController::class, 'hospedajestore'])->name('reservas_hospedaje');
     Route::get('reservas/{reserva}/edit', [ReservaController::class, 'edit'])->name('reservas_edit');
     Route::post('reservas/{reserva}/edit', [ReservaController::class, 'update'])->name('reservas_edit');
     Route::delete('reservas/{reserva}', [ReservaController::class, 'destroy'])->name('reservas_destroy');

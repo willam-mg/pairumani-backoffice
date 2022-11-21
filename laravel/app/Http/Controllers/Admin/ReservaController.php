@@ -92,7 +92,7 @@ class ReservaController extends Controller
             'acompañantes' => $reserva->cliente->acompañantes,
         ]);
     }
-    public function hospedajestore(HabitacionCategoria $categoria, Habitacion $habitacion, Reserva $reserva)
+    public function hospedajestore(Habitacion $habitacion, Reserva $reserva)
     {
         $hospedaje = new Hospedaje();
         $hospedaje->cliente_id = $reserva->cliente_id;

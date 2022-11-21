@@ -72,7 +72,7 @@
 												<td>{{ $reserva->habitacion->num_habitacion }}</td>
 												<td style="width: 250px; text-align: center;">
                                                     @if(kvfj(Auth::user()->rol->permisos,'reservas_show'))
-                                                        <a href="{{ route('reservas_show',[$habitacion->id,$reserva->id]) }}" class="btn btn-info btn-round btn-just-icon" title="Detalle reserva">
+                                                        <a href="{{ route('reservas_show',[$reserva->id]) }}" class="btn btn-info btn-round btn-just-icon" title="Detalle reserva">
                                                             <i class="material-icons">visibility</i>
                                                         </a>
                                                     @endif
