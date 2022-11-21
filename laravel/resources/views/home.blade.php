@@ -317,7 +317,7 @@
 											<div class="row">
 												@foreach ($categoria->habitaciones()->where('estado','Disponible')->get() as $habitacion)
 													<div class="col-md-2 col-sm-2 col-lg-2 col-xs-2">
-														<a href="{{ route('reservas_create',[$categoria->id,$habitacion->id]) }}">
+														<a href="{{ route('reservas_create',[$habitacion->id]) }}">
 															<div class="card">
 																<div class="card-header text-center">
 																	<h4 class="card-title">

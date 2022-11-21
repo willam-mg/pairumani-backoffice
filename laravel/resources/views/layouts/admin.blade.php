@@ -139,6 +139,11 @@
                 theme: 'bootstrap4'
                 })
             });
+
+            // twice send form control
+            $('form').on('submit', function () {
+                $(this).find(':submit').attr('disabled', 'true');
+            })
         </script>
         @stack('scripts')
     </body>

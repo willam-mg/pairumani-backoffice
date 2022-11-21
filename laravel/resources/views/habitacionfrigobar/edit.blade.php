@@ -8,10 +8,10 @@
                 <div class="col-sm-12">
                     <ol class="breadcrumb" style="background-color: inherit">
                         <li class="breadcrumb-item"><a href="{{ route('home') }}">Inicio</a></li>
-                        <li class="breadcrumb-item"><a href="{{ route('habitacioncategorias_index') }}">Categorias</a></li>
-                        <li class="breadcrumb-item"><a href="{{ route('habitacioncategorias_show',$categoria->id) }}">Categoria: {{ $categoria->nombre }}</a></li>
-						<li class="breadcrumb-item"><a href="{{ route('habitaciones_index',$categoria->id) }}">Habitaciones</a></li>
-						<li class="breadcrumb-item"><a href="{{ route('habitaciones_index',[$categoria->id,$habitacion->id]) }}">Habitacion: {{ $habitacion->nombre }}</a></li>
+                        {{-- <li class="breadcrumb-item"><a href="{{ route('habitacioncategorias_index') }}">Categorias</a></li>
+                        <li class="breadcrumb-item"><a href="{{ route('habitacioncategorias_show',$categoria->id) }}">Categoria: {{ $categoria->nombre }}</a></li> --}}
+						<li class="breadcrumb-item"><a href="{{ route('habitaciones_index') }}">Habitaciones</a></li>
+						<li class="breadcrumb-item"><a href="{{ route('habitaciones_index',[$habitacion->id]) }}">Habitacion: {{ $habitacion->nombre }}</a></li>
                         <li class="breadcrumb-item active">Editar producto frigobar</li>
                     </ol>
                 </div><!-- /.col -->
@@ -25,7 +25,7 @@
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col-xs-12 col-sm-8 col-md-8 col-lg-8 col-centered ml-auto mr-auto">
-					<form method="POST" action="{{ route('habitacionfrigobar_edit',[$categoria->id,$habitacion->id,$frigobar->id]) }}">
+					<form method="POST" action="{{ route('habitacionfrigobar_edit',[$habitacion->id,$frigobar->id]) }}">
 						@include('habitacionfrigobar.form')
 					</form>
 				</div>

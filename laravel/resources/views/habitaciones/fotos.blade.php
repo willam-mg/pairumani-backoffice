@@ -8,10 +8,8 @@
                 <div class="col-sm-12">
                     <ol class="breadcrumb" style="background-color: inherit">
                         <li class="breadcrumb-item"><a href="{{ route('home') }}">Inicio</a></li>
-                        <li class="breadcrumb-item"><a href="{{ route('habitacioncategorias_index') }}">Categorias</a></li>
-                        <li class="breadcrumb-item"><a href="{{ route('habitacioncategorias_show',$categoria->id) }}">Categoria: {{ $categoria->nombre }}</a></li>
-						<li class="breadcrumb-item"><a href="{{ route('habitaciones_index',$categoria->id) }}">Habitaciones</a></li>
-						<li class="breadcrumb-item"><a href="{{ route('habitaciones_show',[$categoria->id,$habitacion->id]) }}">Habitacion {{ $habitacion->nombre }}</a></li>
+						<li class="breadcrumb-item"><a href="{{ route('habitaciones_index') }}">Habitaciones</a></li>
+						<li class="breadcrumb-item"><a href="{{ route('habitaciones_show',[$habitacion->id]) }}">Habitacion {{ $habitacion->nombre }}</a></li>
                         <li class="breadcrumb-item active">Galeria Habitacion</li>
                     </ol>
                 </div><!-- /.col -->
@@ -27,7 +25,7 @@
                 <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
                     <div class="card">
                         <div class="card-body">
-                            <form method="POST" action="{{ route('habitaciones_galeria',[$categoria->id,$habitacion->id]) }}" enctype="multipart/form-data">
+                            <form method="POST" action="{{ route('habitaciones_galeria',[$habitacion->id]) }}" enctype="multipart/form-data">
                                 @csrf
                                 <div class="row">
                                     <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
@@ -66,7 +64,7 @@
                                     <button class="btn btn-primary" type="submit">
                                         <i class="material-icons">save</i> Guardar
                                     </button>
-                                    <a href="{{ route('habitaciones_index',$categoria->id) }}" class="btn btn-danger">
+                                    <a href="{{ route('habitaciones_index') }}" class="btn btn-danger">
                                         <i class="material-icons">clear</i> Cancelar
                                     </a>
                                 </div>
@@ -77,7 +75,7 @@
                 <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
                     <div class="row">
                         @foreach ($habitacion->fotos as $foto)
-                            <form method="POST" action="{{ route('habitaciones_galeria_destroy',[$categoria->id,$habitacion->id,$foto->id]) }}">
+                            <form method="POST" action="{{ route('habitaciones_galeria_destroy',[$habitacion->id,$foto->id]) }}">
                                 @method('DELETE') @csrf
                                 <div class="col-lg-3 col-sm-3 col-md-3 col-xs-12">
                                     @if(kvfj(Auth::user()->rol->permisos,'habitaciones_galeria_destroy'))

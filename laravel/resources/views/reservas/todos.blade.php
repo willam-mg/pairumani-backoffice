@@ -57,18 +57,18 @@
 												<td>{{ $reserva->habitacion->num_habitacion }}</td>
 												<td style="width: 250px; text-align: center;">
                                                     @if(kvfj(Auth::user()->rol->permisos,'reservas_show'))
-                                                        <a href="{{ route('reservas_show',[$reserva->habitacion->categoria->id,$reserva->habitacion->id,$reserva->id]) }}" class="btn btn-info btn-round btn-just-icon" title="Detalle reserva">
+                                                        <a href="{{ route('reservas_show',[$reserva->id]) }}" class="btn btn-info btn-round btn-just-icon" title="Detalle reserva">
                                                             <i class="material-icons">visibility</i>
                                                         </a>
                                                     @endif
                                                     @if($reserva->estado == 'Reservado')
                                                         @if(kvfj(Auth::user()->rol->permisos,'reservas_hospedaje'))
-                                                            <a href="{{ route('reservas_hospedaje',[$reserva->habitacion->categoria->id,$reserva->habitacion->id,$reserva->id]) }}" class="btn btn-success btn-round btn-just-icon" title="Reserva hospedaje">
+                                                            <a href="{{ route('reservas_hospedaje',[$reserva->habitacion->id,$reserva->id]) }}" class="btn btn-success btn-round btn-just-icon" title="Reserva hospedaje">
                                                                 <i class="material-icons">hotel</i>
                                                             </a>                                                            
                                                         @endif
                                                         @if(kvfj(Auth::user()->rol->permisos,'reservas_edit'))
-                                                            <a href="{{ route('reservas_edit',[$reserva->habitacion->categoria->id,$reserva->habitacion->id,$reserva->id]) }}" class="btn btn-warning btn-round btn-just-icon" title="Editar reserva">
+                                                            <a href="{{ route('reservas_edit',[$reserva->habitacion->id,$reserva->id]) }}" class="btn btn-warning btn-round btn-just-icon" title="Editar reserva">
                                                                 <i class="material-icons">mode_edit</i>
                                                             </a>
                                                         @endif

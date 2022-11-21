@@ -6,6 +6,18 @@
         </div>
     </div>
     <div class="card-body ">
+        <div class="form-group bmd-form-group {{ $errors->has('habitacion_categoria_id') ? 'has-danger' : '' }}">
+            <label for="habitacion_categoria_id">Categoria</label>
+            <select name="habitacion_categoria_id" class="form-control select2bs4">
+                <option>Seleccione una categoria</option>
+                @foreach ($categorias as $item)
+                    <option value="{{$item->id}}" {{ $item->id==$habitacion->habitacion_categoria_id ? 'selected' : '' }}> {{$item->nombre}} </option>
+                @endforeach
+            </select>
+            @if ($errors->has('habitacion_categoria_id'))
+            <span id="habitacion_categoria_id-error" for="habitacion_categoria_id" class="error">{{ $errors->first('habitacion_categoria_id') }}</span>
+            @endif
+        </div>
         <div class="form-group bmd-form-group {{ $errors->has('nombre') ? 'has-danger' : '' }}">
             <label for="nombre" class="bmd-label-floating">Nombre</label>
             <input type="text" name="nombre" value="{{ old('nombre', $habitacion->nombre) }}" class="form-control" autofocus>
@@ -91,7 +103,7 @@
             <button class="btn btn-primary" type="submit">
                 <i class="material-icons">save</i> Guardar
             </button>
-            <a href="{{ route('habitaciones_index',$categoria->id) }}" class="btn btn-danger">
+            <a href="{{ route('habitaciones_index') }}" class="btn btn-danger">
                 <i class="material-icons">clear</i> Cancelar
             </a>
         </div>

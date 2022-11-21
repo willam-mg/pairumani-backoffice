@@ -8,8 +8,10 @@
                 <div class="col-sm-12">
                     <ol class="breadcrumb" style="background-color: inherit">
                         <li class="breadcrumb-item"><a href="{{ route('home') }}">Inicio</a></li>
-                        <li class="breadcrumb-item"><a href="{{ route('habitacioncategorias_index') }}">Categorias</a></li>
-                        <li class="breadcrumb-item"><a href="{{ route('habitacioncategorias_show',$categoria->id) }}">Categoria: {{ $categoria->nombre }}</a></li>
+                        {{-- <li class="breadcrumb-item"><a href="{{ route('habitacioncategorias_index') }}">Categorias</a></li> --}}
+                        {{-- @if ($categoria)
+                            <li class="breadcrumb-item"><a href="{{ route('habitacioncategorias_show',$categoria->id) }}">Categoria: {{ $categoria->nombre }}</a></li>
+                        @endif --}}
                         <li class="breadcrumb-item active">Habitaciones</li>
                     </ol>
                 </div><!-- /.col -->
@@ -29,7 +31,7 @@
                         </div>
                         <div style="text-align: right;padding-top: 15px;">
                             @if(kvfj(Auth::user()->rol->permisos,'habitaciones_create'))
-                                <a class="btn btn-success" href="{{ route('habitaciones_create',$categoria->id) }}" title="Nueva habitacion">
+                                <a class="btn btn-success" href="{{ route('habitaciones_create') }}" title="Nueva habitacion">
                                     <i class="material-icons">add</i> Nuevo
                                 </a>
                             @endif
@@ -80,27 +82,27 @@
 												<td>{{ $habitacion->categoria->nombre }}</td>
 												<td style="width: 250px; text-align: center;">
                                                     @if(kvfj(Auth::user()->rol->permisos,'habitacionfrigobar_index'))
-                                                        <a href="{{ route('habitacionfrigobar_index',[$categoria->id,$habitacion->id]) }}" class="btn btn-warning btn-round btn-just-icon" title="Habitacion frigobar">
+                                                        <a href="{{ route('habitacionfrigobar_index',[$habitacion->id]) }}" class="btn btn-warning btn-round btn-just-icon" title="Habitacion frigobar">
                                                             <i class="material-icons">kitchen</i>
                                                         </a>
                                                     @endif
                                                     @if(kvfj(Auth::user()->rol->permisos,'reservas_index'))
-                                                        <a href="{{ route('reservas_index',[$categoria->id,$habitacion->id]) }}" class="btn btn-primary btn-round btn-just-icon" title="Reserva Habitacion">
+                                                        <a href="{{ route('reservas_index',[$habitacion->id]) }}" class="btn btn-primary btn-round btn-just-icon" title="Reserva Habitacion">
                                                             <i class="material-icons">pending_actions</i>
                                                         </a>
                                                     @endif
                                                     @if(kvfj(Auth::user()->rol->permisos,'habitaciones_galeria'))
-                                                        <a href="{{ route('habitaciones_galeria',[$categoria->id,$habitacion->id]) }}" class="btn btn-success btn-round btn-just-icon" title="Galeria habitacion">
+                                                        <a href="{{ route('habitaciones_galeria',[$habitacion->id]) }}" class="btn btn-success btn-round btn-just-icon" title="Galeria habitacion">
                                                             <i class="material-icons">photo_size_select_actual</i>
                                                         </a>
                                                     @endif
                                                     @if(kvfj(Auth::user()->rol->permisos,'habitaciones_show'))
-                                                        <a href="{{ route('habitaciones_show',[$categoria->id,$habitacion->id]) }}" class="btn btn-info btn-round btn-just-icon" title="Detalle habitacion">
+                                                        <a href="{{ route('habitaciones_show',[$habitacion->id]) }}" class="btn btn-info btn-round btn-just-icon" title="Detalle habitacion">
                                                             <i class="material-icons">visibility</i>
                                                         </a>
                                                     @endif
 													@if(kvfj(Auth::user()->rol->permisos,'habitaciones_edit'))
-														<a href="{{ route('habitaciones_edit',[$categoria->id,$habitacion->id]) }}" class="btn btn-warning btn-round btn-just-icon" title="Editar habitacion">
+														<a href="{{ route('habitaciones_edit',[$habitacion->id]) }}" class="btn btn-warning btn-round btn-just-icon" title="Editar habitacion">
 															<i class="material-icons">mode_edit</i>
 														</a>
 													@endif
@@ -111,7 +113,6 @@
 													@endif
 												</td>
 											</tr>
-											@include('habitaciones.modal')
 										@endforeach
 									@else
 										<tr>
@@ -129,4 +130,9 @@
             </div>
         </div>
     </div>
+    @if(count($habitaciones))
+        @foreach ($habitaciones as $habitacion)
+            <x-page.delete-modal route="habitaciones_destroy" :model="$habitacion" nombre="Habitacion" />
+        @endforeach
+    @endif
 @endsection

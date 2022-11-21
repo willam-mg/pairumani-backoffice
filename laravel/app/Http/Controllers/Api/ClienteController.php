@@ -1194,8 +1194,8 @@ class ClienteController extends Controller
      {
         $hospedajes = Hospedaje::where('cliente_id',$request->post('cliente_id'))->orderBy('id','DESC')->get();
         $detalles = [];
-        foreach ($hospedajes as $hospedaje) {
-            array_push($detalles, [
+        return  $hospedajes->map(function($hospedaje) {
+            return [
                 'id' => $hospedaje->id,
                 'checkin' => $hospedaje->fecha_checkin,
                 'checkout' => $hospedaje->fecha_checkout,
@@ -1203,7 +1203,7 @@ class ClienteController extends Controller
                 'niños' => $hospedaje->niños,
                 'precio' => $hospedaje->precio_promocion ? $hospedaje->precio_promocion : $hospedaje->precio,
                 'estado' => $hospedaje->estado,
-                "cliente" => [
+                "cliente" => $hospedaje->cliente? [
                     'nombre' => $hospedaje->cliente->nombrecompleto,
                     'celular' => $hospedaje->cliente->celular,
                     'telefono' => $hospedaje->cliente->telefono,
@@ -1211,41 +1211,57 @@ class ClienteController extends Controller
                     'pais' => $hospedaje->cliente->pais,
                     'oficio' => $hospedaje->cliente->oficio,
                     'email' => $hospedaje->cliente->email,
-                ],
-                'habitacion' => [
+                ]:null,
+                'habitacion' => $hospedaje->habitacion?[
                     'nombre' => $hospedaje->habitacion->nombre,
                     'num_habitacion' => $hospedaje->habitacion->num_habitacion,
                     'precio' => $hospedaje->habitacion->precio,
                     'foto' => $hospedaje->habitacion->fotourl,
-                ],
-                'transportes' => $hospedaje->detalletransportes->map(function($detalle){
-                    return[
-                        'nombre' => $detalle->transporte->nombre,
+                ]:null,
+                'transportes' => $hospedaje->detalletransportes->map(function ($detalle) {
+                    $transporte = $detalle->transporte;
+                    return [
+                        'nombre' => $transporte?$transporte->nombre:null,
                         'precio' => $detalle->precio,
-                        'foto' => $detalle->transporte->fotourl,
+                        'foto' => $transporte ? $transporte->fotourl : null,
                     ];
                 }),
-                'lugares' => $hospedaje->lugares->map(function($detalle){
-                    return[
-                        'nombre' => $detalle->lugarturistico->nombre,
+                'lugares' => $hospedaje->lugares->map(function ($detalle) {
+                    $lugarturistico = $detalle->lugarturistico;
+                    return [
+                        'nombre' => $lugarturistico?$lugarturistico->nombre:null,
                         'precio' => $detalle->precio,
                         'fecha' => $detalle->fecha,
-                        'tipo' => $detalle->lugarturistico->tipo,
-                        'foto' => $detalle->lugarturistico->fotourl,
+                        'tipo' => $lugarturistico?$lugarturistico->tipo:null,
+                        'foto' => $lugarturistico?$lugarturistico->fotourl:null,
                     ];
                 }),
-                'restaurante' => $hospedaje->restaurantes->map(function($detalle){
-                    return[
+                'restaurante' => $hospedaje->restaurantes->map(function ($detalle) {
+                    return [
                         'fecha' => $detalle->fecha,
                         'hora' => $detalle->hora,
-                        'productos' => $detalle->detalles->map(function($producto)use($detalle){
-                            return[
-                                'producto' => $producto->producto->nombre,
-                                'precio_producto' => $detalle->detalle->precio,
-                                'opcion' => $producto->producto->opcion->nombre,
-                                'tamaño' =>[
-                                    'nombre' => $producto->producto->tamano->nombre,
-                                    'precio_tamaño' => $detalle->detalle->detalleproducto->precio_tamanho,
+                        'productos' => $detalle->detalles->map(function ($producto) use ($detalle) {
+                            $objProducto = $producto->producto;
+                            $productoNombre = null;
+                            if ($objProducto) {
+                                $productoNombre = $objProducto->tamano ? $objProducto->tamano->nombre:null;
+                            }
+                            $opcionNombre = null;
+                            if ($objProducto) {
+                                $opcionNombre = $objProducto->opcion ? $objProducto->opcion->nombre:null;
+                            }
+                            $precioTamano = null;
+                            $objDetalle = $detalle->detalle;
+                            if($objDetalle) {
+                                $precioTamano = $objDetalle->detalleproducto? $objDetalle->detalleproducto->precio_tamanho:null;
+                            }
+                            return [
+                                'producto' => $producto?$producto->nombre:null,
+                                'precio_producto' => $detalle->detalle?$detalle->detalle->precio:null,
+                                'opcion' => $opcionNombre,
+                                'tamaño' => [
+                                    'nombre' => $productoNombre,
+                                    'precio_tamaño' => $precioTamano,
                                 ],
                             ];
                         }),
@@ -1256,13 +1272,27 @@ class ClienteController extends Controller
                         'fecha' => $detalle->fecha,
                         'hora' => $detalle->hora,
                         'productos' => $detalle->detalles->map(function($producto)use($detalle){
-                            return[
-                                'producto' => $producto->producto->nombre,
-                                'precio_producto' => $detalle->detalle->precio,
-                                'opcion' => $producto->producto->opcion->nombre,
-                                'tamaño' =>[
-                                    'nombre' => $producto->producto->tamano->nombre,
-                                    'precio_tamaño' => $detalle->detalle->detalleproducto->precio_tamanho,
+                            $objProducto = $producto->producto;
+                            $productoNombre = null;
+                            if ($objProducto) {
+                                $productoNombre = $objProducto->tamano ? $objProducto->tamano->nombre : null;
+                            }
+                            $opcionNombre = null;
+                            if ($objProducto) {
+                                $opcionNombre = $objProducto->opcion ? $objProducto->opcion->nombre : null;
+                            }
+                            $precioTamano = null;
+                            $objDetalle = $detalle->detalle;
+                            if ($objDetalle) {
+                                $precioTamano = $objDetalle->detalleproducto ? $objDetalle->detalleproducto->precio_tamanho : null;
+                            }
+                            return [
+                                'producto' => $producto ? $producto->nombre : null,
+                                'precio_producto' => $detalle->detalle ? $detalle->detalle->precio : null,
+                                'opcion' => $opcionNombre,
+                                'tamaño' => [
+                                    'nombre' => $productoNombre,
+                                    'precio_tamaño' => $precioTamano,
                                 ],
                             ];
                         }),
@@ -1270,14 +1300,15 @@ class ClienteController extends Controller
                 }),
                 'totales' => [
                     'hospedaje' => $hospedaje->precio_promocion ? $hospedaje->precio_promocion : $hospedaje->precio,
-                    'transportes' => number_format(pageTotal($hospedaje->detalletransportes, 'precio'),2),
-                    'restaurante' => number_format(pageTotal($hospedaje->restaurantes,'total'),2),
-                    'cafeteria' => number_format(pageTotal($hospedaje->cafeterias,'total'),2),
-                    'lugarturistico' => number_format(pageTotal($hospedaje->lugares, 'precio'),2),
-                    'totalpagar' => number_format($hospedaje->total(),2),
+                    'transportes' => number_format(pageTotal($hospedaje->detalletransportes, 'precio'), 2),
+                    'restaurante' => number_format(pageTotal($hospedaje->restaurantes, 'total'), 2),
+                    'cafeteria' => number_format(pageTotal($hospedaje->cafeterias, 'total'), 2),
+                    'lugarturistico' => number_format(pageTotal($hospedaje->lugares, 'precio'), 2),
+                    'totalpagar' => number_format($hospedaje->total(), 2),
                 ],
-            ]);
-        }
+            ];
+        });
+
         return response()->json(['success' => 'true', 'data' => $detalles], 200);
     }
 

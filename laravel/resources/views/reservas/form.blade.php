@@ -23,13 +23,17 @@
                     </div>                
                 </div>
             </div>
-            @if(routerequest('reservas_create'))
+            {{-- @if(routerequest('reservas_create')) --}}
                 <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12" style="margin-top: 20px;">
                     <div class="form-group">
-                        <a class="btn btn-success" href="{{ route('clientes_create',[$tipo,$categoria->id,$habitacion->id]) }}">Nuevo cliente</a>
+                        @if($habitacion) 
+                            <a class="btn btn-success" href="{{ route('clientes_create',[$tipo,$habitacion->id]) }}">Nuevo cliente</a>
+                        @else
+                            <a class="btn btn-success" href="{{ route('clientes_create',[$tipo]) }}">Nuevo cliente</a>
+                        @endif
                     </div>
                 </div>                
-            @endif
+            {{-- @endif --}}
         </div>
         <div class="form-group bmd-form-group {{ $errors->has('checkin') ? 'has-danger' : '' }}">
             <label for="checkin"><strong>Checkin</strong></label><br>
@@ -65,9 +69,17 @@
             <button class="btn btn-primary" type="submit">
                 <i class="material-icons">save</i> Guardar
             </button>
-            <a href="{{ route('reservas_index',[$categoria->id,$habitacion->id]) }}" class="btn btn-danger">
-                <i class="material-icons">clear</i> Cancelar
-            </a>
+            @if($habitacion)
+                <a href="{{ route('reservas_index',[$habitacion->id]) }}" class="btn btn-danger">
+                    <i class="material-icons">clear</i> Cancelar
+                </a>
+            @else
+                <a href="{{ route('reservas') }}" class="btn btn-danger">
+                    <i class="material-icons">clear</i> Cancelar
+                </a>
+            
+            @endif
+            
         </div>
     </div>
 </div>

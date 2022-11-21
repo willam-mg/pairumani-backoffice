@@ -16,7 +16,7 @@ use App\Models\HospedajeDetalleAcompanante;
 use App\View\Components\Socket;
 class ReservaController extends Controller
 {
-    public function index(Request $request,HabitacionCategoria $categoria,Habitacion $habitacion)
+    public function index(Request $request,Habitacion $habitacion)
     {
         if ($request) {
             $query = trim($request->get('searchText'));
@@ -26,26 +26,25 @@ class ReservaController extends Controller
                 ->where('habitaciones.num_habitacion', 'LIKE', '%' . $query . '%')
                 ->orderBy('reservas.id', 'desc')
                 ->paginate(7);
-            return view('reservas.index', ['reservas' => $reservas,'categoria' => $categoria,'habitacion' =>$habitacion,'searchText' => $query]);
+            return view('reservas.index', ['reservas' => $reservas,'habitacion' =>$habitacion,'searchText' => $query]);
         }
     }
     public function show(HabitacionCategoria $categoria, Habitacion $habitacion,Reserva $reserva)
     {
         return view('reservas.show', compact('reserva','categoria','habitacion'));
     }
-    public function create(HabitacionCategoria $categoria, Habitacion $habitacion,$cliente=null)
+    public function create(Habitacion $habitacion,$cliente=null)
     {
         $reserva = new Reserva();
         $reserva->cliente_id = $cliente;
         return view('reservas.create', [
-            'categoria' => $categoria,
             'tipo' => Reserva::TIPO,
             'habitacion' => $habitacion,
             'reserva' => $reserva,
             'clientes' => Cliente::get()->pluck('nombre_completo','id'),
         ]);
     }
-    public function store(ReservaFormRequest $request, HabitacionCategoria $categoria,Habitacion $habitacion)
+    public function store(ReservaFormRequest $request, Habitacion $habitacion)
     {
         if($habitacion->estado == 'Ocupado'){
             return redirect()->back()->with('message','La habitacion ya fue ocupada')->with('typealert','danger');
@@ -58,7 +57,7 @@ class ReservaController extends Controller
         $habitacion->estado = 'Reservado';
         $habitacion->save();
         Socket::emmit();
-        return redirect()->route('reservas_index',[$categoria->id,$habitacion->id])->with('message', 'Guardado con éxito')->with('typealert', 'success');
+        return redirect()->route('reservas_index',[$habitacion->id])->with('message', 'Guardado con éxito')->with('typealert', 'success');
     }
     public function edit(HabitacionCategoria $categoria, Habitacion $habitacion,Reserva $reserva)
     {
@@ -73,7 +72,7 @@ class ReservaController extends Controller
     public function update(ReservaFormRequest $request, HabitacionCategoria $categoria, Habitacion $habitacion,Reserva $reserva)
     {
         $reserva->update($request->all());
-        return redirect()->route('reservas_index',[$categoria->id,$habitacion->id])->with('message', 'Modificado con éxito')->with('typealert', 'success');
+        return redirect()->route('reservas_index',[$habitacion->id])->with('message', 'Modificado con éxito')->with('typealert', 'success');
     }
     public function destroy(HabitacionCategoria $categoria, Habitacion $habitacion,Reserva $reserva)
     {
@@ -81,7 +80,7 @@ class ReservaController extends Controller
         $habitacion->estado = 'Disponible';
         $habitacion->save();
         $reserva->delete();
-        return redirect()->route('reservas_index',[$categoria->id,$habitacion->id])->with('message', 'Eliminado con éxito')->with('typealert', 'success');
+        return redirect()->route('reservas_index',[$habitacion->id])->with('message', 'Eliminado con éxito')->with('typealert', 'success');
     }
     public function hospedaje(HabitacionCategoria $categoria, Habitacion $habitacion, Reserva $reserva)
     {
@@ -93,7 +92,7 @@ class ReservaController extends Controller
             'acompañantes' => $reserva->cliente->acompañantes,
         ]);
     }
-    public function hospedajestore(HabitacionCategoria $categoria, Habitacion $habitacion, Reserva $reserva)
+    public function hospedajestore(Habitacion $habitacion, Reserva $reserva)
     {
         $hospedaje = new Hospedaje();
         $hospedaje->cliente_id = $reserva->cliente_id;

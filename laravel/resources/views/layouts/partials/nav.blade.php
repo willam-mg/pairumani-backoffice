@@ -65,15 +65,89 @@
             </div>
         </li>
         @if(kvfj(Auth::user()->rol->permisos,'habitacioncategorias_index'))
+            <li class="nav-item {{ setActiveRoute(['habitacioncategorias_index','habitacioncategorias_create','habitacioncategorias_edit','habitacioncategorias_show','habitaciones_index','habitaciones_create','habitaciones_edit','habitaciones_show','habitaciones_galeria','reservas_index','reservas_create','reservas_edit','reservas_show','reservas_hospedaje','habitacionfrigobar_index','habitacionfrigobar_create','habitacionfrigobar_edit','habitacionfrigobar_show', 'reservas']) }}">
+                <a class="nav-link" data-toggle="collapse" href="#habitaciones" aria-expanded="{{ setActiveRouteExpanded(['habitacioncategorias_index','habitacioncategorias_create','habitacioncategorias_edit','habitacioncategorias_show','habitaciones_index','habitaciones_create','habitaciones_edit','habitaciones_show','habitaciones_galeria','reservas_index','reservas_create','reservas_edit','reservas_show','reservas_hospedaje','habitacionfrigobar_index','habitacionfrigobar_create','habitacionfrigobar_edit','habitacionfrigobar_show', 'reservas']) }}">
+                    <i class="material-icons">assignment</i>
+                    <p> Habitaciones
+                        <b class="caret"></b>
+                    </p>
+                </a>
+                <div class="collapse {{ setActiveRouteShow(['habitacioncategorias_index','habitacioncategorias_create','habitacioncategorias_edit','habitacioncategorias_show','habitaciones_index','habitaciones_create','habitaciones_edit','habitaciones_show','habitaciones_galeria','reservas_index','reservas_create','reservas_edit','reservas_show','reservas_hospedaje','habitacionfrigobar_index','habitacionfrigobar_create','habitacionfrigobar_edit','habitacionfrigobar_show', 'reservas']) }}" id="habitaciones">
+                    <ul class="nav">
+                        <li class="nav-item {{ setActiveRoute(['habitacioncategorias_index','habitacioncategorias_create','habitacioncategorias_edit','habitacioncategorias_show']) }}">
+                            <a href="{{ route('habitacioncategorias_index') }}" class="nav-link">
+                                <i class="material-icons">assignment</i>
+                                <p>
+                                    Categorias
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item {{ setActiveRoute(['habitaciones_index',
+                            'habitaciones_create',
+                            'habitaciones_edit',
+                            'habitaciones_show',
+                            'habitaciones_galeria',
+                            // 'reservas_index',
+                            // 'reservas_create',
+                            // 'reservas_edit',
+                            // 'reservas_show',
+                            // 'reservas_hospedaje',
+                            // 'habitacionfrigobar_index',
+                            // 'habitacionfrigobar_create',
+                            // 'habitacionfrigobar_edit',
+                            // 'habitacionfrigobar_show'
+                        ]) }}">
+                            <a href="{{ route('habitaciones_index') }}" class="nav-link">
+                                <i class="material-icons">assignment</i>
+                                <p>
+                                    Habitaciones
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item {{ setActiveRoute([
+                            'reservas',
+                            'reservas_create',
+                            'reservas_edit',
+                            'reservas_show',
+                            'reservas_hospedaje',
+                        ]) }}">
+                            <a href="{{ route('reservas') }}" class="nav-link">
+                                <i class="material-icons">assignment</i>
+                                <p>
+                                    Reservas
+                                </p>
+                            </a>
+                        </li>
+                        {{-- <li class="nav-item {{ setActiveRoute([
+                            'habitacionfrigobar_index',
+                            'habitacionfrigobar_create',
+                            'habitacionfrigobar_edit',
+                            'habitacionfrigobar_show'
+                        ]) }}">
+                            <a href="{{ route('habitacionfrigobar_index') }}" class="nav-link">
+                                <i class="material-icons">assignment</i>
+                                <p>
+                                    habitacion frigobar
+                                </p>
+                            </a>
+                        </li> --}}
+                    </ul>
+                </div>
+            </li>
+
+
+
+
+
             <!-- SECCION acompanantes -->
-            <li class="nav-item {{ setActiveRoute(['habitacioncategorias_index','habitacioncategorias_create','habitacioncategorias_edit','habitacioncategorias_show','habitaciones_index','habitaciones_create','habitaciones_edit','habitaciones_show','habitaciones_galeria','reservas_index','reservas_create','reservas_edit','reservas_show','reservas_hospedaje','habitacionfrigobar_index','habitacionfrigobar_create','habitacionfrigobar_edit','habitacionfrigobar_show']) }}">
+            {{-- <li class="nav-item {{ setActiveRoute(['habitacioncategorias_index','habitacioncategorias_create','habitacioncategorias_edit','habitacioncategorias_show','habitaciones_index','habitaciones_create','habitaciones_edit','habitaciones_show','habitaciones_galeria','reservas_index','reservas_create','reservas_edit','reservas_show','reservas_hospedaje','habitacionfrigobar_index','habitacionfrigobar_create','habitacionfrigobar_edit','habitacionfrigobar_show']) }}">
                 <a href="{{ route('habitacioncategorias_index') }}" class="nav-link">
                     <i class="material-icons">assignment</i>
                     <p>
                         Habitaciones
                     </p>
                 </a>
-            </li>
+            </li> --}}
         @endif 
         @if(kvfj(Auth::user()->rol->permisos,'restaurantecategorias_index'))
             <!-- SECCION acompanantes -->

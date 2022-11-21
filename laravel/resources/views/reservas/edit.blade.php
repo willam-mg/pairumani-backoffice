@@ -10,8 +10,8 @@
                         <li class="breadcrumb-item"><a href="{{ route('home') }}">Inicio</a></li>
                         <li class="breadcrumb-item"><a href="{{ route('habitacioncategorias_index') }}">Categorias</a></li>
                         <li class="breadcrumb-item"><a href="{{ route('habitacioncategorias_show',$categoria->id) }}">Categoria: {{ $categoria->nombre }}</a></li>
-						<li class="breadcrumb-item"><a href="{{ route('habitaciones_index',$categoria->id) }}">Habitaciones</a></li>
-                        <li class="breadcrumb-item"><a href="{{ route('habitaciones_show',[$categoria->id,$habitacion->id]) }}">habitacion: {{ $habitacion->nombre }}</a></li>
+						<li class="breadcrumb-item"><a href="{{ route('habitaciones_index') }}">Habitaciones</a></li>
+                        <li class="breadcrumb-item"><a href="{{ route('habitaciones_show',[$habitacion->id]) }}">habitacion: {{ $habitacion->nombre }}</a></li>
                         <li class="breadcrumb-item active">Editar Reserva</li>
                     </ol>
                 </div><!-- /.col -->

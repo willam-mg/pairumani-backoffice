@@ -25,7 +25,7 @@ class ClienteFormRequest extends FormRequest
     {
         $rules = [
             'tipo_documento' => 'required|in:Ci,Pasaporte',
-            'direccion' => 'required|max:50',
+            'direccion' => 'required|max:200',
             'ciudad' => 'required|max:50',
             'pais' => 'required|max:50',
             'oficio' => 'required|max:50',

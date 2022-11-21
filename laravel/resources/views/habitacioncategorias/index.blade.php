@@ -64,7 +64,7 @@
 												<td>{{ $categoria->nombre }}</td>
 												<td>
                                                     @if(kvfj(Auth::user()->rol->permisos,'habitaciones_index'))
-                                                        <a href="{{ route('habitaciones_index',$categoria->id) }}" class="btn btn-success btn-round btn-just-icon" title="Habitaciones">
+                                                        <a href="{{ route('habitaciones_index') }}" class="btn btn-success btn-round btn-just-icon" title="Habitaciones">
                                                             <i class="material-icons">meeting_room</i>
                                                         </a>
                                                     @endif
@@ -85,7 +85,6 @@
 													@endif
 												</td>
 											</tr>
-											@include('habitacioncategorias.modal')
 										@endforeach
 									@else
 										<tr>
@@ -103,4 +102,9 @@
             </div>
         </div>
     </div>
+    @if(count($categorias) > 0)
+        @foreach ($categorias as $categoria)
+            <x-page.delete-modal route="habitacioncategorias_destroy" :model="$categoria" nombre="Categoria Habitacion" />
+        @endforeach
+    @endif
 @endsection

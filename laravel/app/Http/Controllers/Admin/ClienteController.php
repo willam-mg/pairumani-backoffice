@@ -33,25 +33,27 @@ class ClienteController extends Controller
     {
         return view('clientes.show',compact('cliente'));
     }
-    public function create($tipo = null,$categoria=null,$habitacion=null,$reserva=null,$promocion=null)
+    public function create($tipo = null,$habitacion=null,$reserva=null,$promocion=null)
     {
         return view('clientes.create', [
             'cliente' => new Cliente(),
             'tipo' => $tipo,
-            'categoria' => $categoria,
             'habitacion' => $habitacion,
             'reserva' => $reserva,
             'promocion' => $promocion,
         ]);
     }
-    public function store(ClienteFormRequest $request, $tipo = null,$categoria=null,$habitacion=null,$reserva=null,$promocion=null)
+    public function store($tipo = null,$habitacion=null,$reserva=null,$promocion=null, ClienteFormRequest $request)
     {
         $cliente = (new Cliente())->fill($request->all());
         $cliente->api_token = str::random('60');
         $cliente->password = Hash::make($request->get('email'));
         $cliente->save();
         if($tipo == Reserva::TIPO){
-            return redirect()->route('reservas_create',[$categoria,$habitacion,$reserva,$cliente]);
+            if ($habitacion) {
+                return redirect()->route('reservas_create',[$habitacion,$cliente]);
+            }
+            return redirect()->route('reservas_create',[$cliente]);
         }elseif($tipo == Hospedaje::TIPO){
             return redirect()->route('hospedajes_create',$cliente);
         }elseif($tipo == ReservaPromocion::TIPO){
