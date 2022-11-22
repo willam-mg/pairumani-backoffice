@@ -18,13 +18,18 @@
         "\\.git",
         "\\.env",
         "\\.gitignore",
-        "\\.laravel\\vendor",
-        "\\.node_modules",
-        "\\.app\\public\\images"
+        "\\laravel\\vendor",
+        "\\node_modules",
+        "\\.well-known",
+        "\\app\\public\\images"
     ],
     "generatedFiles": {
         "extensionsToInclude": [
-            ""
+            ".php",
+            ".css",
+            ".scss",
+            ".html",
+            ".js"
         ],
         "path": ""
     }
