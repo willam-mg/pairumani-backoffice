@@ -1,7 +1,7 @@
 # Endpoints
 
 
-## Login con redes sociales y normal
+## CLIENTE - Login con redes sociales y normal
 
 
 
@@ -10,7 +10,7 @@
 
 ```javascript
 const url = new URL(
-    "http://pairumanibackoffice.test/api/login"
+    "http://c2210260.ferozo.com/api/login"
 );
 
 let headers = {
@@ -21,7 +21,7 @@ let headers = {
 let body = {
     "tipo_login": 1,
     "email": "cliente@gmail.com",
-    "password": "cliente1568",
+    "password": "cliente54782",
     "nombres": "Jose Rodrigo",
     "apellidos": "Cespedes Rojas",
     "tipo_documento": "Ci,Pasaporte",
@@ -35,7 +35,7 @@ let body = {
     "telefono": "4652588",
     "fecha_nacimiento": "1985-03-22",
     "motivo_viaje": "Recreacion,Negocios,Salud,Otro",
-    "foto": "foto.jpg",
+    "foto": "https:\/\/www.facebook.com\/user1\/photo.jpg",
     "imei_celular": "354651100023680"
 }
 
@@ -95,7 +95,7 @@ fetch(url, {
 <b><code>tipo_login</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
 <input type="number" name="tipo_login" data-endpoint="POSTapi-login" data-component="body" required  hidden>
 <br>
-El tipo de login que usara el cliente para iniciar sesion.
+El tipo de login que usara el cliente para iniciar sesion; 1 = Email login, 2 = gmail login,3 = facebook login.
 </p>
 <p>
 <b><code>email</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
@@ -107,17 +107,17 @@ Email que usa el cliente para el registro.
 <b><code>password</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
 <input type="password" name="password" data-endpoint="POSTapi-login" data-component="body"  hidden>
 <br>
-El password que usara el cliente para iniciar sesion y registro.
+La clave que usara para ingresar al sistema el cliente para el registro.
 </p>
 <p>
-<b><code>nombres</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
-<input type="text" name="nombres" data-endpoint="POSTapi-login" data-component="body"  hidden>
+<b><code>nombres</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<input type="text" name="nombres" data-endpoint="POSTapi-login" data-component="body" required  hidden>
 <br>
 Los nombes del cliente para el registro.
 </p>
 <p>
-<b><code>apellidos</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
-<input type="text" name="apellidos" data-endpoint="POSTapi-login" data-component="body"  hidden>
+<b><code>apellidos</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<input type="text" name="apellidos" data-endpoint="POSTapi-login" data-component="body" required  hidden>
 <br>
 Los apellidos del cliente para el registro.
 </p>
@@ -134,8 +134,8 @@ El tipo de documento que tiene el cliente para el registro .
 Número de documento del cliente para el registro.
 </p>
 <p>
-<b><code>celular</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
-<input type="text" name="celular" data-endpoint="POSTapi-login" data-component="body"  hidden>
+<b><code>celular</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<input type="text" name="celular" data-endpoint="POSTapi-login" data-component="body" required  hidden>
 <br>
 Número de celular del cliente para el registro.
 </p>
@@ -191,7 +191,7 @@ Motivo por el cual viaja el cliente para el registro.
 <b><code>foto</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
 <input type="text" name="foto" data-endpoint="POSTapi-login" data-component="body"  hidden>
 <br>
-Foto que se registrara cuando haga login con sus redes sociales o suba una foto el lciente para el registro.
+Foto que se registrara cuando haga login con sus redes sociales o suba una foto el lciente para el registro, esta debe ser una ruta absoluta como https://www.facebook.com/user1/photo.jpg .
 </p>
 <p>
 <b><code>imei_celular</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
@@ -203,7 +203,7 @@ Se registrara el imei del celular del cliente para el registro.
 </form>
 
 
-## Registro de nuevo Cliente
+## CLIENTE - Registro de nuevo Cliente
 
 
 
@@ -212,7 +212,7 @@ Se registrara el imei del celular del cliente para el registro.
 
 ```javascript
 const url = new URL(
-    "http://pairumanibackoffice.test/api/signup"
+    "http://c2210260.ferozo.com/api/signup"
 );
 
 let headers = {
@@ -305,14 +305,14 @@ Los nombes del cliente para el registro.
 Los apellidos del cliente para el registro.
 </p>
 <p>
-<b><code>tipo_documento</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
-<input type="text" name="tipo_documento" data-endpoint="POSTapi-signup" data-component="body" required  hidden>
+<b><code>tipo_documento</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+<input type="text" name="tipo_documento" data-endpoint="POSTapi-signup" data-component="body"  hidden>
 <br>
 El tipo de documento que tiene el cliente para el registro .
 </p>
 <p>
-<b><code>num_documento</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
-<input type="text" name="num_documento" data-endpoint="POSTapi-signup" data-component="body" required  hidden>
+<b><code>num_documento</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+<input type="text" name="num_documento" data-endpoint="POSTapi-signup" data-component="body"  hidden>
 <br>
 Número de documento del cliente para el registro.
 </p>
@@ -323,32 +323,32 @@ Número de documento del cliente para el registro.
 Número de celular del cliente para el registro.
 </p>
 <p>
-<b><code>direccion</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
-<input type="text" name="direccion" data-endpoint="POSTapi-signup" data-component="body" required  hidden>
+<b><code>direccion</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+<input type="text" name="direccion" data-endpoint="POSTapi-signup" data-component="body"  hidden>
 <br>
 Direccón del cliente para el registro.
 </p>
 <p>
-<b><code>ciudad</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
-<input type="text" name="ciudad" data-endpoint="POSTapi-signup" data-component="body" required  hidden>
+<b><code>ciudad</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+<input type="text" name="ciudad" data-endpoint="POSTapi-signup" data-component="body"  hidden>
 <br>
 La ciudad donde vive el cliente para el registro.
 </p>
 <p>
-<b><code>pais</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
-<input type="text" name="pais" data-endpoint="POSTapi-signup" data-component="body" required  hidden>
+<b><code>pais</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+<input type="text" name="pais" data-endpoint="POSTapi-signup" data-component="body"  hidden>
 <br>
 País donde vive el cliente para el registro.
 </p>
 <p>
-<b><code>oficio</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
-<input type="text" name="oficio" data-endpoint="POSTapi-signup" data-component="body" required  hidden>
+<b><code>oficio</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+<input type="text" name="oficio" data-endpoint="POSTapi-signup" data-component="body"  hidden>
 <br>
 El trabajo que realiza el cliente para el registro.
 </p>
 <p>
-<b><code>empresa</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
-<input type="text" name="empresa" data-endpoint="POSTapi-signup" data-component="body" required  hidden>
+<b><code>empresa</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+<input type="text" name="empresa" data-endpoint="POSTapi-signup" data-component="body"  hidden>
 <br>
 La empresa donde trabaja actualemnte el cliente para el registro.
 </p>
@@ -377,20 +377,20 @@ La clave que usara para ingresar al sistema el cliente para el registro.
 Fecha de nacimiento del cliente para el registro.
 </p>
 <p>
-<b><code>motivo_viaje</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
-<input type="text" name="motivo_viaje" data-endpoint="POSTapi-signup" data-component="body" required  hidden>
+<b><code>motivo_viaje</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+<input type="text" name="motivo_viaje" data-endpoint="POSTapi-signup" data-component="body"  hidden>
 <br>
 Motivo por el cual viaja el cliente para el registro.
 </p>
 <p>
-<b><code>foto</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
-<input type="text" name="foto" data-endpoint="POSTapi-signup" data-component="body" required  hidden>
+<b><code>foto</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+<input type="text" name="foto" data-endpoint="POSTapi-signup" data-component="body"  hidden>
 <br>
 Foto que se registrara cuando haga login con sus redes sociales o suba una foto el lciente para el registro.
 </p>
 <p>
-<b><code>imei_celular</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
-<input type="text" name="imei_celular" data-endpoint="POSTapi-signup" data-component="body" required  hidden>
+<b><code>imei_celular</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+<input type="text" name="imei_celular" data-endpoint="POSTapi-signup" data-component="body"  hidden>
 <br>
 Se registrara el imei del celular del cliente para el registro.
 </p>
@@ -398,7 +398,7 @@ Se registrara el imei del celular del cliente para el registro.
 </form>
 
 
-## Perfil de Cliente
+## CLIENTE -  Perfil de Cliente
 
 
 
@@ -407,7 +407,7 @@ Se registrara el imei del celular del cliente para el registro.
 
 ```javascript
 const url = new URL(
-    "http://pairumanibackoffice.test/api/perfil"
+    "http://c2210260.ferozo.com/api/perfil"
 );
 
 let headers = {
@@ -481,7 +481,7 @@ Id del cliente para mostrar el detalle de su perfil.
 </form>
 
 
-## Verificacion de email para cambio de password
+## CLIENTE -  Editar perfil Cliente
 
 
 
@@ -490,7 +490,202 @@ Id del cliente para mostrar el detalle de su perfil.
 
 ```javascript
 const url = new URL(
-    "http://pairumanibackoffice.test/api/verificaremail"
+    "http://c2210260.ferozo.com/api/update"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "nombres": "Jose Rodrigo",
+    "apellidos": "Cespedes Rojas",
+    "tipo_documento": "Ci,Pasaporte",
+    "num_documento": "657848455",
+    "celular": "65582210",
+    "direccion": "Av Potosi",
+    "ciudad": "La Paz",
+    "pais": "Bolivia",
+    "oficio": "Ing Civil",
+    "empresa": "YPFB",
+    "telefono": "4652588",
+    "email": "cliente@gmail.com",
+    "password": "cliente54782",
+    "fecha_nacimiento": "1985-03-22",
+    "motivo_viaje": "Recreacion,Negocios,Salud,Otro",
+    "foto": "foto.jpg",
+    "imei_celular": "354651100023680"
+}
+
+fetch(url, {
+    method: "POST",
+    headers,
+    body: JSON.stringify(body),
+}).then(response => response.json());
+```
+
+
+> Example response (200, success):
+
+```json
+{
+    "id": 7,
+    "nombres": "Juan Carlos",
+    "apellidos": "Espinoza Cespedes",
+    "tipo_documento": "Ci",
+    "num_documento": "94564455",
+    "celular": "65582210",
+    "direccion": "Av Pando",
+    "ciudad": "Cochabamba",
+    "pais": "Bolivia",
+    "oficio": "Arquitecto",
+    "empresa": "SOFT",
+    "telefono": "4444444",
+    "email": "juan@gmail.com",
+    "fecha_nacimiento": "1989-05-12",
+    "motivo_viaje": "Recreacion",
+    "foto": "foto.jpg",
+    "api_token": "KjUdFmnlAu7aFjlUXWIuSE1L4wPM8y3oWFacDALHOHKbNlbZGIa6ifz6Ojy4",
+    "imei_celular": "354651100023680"
+}
+```
+<div id="execution-results-POSTapi-update" hidden>
+    <blockquote>Received response<span id="execution-response-status-POSTapi-update"></span>:</blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-update"></code></pre>
+</div>
+<div id="execution-error-POSTapi-update" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-update"></code></pre>
+</div>
+<form id="form-POSTapi-update" data-method="POST" data-path="api/update" data-authed="0" data-hasfiles="0" data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('POSTapi-update', this);">
+<h3>
+    Request&nbsp;&nbsp;&nbsp;
+        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-POSTapi-update" onclick="tryItOut('POSTapi-update');">Try it out ⚡</button>
+    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-POSTapi-update" onclick="cancelTryOut('POSTapi-update');" hidden>Cancel</button>&nbsp;&nbsp;
+    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-POSTapi-update" hidden>Send Request 💥</button>
+    </h3>
+<p>
+<small class="badge badge-black">POST</small>
+ <b><code>api/update</code></b>
+</p>
+<h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+<p>
+<b><code>nombres</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<input type="text" name="nombres" data-endpoint="POSTapi-update" data-component="body" required  hidden>
+<br>
+Los nombes del cliente para el registro.
+</p>
+<p>
+<b><code>apellidos</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<input type="text" name="apellidos" data-endpoint="POSTapi-update" data-component="body" required  hidden>
+<br>
+Los apellidos del cliente para el registro.
+</p>
+<p>
+<b><code>tipo_documento</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+<input type="text" name="tipo_documento" data-endpoint="POSTapi-update" data-component="body"  hidden>
+<br>
+El tipo de documento que tiene el cliente para el registro .
+</p>
+<p>
+<b><code>num_documento</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+<input type="text" name="num_documento" data-endpoint="POSTapi-update" data-component="body"  hidden>
+<br>
+Número de documento del cliente para el registro.
+</p>
+<p>
+<b><code>celular</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<input type="text" name="celular" data-endpoint="POSTapi-update" data-component="body" required  hidden>
+<br>
+Número de celular del cliente para el registro.
+</p>
+<p>
+<b><code>direccion</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+<input type="text" name="direccion" data-endpoint="POSTapi-update" data-component="body"  hidden>
+<br>
+Direccón del cliente para el registro.
+</p>
+<p>
+<b><code>ciudad</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+<input type="text" name="ciudad" data-endpoint="POSTapi-update" data-component="body"  hidden>
+<br>
+La ciudad donde vive el cliente para el registro.
+</p>
+<p>
+<b><code>pais</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+<input type="text" name="pais" data-endpoint="POSTapi-update" data-component="body"  hidden>
+<br>
+País donde vive el cliente para el registro.
+</p>
+<p>
+<b><code>oficio</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+<input type="text" name="oficio" data-endpoint="POSTapi-update" data-component="body"  hidden>
+<br>
+El trabajo que realiza el cliente para el registro.
+</p>
+<p>
+<b><code>empresa</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+<input type="text" name="empresa" data-endpoint="POSTapi-update" data-component="body"  hidden>
+<br>
+La empresa donde trabaja actualemnte el cliente para el registro.
+</p>
+<p>
+<b><code>telefono</code></b>&nbsp;&nbsp;<small>Número</small>     <i>optional</i> &nbsp;
+<input type="text" name="telefono" data-endpoint="POSTapi-update" data-component="body"  hidden>
+<br>
+de telefono fijo del cliente para el registro.
+</p>
+<p>
+<b><code>email</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+<input type="text" name="email" data-endpoint="POSTapi-update" data-component="body"  hidden>
+<br>
+Email que usa el cliente para el registro.
+</p>
+<p>
+<b><code>password</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+<input type="password" name="password" data-endpoint="POSTapi-update" data-component="body"  hidden>
+<br>
+La clave que usara para ingresar al sistema el cliente para el registro.
+</p>
+<p>
+<b><code>fecha_nacimiento</code></b>&nbsp;&nbsp;<small>date</small>     <i>optional</i> &nbsp;
+<input type="text" name="fecha_nacimiento" data-endpoint="POSTapi-update" data-component="body"  hidden>
+<br>
+Fecha de nacimiento del cliente para el registro.
+</p>
+<p>
+<b><code>motivo_viaje</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+<input type="text" name="motivo_viaje" data-endpoint="POSTapi-update" data-component="body"  hidden>
+<br>
+Motivo por el cual viaja el cliente para el registro.
+</p>
+<p>
+<b><code>foto</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+<input type="text" name="foto" data-endpoint="POSTapi-update" data-component="body"  hidden>
+<br>
+Foto que se registrara cuando haga login con sus redes sociales o suba una foto el lciente para el registro.
+</p>
+<p>
+<b><code>imei_celular</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+<input type="text" name="imei_celular" data-endpoint="POSTapi-update" data-component="body"  hidden>
+<br>
+Se registrara el imei del celular del cliente para el registro.
+</p>
+
+</form>
+
+
+## CLIENTE -  Verificacion de email para cambio de password
+
+
+
+
+> Example request:
+
+```javascript
+const url = new URL(
+    "http://c2210260.ferozo.com/api/verificaremail"
 );
 
 let headers = {
@@ -513,9 +708,25 @@ fetch(url, {
 > Example response (200, success):
 
 ```json
-
 {
-  "data": true,
+    "id": 7,
+    "nombres": "Juan Carlos",
+    "apellidos": "Espinoza Cespedes",
+    "tipo_documento": "Ci",
+    "num_documento": "94564455",
+    "celular": "65582210",
+    "direccion": "Av Pando",
+    "ciudad": "Cochabamba",
+    "pais": "Bolivia",
+    "oficio": "Arquitecto",
+    "empresa": "SOFT",
+    "telefono": "4444444",
+    "email": "juan@gmail.com",
+    "fecha_nacimiento": "1989-05-12",
+    "motivo_viaje": "Recreacion",
+    "foto": "foto.jpg",
+    "api_token": "KjUdFmnlAu7aFjlUXWIuSE1L4wPM8y3oWFacDALHOHKbNlbZGIa6ifz6Ojy4",
+    "imei_celular": "354651100023680"
 }
 ```
 <div id="execution-results-POSTapi-verificaremail" hidden>
@@ -548,7 +759,7 @@ Verificacion que existe el email enviado.
 </form>
 
 
-## Verificacion de codigo enviado al email del cliente
+## CLIENTE -  Verificacion de codigo enviado al email del cliente
 
 
 
@@ -557,7 +768,7 @@ Verificacion que existe el email enviado.
 
 ```javascript
 const url = new URL(
-    "http://pairumanibackoffice.test/api/verificarcodigo"
+    "http://c2210260.ferozo.com/api/verificarcodigo"
 );
 
 let headers = {
@@ -566,7 +777,8 @@ let headers = {
 };
 
 let body = {
-    "codigo": "58741258"
+    "codigo": "58741258",
+    "cliente_id": 5
 }
 
 fetch(url, {
@@ -580,9 +792,25 @@ fetch(url, {
 > Example response (200, success):
 
 ```json
-
 {
-  "data": true o false,
+    "id": 7,
+    "nombres": "Juan Carlos",
+    "apellidos": "Espinoza Cespedes",
+    "tipo_documento": "Ci",
+    "num_documento": "94564455",
+    "celular": "65582210",
+    "direccion": "Av Pando",
+    "ciudad": "Cochabamba",
+    "pais": "Bolivia",
+    "oficio": "Arquitecto",
+    "empresa": "SOFT",
+    "telefono": "4444444",
+    "email": "juan@gmail.com",
+    "fecha_nacimiento": "1989-05-12",
+    "motivo_viaje": "Recreacion",
+    "foto": "foto.jpg",
+    "api_token": "KjUdFmnlAu7aFjlUXWIuSE1L4wPM8y3oWFacDALHOHKbNlbZGIa6ifz6Ojy4",
+    "imei_celular": "354651100023680"
 }
 ```
 <div id="execution-results-POSTapi-verificarcodigo" hidden>
@@ -611,11 +839,17 @@ fetch(url, {
 <br>
 Verificacion que el codigo que se envio a su email coincidan.
 </p>
+<p>
+<b><code>cliente_id</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+<input type="number" name="cliente_id" data-endpoint="POSTapi-verificarcodigo" data-component="body" required  hidden>
+<br>
+Id del cliente para devolver su informacion.
+</p>
 
 </form>
 
 
-## Cambio de password del Cliente
+## CLIENTE - Cambio de password del Cliente
 
 
 
@@ -624,7 +858,7 @@ Verificacion que el codigo que se envio a su email coincidan.
 
 ```javascript
 const url = new URL(
-    "http://pairumanibackoffice.test/api/cambiarpassword"
+    "http://c2210260.ferozo.com/api/cambiarpassword"
 );
 
 let headers = {
@@ -696,7 +930,7 @@ Verificacion de que escribio bien la contraseña.
 </form>
 
 
-## Listado de la Galeria del Hotel
+## SLIDERS - Listado de la Galeria del Hotel
 
 
 
@@ -705,7 +939,7 @@ Verificacion de que escribio bien la contraseña.
 
 ```javascript
 const url = new URL(
-    "http://pairumanibackoffice.test/api/sliders"
+    "http://c2210260.ferozo.com/api/sliders"
 );
 
 let headers = {
@@ -730,7 +964,7 @@ fetch(url, {
 ```json
 {
     "id": 1,
-    "foto": "http:\/\/pairumanibackoffice.test\/laravel\/public\/imagenes\/hotel\/galeria\/foto_210514173512.jpg",
+    "foto": "http:\/\/pairumanibackoffice.test\/public\/imagenes\/hotel\/galeria\/foto_210514173512.jpg",
     "descripcion": "<p>sadsafasfa<\/p>"
 }
 ```
@@ -764,7 +998,7 @@ Campo unico del cliente autenticado para acceder a esta ruta.
 </form>
 
 
-## Listado de las categorias de las habitaciones
+## HABITACIONES - Listado de las categorias de las habitaciones
 
 
 
@@ -773,7 +1007,7 @@ Campo unico del cliente autenticado para acceder a esta ruta.
 
 ```javascript
 const url = new URL(
-    "http://pairumanibackoffice.test/api/habitacioncategorias"
+    "http://c2210260.ferozo.com/api/habitacioncategorias"
 );
 
 let headers = {
@@ -800,7 +1034,7 @@ fetch(url, {
     "id": 4,
     "nombre": "Habitacion Presidencial",
     "descripcion": "<p>sadsafasfa<\/p>",
-    "foto": "http:\/\/pairumanibackoffice.test\/laravel\/public\/imagenes\/habitaciones\/categorias\/habitacioncategoria_210422124342.jpg"
+    "foto": "http:\/\/pairumanibackoffice.test\/public\/imagenes\/habitaciones\/categorias\/habitacioncategoria_210422124342.jpg"
 }
 ```
 <div id="execution-results-GETapi-habitacioncategorias" hidden>
@@ -833,7 +1067,7 @@ Campo unico del cliente autenticado para acceder a esta ruta.
 </form>
 
 
-## Listado de habitaciones segun la categoria que estan enlazadas
+## HABITACIONES - Listado de habitaciones segun la categoria que estan enlazadas
 
 
 
@@ -842,7 +1076,7 @@ Campo unico del cliente autenticado para acceder a esta ruta.
 
 ```javascript
 const url = new URL(
-    "http://pairumanibackoffice.test/api/habitaciones"
+    "http://c2210260.ferozo.com/api/habitaciones"
 );
 
 let headers = {
@@ -875,7 +1109,7 @@ fetch(url, {
     "capacidad_minima": "3",
     "capacidad_maxima": "7",
     "estado": "Disponible",
-    "foto": "http:\/\/pairumanibackoffice.test\/laravel\/public\/imagenes\/habitaciones\/habitacion_210516222401.jfif"
+    "foto": "http:\/\/pairumanibackoffice.test\/public\/imagenes\/habitaciones\/habitacion_210516222401.jfif"
 }
 ```
 <div id="execution-results-POSTapi-habitaciones" hidden>
@@ -914,7 +1148,7 @@ Id de la categoria de la habitacion.
 </form>
 
 
-## Detalle de la habitacion
+## HABITACIONES - Detalle de la habitacion
 
 
 
@@ -923,7 +1157,7 @@ Id de la categoria de la habitacion.
 
 ```javascript
 const url = new URL(
-    "http://pairumanibackoffice.test/api/habitaciondetalle"
+    "http://c2210260.ferozo.com/api/habitaciondetalle"
 );
 
 let headers = {
@@ -956,7 +1190,7 @@ fetch(url, {
     "capacidad_minima": "6",
     "capacidad_maxima": "8",
     "estado": "Reservado",
-    "foto": "http:\/\/pairumanibackoffice.test\/laravel\/public\/imagenes\/habitaciones\/habitacion_210430121313.jpg"
+    "foto": "http:\/\/pairumanibackoffice.test\/public\/imagenes\/habitaciones\/habitacion_210430121313.jpg"
 }
 ```
 <div id="execution-results-POSTapi-habitaciondetalle" hidden>
@@ -995,7 +1229,7 @@ Id de la habitacion para ver su detalle.
 </form>
 
 
-## Listado de habitaciones a la categoria que pertenece
+## HABITACIONES - Listado de habitaciones a la categoria que pertenece
 
 
 
@@ -1004,7 +1238,7 @@ Id de la habitacion para ver su detalle.
 
 ```javascript
 const url = new URL(
-    "http://pairumanibackoffice.test/api/Habitacionescategoria"
+    "http://c2210260.ferozo.com/api/Habitacionescategoria"
 );
 
 let headers = {
@@ -1037,7 +1271,7 @@ fetch(url, {
     "capacidad_maxima": "7",
     "estado": "Disponible",
     "categoria": "Habitacion Presidencial",
-    "foto": "http:\/\/pairumanibackoffice.test\/laravel\/public\/imagenes\/habitaciones\/habitacion_210516222401.jfif"
+    "foto": "http:\/\/pairumanibackoffice.test\/public\/imagenes\/habitaciones\/habitacion_210516222401.jfif"
 }
 ```
 <div id="execution-results-GETapi-Habitacionescategoria" hidden>
@@ -1070,7 +1304,7 @@ Campo unico del cliente autenticado para acceder a esta ruta.
 </form>
 
 
-## Listado de promociones de las habitaciones
+## PROMOCION - Listado de promociones de las habitaciones
 
 
 
@@ -1079,7 +1313,7 @@ Campo unico del cliente autenticado para acceder a esta ruta.
 
 ```javascript
 const url = new URL(
-    "http://pairumanibackoffice.test/api/promociones"
+    "http://c2210260.ferozo.com/api/promociones"
 );
 
 let headers = {
@@ -1107,7 +1341,7 @@ fetch(url, {
     "descripcion": "<p>asfasfasfasfsafa<\/p>",
     "precio": "150.00",
     "estado": "Activo",
-    "foto": "http:\/\/pairumanibackoffice.test\/laravel\/public\/imagenes\/promociones\/promocion_210513161554.jpg"
+    "foto": "http:\/\/pairumanibackoffice.test\/public\/imagenes\/promociones\/promocion_210513161554.jpg"
 }
 ```
 <div id="execution-results-GETapi-promociones" hidden>
@@ -1140,7 +1374,7 @@ Campo unico del cliente autenticado para acceder a esta ruta.
 </form>
 
 
-## Listado de transportes
+## TRANSPORTES - Listado de transportes
 
 
 
@@ -1149,7 +1383,7 @@ Campo unico del cliente autenticado para acceder a esta ruta.
 
 ```javascript
 const url = new URL(
-    "http://pairumanibackoffice.test/api/transportes"
+    "http://c2210260.ferozo.com/api/transportes"
 );
 
 let headers = {
@@ -1208,7 +1442,7 @@ Campo unico del cliente autenticado para acceder a esta ruta.
 </form>
 
 
-## Listado de eventos
+## TRANSPORTES - Detalle de transporte
 
 
 
@@ -1217,7 +1451,83 @@ Campo unico del cliente autenticado para acceder a esta ruta.
 
 ```javascript
 const url = new URL(
-    "http://pairumanibackoffice.test/api/eventos"
+    "http://c2210260.ferozo.com/api/transportedetalle"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "bearer_token": "drWa9YnurQFx6bY8rfsRcdMXsXpLvTUWSEkqQHivBDLJpbFv7E31BxxBcj6z",
+    "transporte_id": 1
+}
+
+fetch(url, {
+    method: "POST",
+    headers,
+    body: JSON.stringify(body),
+}).then(response => response.json());
+```
+
+
+> Example response (200, success):
+
+```json
+{
+    "nombre": "Taxis corona",
+    "descripcion": "<p>adasdasdasd<\/p>",
+    "precio": "25.00",
+    "foto": "foto.jpg"
+}
+```
+<div id="execution-results-POSTapi-transportedetalle" hidden>
+    <blockquote>Received response<span id="execution-response-status-POSTapi-transportedetalle"></span>:</blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-transportedetalle"></code></pre>
+</div>
+<div id="execution-error-POSTapi-transportedetalle" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-transportedetalle"></code></pre>
+</div>
+<form id="form-POSTapi-transportedetalle" data-method="POST" data-path="api/transportedetalle" data-authed="0" data-hasfiles="0" data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('POSTapi-transportedetalle', this);">
+<h3>
+    Request&nbsp;&nbsp;&nbsp;
+        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-POSTapi-transportedetalle" onclick="tryItOut('POSTapi-transportedetalle');">Try it out ⚡</button>
+    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-POSTapi-transportedetalle" onclick="cancelTryOut('POSTapi-transportedetalle');" hidden>Cancel</button>&nbsp;&nbsp;
+    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-POSTapi-transportedetalle" hidden>Send Request 💥</button>
+    </h3>
+<p>
+<small class="badge badge-black">POST</small>
+ <b><code>api/transportedetalle</code></b>
+</p>
+<h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+<p>
+<b><code>bearer_token</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<input type="text" name="bearer_token" data-endpoint="POSTapi-transportedetalle" data-component="body" required  hidden>
+<br>
+Campo unico del cliente autenticado para acceder a esta ruta.
+</p>
+<p>
+<b><code>transporte_id</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+<input type="number" name="transporte_id" data-endpoint="POSTapi-transportedetalle" data-component="body" required  hidden>
+<br>
+Id del transporte para ver su detalle.
+</p>
+
+</form>
+
+
+## EVENTOS - Listado de eventos
+
+
+
+
+> Example request:
+
+```javascript
+const url = new URL(
+    "http://c2210260.ferozo.com/api/eventos"
 );
 
 let headers = {
@@ -1244,7 +1554,7 @@ fetch(url, {
     "nombre": "sadaasfasa",
     "descripcion": "<p>asfasfasfas<\/p>",
     "fecha": "2021-04-24",
-    "foto": "http:\/\/pairumanibackoffice.test\/laravel\/public\/imagenes\/eventos\/evento_210422123859.jpg"
+    "foto": "http:\/\/pairumanibackoffice.test\/public\/imagenes\/eventos\/evento_210422123859.jpg"
 }
 ```
 <div id="execution-results-GETapi-eventos" hidden>
@@ -1277,7 +1587,7 @@ Campo unico del cliente autenticado para acceder a esta ruta.
 </form>
 
 
-## Listado de Lugares Turisticos Gastronomicos
+## TURISTICOS - Listado de Lugares Turisticos Gastronomicos
 
 
 
@@ -1286,7 +1596,7 @@ Campo unico del cliente autenticado para acceder a esta ruta.
 
 ```javascript
 const url = new URL(
-    "http://pairumanibackoffice.test/api/lugaresgastronomia"
+    "http://c2210260.ferozo.com/api/lugaresgastronomia"
 );
 
 let headers = {
@@ -1316,7 +1626,7 @@ fetch(url, {
     "lat": "-17.38918918180772",
     "lng": "-66.15840481762962",
     "tipo": "Gastronomia",
-    "foto": "http:\/\/pairumanibackoffice.test\/laravel\/public\/imagenes\/lugaresturisticos\/lugar_210422114750.jpg"
+    "foto": "http:\/\/pairumanibackoffice.test\/public\/imagenes\/lugaresturisticos\/lugar_210422114750.jpg"
 }
 ```
 <div id="execution-results-GETapi-lugaresgastronomia" hidden>
@@ -1349,7 +1659,7 @@ Campo unico del cliente autenticado para acceder a esta ruta.
 </form>
 
 
-## Listado de Lugares Turisticos Turismo
+## TURISTICOS - Listado de Lugares Turisticos Turismo
 
 
 
@@ -1358,7 +1668,7 @@ Campo unico del cliente autenticado para acceder a esta ruta.
 
 ```javascript
 const url = new URL(
-    "http://pairumanibackoffice.test/api/lugaresturismo"
+    "http://c2210260.ferozo.com/api/lugaresturismo"
 );
 
 let headers = {
@@ -1388,7 +1698,7 @@ fetch(url, {
     "lat": "-17.38918918180772",
     "lng": "-66.15840481762962",
     "tipo": "Turismo",
-    "foto": "http:\/\/pairumanibackoffice.test\/laravel\/public\/imagenes\/lugaresturisticos\/lugar_210422114750.jpg"
+    "foto": "http:\/\/pairumanibackoffice.test\/public\/imagenes\/lugaresturisticos\/lugar_210422114750.jpg"
 }
 ```
 <div id="execution-results-GETapi-lugaresturismo" hidden>
@@ -1421,7 +1731,7 @@ Campo unico del cliente autenticado para acceder a esta ruta.
 </form>
 
 
-## Detalle Lugar Turistico
+## TURISTICOS - Detalle Lugar Turistico
 
 
 
@@ -1430,7 +1740,7 @@ Campo unico del cliente autenticado para acceder a esta ruta.
 
 ```javascript
 const url = new URL(
-    "http://pairumanibackoffice.test/api/turismodetalle"
+    "http://c2210260.ferozo.com/api/turismodetalle"
 );
 
 let headers = {
@@ -1461,7 +1771,7 @@ fetch(url, {
     "lat": "-17.39375549279761",
     "lng": "-66.15695642476157",
     "tipo": "Turismo",
-    "foto": "http:\/\/pairumanibackoffice.test\/laravel\/public\/imagenes\/lugaresturisticos\/lugar_210513145930.jpg"
+    "foto": "http:\/\/pairumanibackoffice.test\/public\/imagenes\/lugaresturisticos\/lugar_210513145930.jpg"
 }
 ```
 <div id="execution-results-POSTapi-turismodetalle" hidden>
@@ -1500,7 +1810,7 @@ Id del lugar turistico.
 </form>
 
 
-## Listado de Categorias Restaurante
+## RESTAURANTE - Listado de Categorias Restaurante
 
 
 
@@ -1509,7 +1819,7 @@ Id del lugar turistico.
 
 ```javascript
 const url = new URL(
-    "http://pairumanibackoffice.test/api/restaurantecategorias"
+    "http://c2210260.ferozo.com/api/restaurantecategorias"
 );
 
 let headers = {
@@ -1535,7 +1845,7 @@ fetch(url, {
 {
     "nombre": "adasdasfasf",
     "descripcion": "<p>safasfasfasfa<\/p>",
-    "foto": "http:\/\/pairumanibackoffice.test\/laravel\/public\/imagenes\/restaurantes\/categorias\/restaurantecategoria_210422153310.jpg"
+    "foto": "http:\/\/pairumanibackoffice.test\/public\/imagenes\/restaurantes\/categorias\/restaurantecategoria_210422153310.jpg"
 }
 ```
 <div id="execution-results-GETapi-restaurantecategorias" hidden>
@@ -1568,7 +1878,7 @@ Campo unico del cliente autenticado para acceder a esta ruta.
 </form>
 
 
-## Listado de Productos Restaurante segun a la Categoria que pertenecen
+## RESTAURANTE - Listado de Productos Restaurante segun a la Categoria que pertenecen
 
 
 
@@ -1577,7 +1887,7 @@ Campo unico del cliente autenticado para acceder a esta ruta.
 
 ```javascript
 const url = new URL(
-    "http://pairumanibackoffice.test/api/restauranteproductos"
+    "http://c2210260.ferozo.com/api/restauranteproductos"
 );
 
 let headers = {
@@ -1605,7 +1915,7 @@ fetch(url, {
     "nombre": "Pique macho",
     "descripcion": "<p>afasfasfasfasfasf<\/p>",
     "precio": "100.00",
-    "foto": "http:\/\/pairumanibackoffice.test\/laravel\/public\/imagenes\/restaurantes\/productos\/producto_210423115837.jpg"
+    "foto": "http:\/\/pairumanibackoffice.test\/public\/imagenes\/restaurantes\/productos\/producto_210423115837.jpg"
 }
 ```
 <div id="execution-results-POSTapi-restauranteproductos" hidden>
@@ -1644,7 +1954,7 @@ Id de la categoria del producto.
 </form>
 
 
-## Deatelle Producto Restaurante
+## RESTAURANTE - Deatelle Producto Restaurante
 
 
 
@@ -1653,7 +1963,7 @@ Id de la categoria del producto.
 
 ```javascript
 const url = new URL(
-    "http://pairumanibackoffice.test/api/productodetalle"
+    "http://c2210260.ferozo.com/api/productodetalle"
 );
 
 let headers = {
@@ -1681,7 +1991,7 @@ fetch(url, {
     "nombre": "Pique macho",
     "descripcion": "<p>afasfasfasfasfasf<\/p>",
     "precio": "100.00",
-    "foto": "http:\/\/pairumanibackoffice.test\/laravel\/public\/imagenes\/restaurantes\/productos\/producto_210423115837.jpg"
+    "foto": "http:\/\/pairumanibackoffice.test\/public\/imagenes\/restaurantes\/productos\/producto_210423115837.jpg"
 }
 ```
 <div id="execution-results-POSTapi-productodetalle" hidden>
@@ -1720,7 +2030,7 @@ Id del producto.
 </form>
 
 
-## Creacion de la Reserva de una Habitacion
+## CAFETERIA - Listado de Categorias Cafeteria
 
 
 
@@ -1729,7 +2039,227 @@ Id del producto.
 
 ```javascript
 const url = new URL(
-    "http://pairumanibackoffice.test/api/reservahabitacion"
+    "http://c2210260.ferozo.com/api/cafeteriacategorias"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "bearer_token": "drWa9YnurQFx6bY8rfsRcdMXsXpLvTUWSEkqQHivBDLJpbFv7E31BxxBcj6z"
+}
+
+fetch(url, {
+    method: "GET",
+    headers,
+    body: JSON.stringify(body),
+}).then(response => response.json());
+```
+
+
+> Example response (200, success):
+
+```json
+{
+    "nombre": "adasdasfasf",
+    "descripcion": "<p>safasfasfasfa<\/p>",
+    "foto": "http:\/\/pairumanibackoffice.test\/public\/imagenes\/cafeteria\/categorias\/cafeteriacategoria_210422153310.jpg"
+}
+```
+<div id="execution-results-GETapi-cafeteriacategorias" hidden>
+    <blockquote>Received response<span id="execution-response-status-GETapi-cafeteriacategorias"></span>:</blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-cafeteriacategorias"></code></pre>
+</div>
+<div id="execution-error-GETapi-cafeteriacategorias" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-cafeteriacategorias"></code></pre>
+</div>
+<form id="form-GETapi-cafeteriacategorias" data-method="GET" data-path="api/cafeteriacategorias" data-authed="0" data-hasfiles="0" data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('GETapi-cafeteriacategorias', this);">
+<h3>
+    Request&nbsp;&nbsp;&nbsp;
+        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-GETapi-cafeteriacategorias" onclick="tryItOut('GETapi-cafeteriacategorias');">Try it out ⚡</button>
+    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-GETapi-cafeteriacategorias" onclick="cancelTryOut('GETapi-cafeteriacategorias');" hidden>Cancel</button>&nbsp;&nbsp;
+    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-GETapi-cafeteriacategorias" hidden>Send Request 💥</button>
+    </h3>
+<p>
+<small class="badge badge-green">GET</small>
+ <b><code>api/cafeteriacategorias</code></b>
+</p>
+<h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+<p>
+<b><code>bearer_token</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<input type="text" name="bearer_token" data-endpoint="GETapi-cafeteriacategorias" data-component="body" required  hidden>
+<br>
+Campo unico del cliente autenticado para acceder a esta ruta.
+</p>
+
+</form>
+
+
+## CAFETERIA - Listado de Productos Cafeteria segun a la Categoria que pertenecen
+
+
+
+
+> Example request:
+
+```javascript
+const url = new URL(
+    "http://c2210260.ferozo.com/api/cafeteriaproductos"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "bearer_token": "drWa9YnurQFx6bY8rfsRcdMXsXpLvTUWSEkqQHivBDLJpbFv7E31BxxBcj6z",
+    "categoria_id": 1
+}
+
+fetch(url, {
+    method: "POST",
+    headers,
+    body: JSON.stringify(body),
+}).then(response => response.json());
+```
+
+
+> Example response (200, success):
+
+```json
+{
+    "nombre": "Pique macho",
+    "descripcion": "<p>afasfasfasfasfasf<\/p>",
+    "precio": "100.00",
+    "foto": "http:\/\/pairumanibackoffice.test\/public\/imagenes\/cafeteria\/productos\/producto_210423115837.jpg"
+}
+```
+<div id="execution-results-POSTapi-cafeteriaproductos" hidden>
+    <blockquote>Received response<span id="execution-response-status-POSTapi-cafeteriaproductos"></span>:</blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-cafeteriaproductos"></code></pre>
+</div>
+<div id="execution-error-POSTapi-cafeteriaproductos" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-cafeteriaproductos"></code></pre>
+</div>
+<form id="form-POSTapi-cafeteriaproductos" data-method="POST" data-path="api/cafeteriaproductos" data-authed="0" data-hasfiles="0" data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('POSTapi-cafeteriaproductos', this);">
+<h3>
+    Request&nbsp;&nbsp;&nbsp;
+        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-POSTapi-cafeteriaproductos" onclick="tryItOut('POSTapi-cafeteriaproductos');">Try it out ⚡</button>
+    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-POSTapi-cafeteriaproductos" onclick="cancelTryOut('POSTapi-cafeteriaproductos');" hidden>Cancel</button>&nbsp;&nbsp;
+    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-POSTapi-cafeteriaproductos" hidden>Send Request 💥</button>
+    </h3>
+<p>
+<small class="badge badge-black">POST</small>
+ <b><code>api/cafeteriaproductos</code></b>
+</p>
+<h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+<p>
+<b><code>bearer_token</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<input type="text" name="bearer_token" data-endpoint="POSTapi-cafeteriaproductos" data-component="body" required  hidden>
+<br>
+Campo unico del cliente autenticado para acceder a esta ruta.
+</p>
+<p>
+<b><code>categoria_id</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+<input type="number" name="categoria_id" data-endpoint="POSTapi-cafeteriaproductos" data-component="body" required  hidden>
+<br>
+Id de la categoria del producto.
+</p>
+
+</form>
+
+
+## CAFETERIA - Deatelle Producto Cafeteria
+
+
+
+
+> Example request:
+
+```javascript
+const url = new URL(
+    "http://c2210260.ferozo.com/api/cafeteriaproductodetalle"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "bearer_token": "drWa9YnurQFx6bY8rfsRcdMXsXpLvTUWSEkqQHivBDLJpbFv7E31BxxBcj6z",
+    "producto_id": 1
+}
+
+fetch(url, {
+    method: "POST",
+    headers,
+    body: JSON.stringify(body),
+}).then(response => response.json());
+```
+
+
+> Example response (200, success):
+
+```json
+{
+    "nombre": "Pique macho",
+    "descripcion": "<p>afasfasfasfasfasf<\/p>",
+    "precio": "100.00",
+    "foto": "http:\/\/pairumanibackoffice.test\/public\/imagenes\/cafeteria\/productos\/producto_210423115837.jpg"
+}
+```
+<div id="execution-results-POSTapi-cafeteriaproductodetalle" hidden>
+    <blockquote>Received response<span id="execution-response-status-POSTapi-cafeteriaproductodetalle"></span>:</blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-cafeteriaproductodetalle"></code></pre>
+</div>
+<div id="execution-error-POSTapi-cafeteriaproductodetalle" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-cafeteriaproductodetalle"></code></pre>
+</div>
+<form id="form-POSTapi-cafeteriaproductodetalle" data-method="POST" data-path="api/cafeteriaproductodetalle" data-authed="0" data-hasfiles="0" data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('POSTapi-cafeteriaproductodetalle', this);">
+<h3>
+    Request&nbsp;&nbsp;&nbsp;
+        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-POSTapi-cafeteriaproductodetalle" onclick="tryItOut('POSTapi-cafeteriaproductodetalle');">Try it out ⚡</button>
+    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-POSTapi-cafeteriaproductodetalle" onclick="cancelTryOut('POSTapi-cafeteriaproductodetalle');" hidden>Cancel</button>&nbsp;&nbsp;
+    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-POSTapi-cafeteriaproductodetalle" hidden>Send Request 💥</button>
+    </h3>
+<p>
+<small class="badge badge-black">POST</small>
+ <b><code>api/cafeteriaproductodetalle</code></b>
+</p>
+<h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+<p>
+<b><code>bearer_token</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<input type="text" name="bearer_token" data-endpoint="POSTapi-cafeteriaproductodetalle" data-component="body" required  hidden>
+<br>
+Campo unico del cliente autenticado para acceder a esta ruta.
+</p>
+<p>
+<b><code>producto_id</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+<input type="number" name="producto_id" data-endpoint="POSTapi-cafeteriaproductodetalle" data-component="body" required  hidden>
+<br>
+Id del producto.
+</p>
+
+</form>
+
+
+## RESERVAS - Nueva reserva.
+
+
+Creacion de la Reserva de una Habitacion
+
+> Example request:
+
+```javascript
+const url = new URL(
+    "http://c2210260.ferozo.com/api/reservahabitacion"
 );
 
 let headers = {
@@ -1742,7 +2272,7 @@ let body = {
     "checkin": "2021-05-17",
     "checkout": "2021-05-19",
     "adultos": 3,
-    "ni\u00f1os": 2,
+    "ninos": 2,
     "cliente_id": 1,
     "habitacion_id": 1
 }
@@ -1813,8 +2343,8 @@ Fecha checkout.
 Canridad de adultos en la habitacion.
 </p>
 <p>
-<b><code>niños</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
-<input type="number" name="niños" data-endpoint="POSTapi-reservahabitacion" data-component="body" required  hidden>
+<b><code>ninos</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+<input type="number" name="ninos" data-endpoint="POSTapi-reservahabitacion" data-component="body" required  hidden>
 <br>
 Cantidad de niños en la habitacion.
 </p>
@@ -1829,6 +2359,729 @@ Id del cliente a reservar.
 <input type="number" name="habitacion_id" data-endpoint="POSTapi-reservahabitacion" data-component="body" required  hidden>
 <br>
 Id de la habitacion.
+</p>
+
+</form>
+
+
+## RESERVAS - Mis reservas.
+
+
+Muestra la lsita de las reservas del cliente
+
+> Example request:
+
+```javascript
+const url = new URL(
+    "http://c2210260.ferozo.com/api/misreservas"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "bearer_token": "drWa9YnurQFx6bY8rfsRcdMXsXpLvTUWSEkqQHivBDLJpbFv7E31BxxBcj6z",
+    "cliente_id": 1
+}
+
+fetch(url, {
+    method: "POST",
+    headers,
+    body: JSON.stringify(body),
+}).then(response => response.json());
+```
+
+
+> Example response (200, success):
+
+```json
+{
+    "id": 5,
+    "checkin": "2021-05-06",
+    "checkout": "2021-05-08",
+    "adultos": 3,
+    "niños": 2,
+    "cliente": {
+        "nombre": "Paola Montecinos Pardo",
+        "celular": "8888888",
+        "telefono": "9999999",
+        "ciudad": "Cochabamba",
+        "pais": "Bolivia",
+        "oficio": "Arquitecto",
+        "email": "paola@gmail.com"
+    },
+    "habitacion": {
+        "nombre": "Habitacion 20",
+        "num_habitacion": "20",
+        "precio": "450.00",
+        "foto": "http:\/\/pairumanibackoffice.test\/public\/imagenes\/habitaciones\/habitacion_210506153104.jfif"
+    }
+}
+```
+<div id="execution-results-POSTapi-misreservas" hidden>
+    <blockquote>Received response<span id="execution-response-status-POSTapi-misreservas"></span>:</blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-misreservas"></code></pre>
+</div>
+<div id="execution-error-POSTapi-misreservas" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-misreservas"></code></pre>
+</div>
+<form id="form-POSTapi-misreservas" data-method="POST" data-path="api/misreservas" data-authed="0" data-hasfiles="0" data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('POSTapi-misreservas', this);">
+<h3>
+    Request&nbsp;&nbsp;&nbsp;
+        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-POSTapi-misreservas" onclick="tryItOut('POSTapi-misreservas');">Try it out ⚡</button>
+    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-POSTapi-misreservas" onclick="cancelTryOut('POSTapi-misreservas');" hidden>Cancel</button>&nbsp;&nbsp;
+    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-POSTapi-misreservas" hidden>Send Request 💥</button>
+    </h3>
+<p>
+<small class="badge badge-black">POST</small>
+ <b><code>api/misreservas</code></b>
+</p>
+<h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+<p>
+<b><code>bearer_token</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<input type="text" name="bearer_token" data-endpoint="POSTapi-misreservas" data-component="body" required  hidden>
+<br>
+Campo unico del cliente autenticado para acceder a esta ruta.
+</p>
+<p>
+<b><code>cliente_id</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+<input type="number" name="cliente_id" data-endpoint="POSTapi-misreservas" data-component="body" required  hidden>
+<br>
+Id del cliente.
+</p>
+
+</form>
+
+
+## HOSPEDAJES - Hospedajes Cliente
+
+
+
+
+> Example request:
+
+```javascript
+const url = new URL(
+    "http://c2210260.ferozo.com/api/mishospedajes"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "bearer_token": "drWa9YnurQFx6bY8rfsRcdMXsXpLvTUWSEkqQHivBDLJpbFv7E31BxxBcj6z",
+    "cliente_id": 1
+}
+
+fetch(url, {
+    method: "POST",
+    headers,
+    body: JSON.stringify(body),
+}).then(response => response.json());
+```
+
+
+> Example response (200, success):
+
+```json
+{
+    "id": 13,
+    "checkin": "2021-05-20",
+    "checkout": "2021-05-22",
+    "adultos": 4,
+    "niños": 2,
+    "precio": "300.00",
+    "estado": "Ocupado",
+    "cliente": {
+        "nombre": "Julian Gonzales Llanos",
+        "celular": "62101485",
+        "telefono": "42682265",
+        "ciudad": "La Paz",
+        "pais": "Bolivia",
+        "oficio": "Albañil",
+        "email": "julian@gmail.com"
+    },
+    "habitacion": {
+        "nombre": "Habitacion 26",
+        "num_habitacion": "26",
+        "precio": "450.00",
+        "foto": "http:\/\/pairumanibackoffice.test\/public\/imagenes\/habitaciones\/habitacion_210521090607.jfif"
+    },
+    "transportes": [],
+    "lugares": [
+        {
+            "nombre": "Pairumani",
+            "precio": "500.00",
+            "fecha": "2021-06-04",
+            "tipo": "Gastronomia",
+            "foto": "http:\/\/pairumanibackoffice.test\/public\/imagenes\/lugaresturisticos\/lugar_210422114750.jpg"
+        },
+        {
+            "nombre": "Pairumani",
+            "precio": "500.00",
+            "fecha": "2021-06-11",
+            "tipo": "Gastronomia",
+            "foto": "http:\/\/pairumanibackoffice.test\/public\/imagenes\/lugaresturisticos\/lugar_210422114750.jpg"
+        },
+        {
+            "nombre": "Pairumani",
+            "precio": "500.00",
+            "fecha": "2021-06-10",
+            "tipo": "Gastronomia",
+            "foto": "http:\/\/pairumanibackoffice.test\/public\/imagenes\/lugaresturisticos\/lugar_210422114750.jpg"
+        }
+    ],
+    "restaurante": [
+        {
+            "fecha": "2021-06-09",
+            "hora": "17:35:40",
+            "productos": [
+                {
+                    "producto": "Pique macho",
+                    "precio_producto": "100.00",
+                    "opcion": "Papas fritas",
+                    "tamaño": {
+                        "nombre": "Pequeño",
+                        "precio_tamaño": "40.00"
+                    }
+                }
+            ]
+        },
+        {
+            "fecha": "2021-06-09",
+            "hora": "18:40:48",
+            "productos": [
+                {
+                    "producto": "Pique macho",
+                    "precio_producto": "100.00",
+                    "opcion": "Papas fritas",
+                    "tamaño": {
+                        "nombre": "Pequeño",
+                        "precio_tamaño": "40.00"
+                    }
+                }
+            ]
+        }
+    ],
+    "totales": {
+        "hospedaje": "300.00",
+        "transportes": "0.00",
+        "restaurante": "980.00",
+        "lugarturistico": "1,500.00",
+        "totalpagar": "2,780.00"
+    }
+}
+```
+<div id="execution-results-POSTapi-mishospedajes" hidden>
+    <blockquote>Received response<span id="execution-response-status-POSTapi-mishospedajes"></span>:</blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-mishospedajes"></code></pre>
+</div>
+<div id="execution-error-POSTapi-mishospedajes" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-mishospedajes"></code></pre>
+</div>
+<form id="form-POSTapi-mishospedajes" data-method="POST" data-path="api/mishospedajes" data-authed="0" data-hasfiles="0" data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('POSTapi-mishospedajes', this);">
+<h3>
+    Request&nbsp;&nbsp;&nbsp;
+        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-POSTapi-mishospedajes" onclick="tryItOut('POSTapi-mishospedajes');">Try it out ⚡</button>
+    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-POSTapi-mishospedajes" onclick="cancelTryOut('POSTapi-mishospedajes');" hidden>Cancel</button>&nbsp;&nbsp;
+    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-POSTapi-mishospedajes" hidden>Send Request 💥</button>
+    </h3>
+<p>
+<small class="badge badge-black">POST</small>
+ <b><code>api/mishospedajes</code></b>
+</p>
+<h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+<p>
+<b><code>bearer_token</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<input type="text" name="bearer_token" data-endpoint="POSTapi-mishospedajes" data-component="body" required  hidden>
+<br>
+Campo unico del cliente autenticado para acceder a esta ruta.
+</p>
+<p>
+<b><code>cliente_id</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+<input type="number" name="cliente_id" data-endpoint="POSTapi-mishospedajes" data-component="body" required  hidden>
+<br>
+Id del cliente.
+</p>
+
+</form>
+
+
+## HOSPEDAJES - Hospedajes ocupados del cliente
+
+
+
+
+> Example request:
+
+```javascript
+const url = new URL(
+    "http://c2210260.ferozo.com/api/mishospedajesocupados"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "bearer_token": "drWa9YnurQFx6bY8rfsRcdMXsXpLvTUWSEkqQHivBDLJpbFv7E31BxxBcj6z",
+    "cliente_id": 1
+}
+
+fetch(url, {
+    method: "POST",
+    headers,
+    body: JSON.stringify(body),
+}).then(response => response.json());
+```
+
+
+> Example response (200, success):
+
+```json
+
+{
+      'id' => 39,
+      "checkin": "2021-05-20",
+      "checkout": "2021-05-22",
+      "adultos": 4,
+      "niños": 2,
+      "precio": "300.00",
+      "estado": "Ocupado",
+      "cliente": {
+          "nombre": "Julian Gonzales Llanos",
+          "celular": "62101485",
+          "telefono": "42682265",
+          "ciudad": "La Paz",
+          "pais": "Bolivia",
+          "oficio": "Albañil",
+          "email": "julian@gmail.com"
+      },
+      "habitacion": {
+          "nombre": "Habitacion 26",
+          "num_habitacion": "26",
+          "precio": "450.00",
+          "foto": "http://pairumanibackoffice.test/public/imagenes/habitaciones/habitacion_210521090607.jfif"
+      },
+}
+```
+<div id="execution-results-POSTapi-mishospedajesocupados" hidden>
+    <blockquote>Received response<span id="execution-response-status-POSTapi-mishospedajesocupados"></span>:</blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-mishospedajesocupados"></code></pre>
+</div>
+<div id="execution-error-POSTapi-mishospedajesocupados" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-mishospedajesocupados"></code></pre>
+</div>
+<form id="form-POSTapi-mishospedajesocupados" data-method="POST" data-path="api/mishospedajesocupados" data-authed="0" data-hasfiles="0" data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('POSTapi-mishospedajesocupados', this);">
+<h3>
+    Request&nbsp;&nbsp;&nbsp;
+        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-POSTapi-mishospedajesocupados" onclick="tryItOut('POSTapi-mishospedajesocupados');">Try it out ⚡</button>
+    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-POSTapi-mishospedajesocupados" onclick="cancelTryOut('POSTapi-mishospedajesocupados');" hidden>Cancel</button>&nbsp;&nbsp;
+    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-POSTapi-mishospedajesocupados" hidden>Send Request 💥</button>
+    </h3>
+<p>
+<small class="badge badge-black">POST</small>
+ <b><code>api/mishospedajesocupados</code></b>
+</p>
+<h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+<p>
+<b><code>bearer_token</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<input type="text" name="bearer_token" data-endpoint="POSTapi-mishospedajesocupados" data-component="body" required  hidden>
+<br>
+Campo unico del cliente autenticado para acceder a esta ruta.
+</p>
+<p>
+<b><code>cliente_id</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+<input type="number" name="cliente_id" data-endpoint="POSTapi-mishospedajesocupados" data-component="body" required  hidden>
+<br>
+Id del cliente.
+</p>
+
+</form>
+
+
+## TRANSPORTES - Reserva transportes
+
+
+
+
+> Example request:
+
+```javascript
+const url = new URL(
+    "http://c2210260.ferozo.com/api/reservatransporte"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "bearer_token": "drWa9YnurQFx6bY8rfsRcdMXsXpLvTUWSEkqQHivBDLJpbFv7E31BxxBcj6z",
+    "datos": "{\n      \"datos\":[\n               {\n\t              \"transporte_id\":\"2\",\n\t              \"precio\":\"25\",\n                   \"hospedaje_id\":\"13\"\n               },\n               {\n\t               \"transporte_id\":\"2\",\n\t               \"precio\":\"25\",\n                    \"hospedaje_id\":\"13\"\n                }\n              ]\n           }"
+}
+
+fetch(url, {
+    method: "POST",
+    headers,
+    body: JSON.stringify(body),
+}).then(response => response.json());
+```
+
+
+> Example response (401):
+
+```json
+{
+    "message": "Unauthenticated."
+}
+```
+<div id="execution-results-POSTapi-reservatransporte" hidden>
+    <blockquote>Received response<span id="execution-response-status-POSTapi-reservatransporte"></span>:</blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-reservatransporte"></code></pre>
+</div>
+<div id="execution-error-POSTapi-reservatransporte" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-reservatransporte"></code></pre>
+</div>
+<form id="form-POSTapi-reservatransporte" data-method="POST" data-path="api/reservatransporte" data-authed="0" data-hasfiles="0" data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('POSTapi-reservatransporte', this);">
+<h3>
+    Request&nbsp;&nbsp;&nbsp;
+        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-POSTapi-reservatransporte" onclick="tryItOut('POSTapi-reservatransporte');">Try it out ⚡</button>
+    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-POSTapi-reservatransporte" onclick="cancelTryOut('POSTapi-reservatransporte');" hidden>Cancel</button>&nbsp;&nbsp;
+    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-POSTapi-reservatransporte" hidden>Send Request 💥</button>
+    </h3>
+<p>
+<small class="badge badge-black">POST</small>
+ <b><code>api/reservatransporte</code></b>
+</p>
+<h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+<p>
+<b><code>bearer_token</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<input type="text" name="bearer_token" data-endpoint="POSTapi-reservatransporte" data-component="body" required  hidden>
+<br>
+Campo unico del cliente autenticado para acceder a esta ruta.
+</p>
+<p>
+<b><code>datos</code></b>&nbsp;&nbsp;<small>array</small>     <i>optional</i> &nbsp;
+<input type="text" name="datos" data-endpoint="POSTapi-reservatransporte" data-component="body"  hidden>
+<br>
+datos transporte.
+</p>
+
+</form>
+
+
+## TURISTICOS - Reservas Lugar Turistico
+
+
+
+
+> Example request:
+
+```javascript
+const url = new URL(
+    "http://c2210260.ferozo.com/api/reservalugarturistico"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "cliente_id": 5,
+    "lugar_turistico_id": 1,
+    "fecha": "2021-06-10",
+    "hospedaje_id": 10,
+    "precio": 500
+}
+
+fetch(url, {
+    method: "POST",
+    headers,
+    body: JSON.stringify(body),
+}).then(response => response.json());
+```
+
+
+> Example response (200, success):
+
+```json
+{
+    "success": "true",
+    "data": "Lugar Turistico reservado"
+}
+```
+<div id="execution-results-POSTapi-reservalugarturistico" hidden>
+    <blockquote>Received response<span id="execution-response-status-POSTapi-reservalugarturistico"></span>:</blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-reservalugarturistico"></code></pre>
+</div>
+<div id="execution-error-POSTapi-reservalugarturistico" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-reservalugarturistico"></code></pre>
+</div>
+<form id="form-POSTapi-reservalugarturistico" data-method="POST" data-path="api/reservalugarturistico" data-authed="0" data-hasfiles="0" data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('POSTapi-reservalugarturistico', this);">
+<h3>
+    Request&nbsp;&nbsp;&nbsp;
+        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-POSTapi-reservalugarturistico" onclick="tryItOut('POSTapi-reservalugarturistico');">Try it out ⚡</button>
+    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-POSTapi-reservalugarturistico" onclick="cancelTryOut('POSTapi-reservalugarturistico');" hidden>Cancel</button>&nbsp;&nbsp;
+    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-POSTapi-reservalugarturistico" hidden>Send Request 💥</button>
+    </h3>
+<p>
+<small class="badge badge-black">POST</small>
+ <b><code>api/reservalugarturistico</code></b>
+</p>
+<h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+<p>
+<b><code>cliente_id</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+<input type="number" name="cliente_id" data-endpoint="POSTapi-reservalugarturistico" data-component="body" required  hidden>
+<br>
+Id del cliente.
+</p>
+<p>
+<b><code>lugar_turistico_id</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+<input type="number" name="lugar_turistico_id" data-endpoint="POSTapi-reservalugarturistico" data-component="body" required  hidden>
+<br>
+Id del lugar turistico.
+</p>
+<p>
+<b><code>fecha</code></b>&nbsp;&nbsp;<small>date</small>  &nbsp;
+<input type="text" name="fecha" data-endpoint="POSTapi-reservalugarturistico" data-component="body" required  hidden>
+<br>
+Fecha de registro reserva .
+</p>
+<p>
+<b><code>hospedaje_id</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+<input type="number" name="hospedaje_id" data-endpoint="POSTapi-reservalugarturistico" data-component="body" required  hidden>
+<br>
+Id del hospedaje.
+</p>
+<p>
+<b><code>precio</code></b>&nbsp;&nbsp;<small>number</small>  &nbsp;
+<input type="number" name="precio" data-endpoint="POSTapi-reservalugarturistico" data-component="body" required  hidden>
+<br>
+Precio del recorrido Lugar Turistico.
+</p>
+
+</form>
+
+
+## RESTAURANTE - Reservas Restaurante
+
+
+
+
+> Example request:
+
+```javascript
+const url = new URL(
+    "http://c2210260.ferozo.com/api/reservarestaurante"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "hospedaje_id": 10,
+    "cliente_id": 10,
+    "total": 600,
+    "datos": "{\n     \"hospedaje_id\":\"10\",\n     \"total\":\"600\",\n     \"datos\":[\n          {\n              \"producto_id\":\"1\",\n              \"cantidad\":\"2\",\n              \"precio\":\"100\",\n              \"opcion_id\":\"2\",\n              \"tamano_id\":\"1\",\n              \"preciotamano\":\"20\"\n          },\n          {\n              \"producto_id\":\"1\",\n              \"cantidad\":\"3\",\n              \"precio\":\"100\",\n              \"opcion_id\":\"2\",\n              \"tamano_id\":\"1\",\n              \"preciotamano\":\"20\"\n          }\n      ]\n  }"
+}
+
+fetch(url, {
+    method: "POST",
+    headers,
+    body: JSON.stringify(body),
+}).then(response => response.json());
+```
+
+
+> Example response (200, success):
+
+```json
+{
+    "success": "true",
+    "data": "Productos Agregados"
+}
+```
+<div id="execution-results-POSTapi-reservarestaurante" hidden>
+    <blockquote>Received response<span id="execution-response-status-POSTapi-reservarestaurante"></span>:</blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-reservarestaurante"></code></pre>
+</div>
+<div id="execution-error-POSTapi-reservarestaurante" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-reservarestaurante"></code></pre>
+</div>
+<form id="form-POSTapi-reservarestaurante" data-method="POST" data-path="api/reservarestaurante" data-authed="0" data-hasfiles="0" data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('POSTapi-reservarestaurante', this);">
+<h3>
+    Request&nbsp;&nbsp;&nbsp;
+        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-POSTapi-reservarestaurante" onclick="tryItOut('POSTapi-reservarestaurante');">Try it out ⚡</button>
+    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-POSTapi-reservarestaurante" onclick="cancelTryOut('POSTapi-reservarestaurante');" hidden>Cancel</button>&nbsp;&nbsp;
+    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-POSTapi-reservarestaurante" hidden>Send Request 💥</button>
+    </h3>
+<p>
+<small class="badge badge-black">POST</small>
+ <b><code>api/reservarestaurante</code></b>
+</p>
+<h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+<p>
+<b><code>hospedaje_id</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+<input type="number" name="hospedaje_id" data-endpoint="POSTapi-reservarestaurante" data-component="body" required  hidden>
+<br>
+Id del hospedaje.
+</p>
+<p>
+<b><code>cliente_id</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+<input type="number" name="cliente_id" data-endpoint="POSTapi-reservarestaurante" data-component="body" required  hidden>
+<br>
+Id del hospedaje.
+</p>
+<p>
+<b><code>total</code></b>&nbsp;&nbsp;<small>number</small>  &nbsp;
+<input type="number" name="total" data-endpoint="POSTapi-reservarestaurante" data-component="body" required  hidden>
+<br>
+Total pedidos productos restaurante.
+</p>
+<p>
+<b><code>datos</code></b>&nbsp;&nbsp;<small>array</small>     <i>optional</i> &nbsp;
+<input type="text" name="datos" data-endpoint="POSTapi-reservarestaurante" data-component="body"  hidden>
+<br>
+datos transporte.
+</p>
+
+</form>
+
+
+## CAFETERIA - Reservas cafeteria
+
+
+
+
+> Example request:
+
+```javascript
+const url = new URL(
+    "http://c2210260.ferozo.com/api/reservacafeteria"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "hospedaje_id": 10,
+    "total": 600,
+    "producto_id": 1,
+    "precio": 100,
+    "cantidad": 3,
+    "opcion_id": 1,
+    "tamano_id": 2,
+    "preciotamano": 40,
+    "datos": "{\n     \"hospedaje_id\":\"10\",\n     \"total\":\"600\",\n      \"datos\":[\n          {\n              \"producto_id\":\"1\",\n              \"cantidad\":\"2\",\n              \"precio\":\"100\",\n              \"opcion_id\":\"2\",\n              \"tamano_id\":\"1\",\n              \"preciotamano\":\"20\"\n          },\n          {\n              \"producto_id\":\"1\",\n              \"cantidad\":\"3\",\n              \"precio\":\"100\",\n              \"opcion_id\":\"2\",\n              \"tamano_id\":\"1\",\n              \"preciotamano\":\"20\"\n          }\n      ]\n  }"
+}
+
+fetch(url, {
+    method: "POST",
+    headers,
+    body: JSON.stringify(body),
+}).then(response => response.json());
+```
+
+
+> Example response (200, success):
+
+```json
+{
+    "success": "true",
+    "data": "Productos Agregados"
+}
+```
+<div id="execution-results-POSTapi-reservacafeteria" hidden>
+    <blockquote>Received response<span id="execution-response-status-POSTapi-reservacafeteria"></span>:</blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-reservacafeteria"></code></pre>
+</div>
+<div id="execution-error-POSTapi-reservacafeteria" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-reservacafeteria"></code></pre>
+</div>
+<form id="form-POSTapi-reservacafeteria" data-method="POST" data-path="api/reservacafeteria" data-authed="0" data-hasfiles="0" data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('POSTapi-reservacafeteria', this);">
+<h3>
+    Request&nbsp;&nbsp;&nbsp;
+        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-POSTapi-reservacafeteria" onclick="tryItOut('POSTapi-reservacafeteria');">Try it out ⚡</button>
+    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-POSTapi-reservacafeteria" onclick="cancelTryOut('POSTapi-reservacafeteria');" hidden>Cancel</button>&nbsp;&nbsp;
+    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-POSTapi-reservacafeteria" hidden>Send Request 💥</button>
+    </h3>
+<p>
+<small class="badge badge-black">POST</small>
+ <b><code>api/reservacafeteria</code></b>
+</p>
+<h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+<p>
+<b><code>hospedaje_id</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+<input type="number" name="hospedaje_id" data-endpoint="POSTapi-reservacafeteria" data-component="body" required  hidden>
+<br>
+Id del hospedaje.
+</p>
+<p>
+<b><code>total</code></b>&nbsp;&nbsp;<small>number</small>  &nbsp;
+<input type="number" name="total" data-endpoint="POSTapi-reservacafeteria" data-component="body" required  hidden>
+<br>
+Total pedidos productos restaurante.
+</p>
+<p>
+<b><code>producto_id</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+<input type="number" name="producto_id" data-endpoint="POSTapi-reservacafeteria" data-component="body" required  hidden>
+<br>
+Id del producto reservado .
+</p>
+<p>
+<b><code>precio</code></b>&nbsp;&nbsp;<small>number</small>  &nbsp;
+<input type="number" name="precio" data-endpoint="POSTapi-reservacafeteria" data-component="body" required  hidden>
+<br>
+Precio del producto.
+</p>
+<p>
+<b><code>cantidad</code></b>&nbsp;&nbsp;<small>number</small>  &nbsp;
+<input type="number" name="cantidad" data-endpoint="POSTapi-reservacafeteria" data-component="body" required  hidden>
+<br>
+Cantidad de productos reservados.
+</p>
+<p>
+<b><code>opcion_id</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+<input type="number" name="opcion_id" data-endpoint="POSTapi-reservacafeteria" data-component="body" required  hidden>
+<br>
+Id de la opcion del producto.
+</p>
+<p>
+<b><code>tamano_id</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+<input type="number" name="tamano_id" data-endpoint="POSTapi-reservacafeteria" data-component="body" required  hidden>
+<br>
+Ide del tamaño producto.
+</p>
+<p>
+<b><code>preciotamano</code></b>&nbsp;&nbsp;<small>number</small>  &nbsp;
+<input type="number" name="preciotamano" data-endpoint="POSTapi-reservacafeteria" data-component="body" required  hidden>
+<br>
+Precio del tamaño producto.
+</p>
+<p>
+<b><code>datos</code></b>&nbsp;&nbsp;<small>array</small>     <i>optional</i> &nbsp;
+<input type="text" name="datos" data-endpoint="POSTapi-reservacafeteria" data-component="body"  hidden>
+<br>
+datos transporte.
 </p>
 
 </form>

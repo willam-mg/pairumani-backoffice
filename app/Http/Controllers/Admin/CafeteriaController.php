@@ -13,7 +13,7 @@ use App\Models\CafeteriaProductoOpcion;
 use App\Models\CafeteriaProductoTamano;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade as PDF;
-use App\View\Components\Socket;
+use App\Traits\Socket;
 
 class CafeteriaController extends Controller
 {

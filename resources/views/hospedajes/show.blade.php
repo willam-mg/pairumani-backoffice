@@ -222,8 +222,8 @@
                                         <td>{{ $detalle->detalle->producto->nombre }}</td>
                                         <td>{{ $detalle->fecha }}</td>
                                         <td>{{ env('MONEYLOCAL') }}{{ number_format($detalle->detalle->precio,2) }}</td>
-                                        <td>{{ $detalle->detalle->detalleproducto->opcion->nombre }}</td>
-                                        <td>{{ $detalle->detalle->detalleproducto->tamaño->nombre }}</td>
+                                        <td>{{ $detalle->detalle->detalleproducto->opcion?$detalle->detalle->detalleproducto->opcion->nombre:'' }}</td>
+                                        <td>{{ $detalle->detalle->detalleproducto->tamaño?$detalle->detalle->detalleproducto->tamaño->nombre:'' }}</td>
                                         <td>{{ env('MONEYLOCAL') }}{{ number_format($detalle->detalle->detalleproducto->precio_tamanho,2) }}</td>
                                         <td>{{ $detalle->detalle->cantidad }}</td>
                                     </tr>                                            
@@ -264,8 +264,8 @@
                                         <td>{{ $detalle->detalle->producto->nombre }}</td>
                                         <td>{{ $detalle->fecha }}</td>
                                         <td>{{ env('MONEYLOCAL') }}{{ number_format($detalle->detalle->precio,2) }}</td>
-                                        <td>{{ $detalle->detalle->detalleproducto->opcion->nombre }}</td>
-                                        <td>{{ $detalle->detalle->detalleproducto->tamaño->nombre }}</td>
+                                        <td>{{ $detalle->detalle->detalleproducto->opcion?$detalle->detalle->detalleproducto->opcion->nombre:'' }}</td>
+                                        <td>{{ $detalle->detalle->detalleproducto->tamaño?$detalle->detalle->detalleproducto->tamaño->nombre:'' }}</td>
                                         <td>{{ env('MONEYLOCAL') }}{{ number_format($detalle->detalle->detalleproducto->precio_tamanho,2) }}</td>
                                         <td>{{ $detalle->detalle->cantidad }}</td>
                                     </tr>                                            

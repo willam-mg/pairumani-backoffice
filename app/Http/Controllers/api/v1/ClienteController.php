@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers\api\v1;
 
 use Carbon\Carbon;
 use App\Models\Evento;
@@ -34,14 +34,161 @@ use Illuminate\Support\Facades\Validator;
 use App\Models\HospedajeDetalleTransporte;
 use App\Models\CafeteriaDetalleReservaProducto;
 use App\Models\RestauranteDetalleReservaProducto;
-use App\View\Components\Socket;
+use App\Traits\Socket;
 
 class ClienteController extends Controller
 {
+    private function formatMisHospedajes($hospedajes) {
+        return  $hospedajes->map(function ($hospedaje) {
+            return [
+                'id' => $hospedaje->id,
+                'checkin' => $hospedaje->fecha_checkin,
+                'checkout' => $hospedaje->fecha_checkout,
+                'adultos' => $hospedaje->adultos,
+                'niños' => $hospedaje->niños,
+                'precio' => $hospedaje->precio_promocion ? $hospedaje->precio_promocion : $hospedaje->precio,
+                'estado' => $hospedaje->estado,
+                "cliente" => $hospedaje->cliente ? [
+                    'nombre' => $hospedaje->cliente->nombrecompleto,
+                    'celular' => $hospedaje->cliente->celular,
+                    'telefono' => $hospedaje->cliente->telefono,
+                    'ciudad' => $hospedaje->cliente->ciudad,
+                    'pais' => $hospedaje->cliente->pais,
+                    'oficio' => $hospedaje->cliente->oficio,
+                    'email' => $hospedaje->cliente->email,
+                ] : null,
+                'habitacion' => $hospedaje->habitacion ? [
+                    'nombre' => $hospedaje->habitacion->nombre,
+                    'num_habitacion' => $hospedaje->habitacion->num_habitacion,
+                    'precio' => $hospedaje->habitacion->precio,
+                    'foto' => $hospedaje->habitacion->fotourl,
+                ] : null,
+                'transportes' => $hospedaje->detalletransportes->map(function ($detalle) {
+                    $transporte = $detalle->transporte;
+                    return [
+                        'nombre' => $transporte ? $transporte->nombre : null,
+                        'precio' => $detalle->precio,
+                        'foto' => $transporte ? $transporte->fotourl : null,
+                    ];
+                }),
+                'lugares' => $hospedaje->lugares->map(function ($detalle) {
+                    $lugarturistico = $detalle->lugarturistico;
+                    return [
+                        'nombre' => $lugarturistico ? $lugarturistico->nombre : null,
+                        'precio' => $detalle->precio,
+                        'fecha' => $detalle->fecha,
+                        'tipo' => $lugarturistico ? $lugarturistico->tipo : null,
+                        'foto' => $lugarturistico ? $lugarturistico->fotourl : null,
+                    ];
+                }),
+                'restaurante' => $hospedaje->restaurantes->map(function ($detalle) {
+                    return [
+                        'fecha' => $detalle->fecha,
+                        'hora' => $detalle->hora,
+                        'productos' => $detalle->detalles->map(function ($producto) use ($detalle) {
+                            $objProducto = $producto->producto;
+                            $productoNombre = null;
+                            if ($objProducto) {
+                                $productoNombre = $objProducto->tamano ? $objProducto->tamano->nombre : null;
+                            }
+                            $opcionNombre = null;
+                            if ($objProducto) {
+                                $opcionNombre = $objProducto->opcion ? $objProducto->opcion->nombre : null;
+                            }
+                            $precioTamano = null;
+                            $objDetalle = $detalle->detalle;
+                            if ($objDetalle) {
+                                $precioTamano = $objDetalle->detalleproducto ? $objDetalle->detalleproducto->precio_tamanho : null;
+                            }
+                            return [
+                                'producto' => $producto ? $producto->nombre : null,
+                                'precio_producto' => $detalle->detalle ? $detalle->detalle->precio : null,
+                                'opcion' => $opcionNombre,
+                                'tamaño' => [
+                                    'nombre' => $productoNombre,
+                                    'precio_tamaño' => $precioTamano,
+                                ],
+                            ];
+                        }),
+                    ];
+                }),
+                'cafeteria' => $hospedaje->cafeterias->map(function ($detalle) {
+                    return [
+                        'fecha' => $detalle->fecha,
+                        'hora' => $detalle->hora,
+                        'productos' => $detalle->detalles->map(function ($producto) use ($detalle) {
+                            $objProducto = $producto->producto;
+                            $productoNombre = null;
+                            if ($objProducto) {
+                                $productoNombre = $objProducto->tamano ? $objProducto->tamano->nombre : null;
+                            }
+                            $opcionNombre = null;
+                            if ($objProducto) {
+                                $opcionNombre = $objProducto->opcion ? $objProducto->opcion->nombre : null;
+                            }
+                            $precioTamano = null;
+                            $objDetalle = $detalle->detalle;
+                            if ($objDetalle) {
+                                $precioTamano = $objDetalle->detalleproducto ? $objDetalle->detalleproducto->precio_tamanho : null;
+                            }
+                            return [
+                                'producto' => $producto ? $producto->nombre : null,
+                                'precio_producto' => $detalle->detalle ? $detalle->detalle->precio : null,
+                                'opcion' => $opcionNombre,
+                                'tamaño' => [
+                                    'nombre' => $productoNombre,
+                                    'precio_tamaño' => $precioTamano,
+                                ],
+                            ];
+                        }),
+                    ];
+                }),
+                'totales' => [
+                    'hospedaje' => $hospedaje->precio_promocion ? $hospedaje->precio_promocion : $hospedaje->precio,
+                    'transportes' => number_format(pageTotal($hospedaje->detalletransportes, 'precio'), 2),
+                    'restaurante' => number_format(pageTotal($hospedaje->restaurantes, 'total'), 2),
+                    'cafeteria' => number_format(pageTotal($hospedaje->cafeterias, 'total'), 2),
+                    'lugarturistico' => number_format(pageTotal($hospedaje->lugares, 'precio'), 2),
+                    'totalpagar' => number_format($hospedaje->total(), 2),
+                ],
+            ];
+        });
+    }
+
+    private function mapMisReservas($reservas) {
+        return  $reservas->map(function ($reserva) {
+            $cliente = $reserva->cliente;
+            $habitacion = $reserva->habitacion;
+            return [
+                'id' => $reserva->id,
+                'checkin' => $reserva->checkin->format('Y-m-d'),
+                'checkout' => $reserva->checkout->format('Y-m-d'),
+                'adultos' => $reserva->adultos,
+                'niños' => $reserva->niños,
+                "cliente" => $cliente?[
+                    'nombre' => $cliente->nombrecompleto,
+                    'celular' => $cliente->celular,
+                    'telefono' => $cliente->telefono,
+                    'ciudad' => $cliente->ciudad,
+                    'pais' => $cliente->pais,
+                    'oficio' => $cliente->oficio,
+                    'email' => $cliente->email,
+                ]:null,
+                'habitacion' => $habitacion?[
+                    'nombre' => $habitacion->nombre,
+                    'num_habitacion' => $habitacion->num_habitacion,
+                    'precio' => $habitacion->precio,
+                    'foto' => $habitacion->fotourl,
+                    'estado' => $habitacion->estado,
+                ]:null,
+            ];
+        });
+    }
+
     /**
-     * Login con redes sociales y normal
+     * CLIENTE - Login con redes sociales y normal
      * 
-     * @bodyParam tipo_login string required El tipo de login que usara el cliente para iniciar sesion. Example: 1 = Email login, 2 = gmail login,3 = facebook login
+     * @bodyParam tipo_login integer required El tipo de login que usara el cliente para iniciar sesion; 1 = Email login, 2 = gmail login,3 = facebook login. Example: 1 
      * @bodyParam email string required El email que usara el cliente para iniciar sesion. Example: cliente@gmail.com
      * @bodyParam password string required El password que usara el cliente para iniciar sesion y registro. Example: cliente1568
      * @bodyParam nombres string required Los nombes del cliente para el registro. Example: Jose Rodrigo
@@ -59,7 +206,7 @@ class ClienteController extends Controller
      * @bodyParam password string La clave que usara para ingresar al sistema el cliente para el registro. Example: cliente54782
      * @bodyParam fecha_nacimiento date Fecha de nacimiento del cliente para el registro. Example: 1985-03-22
      * @bodyParam motivo_viaje string Motivo por el cual viaja el cliente para el registro. Example: Recreacion,Negocios,Salud,Otro
-     * @bodyParam foto string Foto que se registrara cuando haga login con sus redes sociales o suba una foto el lciente para el registro. Example: foto.jpg
+     * @bodyParam foto string Foto que se registrara cuando haga login con sus redes sociales o suba una foto el lciente para el registro, esta debe ser una ruta absoluta como https://www.facebook.com/user1/photo.jpg . Example: https://www.facebook.com/user1/photo.jpg
      * @bodyParam imei_celular string Se registrara el imei del celular del cliente para el registro. Example: 354651100023680
      * @response scenario=success {
      * "id": 7,
@@ -182,7 +329,7 @@ class ClienteController extends Controller
         }
     }
     /**
-     * Registro de nuevo Cliente
+     * CLIENTE - Registro de nuevo Cliente
      * 
      * @bodyParam nombres string required Los nombes del cliente para el registro. Example: Jose Rodrigo
      * @bodyParam apellidos string required Los apellidos del cliente para el registro. Example: Cespedes Rojas
@@ -195,8 +342,8 @@ class ClienteController extends Controller
      * @bodyParam oficio string El trabajo que realiza el cliente para el registro. Example: Ing Civil
      * @bodyParam empresa string La empresa donde trabaja actualemnte el cliente para el registro. Example: YPFB
      * @bodyParam telefono Número de telefono fijo del cliente para el registro. Example: 4652588
-     * @bodyParam email string Email que usa el cliente para el registro. Example: cliente@gmail.com
-     * @bodyParam password string La clave que usara para ingresar al sistema el cliente para el registro. Example: cliente54782
+     * @bodyParam email string required Email que usa el cliente para el registro. Example: cliente@gmail.com
+     * @bodyParam password string  required La clave que usara para ingresar al sistema el cliente para el registro. Example: cliente54782
      * @bodyParam fecha_nacimiento date Fecha de nacimiento del cliente para el registro. Example: 1985-03-22
      * @bodyParam motivo_viaje string Motivo por el cual viaja el cliente para el registro. Example: Recreacion,Negocios,Salud,Otro
      * @bodyParam foto string Foto que se registrara cuando haga login con sus redes sociales o suba una foto el lciente para el registro. Example: foto.jpg
@@ -225,10 +372,10 @@ class ClienteController extends Controller
     public function signup(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'nombres' => 'required',
-            'apellidos' => 'required',
-            'celular' => 'numeric|digits:8|unique:clientes',
-            'email' => 'required|unique:clientes',
+            'nombres' => 'required|max:50',
+            'apellidos' => 'required|max:50',
+            'celular' => 'required|numeric|digits:8|unique:clientes',
+            'email' => 'required|email|unique:clientes',
             'password' => 'required|string|min:6',
             'tipo_documento' => '',
             'num_documento' => '',
@@ -269,8 +416,9 @@ class ClienteController extends Controller
         $cliente->save();
         return response()->json(['success' => 'true', 'data' => $cliente], 200);
     }
+
     /**
-     * Perfil de Cliente
+     * CLIENTE -  Perfil de Cliente
      * 
      * @bodyParam cliente_id int required Id del cliente para mostrar el detalle de su perfil. Example: 7
      * @response scenario=success {
@@ -322,8 +470,9 @@ class ClienteController extends Controller
 
         return response()->json(['success' => 'true', 'data' => $detalles], 200);
     }
+
     /**
-     * Editar perfil Cliente
+     * CLIENTE -  Editar perfil Cliente
      * 
      * @bodyParam nombres string required Los nombes del cliente para el registro. Example: Jose Rodrigo
      * @bodyParam apellidos string required Los apellidos del cliente para el registro. Example: Cespedes Rojas
@@ -410,8 +559,9 @@ class ClienteController extends Controller
         }
         return response()->json(['success' => 'false', 'data' => 'El cliente no existe'], 400);
     }
+
     /**
-     * Verificacion de email para cambio de password
+     * CLIENTE -  Verificacion de email para cambio de password
      * 
      * @bodyParam email string required Verificacion que existe el email enviado. Example: cliente@gmail.com
      * @response scenario=success {
@@ -453,8 +603,9 @@ class ClienteController extends Controller
 
         return response()->json(['success' => 'true', 'data' => $cliente,'code' =>$code], 200);
     }
+
     /**
-     * Verificacion de codigo enviado al email del cliente
+     * CLIENTE -  Verificacion de codigo enviado al email del cliente
      * 
      * @bodyParam codigo string required Verificacion que el codigo que se envio a su email coincidan. Example: 58741258
      * @bodyParam cliente_id int required Id del cliente para devolver su informacion. Example: 5
@@ -495,8 +646,9 @@ class ClienteController extends Controller
 
         return response()->json(['success' => 'true', 'data' => $respuesta], 200);
     }
+
     /**
-     * Cambio de password del Cliente
+     * CLIENTE - Cambio de password del Cliente
      * 
      * @bodyParam id int required Id del cliente a restablecer la contraseña. Example: 5
      * @bodyParam password string required Password por el cual restablecera. Example: cliente12578
@@ -520,8 +672,9 @@ class ClienteController extends Controller
 
         return response()->json(['success' => 'true', 'data' => $cliente], 200);
     }
+
     /**
-     * Listado de la Galeria del Hotel
+     * SLIDERS - Listado de la Galeria del Hotel
      * 
      * @bodyParam bearer_token string required Campo unico del cliente autenticado para acceder a esta ruta. Example: drWa9YnurQFx6bY8rfsRcdMXsXpLvTUWSEkqQHivBDLJpbFv7E31BxxBcj6z
      * @response scenario=success {
@@ -543,8 +696,9 @@ class ClienteController extends Controller
         }
         return response()->json(['success' => 'true', 'data' => $detalles], 200);
     }
+
     /**
-     * Listado de las categorias de las habitaciones
+     * HABITACIONES - Listado de las categorias de las habitaciones
      * 
      * @bodyParam bearer_token string required Campo unico del cliente autenticado para acceder a esta ruta. Example: drWa9YnurQFx6bY8rfsRcdMXsXpLvTUWSEkqQHivBDLJpbFv7E31BxxBcj6z
      * @response scenario=success {
@@ -568,8 +722,9 @@ class ClienteController extends Controller
         }
         return response()->json(['success' => 'true', 'data' => $detalles], 200);
     }
+
     /**
-     * Listado de habitaciones segun la categoria que estan enlazadas
+     * HABITACIONES - Listado de habitaciones segun la categoria que estan enlazadas
      * 
      * @bodyParam bearer_token string required Campo unico del cliente autenticado para acceder a esta ruta. Example: drWa9YnurQFx6bY8rfsRcdMXsXpLvTUWSEkqQHivBDLJpbFv7E31BxxBcj6z
      * @bodyParam categoria_id int required Id de la categoria de la habitacion. Example: 1
@@ -605,8 +760,9 @@ class ClienteController extends Controller
         }
         return response()->json(['success' => 'true', 'data' => $detalles], 200);
     }
+
     /**
-     * Detalle de la habitacion
+     * HABITACIONES - Detalle de la habitacion
      * 
      * @bodyParam bearer_token string required Campo unico del cliente autenticado para acceder a esta ruta. Example: drWa9YnurQFx6bY8rfsRcdMXsXpLvTUWSEkqQHivBDLJpbFv7E31BxxBcj6z
      * @bodyParam habitacion_id int required Id de la habitacion para ver su detalle. Example: 1
@@ -644,8 +800,9 @@ class ClienteController extends Controller
         ]);
         return response()->json(['success' => 'true', 'data' => $detalles], 200);
     }
+
     /**
-     * Listado de habitaciones a la categoria que pertenece
+     * HABITACIONES - Listado de habitaciones a la categoria que pertenece
      * 
      * @bodyParam bearer_token string required Campo unico del cliente autenticado para acceder a esta ruta. Example: drWa9YnurQFx6bY8rfsRcdMXsXpLvTUWSEkqQHivBDLJpbFv7E31BxxBcj6z
      * @response scenario=success {
@@ -682,8 +839,9 @@ class ClienteController extends Controller
         }
         return response()->json(['success' => 'true', 'data' => $detalles], 200);
     }
+
     /**
-     * Listado de promociones de las habitaciones
+     * PROMOCION - Listado de promociones de las habitaciones
      * 
      * @bodyParam bearer_token string required Campo unico del cliente autenticado para acceder a esta ruta. Example: drWa9YnurQFx6bY8rfsRcdMXsXpLvTUWSEkqQHivBDLJpbFv7E31BxxBcj6z
      * @response scenario=success {
@@ -711,8 +869,9 @@ class ClienteController extends Controller
         }
         return response()->json(['success' => 'true', 'data' => $detalles], 200);
     }
+
     /**
-     * Listado de transportes
+     * TRANSPORTES - Listado de transportes
      * 
      * @bodyParam bearer_token string required Campo unico del cliente autenticado para acceder a esta ruta. Example: drWa9YnurQFx6bY8rfsRcdMXsXpLvTUWSEkqQHivBDLJpbFv7E31BxxBcj6z
      * @response scenario=success {
@@ -736,8 +895,9 @@ class ClienteController extends Controller
         }
         return response()->json(['success' => 'true', 'data' => $detalles], 200);
     }
+
     /**
-     * Detalle de transporte
+     * TRANSPORTES - Detalle de transporte
      * 
      * @bodyParam bearer_token string required Campo unico del cliente autenticado para acceder a esta ruta. Example: drWa9YnurQFx6bY8rfsRcdMXsXpLvTUWSEkqQHivBDLJpbFv7E31BxxBcj6z
      * @bodyParam transporte_id int required Id del transporte para ver su detalle. Example: 1
@@ -761,8 +921,39 @@ class ClienteController extends Controller
         ]);
         return response()->json(['success' => 'true', 'data' => $detalles], 200);
     }
+    
     /**
-     * Listado de eventos
+     * TRANSPORTES - Reserva transportes
+     * 
+     * @bodyParam bearer_token string required Campo unico del cliente autenticado para acceder a esta ruta. Example: drWa9YnurQFx6bY8rfsRcdMXsXpLvTUWSEkqQHivBDLJpbFv7E31BxxBcj6z
+     * @bodyParam datos array datos transporte. Example:{
+     *       "datos":[
+     *	               {
+     *		              "transporte_id":"2",
+     *		              "precio":"25",
+     *                    "hospedaje_id":"13"
+     *	               },
+     *	               {
+     *		               "transporte_id":"2",
+     *		               "precio":"25",
+     *                     "hospedaje_id":"13"
+     *	                }
+     *               ]
+     *            }
+     */
+    public function reservatransporte(Request $request)
+    {
+        $detalle = new HospedajeDetalleTransporte();
+        $detalle->hospedaje_id = $request->post('hospedaje_id');
+        $detalle->transporte_id = $request->post('transporte_id');
+        $detalle->precio = $request->post('precio');
+        $detalle->fecha = date('Y-m-d');
+        $detalle->save();
+        return response()->json(['success' => 'true', 'data' => 'Transportes agregados'], 200);
+    }
+
+    /**
+     * EVENTOS - Listado de eventos
      * 
      * @bodyParam bearer_token string required Campo unico del cliente autenticado para acceder a esta ruta. Example: drWa9YnurQFx6bY8rfsRcdMXsXpLvTUWSEkqQHivBDLJpbFv7E31BxxBcj6z
      * @response scenario=success {
@@ -783,7 +974,7 @@ class ClienteController extends Controller
                 'descripcion' => $evento->descripcion,
                 'fecha' => Carbon::parse(strtotime($evento->fecha))->formatLocalized('%d de %B del %Y'),
                 'foto' => $evento->fotourl,
-'galeria' => $evento->fotos->map(function ($foto) {
+                'galeria' => $evento->fotos->map(function ($foto) {
                     return [
                         'foto' => $foto->fotourl,
                     ];
@@ -792,8 +983,9 @@ class ClienteController extends Controller
         }
         return response()->json(['success' => 'true', 'data' => $detalles], 200);
     }
+
     /**
-     * Listado de Lugares Turisticos Gastronomicos
+     * TURISTICOS - Listado de Lugares Turisticos Gastronomicos
      * 
      * @bodyParam bearer_token string required Campo unico del cliente autenticado para acceder a esta ruta. Example: drWa9YnurQFx6bY8rfsRcdMXsXpLvTUWSEkqQHivBDLJpbFv7E31BxxBcj6z
      * @response scenario=success {
@@ -829,8 +1021,9 @@ class ClienteController extends Controller
         }
         return response()->json(['success' => 'true', 'data' => $detalles], 200);
     }
+
     /**
-     * Listado de Lugares Turisticos Turismo
+     * TURISTICOS - Listado de Lugares Turisticos Turismo
      * 
      * @bodyParam bearer_token string required Campo unico del cliente autenticado para acceder a esta ruta. Example: drWa9YnurQFx6bY8rfsRcdMXsXpLvTUWSEkqQHivBDLJpbFv7E31BxxBcj6z
      * @response scenario=success {
@@ -866,8 +1059,9 @@ class ClienteController extends Controller
         }
         return response()->json(['success' => 'true', 'data' => $detalles], 200);
     }
+
     /**
-     * Detalle Lugar Turistico
+     * TURISTICOS - Detalle Lugar Turistico
      * 
      * @bodyParam bearer_token string required Campo unico del cliente autenticado para acceder a esta ruta. Example: drWa9YnurQFx6bY8rfsRcdMXsXpLvTUWSEkqQHivBDLJpbFv7E31BxxBcj6z
      * @bodyParam turismo_id int Id del lugar turistico. Example: 2
@@ -901,8 +1095,36 @@ class ClienteController extends Controller
         ]);
         return response()->json(['success' => 'true', 'data' => $detalles], 200);
     }
+
     /**
-     * Listado de Categorias Restaurante
+     * TURISTICOS - Reservas Lugar Turistico
+     * 
+     * @bodyParam cliente_id integer required Id del cliente. Example: 5
+     * @bodyParam lugar_turistico_id integer required Id del lugar turistico. Example: 1
+     * @bodyParam fecha date required Fecha de registro reserva . Example: 2021-06-10
+     * @bodyParam hospedaje_id integer required Id del hospedaje. Example: 10
+     * @bodyParam precio number required Precio del recorrido Lugar Turistico. Example: 500
+     * @response scenario=success {
+     *   "success": "true",
+     *   "data": "Lugar Turistico reservado"
+     * }
+     */
+    public function reservalugarturistico(Request $request)
+    {
+        $reserva = new ReservaLugarTuristico();
+        $reserva->cliente_id = $request->post('cliente_id');
+        $reserva->lugar_turistico_id = $request->post('lugar_turistico_id');
+        $reserva->fecha = $request->post('fecha');
+        $reserva->estado = 'Activo';
+        $reserva->hospedaje_id = $request->post('hospedaje_id');
+        $reserva->precio = $request->post('precio');
+        $reserva->save();
+        Socket::emmit();
+        return response()->json(['success' => 'true', 'data' => 'Lugar Turistico reservado'], 200);
+    }
+
+    /**
+     * RESTAURANTE - Listado de Categorias Restaurante
      * 
      * @bodyParam bearer_token string required Campo unico del cliente autenticado para acceder a esta ruta. Example: drWa9YnurQFx6bY8rfsRcdMXsXpLvTUWSEkqQHivBDLJpbFv7E31BxxBcj6z
      * @response scenario=success {
@@ -925,8 +1147,9 @@ class ClienteController extends Controller
         }
         return response()->json(['success' => 'true', 'data' => $detalles], 200);
     }
+
     /**
-     * Listado de Productos Restaurante segun a la Categoria que pertenecen
+     * RESTAURANTE - Listado de Productos Restaurante segun a la Categoria que pertenecen
      * 
      * @bodyParam bearer_token string required Campo unico del cliente autenticado para acceder a esta ruta. Example: drWa9YnurQFx6bY8rfsRcdMXsXpLvTUWSEkqQHivBDLJpbFv7E31BxxBcj6z
      * @bodyParam categoria_id int required Id de la categoria del producto. Example: 1
@@ -952,8 +1175,9 @@ class ClienteController extends Controller
         }
         return response()->json(['success' => 'true', 'data' => $detalles], 200);
     }
+
     /**
-     * Deatelle Producto Restaurante
+     * RESTAURANTE - Deatelle Producto Restaurante
      * 
      * @bodyParam bearer_token string required Campo unico del cliente autenticado para acceder a esta ruta. Example: drWa9YnurQFx6bY8rfsRcdMXsXpLvTUWSEkqQHivBDLJpbFv7E31BxxBcj6z
      * @bodyParam producto_id int required Id del producto. Example: 1
@@ -996,7 +1220,9 @@ class ClienteController extends Controller
         ]);
         return response()->json(['success' => 'true', 'data' => $detalles], 200);
     }
+
     /**
+     * RESERVAS - Nueva reserva.
      * Creacion de la Reserva de una Habitacion
      * 
      * @bodyParam bearer_token string required Campo unico del cliente autenticado para acceder a esta ruta. Example: drWa9YnurQFx6bY8rfsRcdMXsXpLvTUWSEkqQHivBDLJpbFv7E31BxxBcj6z
@@ -1038,8 +1264,167 @@ class ClienteController extends Controller
         Socket::emmit();
         return response()->json(['success' => 'true', 'data' => $reserva], 200);
     }
+
     /**
-     * Reservas Cliente
+     * RESTAURANTE - Reservas Restaurante
+     * 
+     * @bodyParam hospedaje_id integer required Id del hospedaje. Example: 10
+     * @bodyParam cliente_id integer required Id del hospedaje. Example: 10
+     * @bodyParam total number required Total pedidos productos restaurante. Example: 600
+     * @bodyParam datos array datos transporte. Example:{
+     *      "hospedaje_id":"10",
+     *      "total":"600",
+     *      "datos":[
+     *           {
+     *               "producto_id":"1",
+     *               "cantidad":"2",
+     *               "precio":"100",
+     *               "opcion_id":"2",
+     *               "tamano_id":"1",
+     *               "preciotamano":"20"
+     *           },
+     *           {
+     *               "producto_id":"1",
+     *               "cantidad":"3",
+     *               "precio":"100",
+     *               "opcion_id":"2",
+     *               "tamano_id":"1",
+     *               "preciotamano":"20"
+     *           }
+     *       ]
+     *   }
+     * @response scenario=success {
+     *   "success": "true",
+     *   "data": "Productos Agregados"
+     * }
+     */
+    public function reservarestaurante(Request $request)
+    {
+        $restaurante = new ReservaRestaurante();
+        $restaurante->hospedaje_id = $request->post('hospedaje_id');
+        $restaurante->cliente_id = $request->post('cliente_id');
+        $restaurante->fecha = date('Y-m-d');
+        $restaurante->hora = date('H:i:s');
+        $restaurante->total = floatVal($request->post('total'));
+        $restaurante->save();
+
+        //DETALLE RESERVA
+        $detalles = $request->post('datos');
+        foreach ($detalles as $value) {
+            $detalle = new RestauranteDetalleReserva();
+            $detalle->restaurante_reserva_id = $restaurante->id;
+            $detalle->restaurante_producto_id = $value['producto_id'];
+            $detalle->precio = $value['precio'];
+            $detalle->cantidad = $value['cantidad'];
+            $detalle->save();
+
+            $detalleproducto = new RestauranteDetalleReservaProducto();
+            $detalleproducto->restaurante_detalle_reserva_id = $detalle->id;
+            $detalleproducto->restaurante_producto_opciones_id = $value['opcion_id'];
+            $detalleproducto->restaurante_producto_tamanho_id = $value['tamano_id'];
+            $detalleproducto->precio_tamanho = $value['preciotamano'];
+            $detalleproducto->save();
+        }
+        Socket::emmit();
+        return response()->json(['success' => 'true', 'data' => 'Productos Agregados'], 200);
+    }
+
+    /**
+     * RESTAURANTE - Mis reservas
+     * 
+     * @bodyParam cliente_id integer required Id del hospedaje. Example: 10
+     * @response scenario=success {
+     *   "success": "true",
+     *   "data": [
+     *      {
+     *          'id' => 39,
+     *          'checkin' => "2021-05-06",
+     *          'checkout' => "2021-05-06",
+     *          'adultos' => 2,
+     *          'niños' => 2,
+     *          'precio' => 100,
+     *          'estado' => 'Ocupado',
+     *          'habitacion' => [
+     *              'nombre' => 'habitacion',
+     *              'num_habitacion' => 71,
+     *              'precio' => 1000,
+     *              'foto' => 'photo.jpg',
+     *          ],
+     *          'restaurante' => [
+     *              {
+     *                  'fecha' => '2022-06-02',
+     *                  'hora' => '12:45',
+     *                  'productos' => [
+     *                      {
+     *                          'producto' => 'coca',
+     *                          'precio_producto' => 15,
+     *                          'opcion' => 'descuento',
+     *                          'tamaño' =>[
+     *                              'nombre' => 'grande,
+     *                              'precio_tamaño' => 456,
+     *                          ],
+     *                      }
+     *                  ]
+     *              }
+     *          ]
+     *             
+     *         
+     *          'totales' => [
+     *              'restaurante' => number_format(pageTotal($hospedaje->restaurantes,'total'),2),
+     *              'totalpagar' => number_format($hospedaje->total(),2),
+     *          ],
+     *      }
+     * ]
+     */
+    public function misReservasRestaurante(Request $request)
+    {
+        $hospedajes = ReservaRestaurante::where('cliente_id', $request->post('cliente_id'))->get();
+        $detalles = [];
+        foreach ($hospedajes as $hospedaje) {
+            array_push($detalles, [
+                'id' => $hospedaje->id,
+                'checkin' => $hospedaje->fecha_checkin,
+                'checkout' => $hospedaje->fecha_checkout,
+                'adultos' => $hospedaje->adultos,
+                'niños' => $hospedaje->niños,
+                'precio' => $hospedaje->precio_promocion ? $hospedaje->precio_promocion : $hospedaje->precio,
+                'estado' => $hospedaje->estado,
+                'habitacion' => [
+                    'nombre' => $hospedaje->habitacion->nombre,
+                    'num_habitacion' => $hospedaje->habitacion->num_habitacion,
+                    'precio' => $hospedaje->habitacion->precio,
+                    'foto' => $hospedaje->habitacion->fotourl,
+                ],
+                'restaurante' => $hospedaje->restaurantes->map(function ($detalle) {
+                    return [
+                        'fecha' => $detalle->fecha,
+                        'hora' => $detalle->hora,
+                        'productos' => $detalle->detalles->map(function ($producto) use ($detalle) {
+                            return [
+                                'producto' => $producto->producto->nombre,
+                                'precio_producto' => $detalle->detalle->precio,
+                                'opcion' => $producto->producto->opcion->nombre,
+                                'tamaño' => [
+                                    'nombre' => $producto->producto->tamano->nombre,
+                                    'precio_tamaño' => $detalle->detalle->detalleproducto->precio_tamanho,
+                                ],
+                            ];
+                        }),
+                    ];
+                }),
+
+                'totales' => [
+                    'restaurante' => number_format(pageTotal($hospedaje->restaurantes, 'total'), 2),
+                    'totalpagar' => number_format($hospedaje->total(), 2),
+                ],
+            ]);
+        }
+        return response()->json(['success' => 'true', 'data' => $detalles], 200);
+    }
+
+    /**
+     * RESERVAS - Mis reservas.
+     * Muestra la lsita de las reservas del cliente
      * 
      * @bodyParam bearer_token string required Campo unico del cliente autenticado para acceder a esta ruta. Example: drWa9YnurQFx6bY8rfsRcdMXsXpLvTUWSEkqQHivBDLJpbFv7E31BxxBcj6z
      * @bodyParam cliente_id int required Id del cliente. Example: 1
@@ -1069,36 +1454,12 @@ class ClienteController extends Controller
     public function misreservas(Request $request)
     {
         $reservas = Reserva::where('cliente_id',$request->post('cliente_id'))->where('estado', '=','Reservado')->get();
-        $detalles = [];
-        foreach ($reservas as $reserva) {
-            array_push($detalles, [
-                'id' => $reserva->id,
-                'checkin' => $reserva->checkin->format('Y-m-d'),
-                'checkout' => $reserva->checkout->format('Y-m-d'),
-                'adultos' => $reserva->adultos,
-                'niños' => $reserva->niños,
-                "cliente" => [
-                    'nombre' => $reserva->cliente->nombrecompleto,
-                    'celular' => $reserva->cliente->celular,
-                    'telefono' => $reserva->cliente->telefono,
-                    'ciudad' => $reserva->cliente->ciudad,
-                    'pais' => $reserva->cliente->pais,
-                    'oficio' => $reserva->cliente->oficio,
-                    'email' => $reserva->cliente->email,
-                ],
-                'habitacion' => [
-                    'nombre' => $reserva->habitacion->nombre,
-                    'num_habitacion' => $reserva->habitacion->num_habitacion,
-                    'precio' => $reserva->habitacion->precio,
-                    'foto' => $reserva->habitacion->fotourl,
-                    'estado' => $reserva->habitacion->estado,
-                ],
-            ]);
-        }
+        $detalles = $this->mapMisReservas($reservas);
         return response()->json(['success' => 'true', 'data' => $detalles], 200);
     }
+
     /**
-     * Hospedajes Cliente
+     * HOSPEDAJES - Hospedajes Cliente
      * 
      * @bodyParam bearer_token string required Campo unico del cliente autenticado para acceder a esta ruta. Example: drWa9YnurQFx6bY8rfsRcdMXsXpLvTUWSEkqQHivBDLJpbFv7E31BxxBcj6z
      * @bodyParam cliente_id int required Id del cliente. Example: 1
@@ -1193,127 +1554,41 @@ class ClienteController extends Controller
     public function mishospedajes(Request $request)
      {
         $hospedajes = Hospedaje::where('cliente_id',$request->post('cliente_id'))->orderBy('id','DESC')->get();
-        $detalles = [];
-        return  $hospedajes->map(function($hospedaje) {
-            return [
-                'id' => $hospedaje->id,
-                'checkin' => $hospedaje->fecha_checkin,
-                'checkout' => $hospedaje->fecha_checkout,
-                'adultos' => $hospedaje->adultos,
-                'niños' => $hospedaje->niños,
-                'precio' => $hospedaje->precio_promocion ? $hospedaje->precio_promocion : $hospedaje->precio,
-                'estado' => $hospedaje->estado,
-                "cliente" => $hospedaje->cliente? [
-                    'nombre' => $hospedaje->cliente->nombrecompleto,
-                    'celular' => $hospedaje->cliente->celular,
-                    'telefono' => $hospedaje->cliente->telefono,
-                    'ciudad' => $hospedaje->cliente->ciudad,
-                    'pais' => $hospedaje->cliente->pais,
-                    'oficio' => $hospedaje->cliente->oficio,
-                    'email' => $hospedaje->cliente->email,
-                ]:null,
-                'habitacion' => $hospedaje->habitacion?[
-                    'nombre' => $hospedaje->habitacion->nombre,
-                    'num_habitacion' => $hospedaje->habitacion->num_habitacion,
-                    'precio' => $hospedaje->habitacion->precio,
-                    'foto' => $hospedaje->habitacion->fotourl,
-                ]:null,
-                'transportes' => $hospedaje->detalletransportes->map(function ($detalle) {
-                    $transporte = $detalle->transporte;
-                    return [
-                        'nombre' => $transporte?$transporte->nombre:null,
-                        'precio' => $detalle->precio,
-                        'foto' => $transporte ? $transporte->fotourl : null,
-                    ];
-                }),
-                'lugares' => $hospedaje->lugares->map(function ($detalle) {
-                    $lugarturistico = $detalle->lugarturistico;
-                    return [
-                        'nombre' => $lugarturistico?$lugarturistico->nombre:null,
-                        'precio' => $detalle->precio,
-                        'fecha' => $detalle->fecha,
-                        'tipo' => $lugarturistico?$lugarturistico->tipo:null,
-                        'foto' => $lugarturistico?$lugarturistico->fotourl:null,
-                    ];
-                }),
-                'restaurante' => $hospedaje->restaurantes->map(function ($detalle) {
-                    return [
-                        'fecha' => $detalle->fecha,
-                        'hora' => $detalle->hora,
-                        'productos' => $detalle->detalles->map(function ($producto) use ($detalle) {
-                            $objProducto = $producto->producto;
-                            $productoNombre = null;
-                            if ($objProducto) {
-                                $productoNombre = $objProducto->tamano ? $objProducto->tamano->nombre:null;
-                            }
-                            $opcionNombre = null;
-                            if ($objProducto) {
-                                $opcionNombre = $objProducto->opcion ? $objProducto->opcion->nombre:null;
-                            }
-                            $precioTamano = null;
-                            $objDetalle = $detalle->detalle;
-                            if($objDetalle) {
-                                $precioTamano = $objDetalle->detalleproducto? $objDetalle->detalleproducto->precio_tamanho:null;
-                            }
-                            return [
-                                'producto' => $producto?$producto->nombre:null,
-                                'precio_producto' => $detalle->detalle?$detalle->detalle->precio:null,
-                                'opcion' => $opcionNombre,
-                                'tamaño' => [
-                                    'nombre' => $productoNombre,
-                                    'precio_tamaño' => $precioTamano,
-                                ],
-                            ];
-                        }),
-                    ];
-                }),
-                'cafeteria' => $hospedaje->cafeterias->map(function($detalle){
-                    return[
-                        'fecha' => $detalle->fecha,
-                        'hora' => $detalle->hora,
-                        'productos' => $detalle->detalles->map(function($producto)use($detalle){
-                            $objProducto = $producto->producto;
-                            $productoNombre = null;
-                            if ($objProducto) {
-                                $productoNombre = $objProducto->tamano ? $objProducto->tamano->nombre : null;
-                            }
-                            $opcionNombre = null;
-                            if ($objProducto) {
-                                $opcionNombre = $objProducto->opcion ? $objProducto->opcion->nombre : null;
-                            }
-                            $precioTamano = null;
-                            $objDetalle = $detalle->detalle;
-                            if ($objDetalle) {
-                                $precioTamano = $objDetalle->detalleproducto ? $objDetalle->detalleproducto->precio_tamanho : null;
-                            }
-                            return [
-                                'producto' => $producto ? $producto->nombre : null,
-                                'precio_producto' => $detalle->detalle ? $detalle->detalle->precio : null,
-                                'opcion' => $opcionNombre,
-                                'tamaño' => [
-                                    'nombre' => $productoNombre,
-                                    'precio_tamaño' => $precioTamano,
-                                ],
-                            ];
-                        }),
-                    ];
-                }),
-                'totales' => [
-                    'hospedaje' => $hospedaje->precio_promocion ? $hospedaje->precio_promocion : $hospedaje->precio,
-                    'transportes' => number_format(pageTotal($hospedaje->detalletransportes, 'precio'), 2),
-                    'restaurante' => number_format(pageTotal($hospedaje->restaurantes, 'total'), 2),
-                    'cafeteria' => number_format(pageTotal($hospedaje->cafeterias, 'total'), 2),
-                    'lugarturistico' => number_format(pageTotal($hospedaje->lugares, 'precio'), 2),
-                    'totalpagar' => number_format($hospedaje->total(), 2),
-                ],
-            ];
-        });
-
+        $detalles = $this->formatMisHospedajes($hospedajes);
         return response()->json(['success' => 'true', 'data' => $detalles], 200);
     }
 
-
-   public function mishospedajesocupados(Request $request)
+    /**
+     * HOSPEDAJES - Hospedajes ocupados del cliente
+     * 
+     * @bodyParam bearer_token string required Campo unico del cliente autenticado para acceder a esta ruta. Example: drWa9YnurQFx6bY8rfsRcdMXsXpLvTUWSEkqQHivBDLJpbFv7E31BxxBcj6z
+     * @bodyParam cliente_id int required Id del cliente. Example: 1
+     * @response scenario=success {
+     *       'id' => 39,
+     *       "checkin": "2021-05-20",
+     *       "checkout": "2021-05-22",
+     *       "adultos": 4,
+     *       "niños": 2,
+     *       "precio": "300.00",
+     *       "estado": "Ocupado",
+     *       "cliente": {
+     *           "nombre": "Julian Gonzales Llanos",
+     *           "celular": "62101485",
+     *           "telefono": "42682265",
+     *           "ciudad": "La Paz",
+     *           "pais": "Bolivia",
+     *           "oficio": "Albañil",
+     *           "email": "julian@gmail.com"
+     *       },
+     *       "habitacion": {
+     *           "nombre": "Habitacion 26",
+     *           "num_habitacion": "26",
+     *           "precio": "450.00",
+     *           "foto": "http://pairumanibackoffice.test/public/imagenes/habitaciones/habitacion_210521090607.jfif"
+     *       },
+     * }
+     */
+    public function mishospedajesocupados(Request $request)
     {
        $hospedajes = Hospedaje::where('cliente_id',$request->post('cliente_id'))->where('estado','Ocupado')->orderBy('id','DESC')->get();
        $detalles = [];
@@ -1334,8 +1609,8 @@ class ClienteController extends Controller
                    'pais' => $hospedaje->cliente->pais,
                    'oficio' => $hospedaje->cliente->oficio,
                    'email' => $hospedaje->cliente->email,
-               ],
-  'habitacion' => [
+                ],
+                'habitacion' => [
                     'nombre' => $hospedaje->habitacion->nombre,
                     'num_habitacion' => $hospedaje->habitacion->num_habitacion,
                     'precio' => $hospedaje->habitacion->precio,
@@ -1347,132 +1622,10 @@ class ClienteController extends Controller
            ]);
        }
        return response()->json(['success' => 'true', 'data' => $detalles], 200);
-   }
-    /**
-     * Reserva transportes
-     * 
-     * @bodyParam bearer_token string required Campo unico del cliente autenticado para acceder a esta ruta. Example: drWa9YnurQFx6bY8rfsRcdMXsXpLvTUWSEkqQHivBDLJpbFv7E31BxxBcj6z
-     * @bodyParam datos array datos transporte. Example:{
-     *       "datos":[
-	 *	               {
-	 *		              "transporte_id":"2",
-	 *		              "precio":"25",
-     *                    "hospedaje_id":"13"
-	 *	               },
-	 *	               {
-	 *		               "transporte_id":"2",
-	 *		               "precio":"25",
-     *                     "hospedaje_id":"13"
-	 *	                }
-	 *               ]
-     *            }
-     */
-    public function reservatransporte(Request $request)
-    {
-        $detalle = new HospedajeDetalleTransporte();
-        $detalle->hospedaje_id = $request->post('hospedaje_id');
-        $detalle->transporte_id = $request->post('transporte_id');
-        $detalle->precio = $request->post('precio');
-        $detalle->fecha = date('Y-m-d');
-        $detalle->save();
-        return response()->json(['success' => 'true', 'data' => 'Transportes agregados'], 200);
     }
+    
     /**
-     * Reservas Lugar Turistico
-     * 
-     * @bodyParam cliente_id integer required Id del cliente. Example: 5
-     * @bodyParam lugar_turistico_id integer required Id del lugar turistico. Example: 1
-     * @bodyParam fecha date required Fecha de registro reserva . Example: 2021-06-10
-     * @bodyParam hospedaje_id integer required Id del hospedaje. Example: 10
-     * @bodyParam precio number required Precio del recorrido Lugar Turistico. Example: 500
-     * @response scenario=success {
-     *   "success": "true",
-     *   "data": "Lugar Turistico reservado"
-     * }
-     */
-    public function reservalugarturistico(Request $request)
-    {
-        $reserva = new ReservaLugarTuristico();
-        $reserva->cliente_id = $request->post('cliente_id');
-        $reserva->lugar_turistico_id = $request->post('lugar_turistico_id');
-        $reserva->fecha = $request->post('fecha');
-        $reserva->estado = 'Activo';
-        $reserva->hospedaje_id = $request->post('hospedaje_id');
-        $reserva->precio = $request->post('precio');
-        $reserva->save();
-        Socket::emmit();
-        return response()->json(['success' => 'true', 'data' => 'Lugar Turistico reservado'], 200);
-    }
-    /**
-     * Reservas Restaurante
-     * 
-     * @bodyParam hospedaje_id integer required Id del hospedaje. Example: 10
-     * @bodyParam toal number required Total pedidos productos restaurante. Example: 600
-     * @bodyParam producto_id integer required Id del producto reservado . Example: 1
-     * @bodyParam precio number required Precio del producto. Example: 100
-     * @bodyParam cantidad number required Cantidad de productos reservados. Example: 3
-     * @bodyParam opcion_id integer required Id de la opcion del producto. Example: 1
-     * @bodyParam tamano_id integer required Ide del tamaño producto. Example: 2
-     * @bodyParam preciotamano number required Precio del tamaño producto. Example: 40
-     * @bodyParam datos array datos transporte. Example:{
-     *      "hospedaje_id":"10",
-     *      "total":"600",
-     *       "datos":[
-     *           {
-     *               "producto_id":"1",
-     *               "cantidad":"2",
-     *               "precio":"100",
-     *               "opcion_id":"2",
-     *               "tamano_id":"1",
-     *               "preciotamano":"20"
-     *           },
-     *           {
-     *               "producto_id":"1",
-     *               "cantidad":"3",
-     *               "precio":"100",
-     *               "opcion_id":"2",
-     *               "tamano_id":"1",
-     *               "preciotamano":"20"
-     *           }
-     *       ]
-     *   }
-     * @response scenario=success {
-     *   "success": "true",
-     *   "data": "Productos Agregados"
-     * }
-     */
-    public function reservarestaurante(Request $request)
-    {
-        $restaurante = new ReservaRestaurante();
-        $restaurante->hospedaje_id = $request->post('hospedaje_id');
-        $restaurante->cliente_id = $request->post('cliente_id');
-        $restaurante->fecha = date('Y-m-d');
-        $restaurante->hora = date('H:i:s');
-        $restaurante->total = $request->post('total');
-        $restaurante->save();
-
-        //DETALLE RESERVA
-        $detalles = $request->post('datos');
-        foreach ($detalles as $value) {
-            $detalle = new RestauranteDetalleReserva();
-            $detalle->restaurante_reserva_id = $restaurante->id;
-            $detalle->restaurante_producto_id = $value['producto_id'];
-            $detalle->precio = $value['precio'];
-            $detalle->cantidad = $value['cantidad'];
-            $detalle->save();
-
-            $detalleproducto = new RestauranteDetalleReservaProducto();
-            $detalleproducto->restaurante_detalle_reserva_id = $detalle->id;
-            $detalleproducto->restaurante_producto_opciones_id = $value['opcion_id'];
-            $detalleproducto->restaurante_producto_tamanho_id = $value['tamano_id'];
-            $detalleproducto->precio_tamanho = $value['preciotamano'];
-            $detalleproducto->save();
-        }
-        Socket::emmit();
-        return response()->json(['success' => 'true', 'data' => 'Productos Agregados'], 200);
-    }
-    /**
-     * Listado de Categorias Cafeteria
+     * CAFETERIA - Listado de Categorias Cafeteria
      * 
      * @bodyParam bearer_token string required Campo unico del cliente autenticado para acceder a esta ruta. Example: drWa9YnurQFx6bY8rfsRcdMXsXpLvTUWSEkqQHivBDLJpbFv7E31BxxBcj6z
      * @response scenario=success {
@@ -1495,8 +1648,9 @@ class ClienteController extends Controller
         }
         return response()->json(['success' => 'true', 'data' => $detalles], 200);
     }
+
     /**
-     * Listado de Productos Cafeteria segun a la Categoria que pertenecen
+     * CAFETERIA - Listado de Productos Cafeteria segun a la Categoria que pertenecen
      * 
      * @bodyParam bearer_token string required Campo unico del cliente autenticado para acceder a esta ruta. Example: drWa9YnurQFx6bY8rfsRcdMXsXpLvTUWSEkqQHivBDLJpbFv7E31BxxBcj6z
      * @bodyParam categoria_id int required Id de la categoria del producto. Example: 1
@@ -1523,7 +1677,7 @@ class ClienteController extends Controller
         return response()->json(['success' => 'true', 'data' => $detalles], 200);
     }
     /**
-     * Deatelle Producto Cafeteria
+     * CAFETERIA - Deatelle Producto Cafeteria
      * 
      * @bodyParam bearer_token string required Campo unico del cliente autenticado para acceder a esta ruta. Example: drWa9YnurQFx6bY8rfsRcdMXsXpLvTUWSEkqQHivBDLJpbFv7E31BxxBcj6z
      * @bodyParam producto_id int required Id del producto. Example: 1
@@ -1565,11 +1719,12 @@ class ClienteController extends Controller
         ]);
         return response()->json(['success' => 'true', 'data' => $detalles], 200);
     }
+
     /**
-     * Reservas Restaurante
+     * CAFETERIA - Reservas cafeteria
      * 
      * @bodyParam hospedaje_id integer required Id del hospedaje. Example: 10
-     * @bodyParam toal number required Total pedidos productos restaurante. Example: 600
+     * @bodyParam total number required Total pedidos productos restaurante. Example: 600
      * @bodyParam producto_id integer required Id del producto reservado . Example: 1
      * @bodyParam precio number required Precio del producto. Example: 100
      * @bodyParam cantidad number required Cantidad de productos reservados. Example: 3
@@ -1632,51 +1787,5 @@ class ClienteController extends Controller
         }
         Socket::emmit();
         return response()->json(['success' => 'true', 'data' => 'Productos Agregados'], 200);
-    }
-
-public function misReservasRestaurante(Request $request)
-    {
-        $hospedajes = ReservaRestaurante::where('cliente_id',$request->post('cliente_id'))->get();
-        $detalles = [];
-        foreach ($hospedajes as $hospedaje) {
-            array_push($detalles, [
-                'id' => $hospedaje->id,
-                'checkin' => $hospedaje->fecha_checkin,
-                'checkout' => $hospedaje->fecha_checkout,
-                'adultos' => $hospedaje->adultos,
-                'niños' => $hospedaje->niños,
-                'precio' => $hospedaje->precio_promocion ? $hospedaje->precio_promocion : $hospedaje->precio,
-                'estado' => $hospedaje->estado,
-                'habitacion' => [
-                    'nombre' => $hospedaje->habitacion->nombre,
-                    'num_habitacion' => $hospedaje->habitacion->num_habitacion,
-                    'precio' => $hospedaje->habitacion->precio,
-                    'foto' => $hospedaje->habitacion->fotourl,
-                ],
-                'restaurante' => $hospedaje->restaurantes->map(function($detalle){
-                    return[
-                        'fecha' => $detalle->fecha,
-                        'hora' => $detalle->hora,
-                        'productos' => $detalle->detalles->map(function($producto)use($detalle){
-                            return[
-                                'producto' => $producto->producto->nombre,
-                                'precio_producto' => $detalle->detalle->precio,
-                                'opcion' => $producto->producto->opcion->nombre,
-                                'tamaño' =>[
-                                    'nombre' => $producto->producto->tamano->nombre,
-                                    'precio_tamaño' => $detalle->detalle->detalleproducto->precio_tamanho,
-                                ],
-                            ];
-                        }),
-                    ];
-                }),
-               
-                'totales' => [
-                    'restaurante' => number_format(pageTotal($hospedaje->restaurantes,'total'),2),
-                    'totalpagar' => number_format($hospedaje->total(),2),
-                ],
-            ]);
-        }
-        return response()->json(['success' => 'true', 'data' => $detalles], 200);
     }
 }

@@ -1,15 +1,15 @@
 openapi: 3.0.3
 info:
-    title: HOTEL-PAIRUMANI
+    title: 'Pairumani Hotel API'
     description: ''
     version: 1.0.0
 servers:
     -
-        url: 'http://pairumanibackoffice.test'
+        url: 'http://c2210260.ferozo.com'
 paths:
     /api/login:
         post:
-            summary: 'Login con redes sociales y normal'
+            summary: 'CLIENTE - Login con redes sociales y normal'
             description: ''
             parameters:
                 -
@@ -81,9 +81,9 @@ paths:
                             type: object
                             properties:
                                 tipo_login:
-                                    type: string
-                                    description: 'El tipo de login que usara el cliente para iniciar sesion.'
-                                    example: '1,2,3'
+                                    type: integer
+                                    description: 'El tipo de login que usara el cliente para iniciar sesion; 1 = Email login, 2 = gmail login,3 = facebook login.'
+                                    example: 1
                                 email:
                                     type: string
                                     description: 'Email que usa el cliente para el registro.'
@@ -146,8 +146,8 @@ paths:
                                     example: 'Recreacion,Negocios,Salud,Otro'
                                 foto:
                                     type: string
-                                    description: 'Foto que se registrara cuando haga login con sus redes sociales o suba una foto el lciente para el registro.'
-                                    example: foto.jpg
+                                    description: 'Foto que se registrara cuando haga login con sus redes sociales o suba una foto el lciente para el registro, esta debe ser una ruta absoluta como https://www.facebook.com/user1/photo.jpg .'
+                                    example: 'https://www.facebook.com/user1/photo.jpg'
                                 imei_celular:
                                     type: string
                                     description: 'Se registrara el imei del celular del cliente para el registro.'
@@ -160,7 +160,7 @@ paths:
             security: []
     /api/signup:
         post:
-            summary: 'Registro de nuevo Cliente'
+            summary: 'CLIENTE - Registro de nuevo Cliente'
             description: ''
             parameters:
                 -
@@ -303,10 +303,12 @@ paths:
                                 - nombres
                                 - apellidos
                                 - celular
+                                - email
+                                - password
             security: []
     /api/perfil:
         post:
-            summary: 'Perfil de Cliente'
+            summary: 'CLIENTE -  Perfil de Cliente'
             description: ''
             parameters:
                 -
@@ -386,7 +388,7 @@ paths:
             security: []
     /api/update:
         post:
-            summary: 'Editar perfil Cliente'
+            summary: 'CLIENTE -  Editar perfil Cliente'
             description: ''
             parameters:
                 -
@@ -532,7 +534,7 @@ paths:
             security: []
     /api/verificaremail:
         post:
-            summary: 'Verificacion de email para cambio de password'
+            summary: 'CLIENTE -  Verificacion de email para cambio de password'
             description: ''
             parameters:
                 -
@@ -553,10 +555,47 @@ paths:
                 200:
                     description: '200, success'
                     content:
-                        text/plain:
+                        application/json:
                             schema:
-                                type: string
-                                example: "{\n  \"data\": true,\n}"
+                                type: object
+                                example:
+                                    id: 7
+                                    nombres: 'Juan Carlos'
+                                    apellidos: 'Espinoza Cespedes'
+                                    tipo_documento: Ci
+                                    num_documento: '94564455'
+                                    celular: '65582210'
+                                    direccion: 'Av Pando'
+                                    ciudad: Cochabamba
+                                    pais: Bolivia
+                                    oficio: Arquitecto
+                                    empresa: SOFT
+                                    telefono: '4444444'
+                                    email: juan@gmail.com
+                                    fecha_nacimiento: '1989-05-12'
+                                    motivo_viaje: Recreacion
+                                    foto: foto.jpg
+                                    api_token: KjUdFmnlAu7aFjlUXWIuSE1L4wPM8y3oWFacDALHOHKbNlbZGIa6ifz6Ojy4
+                                    imei_celular: '354651100023680'
+                                properties:
+                                    id: { type: integer, example: 7 }
+                                    nombres: { type: string, example: 'Juan Carlos' }
+                                    apellidos: { type: string, example: 'Espinoza Cespedes' }
+                                    tipo_documento: { type: string, example: Ci }
+                                    num_documento: { type: string, example: '94564455' }
+                                    celular: { type: string, example: '65582210' }
+                                    direccion: { type: string, example: 'Av Pando' }
+                                    ciudad: { type: string, example: Cochabamba }
+                                    pais: { type: string, example: Bolivia }
+                                    oficio: { type: string, example: Arquitecto }
+                                    empresa: { type: string, example: SOFT }
+                                    telefono: { type: string, example: '4444444' }
+                                    email: { type: string, example: juan@gmail.com }
+                                    fecha_nacimiento: { type: string, example: '1989-05-12' }
+                                    motivo_viaje: { type: string, example: Recreacion }
+                                    foto: { type: string, example: foto.jpg }
+                                    api_token: { type: string, example: KjUdFmnlAu7aFjlUXWIuSE1L4wPM8y3oWFacDALHOHKbNlbZGIa6ifz6Ojy4 }
+                                    imei_celular: { type: string, example: '354651100023680' }
             tags:
                 - Endpoints
             requestBody:
@@ -575,7 +614,7 @@ paths:
             security: []
     /api/verificarcodigo:
         post:
-            summary: 'Verificacion de codigo enviado al email del cliente'
+            summary: 'CLIENTE -  Verificacion de codigo enviado al email del cliente'
             description: ''
             parameters:
                 -
@@ -596,10 +635,47 @@ paths:
                 200:
                     description: '200, success'
                     content:
-                        text/plain:
+                        application/json:
                             schema:
-                                type: string
-                                example: "{\n  \"data\": true o false,\n}"
+                                type: object
+                                example:
+                                    id: 7
+                                    nombres: 'Juan Carlos'
+                                    apellidos: 'Espinoza Cespedes'
+                                    tipo_documento: Ci
+                                    num_documento: '94564455'
+                                    celular: '65582210'
+                                    direccion: 'Av Pando'
+                                    ciudad: Cochabamba
+                                    pais: Bolivia
+                                    oficio: Arquitecto
+                                    empresa: SOFT
+                                    telefono: '4444444'
+                                    email: juan@gmail.com
+                                    fecha_nacimiento: '1989-05-12'
+                                    motivo_viaje: Recreacion
+                                    foto: foto.jpg
+                                    api_token: KjUdFmnlAu7aFjlUXWIuSE1L4wPM8y3oWFacDALHOHKbNlbZGIa6ifz6Ojy4
+                                    imei_celular: '354651100023680'
+                                properties:
+                                    id: { type: integer, example: 7 }
+                                    nombres: { type: string, example: 'Juan Carlos' }
+                                    apellidos: { type: string, example: 'Espinoza Cespedes' }
+                                    tipo_documento: { type: string, example: Ci }
+                                    num_documento: { type: string, example: '94564455' }
+                                    celular: { type: string, example: '65582210' }
+                                    direccion: { type: string, example: 'Av Pando' }
+                                    ciudad: { type: string, example: Cochabamba }
+                                    pais: { type: string, example: Bolivia }
+                                    oficio: { type: string, example: Arquitecto }
+                                    empresa: { type: string, example: SOFT }
+                                    telefono: { type: string, example: '4444444' }
+                                    email: { type: string, example: juan@gmail.com }
+                                    fecha_nacimiento: { type: string, example: '1989-05-12' }
+                                    motivo_viaje: { type: string, example: Recreacion }
+                                    foto: { type: string, example: foto.jpg }
+                                    api_token: { type: string, example: KjUdFmnlAu7aFjlUXWIuSE1L4wPM8y3oWFacDALHOHKbNlbZGIa6ifz6Ojy4 }
+                                    imei_celular: { type: string, example: '354651100023680' }
             tags:
                 - Endpoints
             requestBody:
@@ -613,12 +689,17 @@ paths:
                                     type: string
                                     description: 'Verificacion que el codigo que se envio a su email coincidan.'
                                     example: '58741258'
+                                cliente_id:
+                                    type: integer
+                                    description: 'Id del cliente para devolver su informacion.'
+                                    example: 5
                             required:
                                 - codigo
+                                - cliente_id
             security: []
     /api/cambiarpassword:
         post:
-            summary: 'Cambio de password del Cliente'
+            summary: 'CLIENTE - Cambio de password del Cliente'
             description: ''
             parameters:
                 -
@@ -671,7 +752,7 @@ paths:
             security: []
     /api/sliders:
         get:
-            summary: 'Listado de la Galeria del Hotel'
+            summary: 'SLIDERS - Listado de la Galeria del Hotel'
             description: ''
             parameters:
                 -
@@ -697,11 +778,11 @@ paths:
                                 type: object
                                 example:
                                     id: 1
-                                    foto: 'http://pairumanibackoffice.test/laravel/public/imagenes/hotel/galeria/foto_210514173512.jpg'
+                                    foto: 'http://pairumanibackoffice.test/public/imagenes/hotel/galeria/foto_210514173512.jpg'
                                     descripcion: '<p>sadsafasfa</p>'
                                 properties:
                                     id: { type: integer, example: 1 }
-                                    foto: { type: string, example: 'http://pairumanibackoffice.test/laravel/public/imagenes/hotel/galeria/foto_210514173512.jpg' }
+                                    foto: { type: string, example: 'http://pairumanibackoffice.test/public/imagenes/hotel/galeria/foto_210514173512.jpg' }
                                     descripcion: { type: string, example: '<p>sadsafasfa</p>' }
             tags:
                 - Endpoints
@@ -721,7 +802,7 @@ paths:
             security: []
     /api/habitacioncategorias:
         get:
-            summary: 'Listado de las categorias de las habitaciones'
+            summary: 'HABITACIONES - Listado de las categorias de las habitaciones'
             description: ''
             parameters:
                 -
@@ -749,12 +830,12 @@ paths:
                                     id: 4
                                     nombre: 'Habitacion Presidencial'
                                     descripcion: '<p>sadsafasfa</p>'
-                                    foto: 'http://pairumanibackoffice.test/laravel/public/imagenes/habitaciones/categorias/habitacioncategoria_210422124342.jpg'
+                                    foto: 'http://pairumanibackoffice.test/public/imagenes/habitaciones/categorias/habitacioncategoria_210422124342.jpg'
                                 properties:
                                     id: { type: integer, example: 4 }
                                     nombre: { type: string, example: 'Habitacion Presidencial' }
                                     descripcion: { type: string, example: '<p>sadsafasfa</p>' }
-                                    foto: { type: string, example: 'http://pairumanibackoffice.test/laravel/public/imagenes/habitaciones/categorias/habitacioncategoria_210422124342.jpg' }
+                                    foto: { type: string, example: 'http://pairumanibackoffice.test/public/imagenes/habitaciones/categorias/habitacioncategoria_210422124342.jpg' }
             tags:
                 - Endpoints
             requestBody:
@@ -773,7 +854,7 @@ paths:
             security: []
     /api/habitaciones:
         post:
-            summary: 'Listado de habitaciones segun la categoria que estan enlazadas'
+            summary: 'HABITACIONES - Listado de habitaciones segun la categoria que estan enlazadas'
             description: ''
             parameters:
                 -
@@ -806,7 +887,7 @@ paths:
                                     capacidad_minima: '3'
                                     capacidad_maxima: '7'
                                     estado: Disponible
-                                    foto: 'http://pairumanibackoffice.test/laravel/public/imagenes/habitaciones/habitacion_210516222401.jfif'
+                                    foto: 'http://pairumanibackoffice.test/public/imagenes/habitaciones/habitacion_210516222401.jfif'
                                 properties:
                                     nombre: { type: string, example: 'Habitacion 1' }
                                     descripcion: { type: string, example: '<p>asdafasfasfasfafafas</p>' }
@@ -816,7 +897,7 @@ paths:
                                     capacidad_minima: { type: string, example: '3' }
                                     capacidad_maxima: { type: string, example: '7' }
                                     estado: { type: string, example: Disponible }
-                                    foto: { type: string, example: 'http://pairumanibackoffice.test/laravel/public/imagenes/habitaciones/habitacion_210516222401.jfif' }
+                                    foto: { type: string, example: 'http://pairumanibackoffice.test/public/imagenes/habitaciones/habitacion_210516222401.jfif' }
             tags:
                 - Endpoints
             requestBody:
@@ -840,7 +921,7 @@ paths:
             security: []
     /api/habitaciondetalle:
         post:
-            summary: 'Detalle de la habitacion'
+            summary: 'HABITACIONES - Detalle de la habitacion'
             description: ''
             parameters:
                 -
@@ -873,7 +954,7 @@ paths:
                                     capacidad_minima: '6'
                                     capacidad_maxima: '8'
                                     estado: Reservado
-                                    foto: 'http://pairumanibackoffice.test/laravel/public/imagenes/habitaciones/habitacion_210430121313.jpg'
+                                    foto: 'http://pairumanibackoffice.test/public/imagenes/habitaciones/habitacion_210430121313.jpg'
                                 properties:
                                     nombre: { type: string, example: asfasfasgfsagasga }
                                     descripcion: { type: string, example: '<p>asasfasfa</p>' }
@@ -883,7 +964,7 @@ paths:
                                     capacidad_minima: { type: string, example: '6' }
                                     capacidad_maxima: { type: string, example: '8' }
                                     estado: { type: string, example: Reservado }
-                                    foto: { type: string, example: 'http://pairumanibackoffice.test/laravel/public/imagenes/habitaciones/habitacion_210430121313.jpg' }
+                                    foto: { type: string, example: 'http://pairumanibackoffice.test/public/imagenes/habitaciones/habitacion_210430121313.jpg' }
             tags:
                 - Endpoints
             requestBody:
@@ -907,7 +988,7 @@ paths:
             security: []
     /api/Habitacionescategoria:
         get:
-            summary: 'Listado de habitaciones a la categoria que pertenece'
+            summary: 'HABITACIONES - Listado de habitaciones a la categoria que pertenece'
             description: ''
             parameters:
                 -
@@ -941,7 +1022,7 @@ paths:
                                     capacidad_maxima: '7'
                                     estado: Disponible
                                     categoria: 'Habitacion Presidencial'
-                                    foto: 'http://pairumanibackoffice.test/laravel/public/imagenes/habitaciones/habitacion_210516222401.jfif'
+                                    foto: 'http://pairumanibackoffice.test/public/imagenes/habitaciones/habitacion_210516222401.jfif'
                                 properties:
                                     nombre: { type: string, example: 'Habitacion 1' }
                                     descripcion: { type: string, example: '<p>asdafasfasfasfafafas</p>' }
@@ -952,7 +1033,7 @@ paths:
                                     capacidad_maxima: { type: string, example: '7' }
                                     estado: { type: string, example: Disponible }
                                     categoria: { type: string, example: 'Habitacion Presidencial' }
-                                    foto: { type: string, example: 'http://pairumanibackoffice.test/laravel/public/imagenes/habitaciones/habitacion_210516222401.jfif' }
+                                    foto: { type: string, example: 'http://pairumanibackoffice.test/public/imagenes/habitaciones/habitacion_210516222401.jfif' }
             tags:
                 - Endpoints
             requestBody:
@@ -971,7 +1052,7 @@ paths:
             security: []
     /api/promociones:
         get:
-            summary: 'Listado de promociones de las habitaciones'
+            summary: 'PROMOCION - Listado de promociones de las habitaciones'
             description: ''
             parameters:
                 -
@@ -1000,13 +1081,13 @@ paths:
                                     descripcion: '<p>asfasfasfasfsafa</p>'
                                     precio: '150.00'
                                     estado: Activo
-                                    foto: 'http://pairumanibackoffice.test/laravel/public/imagenes/promociones/promocion_210513161554.jpg'
+                                    foto: 'http://pairumanibackoffice.test/public/imagenes/promociones/promocion_210513161554.jpg'
                                 properties:
                                     nombre: { type: string, example: asdasfasfasfa }
                                     descripcion: { type: string, example: '<p>asfasfasfasfsafa</p>' }
                                     precio: { type: string, example: '150.00' }
                                     estado: { type: string, example: Activo }
-                                    foto: { type: string, example: 'http://pairumanibackoffice.test/laravel/public/imagenes/promociones/promocion_210513161554.jpg' }
+                                    foto: { type: string, example: 'http://pairumanibackoffice.test/public/imagenes/promociones/promocion_210513161554.jpg' }
             tags:
                 - Endpoints
             requestBody:
@@ -1025,7 +1106,7 @@ paths:
             security: []
     /api/transportes:
         get:
-            summary: 'Listado de transportes'
+            summary: 'TRANSPORTES - Listado de transportes'
             description: ''
             parameters:
                 -
@@ -1075,7 +1156,7 @@ paths:
             security: []
     /api/transportedetalle:
         post:
-            summary: 'Detalle de transporte'
+            summary: 'TRANSPORTES - Detalle de transporte'
             description: ''
             parameters:
                 -
@@ -1132,7 +1213,7 @@ paths:
             security: []
     /api/eventos:
         get:
-            summary: 'Listado de eventos'
+            summary: 'EVENTOS - Listado de eventos'
             description: ''
             parameters:
                 -
@@ -1160,12 +1241,12 @@ paths:
                                     nombre: sadaasfasa
                                     descripcion: '<p>asfasfasfas</p>'
                                     fecha: '2021-04-24'
-                                    foto: 'http://pairumanibackoffice.test/laravel/public/imagenes/eventos/evento_210422123859.jpg'
+                                    foto: 'http://pairumanibackoffice.test/public/imagenes/eventos/evento_210422123859.jpg'
                                 properties:
                                     nombre: { type: string, example: sadaasfasa }
                                     descripcion: { type: string, example: '<p>asfasfasfas</p>' }
                                     fecha: { type: string, example: '2021-04-24' }
-                                    foto: { type: string, example: 'http://pairumanibackoffice.test/laravel/public/imagenes/eventos/evento_210422123859.jpg' }
+                                    foto: { type: string, example: 'http://pairumanibackoffice.test/public/imagenes/eventos/evento_210422123859.jpg' }
             tags:
                 - Endpoints
             requestBody:
@@ -1184,7 +1265,7 @@ paths:
             security: []
     /api/lugaresgastronomia:
         get:
-            summary: 'Listado de Lugares Turisticos Gastronomicos'
+            summary: 'TURISTICOS - Listado de Lugares Turisticos Gastronomicos'
             description: ''
             parameters:
                 -
@@ -1215,7 +1296,7 @@ paths:
                                     lat: '-17.38918918180772'
                                     lng: '-66.15840481762962'
                                     tipo: Gastronomia
-                                    foto: 'http://pairumanibackoffice.test/laravel/public/imagenes/lugaresturisticos/lugar_210422114750.jpg'
+                                    foto: 'http://pairumanibackoffice.test/public/imagenes/lugaresturisticos/lugar_210422114750.jpg'
                                 properties:
                                     nombre: { type: string, example: Pairumani }
                                     descripcion: { type: string, example: '<p>Recorrido por todo el parque</p>' }
@@ -1223,7 +1304,7 @@ paths:
                                     lat: { type: string, example: '-17.38918918180772' }
                                     lng: { type: string, example: '-66.15840481762962' }
                                     tipo: { type: string, example: Gastronomia }
-                                    foto: { type: string, example: 'http://pairumanibackoffice.test/laravel/public/imagenes/lugaresturisticos/lugar_210422114750.jpg' }
+                                    foto: { type: string, example: 'http://pairumanibackoffice.test/public/imagenes/lugaresturisticos/lugar_210422114750.jpg' }
             tags:
                 - Endpoints
             requestBody:
@@ -1242,7 +1323,7 @@ paths:
             security: []
     /api/lugaresturismo:
         get:
-            summary: 'Listado de Lugares Turisticos Turismo'
+            summary: 'TURISTICOS - Listado de Lugares Turisticos Turismo'
             description: ''
             parameters:
                 -
@@ -1273,7 +1354,7 @@ paths:
                                     lat: '-17.38918918180772'
                                     lng: '-66.15840481762962'
                                     tipo: Turismo
-                                    foto: 'http://pairumanibackoffice.test/laravel/public/imagenes/lugaresturisticos/lugar_210422114750.jpg'
+                                    foto: 'http://pairumanibackoffice.test/public/imagenes/lugaresturisticos/lugar_210422114750.jpg'
                                 properties:
                                     nombre: { type: string, example: Pairumani }
                                     descripcion: { type: string, example: '<p>Recorrido por todo el parque</p>' }
@@ -1281,7 +1362,7 @@ paths:
                                     lat: { type: string, example: '-17.38918918180772' }
                                     lng: { type: string, example: '-66.15840481762962' }
                                     tipo: { type: string, example: Turismo }
-                                    foto: { type: string, example: 'http://pairumanibackoffice.test/laravel/public/imagenes/lugaresturisticos/lugar_210422114750.jpg' }
+                                    foto: { type: string, example: 'http://pairumanibackoffice.test/public/imagenes/lugaresturisticos/lugar_210422114750.jpg' }
             tags:
                 - Endpoints
             requestBody:
@@ -1300,7 +1381,7 @@ paths:
             security: []
     /api/turismodetalle:
         post:
-            summary: 'Detalle Lugar Turistico'
+            summary: 'TURISTICOS - Detalle Lugar Turistico'
             description: ''
             parameters:
                 -
@@ -1331,7 +1412,7 @@ paths:
                                     lat: '-17.39375549279761'
                                     lng: '-66.15695642476157'
                                     tipo: Turismo
-                                    foto: 'http://pairumanibackoffice.test/laravel/public/imagenes/lugaresturisticos/lugar_210513145930.jpg'
+                                    foto: 'http://pairumanibackoffice.test/public/imagenes/lugaresturisticos/lugar_210513145930.jpg'
                                 properties:
                                     nombre: { type: string, example: 'Plaza Principal' }
                                     descripcion: { type: string, example: '<p>asdafafafmans,mfna,s</p>' }
@@ -1339,7 +1420,7 @@ paths:
                                     lat: { type: string, example: '-17.39375549279761' }
                                     lng: { type: string, example: '-66.15695642476157' }
                                     tipo: { type: string, example: Turismo }
-                                    foto: { type: string, example: 'http://pairumanibackoffice.test/laravel/public/imagenes/lugaresturisticos/lugar_210513145930.jpg' }
+                                    foto: { type: string, example: 'http://pairumanibackoffice.test/public/imagenes/lugaresturisticos/lugar_210513145930.jpg' }
             tags:
                 - Endpoints
             requestBody:
@@ -1362,7 +1443,7 @@ paths:
             security: []
     /api/restaurantecategorias:
         get:
-            summary: 'Listado de Categorias Restaurante'
+            summary: 'RESTAURANTE - Listado de Categorias Restaurante'
             description: ''
             parameters:
                 -
@@ -1389,11 +1470,11 @@ paths:
                                 example:
                                     nombre: adasdasfasf
                                     descripcion: '<p>safasfasfasfa</p>'
-                                    foto: 'http://pairumanibackoffice.test/laravel/public/imagenes/restaurantes/categorias/restaurantecategoria_210422153310.jpg'
+                                    foto: 'http://pairumanibackoffice.test/public/imagenes/restaurantes/categorias/restaurantecategoria_210422153310.jpg'
                                 properties:
                                     nombre: { type: string, example: adasdasfasf }
                                     descripcion: { type: string, example: '<p>safasfasfasfa</p>' }
-                                    foto: { type: string, example: 'http://pairumanibackoffice.test/laravel/public/imagenes/restaurantes/categorias/restaurantecategoria_210422153310.jpg' }
+                                    foto: { type: string, example: 'http://pairumanibackoffice.test/public/imagenes/restaurantes/categorias/restaurantecategoria_210422153310.jpg' }
             tags:
                 - Endpoints
             requestBody:
@@ -1412,7 +1493,7 @@ paths:
             security: []
     /api/restauranteproductos:
         post:
-            summary: 'Listado de Productos Restaurante segun a la Categoria que pertenecen'
+            summary: 'RESTAURANTE - Listado de Productos Restaurante segun a la Categoria que pertenecen'
             description: ''
             parameters:
                 -
@@ -1440,12 +1521,12 @@ paths:
                                     nombre: 'Pique macho'
                                     descripcion: '<p>afasfasfasfasfasf</p>'
                                     precio: '100.00'
-                                    foto: 'http://pairumanibackoffice.test/laravel/public/imagenes/restaurantes/productos/producto_210423115837.jpg'
+                                    foto: 'http://pairumanibackoffice.test/public/imagenes/restaurantes/productos/producto_210423115837.jpg'
                                 properties:
                                     nombre: { type: string, example: 'Pique macho' }
                                     descripcion: { type: string, example: '<p>afasfasfasfasfasf</p>' }
                                     precio: { type: string, example: '100.00' }
-                                    foto: { type: string, example: 'http://pairumanibackoffice.test/laravel/public/imagenes/restaurantes/productos/producto_210423115837.jpg' }
+                                    foto: { type: string, example: 'http://pairumanibackoffice.test/public/imagenes/restaurantes/productos/producto_210423115837.jpg' }
             tags:
                 - Endpoints
             requestBody:
@@ -1469,7 +1550,7 @@ paths:
             security: []
     /api/productodetalle:
         post:
-            summary: 'Deatelle Producto Restaurante'
+            summary: 'RESTAURANTE - Deatelle Producto Restaurante'
             description: ''
             parameters:
                 -
@@ -1497,12 +1578,176 @@ paths:
                                     nombre: 'Pique macho'
                                     descripcion: '<p>afasfasfasfasfasf</p>'
                                     precio: '100.00'
-                                    foto: 'http://pairumanibackoffice.test/laravel/public/imagenes/restaurantes/productos/producto_210423115837.jpg'
+                                    foto: 'http://pairumanibackoffice.test/public/imagenes/restaurantes/productos/producto_210423115837.jpg'
                                 properties:
                                     nombre: { type: string, example: 'Pique macho' }
                                     descripcion: { type: string, example: '<p>afasfasfasfasfasf</p>' }
                                     precio: { type: string, example: '100.00' }
-                                    foto: { type: string, example: 'http://pairumanibackoffice.test/laravel/public/imagenes/restaurantes/productos/producto_210423115837.jpg' }
+                                    foto: { type: string, example: 'http://pairumanibackoffice.test/public/imagenes/restaurantes/productos/producto_210423115837.jpg' }
+            tags:
+                - Endpoints
+            requestBody:
+                required: true
+                content:
+                    application/json:
+                        schema:
+                            type: object
+                            properties:
+                                bearer_token:
+                                    type: string
+                                    description: 'Campo unico del cliente autenticado para acceder a esta ruta.'
+                                    example: drWa9YnurQFx6bY8rfsRcdMXsXpLvTUWSEkqQHivBDLJpbFv7E31BxxBcj6z
+                                producto_id:
+                                    type: integer
+                                    description: 'Id del producto.'
+                                    example: 1
+                            required:
+                                - bearer_token
+                                - producto_id
+            security: []
+    /api/cafeteriacategorias:
+        get:
+            summary: 'CAFETERIA - Listado de Categorias Cafeteria'
+            description: ''
+            parameters:
+                -
+                    in: header
+                    name: Content-Type
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Accept
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+            responses:
+                200:
+                    description: '200, success'
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                example:
+                                    nombre: adasdasfasf
+                                    descripcion: '<p>safasfasfasfa</p>'
+                                    foto: 'http://pairumanibackoffice.test/public/imagenes/cafeteria/categorias/cafeteriacategoria_210422153310.jpg'
+                                properties:
+                                    nombre: { type: string, example: adasdasfasf }
+                                    descripcion: { type: string, example: '<p>safasfasfasfa</p>' }
+                                    foto: { type: string, example: 'http://pairumanibackoffice.test/public/imagenes/cafeteria/categorias/cafeteriacategoria_210422153310.jpg' }
+            tags:
+                - Endpoints
+            requestBody:
+                required: true
+                content:
+                    application/json:
+                        schema:
+                            type: object
+                            properties:
+                                bearer_token:
+                                    type: string
+                                    description: 'Campo unico del cliente autenticado para acceder a esta ruta.'
+                                    example: drWa9YnurQFx6bY8rfsRcdMXsXpLvTUWSEkqQHivBDLJpbFv7E31BxxBcj6z
+                            required:
+                                - bearer_token
+            security: []
+    /api/cafeteriaproductos:
+        post:
+            summary: 'CAFETERIA - Listado de Productos Cafeteria segun a la Categoria que pertenecen'
+            description: ''
+            parameters:
+                -
+                    in: header
+                    name: Content-Type
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Accept
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+            responses:
+                200:
+                    description: '200, success'
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                example:
+                                    nombre: 'Pique macho'
+                                    descripcion: '<p>afasfasfasfasfasf</p>'
+                                    precio: '100.00'
+                                    foto: 'http://pairumanibackoffice.test/public/imagenes/cafeteria/productos/producto_210423115837.jpg'
+                                properties:
+                                    nombre: { type: string, example: 'Pique macho' }
+                                    descripcion: { type: string, example: '<p>afasfasfasfasfasf</p>' }
+                                    precio: { type: string, example: '100.00' }
+                                    foto: { type: string, example: 'http://pairumanibackoffice.test/public/imagenes/cafeteria/productos/producto_210423115837.jpg' }
+            tags:
+                - Endpoints
+            requestBody:
+                required: true
+                content:
+                    application/json:
+                        schema:
+                            type: object
+                            properties:
+                                bearer_token:
+                                    type: string
+                                    description: 'Campo unico del cliente autenticado para acceder a esta ruta.'
+                                    example: drWa9YnurQFx6bY8rfsRcdMXsXpLvTUWSEkqQHivBDLJpbFv7E31BxxBcj6z
+                                categoria_id:
+                                    type: integer
+                                    description: 'Id de la categoria del producto.'
+                                    example: 1
+                            required:
+                                - bearer_token
+                                - categoria_id
+            security: []
+    /api/cafeteriaproductodetalle:
+        post:
+            summary: 'CAFETERIA - Deatelle Producto Cafeteria'
+            description: ''
+            parameters:
+                -
+                    in: header
+                    name: Content-Type
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Accept
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+            responses:
+                200:
+                    description: '200, success'
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                example:
+                                    nombre: 'Pique macho'
+                                    descripcion: '<p>afasfasfasfasfasf</p>'
+                                    precio: '100.00'
+                                    foto: 'http://pairumanibackoffice.test/public/imagenes/cafeteria/productos/producto_210423115837.jpg'
+                                properties:
+                                    nombre: { type: string, example: 'Pique macho' }
+                                    descripcion: { type: string, example: '<p>afasfasfasfasfasf</p>' }
+                                    precio: { type: string, example: '100.00' }
+                                    foto: { type: string, example: 'http://pairumanibackoffice.test/public/imagenes/cafeteria/productos/producto_210423115837.jpg' }
             tags:
                 - Endpoints
             requestBody:
@@ -1526,8 +1771,8 @@ paths:
             security: []
     /api/reservahabitacion:
         post:
-            summary: 'Creacion de la Reserva de una Habitacion'
-            description: ''
+            summary: 'RESERVAS - Nueva reserva.'
+            description: 'Creacion de la Reserva de una Habitacion'
             parameters:
                 -
                     in: header
@@ -1591,7 +1836,7 @@ paths:
                                     type: integer
                                     description: 'Canridad de adultos en la habitacion.'
                                     example: 3
-                                niños:
+                                ninos:
                                     type: integer
                                     description: 'Cantidad de niños en la habitacion.'
                                     example: 2
@@ -1608,14 +1853,14 @@ paths:
                                 - checkin
                                 - checkout
                                 - adultos
-                                - niños
+                                - ninos
                                 - cliente_id
                                 - habitacion_id
             security: []
     /api/misreservas:
         post:
-            summary: 'Reservas Cliente'
-            description: ''
+            summary: 'RESERVAS - Mis reservas.'
+            description: 'Muestra la lsita de las reservas del cliente'
             parameters:
                 -
                     in: header
@@ -1645,7 +1890,7 @@ paths:
                                     adultos: 3
                                     niños: 2
                                     cliente: { nombre: 'Paola Montecinos Pardo', celular: '8888888', telefono: '9999999', ciudad: Cochabamba, pais: Bolivia, oficio: Arquitecto, email: paola@gmail.com }
-                                    habitacion: { nombre: 'Habitacion 20', num_habitacion: '20', precio: '450.00', foto: 'http://pairumanibackoffice.test/laravel/public/imagenes/habitaciones/habitacion_210506153104.jfif' }
+                                    habitacion: { nombre: 'Habitacion 20', num_habitacion: '20', precio: '450.00', foto: 'http://pairumanibackoffice.test/public/imagenes/habitaciones/habitacion_210506153104.jfif' }
                                 properties:
                                     id: { type: integer, example: 5 }
                                     checkin: { type: string, example: '2021-05-06' }
@@ -1653,7 +1898,7 @@ paths:
                                     adultos: { type: integer, example: 3 }
                                     niños: { type: integer, example: 2 }
                                     cliente: { type: object, example: { nombre: 'Paola Montecinos Pardo', celular: '8888888', telefono: '9999999', ciudad: Cochabamba, pais: Bolivia, oficio: Arquitecto, email: paola@gmail.com } }
-                                    habitacion: { type: object, example: { nombre: 'Habitacion 20', num_habitacion: '20', precio: '450.00', foto: 'http://pairumanibackoffice.test/laravel/public/imagenes/habitaciones/habitacion_210506153104.jfif' } }
+                                    habitacion: { type: object, example: { nombre: 'Habitacion 20', num_habitacion: '20', precio: '450.00', foto: 'http://pairumanibackoffice.test/public/imagenes/habitaciones/habitacion_210506153104.jfif' } }
             tags:
                 - Endpoints
             requestBody:
@@ -1677,7 +1922,7 @@ paths:
             security: []
     /api/mishospedajes:
         post:
-            summary: 'Hospedajes Cliente'
+            summary: 'HOSPEDAJES - Hospedajes Cliente'
             description: ''
             parameters:
                 -
@@ -1710,9 +1955,9 @@ paths:
                                     precio: '300.00'
                                     estado: Ocupado
                                     cliente: { nombre: 'Julian Gonzales Llanos', celular: '62101485', telefono: '42682265', ciudad: 'La Paz', pais: Bolivia, oficio: Albañil, email: julian@gmail.com }
-                                    habitacion: { nombre: 'Habitacion 26', num_habitacion: '26', precio: '450.00', foto: 'http://pairumanibackoffice.test/laravel/public/imagenes/habitaciones/habitacion_210521090607.jfif' }
+                                    habitacion: { nombre: 'Habitacion 26', num_habitacion: '26', precio: '450.00', foto: 'http://pairumanibackoffice.test/public/imagenes/habitaciones/habitacion_210521090607.jfif' }
                                     transportes: []
-                                    lugares: [{ nombre: Pairumani, precio: '500.00', fecha: '2021-06-04', tipo: Gastronomia, foto: 'http://pairumanibackoffice.test/laravel/public/imagenes/lugaresturisticos/lugar_210422114750.jpg' }, { nombre: Pairumani, precio: '500.00', fecha: '2021-06-11', tipo: Gastronomia, foto: 'http://pairumanibackoffice.test/laravel/public/imagenes/lugaresturisticos/lugar_210422114750.jpg' }, { nombre: Pairumani, precio: '500.00', fecha: '2021-06-10', tipo: Gastronomia, foto: 'http://pairumanibackoffice.test/laravel/public/imagenes/lugaresturisticos/lugar_210422114750.jpg' }]
+                                    lugares: [{ nombre: Pairumani, precio: '500.00', fecha: '2021-06-04', tipo: Gastronomia, foto: 'http://pairumanibackoffice.test/public/imagenes/lugaresturisticos/lugar_210422114750.jpg' }, { nombre: Pairumani, precio: '500.00', fecha: '2021-06-11', tipo: Gastronomia, foto: 'http://pairumanibackoffice.test/public/imagenes/lugaresturisticos/lugar_210422114750.jpg' }, { nombre: Pairumani, precio: '500.00', fecha: '2021-06-10', tipo: Gastronomia, foto: 'http://pairumanibackoffice.test/public/imagenes/lugaresturisticos/lugar_210422114750.jpg' }]
                                     restaurante: [{ fecha: '2021-06-09', hora: '17:35:40', productos: [{ producto: 'Pique macho', precio_producto: '100.00', opcion: 'Papas fritas', tamaño: { nombre: Pequeño, precio_tamaño: '40.00' } }] }, { fecha: '2021-06-09', hora: '18:40:48', productos: [{ producto: 'Pique macho', precio_producto: '100.00', opcion: 'Papas fritas', tamaño: { nombre: Pequeño, precio_tamaño: '40.00' } }] }]
                                     totales: { hospedaje: '300.00', transportes: '0.00', restaurante: '980.00', lugarturistico: '1,500.00', totalpagar: '2,780.00' }
                                 properties:
@@ -1724,9 +1969,9 @@ paths:
                                     precio: { type: string, example: '300.00' }
                                     estado: { type: string, example: Ocupado }
                                     cliente: { type: object, example: { nombre: 'Julian Gonzales Llanos', celular: '62101485', telefono: '42682265', ciudad: 'La Paz', pais: Bolivia, oficio: Albañil, email: julian@gmail.com } }
-                                    habitacion: { type: object, example: { nombre: 'Habitacion 26', num_habitacion: '26', precio: '450.00', foto: 'http://pairumanibackoffice.test/laravel/public/imagenes/habitaciones/habitacion_210521090607.jfif' } }
+                                    habitacion: { type: object, example: { nombre: 'Habitacion 26', num_habitacion: '26', precio: '450.00', foto: 'http://pairumanibackoffice.test/public/imagenes/habitaciones/habitacion_210521090607.jfif' } }
                                     transportes: { type: array, example: [] }
-                                    lugares: { type: array, example: [{ nombre: Pairumani, precio: '500.00', fecha: '2021-06-04', tipo: Gastronomia, foto: 'http://pairumanibackoffice.test/laravel/public/imagenes/lugaresturisticos/lugar_210422114750.jpg' }, { nombre: Pairumani, precio: '500.00', fecha: '2021-06-11', tipo: Gastronomia, foto: 'http://pairumanibackoffice.test/laravel/public/imagenes/lugaresturisticos/lugar_210422114750.jpg' }, { nombre: Pairumani, precio: '500.00', fecha: '2021-06-10', tipo: Gastronomia, foto: 'http://pairumanibackoffice.test/laravel/public/imagenes/lugaresturisticos/lugar_210422114750.jpg' }], items: { type: object } }
+                                    lugares: { type: array, example: [{ nombre: Pairumani, precio: '500.00', fecha: '2021-06-04', tipo: Gastronomia, foto: 'http://pairumanibackoffice.test/public/imagenes/lugaresturisticos/lugar_210422114750.jpg' }, { nombre: Pairumani, precio: '500.00', fecha: '2021-06-11', tipo: Gastronomia, foto: 'http://pairumanibackoffice.test/public/imagenes/lugaresturisticos/lugar_210422114750.jpg' }, { nombre: Pairumani, precio: '500.00', fecha: '2021-06-10', tipo: Gastronomia, foto: 'http://pairumanibackoffice.test/public/imagenes/lugaresturisticos/lugar_210422114750.jpg' }], items: { type: object } }
                                     restaurante: { type: array, example: [{ fecha: '2021-06-09', hora: '17:35:40', productos: [{ producto: 'Pique macho', precio_producto: '100.00', opcion: 'Papas fritas', tamaño: { nombre: Pequeño, precio_tamaño: '40.00' } }] }, { fecha: '2021-06-09', hora: '18:40:48', productos: [{ producto: 'Pique macho', precio_producto: '100.00', opcion: 'Papas fritas', tamaño: { nombre: Pequeño, precio_tamaño: '40.00' } }] }], items: { type: object } }
                                     totales: { type: object, example: { hospedaje: '300.00', transportes: '0.00', restaurante: '980.00', lugarturistico: '1,500.00', totalpagar: '2,780.00' } }
             tags:
@@ -1750,9 +1995,57 @@ paths:
                                 - bearer_token
                                 - cliente_id
             security: []
+    /api/mishospedajesocupados:
+        post:
+            summary: 'HOSPEDAJES - Hospedajes ocupados del cliente'
+            description: ''
+            parameters:
+                -
+                    in: header
+                    name: Content-Type
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Accept
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+            responses:
+                200:
+                    description: '200, success'
+                    content:
+                        text/plain:
+                            schema:
+                                type: string
+                                example: "{\n      'id' => 39,\n      \"checkin\": \"2021-05-20\",\n      \"checkout\": \"2021-05-22\",\n      \"adultos\": 4,\n      \"niños\": 2,\n      \"precio\": \"300.00\",\n      \"estado\": \"Ocupado\",\n      \"cliente\": {\n          \"nombre\": \"Julian Gonzales Llanos\",\n          \"celular\": \"62101485\",\n          \"telefono\": \"42682265\",\n          \"ciudad\": \"La Paz\",\n          \"pais\": \"Bolivia\",\n          \"oficio\": \"Albañil\",\n          \"email\": \"julian@gmail.com\"\n      },\n      \"habitacion\": {\n          \"nombre\": \"Habitacion 26\",\n          \"num_habitacion\": \"26\",\n          \"precio\": \"450.00\",\n          \"foto\": \"http://pairumanibackoffice.test/public/imagenes/habitaciones/habitacion_210521090607.jfif\"\n      },\n}"
+            tags:
+                - Endpoints
+            requestBody:
+                required: true
+                content:
+                    application/json:
+                        schema:
+                            type: object
+                            properties:
+                                bearer_token:
+                                    type: string
+                                    description: 'Campo unico del cliente autenticado para acceder a esta ruta.'
+                                    example: drWa9YnurQFx6bY8rfsRcdMXsXpLvTUWSEkqQHivBDLJpbFv7E31BxxBcj6z
+                                cliente_id:
+                                    type: integer
+                                    description: 'Id del cliente.'
+                                    example: 1
+                            required:
+                                - bearer_token
+                                - cliente_id
+            security: []
     /api/reservatransporte:
         post:
-            summary: 'Reserva transportes'
+            summary: 'TRANSPORTES - Reserva transportes'
             description: ''
             parameters:
                 -
@@ -1802,7 +2095,7 @@ paths:
             security: []
     /api/reservalugarturistico:
         post:
-            summary: 'Reservas Lugar Turistico'
+            summary: 'TURISTICOS - Reservas Lugar Turistico'
             description: ''
             parameters:
                 -
@@ -1860,7 +2153,7 @@ paths:
                                 precio:
                                     type: number
                                     description: 'Precio del recorrido Lugar Turistico.'
-                                    example: !!float 500
+                                    example: 500.0
                             required:
                                 - cliente_id
                                 - lugar_turistico_id
@@ -1870,7 +2163,7 @@ paths:
             security: []
     /api/reservarestaurante:
         post:
-            summary: 'Reservas Restaurante'
+            summary: 'RESTAURANTE - Reservas Restaurante'
             description: ''
             parameters:
                 -
@@ -1913,10 +2206,72 @@ paths:
                                     type: integer
                                     description: 'Id del hospedaje.'
                                     example: 10
-                                toal:
+                                cliente_id:
+                                    type: integer
+                                    description: 'Id del hospedaje.'
+                                    example: 10
+                                total:
                                     type: number
                                     description: 'Total pedidos productos restaurante.'
-                                    example: !!float 600
+                                    example: 600.0
+                                datos:
+                                    type: array
+                                    description: 'datos transporte.'
+                                    example: "{\n     \"hospedaje_id\":\"10\",\n     \"total\":\"600\",\n     \"datos\":[\n          {\n              \"producto_id\":\"1\",\n              \"cantidad\":\"2\",\n              \"precio\":\"100\",\n              \"opcion_id\":\"2\",\n              \"tamano_id\":\"1\",\n              \"preciotamano\":\"20\"\n          },\n          {\n              \"producto_id\":\"1\",\n              \"cantidad\":\"3\",\n              \"precio\":\"100\",\n              \"opcion_id\":\"2\",\n              \"tamano_id\":\"1\",\n              \"preciotamano\":\"20\"\n          }\n      ]\n  }"
+                            required:
+                                - hospedaje_id
+                                - cliente_id
+                                - total
+            security: []
+    /api/reservacafeteria:
+        post:
+            summary: 'CAFETERIA - Reservas cafeteria'
+            description: ''
+            parameters:
+                -
+                    in: header
+                    name: Content-Type
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Accept
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+            responses:
+                200:
+                    description: '200, success'
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                example:
+                                    success: 'true'
+                                    data: 'Productos Agregados'
+                                properties:
+                                    success: { type: string, example: 'true' }
+                                    data: { type: string, example: 'Productos Agregados' }
+            tags:
+                - Endpoints
+            requestBody:
+                required: true
+                content:
+                    application/json:
+                        schema:
+                            type: object
+                            properties:
+                                hospedaje_id:
+                                    type: integer
+                                    description: 'Id del hospedaje.'
+                                    example: 10
+                                total:
+                                    type: number
+                                    description: 'Total pedidos productos restaurante.'
+                                    example: 600.0
                                 producto_id:
                                     type: integer
                                     description: 'Id del producto reservado .'
@@ -1924,34 +2279,34 @@ paths:
                                 precio:
                                     type: number
                                     description: 'Precio del producto.'
-                                    example: !!float 100
+                                    example: 100.0
                                 cantidad:
                                     type: number
                                     description: 'Cantidad de productos reservados.'
-                                    example: !!float 3
+                                    example: 3.0
                                 opcion_id:
                                     type: integer
                                     description: 'Id de la opcion del producto.'
                                     example: 1
-                                tamaño_id:
+                                tamano_id:
                                     type: integer
                                     description: 'Ide del tamaño producto.'
                                     example: 2
-                                preciotamaño:
+                                preciotamano:
                                     type: number
                                     description: 'Precio del tamaño producto.'
-                                    example: !!float 40
+                                    example: 40.0
                                 datos:
                                     type: array
                                     description: 'datos transporte.'
-                                    example: "{\n     \"hospedaje_id\":\"10\",\n     \"total\":\"600\",\n      \"datos\":[\n          {\n              \"producto_id\":\"1\",\n              \"cantidad\":\"2\",\n              \"precio\":\"100\",\n              \"opcion_id\":\"2\",\n              \"tamaño_id\":\"1\",\n              \"preciotamaño\":\"20\"\n          },\n          {\n              \"producto_id\":\"1\",\n              \"cantidad\":\"3\",\n              \"precio\":\"100\",\n              \"opcion_id\":\"2\",\n              \"tamaño_id\":\"1\",\n              \"preciotamaño\":\"20\"\n          }\n      ]\n  }"
+                                    example: "{\n     \"hospedaje_id\":\"10\",\n     \"total\":\"600\",\n      \"datos\":[\n          {\n              \"producto_id\":\"1\",\n              \"cantidad\":\"2\",\n              \"precio\":\"100\",\n              \"opcion_id\":\"2\",\n              \"tamano_id\":\"1\",\n              \"preciotamano\":\"20\"\n          },\n          {\n              \"producto_id\":\"1\",\n              \"cantidad\":\"3\",\n              \"precio\":\"100\",\n              \"opcion_id\":\"2\",\n              \"tamano_id\":\"1\",\n              \"preciotamano\":\"20\"\n          }\n      ]\n  }"
                             required:
                                 - hospedaje_id
-                                - toal
+                                - total
                                 - producto_id
                                 - precio
                                 - cantidad
                                 - opcion_id
-                                - tamaño_id
-                                - preciotamaño
+                                - tamano_id
+                                - preciotamano
             security: []

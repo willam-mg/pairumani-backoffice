@@ -73,8 +73,8 @@
                                             <tr>
                                                 <td>{{ $detalle->producto->nombre }}</td>
                                                 <td>{{ env('MONEYLOCAL') }} {{ number_format($detalle->precio,2) }}</td>
-                                                <td>{{ $detalle->detalleproducto->opcion->nombre }}</td>
-                                                <td>{{ $detalle->detalleproducto->tamaño->nombre }}</td>
+                                                <td>{{ $detalle->detalleproducto->opcion?$detalle->detalleproducto->opcion->nombre:'' }}</td>
+                                                <td>{{ $detalle->detalleproducto->tamaño?$detalle->detalleproducto->tamaño->nombre:'' }}</td>
                                                 <td>{{ env('MONEYLOCAL') }} {{ number_format($detalle->detalleproducto->precio_tamanho,2) }}</td>
                                                 <td>{{ $detalle->cantidad }}</td>
                                                 <td>{{ env('MONEYLOCAL') }} {{ number_format(($detalle->precio+$detalle->detalleproducto->precio_tamanho)*$detalle->cantidad,2) }}</td>

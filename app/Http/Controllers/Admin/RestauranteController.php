@@ -13,7 +13,7 @@ use App\Models\RestauranteProductoOpcion;
 use App\Models\RestauranteProductoTamano;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade as PDF;
-use App\View\Components\Socket;
+use App\Traits\Socket;
 
 class RestauranteController extends Controller
 {

@@ -18,10 +18,11 @@
         "\\.git",
         "\\.env",
         "\\.gitignore",
-        "\\laravel\\vendor",
+        "\\vendor",
         "\\node_modules",
         "\\.well-known",
-        "\\app\\public\\images"
+        "\\storage",
+        "\\public\\imagenes"
     ],
     "generatedFiles": {
         "extensionsToInclude": [

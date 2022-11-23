@@ -1,5 +1,5 @@
 ---
-title: HOTEL-PAIRUMANI Documentation
+title: Pairumani Hotel API
 
 language_tabs:
 - javascript
@@ -31,12 +31,12 @@ You can switch the language used with the tabs at the top right (or from the nav
 
 <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.10/lodash.min.js"></script>
 <script>
-    var baseUrl = "http://pairumanibackoffice.test/";
+    var baseUrl = "http://c2210260.ferozo.com/";
 </script>
-<script src="js/tryitout-2.5.3.js"></script>
+<script src="js/tryitout-2.7.10.js"></script>
 
 > Base URL
 
 ```yaml
-http://pairumanibackoffice.test/
+http://c2210260.ferozo.com/
 ```

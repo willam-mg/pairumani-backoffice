@@ -13,7 +13,7 @@ use App\Http\Controllers\Controller;
 use App\Models\HospedajeAcompanante;
 use App\Http\Requests\ReservaFormRequest;
 use App\Models\HospedajeDetalleAcompanante;
-use App\View\Components\Socket;
+use App\Traits\Socket;
 class ReservaController extends Controller
 {
     public function index(Request $request,Habitacion $habitacion)

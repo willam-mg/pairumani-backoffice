@@ -9,7 +9,7 @@ use App\Http\Controllers\Controller;
 use App\Models\ReservaLugarTuristico;
 use App\Http\Requests\LugarTuristicoReservaFormRequest;
 use App\Models\Hospedaje;
-use App\View\Components\Socket;
+use App\Traits\Socket;
 
 class LugarTuristicoReservaController extends Controller
 {

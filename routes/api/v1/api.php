@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Api\ClienteController;
+use App\Http\Controllers\api\v1\ClienteController;
 
 Route::post('login', [ClienteController::class,'login']);
 Route::post('signup', [ClienteController::class,'signup']);
