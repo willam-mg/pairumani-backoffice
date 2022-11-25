@@ -1321,7 +1321,7 @@ class ClienteController extends Controller
             $detalleproducto = new RestauranteDetalleReservaProducto();
             $detalleproducto->restaurante_detalle_reserva_id = $detalle->id;
             $detalleproducto->restaurante_producto_opciones_id = $value['opcion_id'];
-            $detalleproducto->restaurante_producto_tamanho_id = $value['tamano_id'];
+            $detalleproducto->restaurante_producto_tamano_id = $value['tamano_id'];
             $detalleproducto->precio_tamanho = $value['preciotamano'];
             $detalleproducto->save();
         }
@@ -1781,7 +1781,7 @@ class ClienteController extends Controller
             $detalleproducto = new CafeteriaDetalleReservaProducto();
             $detalleproducto->cafeteria_detalle_reserva_id = $detalle->id;
             $detalleproducto->cafeteria_producto_opciones_id = $value['opcion_id'];
-            $detalleproducto->cafeteria_producto_tamanho_id = $value['tamano_id'];
+            $detalleproducto->cafeteria_producto_tamano_id = $value['tamano_id'];
             $detalleproducto->precio_tamanho = $value['preciotamano'];
             $detalleproducto->save();
         }

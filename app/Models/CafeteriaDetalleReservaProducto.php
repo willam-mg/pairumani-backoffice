@@ -9,7 +9,7 @@ class CafeteriaDetalleReservaProducto extends Model
 {
     use HasFactory;
 
-    protected $table = 'cafeteria_detalle_reserva_productos';
+    protected $table = 'caf_det_reserv_productos';
 
     protected $primaryKey = 'id';
 
@@ -18,7 +18,7 @@ class CafeteriaDetalleReservaProducto extends Model
     protected $fillable = [
         'cafeteria_detalle_reserva_id',
         'cafeteria_producto_opciones_id',
-        'cafeteria_producto_tamanho_id',
+        'cafeteria_producto_tamano_id',
         'precio_tamanho',
     ];
 
@@ -39,6 +39,6 @@ class CafeteriaDetalleReservaProducto extends Model
 
     public function tamaño()
     {
-        return $this->belongsTo(CafeteriaProductoTamano::class,'cafeteria_producto_tamanho_id','id');
+        return $this->belongsTo(CafeteriaProductoTamano::class,'cafeteria_producto_tamano_id','id');
     }
 }

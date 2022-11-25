@@ -9,7 +9,7 @@ class Acompanante extends Model
 {
     use HasFactory;
 
-    protected $table = 'acompanhantes';
+    protected $table = 'acompanantes';
 
     protected $primaryKey = 'id';
 

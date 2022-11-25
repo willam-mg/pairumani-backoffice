@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Pagination\Paginator;
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -24,8 +25,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        updatehospedaje();
+        // updatehospedaje();
         Paginator::useBootstrap();
         setLocale(LC_TIME, $this->app->getLocale());
+        Schema::defaultStringLength(500);
     }
 }

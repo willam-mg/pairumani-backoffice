@@ -9,7 +9,7 @@ class RestauranteDetalleReservaProducto extends Model
 {
     use HasFactory;
 
-    protected $table = 'restaurante_detalle_reserva_productos';
+    protected $table = 'rest_det_resv_productos';
 
     protected $primaryKey = 'id';
 
@@ -18,7 +18,7 @@ class RestauranteDetalleReservaProducto extends Model
     protected $fillable = [
         'restaurante_detalle_reserva_id',
         'restaurante_producto_opciones_id',
-        'restaurante_producto_tamanho_id',
+        'restaurante_producto_tamano_id',
         'precio_tamanho',
     ];
 
@@ -39,6 +39,6 @@ class RestauranteDetalleReservaProducto extends Model
 
     public function tamaño()
     {
-        return $this->belongsTo(RestauranteProductoTamano::class,'restaurante_producto_tamanho_id','id');
+        return $this->belongsTo(RestauranteProductoTamano::class,'restaurante_producto_tamano_id','id');
     }
 }

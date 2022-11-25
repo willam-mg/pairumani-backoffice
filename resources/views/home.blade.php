@@ -125,17 +125,19 @@
 						@endif
 						@if(kvfj(Auth::user()->rol->permisos,'habitaciones_index'))
 							<div class="col-lg-3 col-md-6 col-sm-6">
-								<a href="{{ route('habitaciones_index',$habitacioncategorias->random(1)->first()->id) }}">
-									<div class="card card-stats">
-										<div class="card-header card-header-primary card-header-icon mb-3 text-left">
-											<div class="card-icon">
-												<i class="material-icons">assignment</i>
+								@if(count($habitacioncategorias) > 0) 
+									<a href="{{ route('habitaciones_index',$habitacioncategorias->random(1)->first()->id) }}">
+										<div class="card card-stats">
+											<div class="card-header card-header-primary card-header-icon mb-3 text-left">
+												<div class="card-icon">
+													<i class="material-icons">assignment</i>
+												</div>
+												<p class="card-category">Habitaciones</p>
+												<h3 class="card-title">Habitaciones <span class="ml-3">{{ count($habitaciones) }}</span></h3>
 											</div>
-											<p class="card-category">Habitaciones</p>
-											<h3 class="card-title">Habitaciones <span class="ml-3">{{ count($habitaciones) }}</span></h3>
 										</div>
-									</div>
-								</a>
+									</a>
+								@endif
 							</div>
 						@endif
 						@if(kvfj(Auth::user()->rol->permisos,'restaurantecategorias_index'))

@@ -32,7 +32,7 @@ class AcompananteFormRequest extends FormRequest
         ];
 
         if (routerequest('acompanantes_create')) {
-            $rules['nombre'] = ['required', 'max:50', 'unique:acompanhantes'];
+            $rules['nombre'] = ['required', 'max:50', 'unique:acompanantes'];
         }
 
         if (routerequest('acompanantes_edit')) {

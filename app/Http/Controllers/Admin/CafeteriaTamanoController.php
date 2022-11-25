@@ -53,7 +53,7 @@ class CafeteriaTamanoController extends Controller
     }
     public function destroy(CafeteriaCategoria $categoria, CafeteriaProducto $producto, CafeteriaProductoTamano $tamano)
     {
-        $existe = CafeteriaDetalleReservaProducto::where('Cafeteria_producto_tamanho_id', $tamano->id)->exists();
+        $existe = CafeteriaDetalleReservaProducto::where('Cafeteria_producto_tamano_id', $tamano->id)->exists();
         if ($existe) {
             return back()->with('message', 'No se puede eliminar la opcion')->with('typealert', 'danger');
         }

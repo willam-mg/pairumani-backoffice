@@ -91,7 +91,7 @@ class CafeteriaController extends Controller
             $detalleproducto = new CafeteriaDetalleReservaProducto();
             $detalleproducto->Cafeteria_detalle_reserva_id = $detalle->id;
             $detalleproducto->Cafeteria_producto_opciones_id = $opcion_id[$cont];
-            $detalleproducto->Cafeteria_producto_tamanho_id = $tamaño_id[$cont];
+            $detalleproducto->Cafeteria_producto_tamano_id = $tamaño_id[$cont];
             $detalleproducto->precio_tamanho = $preciotamaño[$cont];
             $detalleproducto->save();
 

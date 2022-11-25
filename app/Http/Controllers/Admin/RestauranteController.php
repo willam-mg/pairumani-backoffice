@@ -91,7 +91,7 @@ class RestauranteController extends Controller
             $detalleproducto = new RestauranteDetalleReservaProducto();
             $detalleproducto->restaurante_detalle_reserva_id = $detalle->id;
             $detalleproducto->restaurante_producto_opciones_id = $opcion_id[$cont];
-            $detalleproducto->restaurante_producto_tamanho_id = $tamaño_id[$cont];
+            $detalleproducto->restaurante_producto_tamano_id = $tamaño_id[$cont];
             $detalleproducto->precio_tamanho = $preciotamaño[$cont];
             $detalleproducto->save();
 

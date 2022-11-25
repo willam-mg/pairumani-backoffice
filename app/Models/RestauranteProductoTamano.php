@@ -9,7 +9,7 @@ class RestauranteProductoTamano extends Model
 {
     use HasFactory;
 
-    protected $table = 'restaurante_producto_tamanho';
+    protected $table = 'restaurante_producto_tamano';
 
     protected $primaryKey = 'id';
 

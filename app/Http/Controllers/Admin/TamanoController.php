@@ -53,7 +53,7 @@ class TamanoController extends Controller
     }
     public function destroy(RestauranteCategoria $categoria, RestauranteProducto $producto, RestauranteProductoTamano $tamano)
     {
-        $existe = RestauranteDetalleReservaProducto::where('restaurante_producto_tamanho_id', $tamano->id)->exists();
+        $existe = RestauranteDetalleReservaProducto::where('restaurante_producto_tamano_id', $tamano->id)->exists();
         if ($existe) {
             return back()->with('message', 'No se puede eliminar la opcion')->with('typealert', 'danger');
         }
