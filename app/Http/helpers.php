@@ -62,11 +62,17 @@ function pageTotal($provider, $fieldName)
 
 function crearimagen($ifimage,$image,$name,$ruta)
 {
-    if ($ifimage) {
-        $file = $image;
-        $imageName = $name . '.' . $file->getClientOriginalExtension();
-        $file->move($ruta, $imageName);
-        return $imageName;
+    try {
+        if ($ifimage) {
+            $file = $image;
+            $imageName = $name . '.' . $file->getClientOriginalExtension();
+            if ( !$file->move($ruta, $imageName) ) {
+                throw new Exception("no se pudo subir la imagen");
+            }
+            return $imageName;
+        }
+    } catch (\Throwable $th) {
+        return $th;
     }
 }
 

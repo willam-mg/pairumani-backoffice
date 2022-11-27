@@ -56,7 +56,7 @@ class EventoController extends Controller
     public function fotosstore(Evento $evento)
     {
         $this->validate(request(), [
-            'foto' => 'required|mimes:jpeg,png,jpg,gif,svg|max:2048'
+            'foto' => 'required|mimes:jpeg,png,jpg,gif,svg|max:3072'
         ]);
 
         $galeria = new GaleriaEvento();

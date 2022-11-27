@@ -74,14 +74,13 @@ class HabitacionController extends Controller
     public function fotosstore(Habitacion $habitacion)
     {
         $this->validate(request(), [
-            'foto' => 'required|mimes:jpeg,png,jpg,gif,svg|max:2048'
+            'foto' => 'required|mimes:jpeg,png,jpg,gif,svg|max:3072',
         ]);
 
         $galeria = new GaleriaHabitacion();
-        $galeria->save();
         $galeria->foto = crearimagen(request()->hasFile('foto'), request()->file('foto'), GaleriaHabitacion::Name($habitacion->id, $galeria->id), GaleriaHabitacion::Ruta());
         $galeria->habitacion_id = $habitacion->id;
-        $galeria->descripcion = request()->get('descripcion');
+        $galeria->descripcion = request()->post('descripcion');
         $galeria->save();
 
         return redirect()->back()->with('message', 'Foto subida')->with('typealert', 'success');

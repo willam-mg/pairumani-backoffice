@@ -7,8 +7,10 @@ use App\Http\Requests\HabitacionCategoriaFormRequest;
 use App\Models\GaleriaHabitacion;
 use App\Models\Habitacion;
 use App\Models\HabitacionCategoria;
+use Illuminate\Database\Events\TransactionBeginning;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
 
 class HabitacionCategoriaController extends Controller
 {
@@ -35,10 +37,17 @@ class HabitacionCategoriaController extends Controller
     }
     public function store(HabitacionCategoriaFormRequest $request)
     {
-        $categorias = (new HabitacionCategoria())->fill($request->all());
-        $categorias->foto = crearimagen($request->hasFile('foto'), $request->file('foto'), HabitacionCategoria::Namefoto(), HabitacionCategoria::Rutafoto());
-        $categorias->save();
-        return redirect()->route('habitacioncategorias_index')->with('message', 'Guardado con éxito')->with('typealert', 'success');
+        try {
+            DB::beginTransaction();
+            $categorias = (new HabitacionCategoria())->fill($request->all());
+            $categorias->foto = crearimagen($request->hasFile('foto'), $request->file('foto'), HabitacionCategoria::Namefoto(), HabitacionCategoria::Rutafoto());
+            $categorias->save();
+            DB::commit();
+            return redirect()->route('habitacioncategorias_index')->with('message', 'Guardado con éxito')->with('typealert', 'success');
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            Session::flash('warning', $th->getMessage()); 
+        }
     }
     public function edit(HabitacionCategoria $categoria)
     {

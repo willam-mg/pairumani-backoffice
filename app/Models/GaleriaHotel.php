@@ -31,7 +31,7 @@ class GaleriaHotel extends Model
     public function getFotoUrlAttribute()
     {
         if ($this->foto) {
-            return urlpath(self::PATH) . $this->foto;
+            return asset(self::PATH) .'/'. $this->foto;
         }
         return null;
     }
