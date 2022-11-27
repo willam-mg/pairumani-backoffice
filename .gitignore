@@ -13,3 +13,5 @@ npm-debug.log
 yarn-error.log
 /resources/docs/*
 /public/docs/*
+/.well-known
+/.vscode
