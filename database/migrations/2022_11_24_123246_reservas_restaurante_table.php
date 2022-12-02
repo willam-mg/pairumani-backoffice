@@ -15,8 +15,8 @@ class ReservasRestauranteTable extends Migration
     {
         Schema::create('reservas_restaurante', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('cliente_id')->constrained('clientes')->nullable();
-            $table->foreignId('hospedaje_id')->constrained('hospedajes')->nullable();
+            $table->foreignId('cliente_id')->nullable()->constrained('clientes');
+            $table->foreignId('hospedaje_id')->nullable()->constrained('hospedajes');
             $table->date('fecha');
             $table->time('hora');
             $table->decimal('total', 11, 2);

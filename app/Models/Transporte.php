@@ -4,10 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Transporte extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
 
     const PATH = '/imagenes/transportes/';
 
@@ -15,13 +16,17 @@ class Transporte extends Model
 
     protected $primaryKey = 'id';
 
-    public $timestamps = false;
-
     protected $fillable = [
         'nombre',
         'descripcion',
         'precio',
         'foto',
+    ];
+
+    protected $hidden = [
+        'created_at',
+        'updated_at',
+        'deleted_at',
     ];
 
     protected $guarded = [];

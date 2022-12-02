@@ -6,10 +6,11 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Cliente extends Authenticatable
 {
-    use HasFactory, Notifiable;
+    use HasFactory, Notifiable, SoftDeletes;
 
     const TIPO = '1';
     const TIPOGMAIL = '2';
@@ -19,8 +20,6 @@ class Cliente extends Authenticatable
     protected $table = 'clientes';
 
     protected $primaryKey = 'id';
-
-    public $timestamps = false;
 
     protected $fillable = [
         'nombres',
@@ -47,6 +46,9 @@ class Cliente extends Authenticatable
 
     protected $hidden = [
         'password',
+        'created_at',
+        'updated_at',
+        'deleted_at',
         // 'api_token',
         // 'imei_celular'
     ];
@@ -106,5 +108,10 @@ class Cliente extends Authenticatable
     public static function Urldelete()
     {
         return urlpath(self::PATH);
+    }
+
+    public function hospedajes()
+    {
+        return $this->hasMany(Hospedaje::class, 'cliente_id', 'id');
     }
 }

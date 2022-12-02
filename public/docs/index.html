@@ -43,7 +43,7 @@
                             <li><a href='http://github.com/knuckleswtf/scribe'>Documentation powered by Scribe ✍</a></li>
                     </ul>
             <ul class="toc-footer" id="last-updated">
-            <li>Last updated: November 22 2022</li>
+            <li>Last updated: December 2 2022</li>
         </ul>
 </div>
 <div class="page-wrapper">
@@ -62,8 +62,9 @@ You can switch the language used with the tabs at the top right (or from the nav
 <p>Base URL</p>
 </blockquote>
 <pre><code class="language-yaml">http://c2210260.ferozo.com/</code></pre><h1>Authenticating requests</h1>
-<p>This API is not authenticated.</p><h1>Endpoints</h1>
-<h2>CLIENTE - Login con redes sociales y normal</h2>
+<p>This API is not authenticated.</p><h1>Cliente</h1>
+<h2>Login.</h2>
+<p>Login con redes sociales y normal.</p>
 <blockquote>
 <p>Example request:</p>
 </blockquote>
@@ -255,7 +256,8 @@ Se registrara el imei del celular del cliente para el registro.
 </p>
 
 </form>
-<h2>CLIENTE - Registro de nuevo Cliente</h2>
+<h2>Nuevo cliente.</h2>
+<p>Registro de nuevo Cliente.</p>
 <blockquote>
 <p>Example request:</p>
 </blockquote>
@@ -440,7 +442,7 @@ Se registrara el imei del celular del cliente para el registro.
 </p>
 
 </form>
-<h2>CLIENTE -  Perfil de Cliente</h2>
+<h2>Perfil de Cliente.</h2>
 <blockquote>
 <p>Example request:</p>
 </blockquote>
@@ -466,24 +468,247 @@ fetch(url, {
 <p>Example response (200, success):</p>
 </blockquote>
 <pre><code class="language-json">{
-    "id": 7,
-    "nombres": "Juan Carlos",
-    "apellidos": "Espinoza Cespedes",
-    "tipo_documento": "Ci",
-    "num_documento": "94564455",
-    "celular": "65582210",
-    "direccion": "Av Pando",
-    "ciudad": "Cochabamba",
-    "pais": "Bolivia",
-    "oficio": "Arquitecto",
-    "empresa": "SOFT",
-    "telefono": "4444444",
-    "email": "juan@gmail.com",
-    "fecha_nacimiento": "1989-05-12",
-    "motivo_viaje": "Recreacion",
-    "foto": "foto.jpg",
-    "api_token": "KjUdFmnlAu7aFjlUXWIuSE1L4wPM8y3oWFacDALHOHKbNlbZGIa6ifz6Ojy4",
-    "imei_celular": "354651100023680"
+    "success": "true",
+    "data": {
+        "id": 7,
+        "nombres": "Marina",
+        "apellidos": "Mamani Chari",
+        "tipo_documento": "Ci",
+        "num_documento": "8831417",
+        "celular": "75977665",
+        "direccion": "Tiqupaya zona quintanilla",
+        "ciudad": "Cochabamba",
+        "pais": "Bolivia",
+        "oficio": "Informatica",
+        "empresa": "ENCORA",
+        "telefono": "43243223",
+        "email": "marina@gmail.com",
+        "fecha_nacimiento": "1992-12-22",
+        "motivo_viaje": "Recreacion",
+        "foto": null,
+        "imei_celular": null,
+        "reservas": [
+            {
+                "id": 4,
+                "checkin": "2022-12-05T17:07:00.000000Z",
+                "checkout": "2022-12-09T17:07:00.000000Z",
+                "adultos": 2,
+                "niños": 1,
+                "cliente_id": 7,
+                "habitacion_id": 3,
+                "estado": "Activo",
+                "habitacion": {
+                    "id": 3,
+                    "nombre": "Habitación Matrimonial Superior N°03",
+                    "descripcion": "&lt;h2&gt;&lt;strong&gt;Matrimonial Superior&lt;\/strong&gt;&lt;\/h2&gt;\r\n\r\n&lt;ul&gt;\r\n\t&lt;li&gt;Check in a partir de las 14:00&lt;\/li&gt;\r\n\t&lt;li&gt;televisor LED&lt;\/li&gt;\r\n\t&lt;li&gt;Tv Cable&lt;\/li&gt;\r\n\t&lt;li&gt;Internet Wifi en todo el hotel&lt;\/li&gt;\r\n\t&lt;li&gt;Desayuno Buffet Americano&lt;\/li&gt;\r\n\t&lt;li&gt;Caja de Seguridad&lt;\/li&gt;\r\n\t&lt;li&gt;Piscina atemperada&lt;\/li&gt;\r\n\t&lt;li&gt;Sauna vapor&lt;\/li&gt;\r\n\t&lt;li&gt;Servicio de telefon&amp;iacute;a nacional e internacional&lt;\/li&gt;\r\n\t&lt;li&gt;Parqueo Privado&lt;\/li&gt;\r\n&lt;\/ul&gt;",
+                    "num_habitacion": "03",
+                    "foto": "https:\/\/c2210260.ferozo.com\/imagenes\/habitaciones\/habitacion_221129223853.jpg",
+                    "precio": "450.00",
+                    "capacidad_minima": 1,
+                    "capacidad_maxima": 1,
+                    "estado": "Ocupado",
+                    "habitacion_categoria_id": 8,
+                    "categoria": {
+                        "id": 8,
+                        "nombre": "Habitación Matrimonial Superior",
+                        "descripcion": "&lt;p&gt;Habitaci&amp;oacute;n individual de 25 metros cuadrados para 2 personas&lt;\/p&gt;",
+                        "foto": "https:\/\/c2210260.ferozo.com\/imagenes\/habitaciones\/categorias\/habitacioncategoria_221129220607.jpg"
+                    }
+                }
+            }
+        ],
+        "hospedajes": [
+            {
+                "id": 4,
+                "fecha_checkin": "2022-12-05 13:07:00",
+                "fecha_checkout": "2022-12-09 13:07:00",
+                "niños": 1,
+                "adultos": 2,
+                "precio": "450.00",
+                "precio_promocion": null,
+                "estado": "Ocupado",
+                "cliente_id": 7,
+                "habitacion_id": 3,
+                "habitacion": {
+                    "id": 3,
+                    "nombre": "Habitación Matrimonial Superior N°03",
+                    "descripcion": "&lt;h2&gt;&lt;strong&gt;Matrimonial Superior&lt;\/strong&gt;&lt;\/h2&gt;\r\n\r\n&lt;ul&gt;\r\n\t&lt;li&gt;Check in a partir de las 14:00&lt;\/li&gt;\r\n\t&lt;li&gt;televisor LED&lt;\/li&gt;\r\n\t&lt;li&gt;Tv Cable&lt;\/li&gt;\r\n\t&lt;li&gt;Internet Wifi en todo el hotel&lt;\/li&gt;\r\n\t&lt;li&gt;Desayuno Buffet Americano&lt;\/li&gt;\r\n\t&lt;li&gt;Caja de Seguridad&lt;\/li&gt;\r\n\t&lt;li&gt;Piscina atemperada&lt;\/li&gt;\r\n\t&lt;li&gt;Sauna vapor&lt;\/li&gt;\r\n\t&lt;li&gt;Servicio de telefon&amp;iacute;a nacional e internacional&lt;\/li&gt;\r\n\t&lt;li&gt;Parqueo Privado&lt;\/li&gt;\r\n&lt;\/ul&gt;",
+                    "num_habitacion": "03",
+                    "foto": "https:\/\/c2210260.ferozo.com\/imagenes\/habitaciones\/habitacion_221129223853.jpg",
+                    "precio": "450.00",
+                    "capacidad_minima": 1,
+                    "capacidad_maxima": 1,
+                    "estado": "Ocupado",
+                    "habitacion_categoria_id": 8,
+                    "categoria": {
+                        "id": 8,
+                        "nombre": "Habitación Matrimonial Superior",
+                        "descripcion": "&lt;p&gt;Habitaci&amp;oacute;n individual de 25 metros cuadrados para 2 personas&lt;\/p&gt;",
+                        "foto": "https:\/\/c2210260.ferozo.com\/imagenes\/habitaciones\/categorias\/habitacioncategoria_221129220607.jpg"
+                    }
+                },
+                "detalletransportes": [
+                    {
+                        "id": 1,
+                        "precio": "20.00",
+                        "fecha": "2022-12-02",
+                        "hospedaje_id": 4,
+                        "transporte_id": 1,
+                        "transporte": {
+                            "id": 1,
+                            "nombre": "Mobil Suecia",
+                            "descripcion": "&lt;p&gt;In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content. Lorem ipsum may be used as a placeholder before final copy is available.&amp;nbsp;&lt;a href=\"https:\/\/en.wikipedia.org\/wiki\/Lorem_ipsum\"&gt;Wikipedia&lt;\/a&gt;&lt;\/p&gt;",
+                            "precio": "20.00",
+                            "foto": "https:\/\/c2210260.ferozo.com\/imagenes\/transportes\/transporte_221202144005.jpg"
+                        }
+                    }
+                ],
+                "detalleacompanantes": [],
+                "detallefrigobars": [
+                    {
+                        "id": 1,
+                        "nombre": "Coca cola 3 Lts.",
+                        "precio": "13.00",
+                        "cantidad": 1,
+                        "hospedaje_id": 4
+                    },
+                    {
+                        "id": 2,
+                        "nombre": "Maruchan vaso",
+                        "precio": "10.00",
+                        "cantidad": 2,
+                        "hospedaje_id": 4
+                    }
+                ],
+                "restaurantes": [
+                    {
+                        "id": 1,
+                        "cliente_id": null,
+                        "hospedaje_id": 4,
+                        "fecha": "2022-12-02",
+                        "hora": "15:31:39",
+                        "total": "80.00",
+                        "detalles": [
+                            {
+                                "id": 1,
+                                "restaurante_reserva_id": 1,
+                                "restaurante_producto_id": 1,
+                                "precio": "40.00",
+                                "cantidad": 1,
+                                "producto": {
+                                    "id": 1,
+                                    "nombre": "Pique Macho Cochabambino",
+                                    "descripcion": "&lt;p&gt;El Pique Macho es un plato cochabambino que se ha vuelto muy popular en todo Bolivia por su sabor picante.&lt;\/p&gt;",
+                                    "precio": "40.00",
+                                    "foto": "producto_221130020930.jpg",
+                                    "restaurante_categoria_id": 1
+                                },
+                                "detallesproductos": [
+                                    {
+                                        "id": 1,
+                                        "restaurante_detalle_reserva_id": 1,
+                                        "restaurante_producto_opciones_id": 2,
+                                        "restaurante_producto_tamano_id": 2,
+                                        "precio_tamanho": "40.00",
+                                        "created_at": null,
+                                        "updated_at": null,
+                                        "deleted_at": null,
+                                        "opcion": {
+                                            "id": 2,
+                                            "nombre": "Con llajuita",
+                                            "restaurante_producto_id": 1
+                                        },
+                                        "tamaño": {
+                                            "id": 2,
+                                            "nombre": "Personal",
+                                            "precio": "40.00",
+                                            "restaurante_producto_id": 1
+                                        }
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ],
+                "cafeterias": [
+                    {
+                        "id": 1,
+                        "fecha": "2022-12-02",
+                        "hora": "16:06:54",
+                        "total": "50.00",
+                        "cliente_id": null,
+                        "hospedaje_id": 4,
+                        "detalles": [
+                            {
+                                "id": 1,
+                                "precio": "10.00",
+                                "cantidad": 1,
+                                "cafeteria_reserva_id": 1,
+                                "cafeteria_producto_id": 1,
+                                "producto": {
+                                    "id": 1,
+                                    "nombre": "Café",
+                                    "descripcion": "&lt;p&gt;Caf&amp;eacute; tri-varietal (Typica, Caturra y Catuai) de altura, cuyos granos son cultivados entre los 1600 y 1800 MSNM en los municipios de Caranavi y Coroico en los Yungas Pace&amp;ntilde;os.&lt;\/p&gt;",
+                                    "precio": "10.00",
+                                    "foto": "producto_221130020345.jpg",
+                                    "cafeteria_categoria_id": 1
+                                },
+                                "detallesproductos": []
+                            }
+                        ]
+                    },
+                    {
+                        "id": 2,
+                        "fecha": "2022-12-02",
+                        "hora": "16:12:57",
+                        "total": "50.00",
+                        "cliente_id": null,
+                        "hospedaje_id": 4,
+                        "detalles": [
+                            {
+                                "id": 2,
+                                "precio": "10.00",
+                                "cantidad": 1,
+                                "cafeteria_reserva_id": 2,
+                                "cafeteria_producto_id": 1,
+                                "producto": {
+                                    "id": 1,
+                                    "nombre": "Café",
+                                    "descripcion": "&lt;p&gt;Caf&amp;eacute; tri-varietal (Typica, Caturra y Catuai) de altura, cuyos granos son cultivados entre los 1600 y 1800 MSNM en los municipios de Caranavi y Coroico en los Yungas Pace&amp;ntilde;os.&lt;\/p&gt;",
+                                    "precio": "10.00",
+                                    "foto": "producto_221130020345.jpg",
+                                    "cafeteria_categoria_id": 1
+                                },
+                                "detallesproductos": [
+                                    {
+                                        "id": 1,
+                                        "precio_tamanho": "40.00",
+                                        "cafeteria_detalle_reserva_id": 2,
+                                        "cafeteria_producto_opciones_id": 2,
+                                        "cafeteria_producto_tamano_id": 2,
+                                        "created_at": null,
+                                        "updated_at": null,
+                                        "deleted_at": null,
+                                        "opcion": {
+                                            "id": 2,
+                                            "nombre": "Super cargado",
+                                            "cafeteria_producto_id": 1
+                                        },
+                                        "tamaño": {
+                                            "id": 2,
+                                            "nombre": "Grande",
+                                            "precio": "40.00",
+                                            "cafeteria_producto_id": 1
+                                        }
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
 }</code></pre>
 <div id="execution-results-POSTapi-perfil" hidden>
     <blockquote>Received response<span id="execution-response-status-POSTapi-perfil"></span>:</blockquote>
@@ -513,7 +738,7 @@ Id del cliente para mostrar el detalle de su perfil.
 </p>
 
 </form>
-<h2>CLIENTE -  Editar perfil Cliente</h2>
+<h2>Editar perfil Cliente.</h2>
 <blockquote>
 <p>Example request:</p>
 </blockquote>
@@ -698,7 +923,8 @@ Se registrara el imei del celular del cliente para el registro.
 </p>
 
 </form>
-<h2>CLIENTE -  Verificacion de email para cambio de password</h2>
+<h2>Cambiar password.</h2>
+<p>Verificacion de email para cambio de password.</p>
 <blockquote>
 <p>Example request:</p>
 </blockquote>
@@ -771,7 +997,8 @@ Verificacion que existe el email enviado.
 </p>
 
 </form>
-<h2>CLIENTE -  Verificacion de codigo enviado al email del cliente</h2>
+<h2>Verificacion de codigo.</h2>
+<p>Verificacion de codigo enviado al email del cliente.</p>
 <blockquote>
 <p>Example request:</p>
 </blockquote>
@@ -851,7 +1078,8 @@ Id del cliente para devolver su informacion.
 </p>
 
 </form>
-<h2>CLIENTE - Cambio de password del Cliente</h2>
+<h2>Cambio de password.</h2>
+<p>Cambio de password del Cliente.</p>
 <blockquote>
 <p>Example request:</p>
 </blockquote>
@@ -921,7 +1149,7 @@ Password por el cual restablecera.
 Verificacion de que escribio bien la contraseña.
 </p>
 
-</form>
+</form><h1>Endpoints</h1>
 <h2>SLIDERS - Listado de la Galeria del Hotel</h2>
 <blockquote>
 <p>Example request:</p>
@@ -980,272 +1208,6 @@ Campo unico del cliente autenticado para acceder a esta ruta.
 </p>
 
 </form>
-<h2>HABITACIONES - Listado de las categorias de las habitaciones</h2>
-<blockquote>
-<p>Example request:</p>
-</blockquote>
-<pre><code class="language-javascript">const url = new URL(
-    "http://c2210260.ferozo.com/api/habitacioncategorias"
-);
-
-let headers = {
-    "Content-Type": "application/json",
-    "Accept": "application/json",
-};
-
-let body = {
-    "bearer_token": "drWa9YnurQFx6bY8rfsRcdMXsXpLvTUWSEkqQHivBDLJpbFv7E31BxxBcj6z"
-}
-
-fetch(url, {
-    method: "GET",
-    headers,
-    body: JSON.stringify(body),
-}).then(response =&gt; response.json());</code></pre>
-<blockquote>
-<p>Example response (200, success):</p>
-</blockquote>
-<pre><code class="language-json">{
-    "id": 4,
-    "nombre": "Habitacion Presidencial",
-    "descripcion": "&lt;p&gt;sadsafasfa&lt;\/p&gt;",
-    "foto": "http:\/\/pairumanibackoffice.test\/public\/imagenes\/habitaciones\/categorias\/habitacioncategoria_210422124342.jpg"
-}</code></pre>
-<div id="execution-results-GETapi-habitacioncategorias" hidden>
-    <blockquote>Received response<span id="execution-response-status-GETapi-habitacioncategorias"></span>:</blockquote>
-    <pre class="json"><code id="execution-response-content-GETapi-habitacioncategorias"></code></pre>
-</div>
-<div id="execution-error-GETapi-habitacioncategorias" hidden>
-    <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-GETapi-habitacioncategorias"></code></pre>
-</div>
-<form id="form-GETapi-habitacioncategorias" data-method="GET" data-path="api/habitacioncategorias" data-authed="0" data-hasfiles="0" data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('GETapi-habitacioncategorias', this);">
-<h3>
-    Request&nbsp;&nbsp;&nbsp;
-        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-GETapi-habitacioncategorias" onclick="tryItOut('GETapi-habitacioncategorias');">Try it out ⚡</button>
-    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-GETapi-habitacioncategorias" onclick="cancelTryOut('GETapi-habitacioncategorias');" hidden>Cancel</button>&nbsp;&nbsp;
-    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-GETapi-habitacioncategorias" hidden>Send Request 💥</button>
-    </h3>
-<p>
-<small class="badge badge-green">GET</small>
- <b><code>api/habitacioncategorias</code></b>
-</p>
-<h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
-<p>
-<b><code>bearer_token</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
-<input type="text" name="bearer_token" data-endpoint="GETapi-habitacioncategorias" data-component="body" required  hidden>
-<br>
-Campo unico del cliente autenticado para acceder a esta ruta.
-</p>
-
-</form>
-<h2>HABITACIONES - Listado de habitaciones segun la categoria que estan enlazadas</h2>
-<blockquote>
-<p>Example request:</p>
-</blockquote>
-<pre><code class="language-javascript">const url = new URL(
-    "http://c2210260.ferozo.com/api/habitaciones"
-);
-
-let headers = {
-    "Content-Type": "application/json",
-    "Accept": "application/json",
-};
-
-let body = {
-    "bearer_token": "drWa9YnurQFx6bY8rfsRcdMXsXpLvTUWSEkqQHivBDLJpbFv7E31BxxBcj6z",
-    "categoria_id": 1
-}
-
-fetch(url, {
-    method: "POST",
-    headers,
-    body: JSON.stringify(body),
-}).then(response =&gt; response.json());</code></pre>
-<blockquote>
-<p>Example response (200, success):</p>
-</blockquote>
-<pre><code class="language-json">{
-    "nombre": "Habitacion 1",
-    "descripcion": "&lt;p&gt;asdafasfasfasfafafas&lt;\/p&gt;",
-    "num_habitacion": 1,
-    "precio": "850.00",
-    "precio_promocion": "550.00",
-    "capacidad_minima": "3",
-    "capacidad_maxima": "7",
-    "estado": "Disponible",
-    "foto": "http:\/\/pairumanibackoffice.test\/public\/imagenes\/habitaciones\/habitacion_210516222401.jfif"
-}</code></pre>
-<div id="execution-results-POSTapi-habitaciones" hidden>
-    <blockquote>Received response<span id="execution-response-status-POSTapi-habitaciones"></span>:</blockquote>
-    <pre class="json"><code id="execution-response-content-POSTapi-habitaciones"></code></pre>
-</div>
-<div id="execution-error-POSTapi-habitaciones" hidden>
-    <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-POSTapi-habitaciones"></code></pre>
-</div>
-<form id="form-POSTapi-habitaciones" data-method="POST" data-path="api/habitaciones" data-authed="0" data-hasfiles="0" data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('POSTapi-habitaciones', this);">
-<h3>
-    Request&nbsp;&nbsp;&nbsp;
-        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-POSTapi-habitaciones" onclick="tryItOut('POSTapi-habitaciones');">Try it out ⚡</button>
-    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-POSTapi-habitaciones" onclick="cancelTryOut('POSTapi-habitaciones');" hidden>Cancel</button>&nbsp;&nbsp;
-    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-POSTapi-habitaciones" hidden>Send Request 💥</button>
-    </h3>
-<p>
-<small class="badge badge-black">POST</small>
- <b><code>api/habitaciones</code></b>
-</p>
-<h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
-<p>
-<b><code>bearer_token</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
-<input type="text" name="bearer_token" data-endpoint="POSTapi-habitaciones" data-component="body" required  hidden>
-<br>
-Campo unico del cliente autenticado para acceder a esta ruta.
-</p>
-<p>
-<b><code>categoria_id</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
-<input type="number" name="categoria_id" data-endpoint="POSTapi-habitaciones" data-component="body" required  hidden>
-<br>
-Id de la categoria de la habitacion.
-</p>
-
-</form>
-<h2>HABITACIONES - Detalle de la habitacion</h2>
-<blockquote>
-<p>Example request:</p>
-</blockquote>
-<pre><code class="language-javascript">const url = new URL(
-    "http://c2210260.ferozo.com/api/habitaciondetalle"
-);
-
-let headers = {
-    "Content-Type": "application/json",
-    "Accept": "application/json",
-};
-
-let body = {
-    "bearer_token": "drWa9YnurQFx6bY8rfsRcdMXsXpLvTUWSEkqQHivBDLJpbFv7E31BxxBcj6z",
-    "habitacion_id": 1
-}
-
-fetch(url, {
-    method: "POST",
-    headers,
-    body: JSON.stringify(body),
-}).then(response =&gt; response.json());</code></pre>
-<blockquote>
-<p>Example response (200, success):</p>
-</blockquote>
-<pre><code class="language-json">{
-    "nombre": "asfasfasgfsagasga",
-    "descripcion": "&lt;p&gt;asasfasfa&lt;\/p&gt;",
-    "num_habitacion": 100,
-    "precio": "250.00",
-    "precio_promocion": "0.00",
-    "capacidad_minima": "6",
-    "capacidad_maxima": "8",
-    "estado": "Reservado",
-    "foto": "http:\/\/pairumanibackoffice.test\/public\/imagenes\/habitaciones\/habitacion_210430121313.jpg"
-}</code></pre>
-<div id="execution-results-POSTapi-habitaciondetalle" hidden>
-    <blockquote>Received response<span id="execution-response-status-POSTapi-habitaciondetalle"></span>:</blockquote>
-    <pre class="json"><code id="execution-response-content-POSTapi-habitaciondetalle"></code></pre>
-</div>
-<div id="execution-error-POSTapi-habitaciondetalle" hidden>
-    <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-POSTapi-habitaciondetalle"></code></pre>
-</div>
-<form id="form-POSTapi-habitaciondetalle" data-method="POST" data-path="api/habitaciondetalle" data-authed="0" data-hasfiles="0" data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('POSTapi-habitaciondetalle', this);">
-<h3>
-    Request&nbsp;&nbsp;&nbsp;
-        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-POSTapi-habitaciondetalle" onclick="tryItOut('POSTapi-habitaciondetalle');">Try it out ⚡</button>
-    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-POSTapi-habitaciondetalle" onclick="cancelTryOut('POSTapi-habitaciondetalle');" hidden>Cancel</button>&nbsp;&nbsp;
-    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-POSTapi-habitaciondetalle" hidden>Send Request 💥</button>
-    </h3>
-<p>
-<small class="badge badge-black">POST</small>
- <b><code>api/habitaciondetalle</code></b>
-</p>
-<h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
-<p>
-<b><code>bearer_token</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
-<input type="text" name="bearer_token" data-endpoint="POSTapi-habitaciondetalle" data-component="body" required  hidden>
-<br>
-Campo unico del cliente autenticado para acceder a esta ruta.
-</p>
-<p>
-<b><code>habitacion_id</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
-<input type="number" name="habitacion_id" data-endpoint="POSTapi-habitaciondetalle" data-component="body" required  hidden>
-<br>
-Id de la habitacion para ver su detalle.
-</p>
-
-</form>
-<h2>HABITACIONES - Listado de habitaciones a la categoria que pertenece</h2>
-<blockquote>
-<p>Example request:</p>
-</blockquote>
-<pre><code class="language-javascript">const url = new URL(
-    "http://c2210260.ferozo.com/api/Habitacionescategoria"
-);
-
-let headers = {
-    "Content-Type": "application/json",
-    "Accept": "application/json",
-};
-
-let body = {
-    "bearer_token": "drWa9YnurQFx6bY8rfsRcdMXsXpLvTUWSEkqQHivBDLJpbFv7E31BxxBcj6z"
-}
-
-fetch(url, {
-    method: "GET",
-    headers,
-    body: JSON.stringify(body),
-}).then(response =&gt; response.json());</code></pre>
-<blockquote>
-<p>Example response (200, success):</p>
-</blockquote>
-<pre><code class="language-json">{
-    "nombre": "Habitacion 1",
-    "descripcion": "&lt;p&gt;asdafasfasfasfafafas&lt;\/p&gt;",
-    "num_habitacion": 1,
-    "precio": "850.00",
-    "precio_promocion": "550.00",
-    "capacidad_minima": "3",
-    "capacidad_maxima": "7",
-    "estado": "Disponible",
-    "categoria": "Habitacion Presidencial",
-    "foto": "http:\/\/pairumanibackoffice.test\/public\/imagenes\/habitaciones\/habitacion_210516222401.jfif"
-}</code></pre>
-<div id="execution-results-GETapi-Habitacionescategoria" hidden>
-    <blockquote>Received response<span id="execution-response-status-GETapi-Habitacionescategoria"></span>:</blockquote>
-    <pre class="json"><code id="execution-response-content-GETapi-Habitacionescategoria"></code></pre>
-</div>
-<div id="execution-error-GETapi-Habitacionescategoria" hidden>
-    <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-GETapi-Habitacionescategoria"></code></pre>
-</div>
-<form id="form-GETapi-Habitacionescategoria" data-method="GET" data-path="api/Habitacionescategoria" data-authed="0" data-hasfiles="0" data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('GETapi-Habitacionescategoria', this);">
-<h3>
-    Request&nbsp;&nbsp;&nbsp;
-        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-GETapi-Habitacionescategoria" onclick="tryItOut('GETapi-Habitacionescategoria');">Try it out ⚡</button>
-    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-GETapi-Habitacionescategoria" onclick="cancelTryOut('GETapi-Habitacionescategoria');" hidden>Cancel</button>&nbsp;&nbsp;
-    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-GETapi-Habitacionescategoria" hidden>Send Request 💥</button>
-    </h3>
-<p>
-<small class="badge badge-green">GET</small>
- <b><code>api/Habitacionescategoria</code></b>
-</p>
-<h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
-<p>
-<b><code>bearer_token</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
-<input type="text" name="bearer_token" data-endpoint="GETapi-Habitacionescategoria" data-component="body" required  hidden>
-<br>
-Campo unico del cliente autenticado para acceder a esta ruta.
-</p>
-
-</form>
 <h2>PROMOCION - Listado de promociones de las habitaciones</h2>
 <blockquote>
 <p>Example request:</p>
@@ -1259,14 +1221,9 @@ let headers = {
     "Accept": "application/json",
 };
 
-let body = {
-    "bearer_token": "drWa9YnurQFx6bY8rfsRcdMXsXpLvTUWSEkqQHivBDLJpbFv7E31BxxBcj6z"
-}
-
 fetch(url, {
     method: "GET",
     headers,
-    body: JSON.stringify(body),
 }).then(response =&gt; response.json());</code></pre>
 <blockquote>
 <p>Example response (200, success):</p>
@@ -1297,14 +1254,6 @@ fetch(url, {
 <small class="badge badge-green">GET</small>
  <b><code>api/promociones</code></b>
 </p>
-<h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
-<p>
-<b><code>bearer_token</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
-<input type="text" name="bearer_token" data-endpoint="GETapi-promociones" data-component="body" required  hidden>
-<br>
-Campo unico del cliente autenticado para acceder a esta ruta.
-</p>
-
 </form>
 <h2>TRANSPORTES - Listado de transportes</h2>
 <blockquote>
@@ -2820,6 +2769,244 @@ Precio del tamaño producto.
 datos transporte.
 </p>
 
+</form><h1>Habitaciones</h1>
+<h2>Listado de las categorias.</h2>
+<p>Muestra la lista de todas las categorias de las habitaciones.</p>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-javascript">const url = new URL(
+    "http://c2210260.ferozo.com/api/habitacioncategorias"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre>
+<blockquote>
+<p>Example response (200, success):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "id": 4,
+    "nombre": "Habitacion Presidencial",
+    "descripcion": "&lt;p&gt;sadsafasfa&lt;\/p&gt;",
+    "foto": "http:\/\/pairumanibackoffice.test\/public\/imagenes\/habitaciones\/categorias\/habitacioncategoria_210422124342.jpg"
+}</code></pre>
+<div id="execution-results-GETapi-habitacioncategorias" hidden>
+    <blockquote>Received response<span id="execution-response-status-GETapi-habitacioncategorias"></span>:</blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-habitacioncategorias"></code></pre>
+</div>
+<div id="execution-error-GETapi-habitacioncategorias" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-habitacioncategorias"></code></pre>
+</div>
+<form id="form-GETapi-habitacioncategorias" data-method="GET" data-path="api/habitacioncategorias" data-authed="0" data-hasfiles="0" data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('GETapi-habitacioncategorias', this);">
+<h3>
+    Request&nbsp;&nbsp;&nbsp;
+        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-GETapi-habitacioncategorias" onclick="tryItOut('GETapi-habitacioncategorias');">Try it out ⚡</button>
+    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-GETapi-habitacioncategorias" onclick="cancelTryOut('GETapi-habitacioncategorias');" hidden>Cancel</button>&nbsp;&nbsp;
+    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-GETapi-habitacioncategorias" hidden>Send Request 💥</button>
+    </h3>
+<p>
+<small class="badge badge-green">GET</small>
+ <b><code>api/habitacioncategorias</code></b>
+</p>
+</form>
+<h2>Lista de habitaciones.</h2>
+<p>Listado de habitaciones segun la categoria que estan enlazadas.</p>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-javascript">const url = new URL(
+    "http://c2210260.ferozo.com/api/habitaciones"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "categoria_id": 1
+}
+
+fetch(url, {
+    method: "POST",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre>
+<blockquote>
+<p>Example response (200, success):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "nombre": "Habitacion 1",
+    "descripcion": "&lt;p&gt;asdafasfasfasfafafas&lt;\/p&gt;",
+    "num_habitacion": 1,
+    "precio": "850.00",
+    "precio_promocion": "550.00",
+    "capacidad_minima": "3",
+    "capacidad_maxima": "7",
+    "estado": "Disponible",
+    "foto": "http:\/\/pairumanibackoffice.test\/public\/imagenes\/habitaciones\/habitacion_210516222401.jfif"
+}</code></pre>
+<blockquote>
+<p>Example response (404):</p>
+</blockquote>
+<pre><code class="language-json">
+{
+      "success": "false",
+      "message": "Categoria no se existe",
+}</code></pre>
+<div id="execution-results-POSTapi-habitaciones" hidden>
+    <blockquote>Received response<span id="execution-response-status-POSTapi-habitaciones"></span>:</blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-habitaciones"></code></pre>
+</div>
+<div id="execution-error-POSTapi-habitaciones" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-habitaciones"></code></pre>
+</div>
+<form id="form-POSTapi-habitaciones" data-method="POST" data-path="api/habitaciones" data-authed="0" data-hasfiles="0" data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('POSTapi-habitaciones', this);">
+<h3>
+    Request&nbsp;&nbsp;&nbsp;
+        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-POSTapi-habitaciones" onclick="tryItOut('POSTapi-habitaciones');">Try it out ⚡</button>
+    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-POSTapi-habitaciones" onclick="cancelTryOut('POSTapi-habitaciones');" hidden>Cancel</button>&nbsp;&nbsp;
+    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-POSTapi-habitaciones" hidden>Send Request 💥</button>
+    </h3>
+<p>
+<small class="badge badge-black">POST</small>
+ <b><code>api/habitaciones</code></b>
+</p>
+<h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+<p>
+<b><code>categoria_id</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+<input type="number" name="categoria_id" data-endpoint="POSTapi-habitaciones" data-component="body" required  hidden>
+<br>
+Id de la categoria de la habitacion.
+</p>
+
+</form>
+<h2>Detalle habitacion.</h2>
+<p>Muestra el detalle de una habitacion.</p>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-javascript">const url = new URL(
+    "http://c2210260.ferozo.com/api/habitaciondetalle"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "habitacion_id": 1
+}
+
+fetch(url, {
+    method: "POST",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre>
+<blockquote>
+<p>Example response (200, success):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "nombre": "asfasfasgfsagasga",
+    "descripcion": "&lt;p&gt;asasfasfa&lt;\/p&gt;",
+    "num_habitacion": 100,
+    "precio": "250.00",
+    "precio_promocion": "0.00",
+    "capacidad_minima": "6",
+    "capacidad_maxima": "8",
+    "estado": "Reservado",
+    "foto": "http:\/\/pairumanibackoffice.test\/public\/imagenes\/habitaciones\/habitacion_210430121313.jpg"
+}</code></pre>
+<div id="execution-results-POSTapi-habitaciondetalle" hidden>
+    <blockquote>Received response<span id="execution-response-status-POSTapi-habitaciondetalle"></span>:</blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-habitaciondetalle"></code></pre>
+</div>
+<div id="execution-error-POSTapi-habitaciondetalle" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-habitaciondetalle"></code></pre>
+</div>
+<form id="form-POSTapi-habitaciondetalle" data-method="POST" data-path="api/habitaciondetalle" data-authed="0" data-hasfiles="0" data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('POSTapi-habitaciondetalle', this);">
+<h3>
+    Request&nbsp;&nbsp;&nbsp;
+        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-POSTapi-habitaciondetalle" onclick="tryItOut('POSTapi-habitaciondetalle');">Try it out ⚡</button>
+    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-POSTapi-habitaciondetalle" onclick="cancelTryOut('POSTapi-habitaciondetalle');" hidden>Cancel</button>&nbsp;&nbsp;
+    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-POSTapi-habitaciondetalle" hidden>Send Request 💥</button>
+    </h3>
+<p>
+<small class="badge badge-black">POST</small>
+ <b><code>api/habitaciondetalle</code></b>
+</p>
+<h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+<p>
+<b><code>habitacion_id</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+<input type="number" name="habitacion_id" data-endpoint="POSTapi-habitaciondetalle" data-component="body" required  hidden>
+<br>
+Id de la habitacion para ver su detalle.
+</p>
+
+</form>
+<h2>Lista de habitaciones con categoria.</h2>
+<p>Listado de habitaciones a la categoria que pertenece.</p>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-javascript">const url = new URL(
+    "http://c2210260.ferozo.com/api/Habitacionescategoria"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre>
+<blockquote>
+<p>Example response (200, success):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "nombre": "Habitacion 1",
+    "descripcion": "&lt;p&gt;asdafasfasfasfafafas&lt;\/p&gt;",
+    "num_habitacion": 1,
+    "precio": "850.00",
+    "precio_promocion": "550.00",
+    "capacidad_minima": "3",
+    "capacidad_maxima": "7",
+    "estado": "Disponible",
+    "categoria": "Habitacion Presidencial",
+    "foto": "http:\/\/pairumanibackoffice.test\/public\/imagenes\/habitaciones\/habitacion_210516222401.jfif"
+}</code></pre>
+<div id="execution-results-GETapi-Habitacionescategoria" hidden>
+    <blockquote>Received response<span id="execution-response-status-GETapi-Habitacionescategoria"></span>:</blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-Habitacionescategoria"></code></pre>
+</div>
+<div id="execution-error-GETapi-Habitacionescategoria" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-Habitacionescategoria"></code></pre>
+</div>
+<form id="form-GETapi-Habitacionescategoria" data-method="GET" data-path="api/Habitacionescategoria" data-authed="0" data-hasfiles="0" data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('GETapi-Habitacionescategoria', this);">
+<h3>
+    Request&nbsp;&nbsp;&nbsp;
+        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-GETapi-Habitacionescategoria" onclick="tryItOut('GETapi-Habitacionescategoria');">Try it out ⚡</button>
+    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-GETapi-Habitacionescategoria" onclick="cancelTryOut('GETapi-Habitacionescategoria');" hidden>Cancel</button>&nbsp;&nbsp;
+    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-GETapi-Habitacionescategoria" hidden>Send Request 💥</button>
+    </h3>
+<p>
+<small class="badge badge-green">GET</small>
+ <b><code>api/Habitacionescategoria</code></b>
+</p>
 </form>
     </div>
     <div class="dark-box">

@@ -4,10 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class HospedajeDetalleFrigobar extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
 
     protected $table = 'hospedaje_detalle_frigobar';
 
@@ -20,6 +21,12 @@ class HospedajeDetalleFrigobar extends Model
         'nombre',
         'precio',
         'cantidad',
+    ];
+
+    protected $hidden = [
+        'created_at',
+        'updated_at',
+        'deleted_at',
     ];
 
     protected $guarded = [];

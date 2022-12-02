@@ -4,18 +4,17 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Habitacion extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
 
     const PATH = '/imagenes/habitaciones/';
 
     protected $table = 'habitaciones';
 
     protected $primaryKey = 'id';
-
-    public $timestamps = false;
 
     protected $fillable = [
         'num_habitacion',
@@ -27,6 +26,12 @@ class Habitacion extends Model
         'capacidad_minima',
         'capacidad_maxima',
         'estado',
+    ];
+
+    protected $hidden = [
+        'created_at',
+        'updated_at',
+        'deleted_at',
     ];
 
     protected $guarded = [];

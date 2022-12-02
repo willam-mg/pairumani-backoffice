@@ -9,8 +9,8 @@ servers:
 paths:
     /api/login:
         post:
-            summary: 'CLIENTE - Login con redes sociales y normal'
-            description: ''
+            summary: Login.
+            description: 'Login con redes sociales y normal.'
             parameters:
                 -
                     in: header
@@ -72,7 +72,7 @@ paths:
                                     api_token: { type: string, example: KjUdFmnlAu7aFjlUXWIuSE1L4wPM8y3oWFacDALHOHKbNlbZGIa6ifz6Ojy4 }
                                     imei_celular: { type: string, example: '354651100023680' }
             tags:
-                - Endpoints
+                - Cliente
             requestBody:
                 required: true
                 content:
@@ -160,8 +160,8 @@ paths:
             security: []
     /api/signup:
         post:
-            summary: 'CLIENTE - Registro de nuevo Cliente'
-            description: ''
+            summary: 'Nuevo cliente.'
+            description: 'Registro de nuevo Cliente.'
             parameters:
                 -
                     in: header
@@ -223,7 +223,7 @@ paths:
                                     api_token: { type: string, example: KjUdFmnlAu7aFjlUXWIuSE1L4wPM8y3oWFacDALHOHKbNlbZGIa6ifz6Ojy4 }
                                     imei_celular: { type: string, example: '354651100023680' }
             tags:
-                - Endpoints
+                - Cliente
             requestBody:
                 required: true
                 content:
@@ -308,7 +308,7 @@ paths:
             security: []
     /api/perfil:
         post:
-            summary: 'CLIENTE -  Perfil de Cliente'
+            summary: 'Perfil de Cliente.'
             description: ''
             parameters:
                 -
@@ -333,45 +333,13 @@ paths:
                             schema:
                                 type: object
                                 example:
-                                    id: 7
-                                    nombres: 'Juan Carlos'
-                                    apellidos: 'Espinoza Cespedes'
-                                    tipo_documento: Ci
-                                    num_documento: '94564455'
-                                    celular: '65582210'
-                                    direccion: 'Av Pando'
-                                    ciudad: Cochabamba
-                                    pais: Bolivia
-                                    oficio: Arquitecto
-                                    empresa: SOFT
-                                    telefono: '4444444'
-                                    email: juan@gmail.com
-                                    fecha_nacimiento: '1989-05-12'
-                                    motivo_viaje: Recreacion
-                                    foto: foto.jpg
-                                    api_token: KjUdFmnlAu7aFjlUXWIuSE1L4wPM8y3oWFacDALHOHKbNlbZGIa6ifz6Ojy4
-                                    imei_celular: '354651100023680'
+                                    success: 'true'
+                                    data: { id: 7, nombres: Marina, apellidos: 'Mamani Chari', tipo_documento: Ci, num_documento: '8831417', celular: '75977665', direccion: 'Tiqupaya zona quintanilla', ciudad: Cochabamba, pais: Bolivia, oficio: Informatica, empresa: ENCORA, telefono: '43243223', email: marina@gmail.com, fecha_nacimiento: '1992-12-22', motivo_viaje: Recreacion, foto: null, imei_celular: null, reservas: [{ id: 4, checkin: '2022-12-05T17:07:00.000000Z', checkout: '2022-12-09T17:07:00.000000Z', adultos: 2, niños: 1, cliente_id: 7, habitacion_id: 3, estado: Activo, habitacion: { id: 3, nombre: 'Habitación Matrimonial Superior N°03', descripcion: "<h2><strong>Matrimonial Superior</strong></h2>\r\n\r\n<ul>\r\n\t<li>Check in a partir de las 14:00</li>\r\n\t<li>televisor LED</li>\r\n\t<li>Tv Cable</li>\r\n\t<li>Internet Wifi en todo el hotel</li>\r\n\t<li>Desayuno Buffet Americano</li>\r\n\t<li>Caja de Seguridad</li>\r\n\t<li>Piscina atemperada</li>\r\n\t<li>Sauna vapor</li>\r\n\t<li>Servicio de telefon&iacute;a nacional e internacional</li>\r\n\t<li>Parqueo Privado</li>\r\n</ul>", num_habitacion: '03', foto: 'https://c2210260.ferozo.com/imagenes/habitaciones/habitacion_221129223853.jpg', precio: '450.00', capacidad_minima: 1, capacidad_maxima: 1, estado: Ocupado, habitacion_categoria_id: 8, categoria: { id: 8, nombre: 'Habitación Matrimonial Superior', descripcion: '<p>Habitaci&oacute;n individual de 25 metros cuadrados para 2 personas</p>', foto: 'https://c2210260.ferozo.com/imagenes/habitaciones/categorias/habitacioncategoria_221129220607.jpg' } } }], hospedajes: [{ id: 4, fecha_checkin: '2022-12-05 13:07:00', fecha_checkout: '2022-12-09 13:07:00', niños: 1, adultos: 2, precio: '450.00', precio_promocion: null, estado: Ocupado, cliente_id: 7, habitacion_id: 3, habitacion: { id: 3, nombre: 'Habitación Matrimonial Superior N°03', descripcion: "<h2><strong>Matrimonial Superior</strong></h2>\r\n\r\n<ul>\r\n\t<li>Check in a partir de las 14:00</li>\r\n\t<li>televisor LED</li>\r\n\t<li>Tv Cable</li>\r\n\t<li>Internet Wifi en todo el hotel</li>\r\n\t<li>Desayuno Buffet Americano</li>\r\n\t<li>Caja de Seguridad</li>\r\n\t<li>Piscina atemperada</li>\r\n\t<li>Sauna vapor</li>\r\n\t<li>Servicio de telefon&iacute;a nacional e internacional</li>\r\n\t<li>Parqueo Privado</li>\r\n</ul>", num_habitacion: '03', foto: 'https://c2210260.ferozo.com/imagenes/habitaciones/habitacion_221129223853.jpg', precio: '450.00', capacidad_minima: 1, capacidad_maxima: 1, estado: Ocupado, habitacion_categoria_id: 8, categoria: { id: 8, nombre: 'Habitación Matrimonial Superior', descripcion: '<p>Habitaci&oacute;n individual de 25 metros cuadrados para 2 personas</p>', foto: 'https://c2210260.ferozo.com/imagenes/habitaciones/categorias/habitacioncategoria_221129220607.jpg' } }, detalletransportes: [{ id: 1, precio: '20.00', fecha: '2022-12-02', hospedaje_id: 4, transporte_id: 1, transporte: { id: 1, nombre: 'Mobil Suecia', descripcion: '<p>In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content. Lorem ipsum may be used as a placeholder before final copy is available.&nbsp;<a href="https://en.wikipedia.org/wiki/Lorem_ipsum">Wikipedia</a></p>', precio: '20.00', foto: 'https://c2210260.ferozo.com/imagenes/transportes/transporte_221202144005.jpg' } }], detalleacompanantes: [], detallefrigobars: [{ id: 1, nombre: 'Coca cola 3 Lts.', precio: '13.00', cantidad: 1, hospedaje_id: 4 }, { id: 2, nombre: 'Maruchan vaso', precio: '10.00', cantidad: 2, hospedaje_id: 4 }], restaurantes: [{ id: 1, cliente_id: null, hospedaje_id: 4, fecha: '2022-12-02', hora: '15:31:39', total: '80.00', detalles: [{ id: 1, restaurante_reserva_id: 1, restaurante_producto_id: 1, precio: '40.00', cantidad: 1, producto: { id: 1, nombre: 'Pique Macho Cochabambino', descripcion: '<p>El Pique Macho es un plato cochabambino que se ha vuelto muy popular en todo Bolivia por su sabor picante.</p>', precio: '40.00', foto: producto_221130020930.jpg, restaurante_categoria_id: 1 }, detallesproductos: [{ id: 1, restaurante_detalle_reserva_id: 1, restaurante_producto_opciones_id: 2, restaurante_producto_tamano_id: 2, precio_tamanho: '40.00', created_at: null, updated_at: null, deleted_at: null, opcion: { id: 2, nombre: 'Con llajuita', restaurante_producto_id: 1 }, tamaño: { id: 2, nombre: Personal, precio: '40.00', restaurante_producto_id: 1 } }] }] }], cafeterias: [{ id: 1, fecha: '2022-12-02', hora: '16:06:54', total: '50.00', cliente_id: null, hospedaje_id: 4, detalles: [{ id: 1, precio: '10.00', cantidad: 1, cafeteria_reserva_id: 1, cafeteria_producto_id: 1, producto: { id: 1, nombre: Café, descripcion: '<p>Caf&eacute; tri-varietal (Typica, Caturra y Catuai) de altura, cuyos granos son cultivados entre los 1600 y 1800 MSNM en los municipios de Caranavi y Coroico en los Yungas Pace&ntilde;os.</p>', precio: '10.00', foto: producto_221130020345.jpg, cafeteria_categoria_id: 1 }, detallesproductos: [] }] }, { id: 2, fecha: '2022-12-02', hora: '16:12:57', total: '50.00', cliente_id: null, hospedaje_id: 4, detalles: [{ id: 2, precio: '10.00', cantidad: 1, cafeteria_reserva_id: 2, cafeteria_producto_id: 1, producto: { id: 1, nombre: Café, descripcion: '<p>Caf&eacute; tri-varietal (Typica, Caturra y Catuai) de altura, cuyos granos son cultivados entre los 1600 y 1800 MSNM en los municipios de Caranavi y Coroico en los Yungas Pace&ntilde;os.</p>', precio: '10.00', foto: producto_221130020345.jpg, cafeteria_categoria_id: 1 }, detallesproductos: [{ id: 1, precio_tamanho: '40.00', cafeteria_detalle_reserva_id: 2, cafeteria_producto_opciones_id: 2, cafeteria_producto_tamano_id: 2, created_at: null, updated_at: null, deleted_at: null, opcion: { id: 2, nombre: 'Super cargado', cafeteria_producto_id: 1 }, tamaño: { id: 2, nombre: Grande, precio: '40.00', cafeteria_producto_id: 1 } }] }] }] }] }
                                 properties:
-                                    id: { type: integer, example: 7 }
-                                    nombres: { type: string, example: 'Juan Carlos' }
-                                    apellidos: { type: string, example: 'Espinoza Cespedes' }
-                                    tipo_documento: { type: string, example: Ci }
-                                    num_documento: { type: string, example: '94564455' }
-                                    celular: { type: string, example: '65582210' }
-                                    direccion: { type: string, example: 'Av Pando' }
-                                    ciudad: { type: string, example: Cochabamba }
-                                    pais: { type: string, example: Bolivia }
-                                    oficio: { type: string, example: Arquitecto }
-                                    empresa: { type: string, example: SOFT }
-                                    telefono: { type: string, example: '4444444' }
-                                    email: { type: string, example: juan@gmail.com }
-                                    fecha_nacimiento: { type: string, example: '1989-05-12' }
-                                    motivo_viaje: { type: string, example: Recreacion }
-                                    foto: { type: string, example: foto.jpg }
-                                    api_token: { type: string, example: KjUdFmnlAu7aFjlUXWIuSE1L4wPM8y3oWFacDALHOHKbNlbZGIa6ifz6Ojy4 }
-                                    imei_celular: { type: string, example: '354651100023680' }
+                                    success: { type: string, example: 'true' }
+                                    data: { type: object, example: { id: 7, nombres: Marina, apellidos: 'Mamani Chari', tipo_documento: Ci, num_documento: '8831417', celular: '75977665', direccion: 'Tiqupaya zona quintanilla', ciudad: Cochabamba, pais: Bolivia, oficio: Informatica, empresa: ENCORA, telefono: '43243223', email: marina@gmail.com, fecha_nacimiento: '1992-12-22', motivo_viaje: Recreacion, foto: null, imei_celular: null, reservas: [{ id: 4, checkin: '2022-12-05T17:07:00.000000Z', checkout: '2022-12-09T17:07:00.000000Z', adultos: 2, niños: 1, cliente_id: 7, habitacion_id: 3, estado: Activo, habitacion: { id: 3, nombre: 'Habitación Matrimonial Superior N°03', descripcion: "<h2><strong>Matrimonial Superior</strong></h2>\r\n\r\n<ul>\r\n\t<li>Check in a partir de las 14:00</li>\r\n\t<li>televisor LED</li>\r\n\t<li>Tv Cable</li>\r\n\t<li>Internet Wifi en todo el hotel</li>\r\n\t<li>Desayuno Buffet Americano</li>\r\n\t<li>Caja de Seguridad</li>\r\n\t<li>Piscina atemperada</li>\r\n\t<li>Sauna vapor</li>\r\n\t<li>Servicio de telefon&iacute;a nacional e internacional</li>\r\n\t<li>Parqueo Privado</li>\r\n</ul>", num_habitacion: '03', foto: 'https://c2210260.ferozo.com/imagenes/habitaciones/habitacion_221129223853.jpg', precio: '450.00', capacidad_minima: 1, capacidad_maxima: 1, estado: Ocupado, habitacion_categoria_id: 8, categoria: { id: 8, nombre: 'Habitación Matrimonial Superior', descripcion: '<p>Habitaci&oacute;n individual de 25 metros cuadrados para 2 personas</p>', foto: 'https://c2210260.ferozo.com/imagenes/habitaciones/categorias/habitacioncategoria_221129220607.jpg' } } }], hospedajes: [{ id: 4, fecha_checkin: '2022-12-05 13:07:00', fecha_checkout: '2022-12-09 13:07:00', niños: 1, adultos: 2, precio: '450.00', precio_promocion: null, estado: Ocupado, cliente_id: 7, habitacion_id: 3, habitacion: { id: 3, nombre: 'Habitación Matrimonial Superior N°03', descripcion: "<h2><strong>Matrimonial Superior</strong></h2>\r\n\r\n<ul>\r\n\t<li>Check in a partir de las 14:00</li>\r\n\t<li>televisor LED</li>\r\n\t<li>Tv Cable</li>\r\n\t<li>Internet Wifi en todo el hotel</li>\r\n\t<li>Desayuno Buffet Americano</li>\r\n\t<li>Caja de Seguridad</li>\r\n\t<li>Piscina atemperada</li>\r\n\t<li>Sauna vapor</li>\r\n\t<li>Servicio de telefon&iacute;a nacional e internacional</li>\r\n\t<li>Parqueo Privado</li>\r\n</ul>", num_habitacion: '03', foto: 'https://c2210260.ferozo.com/imagenes/habitaciones/habitacion_221129223853.jpg', precio: '450.00', capacidad_minima: 1, capacidad_maxima: 1, estado: Ocupado, habitacion_categoria_id: 8, categoria: { id: 8, nombre: 'Habitación Matrimonial Superior', descripcion: '<p>Habitaci&oacute;n individual de 25 metros cuadrados para 2 personas</p>', foto: 'https://c2210260.ferozo.com/imagenes/habitaciones/categorias/habitacioncategoria_221129220607.jpg' } }, detalletransportes: [{ id: 1, precio: '20.00', fecha: '2022-12-02', hospedaje_id: 4, transporte_id: 1, transporte: { id: 1, nombre: 'Mobil Suecia', descripcion: '<p>In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content. Lorem ipsum may be used as a placeholder before final copy is available.&nbsp;<a href="https://en.wikipedia.org/wiki/Lorem_ipsum">Wikipedia</a></p>', precio: '20.00', foto: 'https://c2210260.ferozo.com/imagenes/transportes/transporte_221202144005.jpg' } }], detalleacompanantes: [], detallefrigobars: [{ id: 1, nombre: 'Coca cola 3 Lts.', precio: '13.00', cantidad: 1, hospedaje_id: 4 }, { id: 2, nombre: 'Maruchan vaso', precio: '10.00', cantidad: 2, hospedaje_id: 4 }], restaurantes: [{ id: 1, cliente_id: null, hospedaje_id: 4, fecha: '2022-12-02', hora: '15:31:39', total: '80.00', detalles: [{ id: 1, restaurante_reserva_id: 1, restaurante_producto_id: 1, precio: '40.00', cantidad: 1, producto: { id: 1, nombre: 'Pique Macho Cochabambino', descripcion: '<p>El Pique Macho es un plato cochabambino que se ha vuelto muy popular en todo Bolivia por su sabor picante.</p>', precio: '40.00', foto: producto_221130020930.jpg, restaurante_categoria_id: 1 }, detallesproductos: [{ id: 1, restaurante_detalle_reserva_id: 1, restaurante_producto_opciones_id: 2, restaurante_producto_tamano_id: 2, precio_tamanho: '40.00', created_at: null, updated_at: null, deleted_at: null, opcion: { id: 2, nombre: 'Con llajuita', restaurante_producto_id: 1 }, tamaño: { id: 2, nombre: Personal, precio: '40.00', restaurante_producto_id: 1 } }] }] }], cafeterias: [{ id: 1, fecha: '2022-12-02', hora: '16:06:54', total: '50.00', cliente_id: null, hospedaje_id: 4, detalles: [{ id: 1, precio: '10.00', cantidad: 1, cafeteria_reserva_id: 1, cafeteria_producto_id: 1, producto: { id: 1, nombre: Café, descripcion: '<p>Caf&eacute; tri-varietal (Typica, Caturra y Catuai) de altura, cuyos granos son cultivados entre los 1600 y 1800 MSNM en los municipios de Caranavi y Coroico en los Yungas Pace&ntilde;os.</p>', precio: '10.00', foto: producto_221130020345.jpg, cafeteria_categoria_id: 1 }, detallesproductos: [] }] }, { id: 2, fecha: '2022-12-02', hora: '16:12:57', total: '50.00', cliente_id: null, hospedaje_id: 4, detalles: [{ id: 2, precio: '10.00', cantidad: 1, cafeteria_reserva_id: 2, cafeteria_producto_id: 1, producto: { id: 1, nombre: Café, descripcion: '<p>Caf&eacute; tri-varietal (Typica, Caturra y Catuai) de altura, cuyos granos son cultivados entre los 1600 y 1800 MSNM en los municipios de Caranavi y Coroico en los Yungas Pace&ntilde;os.</p>', precio: '10.00', foto: producto_221130020345.jpg, cafeteria_categoria_id: 1 }, detallesproductos: [{ id: 1, precio_tamanho: '40.00', cafeteria_detalle_reserva_id: 2, cafeteria_producto_opciones_id: 2, cafeteria_producto_tamano_id: 2, created_at: null, updated_at: null, deleted_at: null, opcion: { id: 2, nombre: 'Super cargado', cafeteria_producto_id: 1 }, tamaño: { id: 2, nombre: Grande, precio: '40.00', cafeteria_producto_id: 1 } }] }] }] }] } }
             tags:
-                - Endpoints
+                - Cliente
             requestBody:
                 required: true
                 content:
@@ -388,7 +356,7 @@ paths:
             security: []
     /api/update:
         post:
-            summary: 'CLIENTE -  Editar perfil Cliente'
+            summary: 'Editar perfil Cliente.'
             description: ''
             parameters:
                 -
@@ -451,7 +419,7 @@ paths:
                                     api_token: { type: string, example: KjUdFmnlAu7aFjlUXWIuSE1L4wPM8y3oWFacDALHOHKbNlbZGIa6ifz6Ojy4 }
                                     imei_celular: { type: string, example: '354651100023680' }
             tags:
-                - Endpoints
+                - Cliente
             requestBody:
                 required: true
                 content:
@@ -534,8 +502,8 @@ paths:
             security: []
     /api/verificaremail:
         post:
-            summary: 'CLIENTE -  Verificacion de email para cambio de password'
-            description: ''
+            summary: 'Cambiar password.'
+            description: 'Verificacion de email para cambio de password.'
             parameters:
                 -
                     in: header
@@ -597,7 +565,7 @@ paths:
                                     api_token: { type: string, example: KjUdFmnlAu7aFjlUXWIuSE1L4wPM8y3oWFacDALHOHKbNlbZGIa6ifz6Ojy4 }
                                     imei_celular: { type: string, example: '354651100023680' }
             tags:
-                - Endpoints
+                - Cliente
             requestBody:
                 required: true
                 content:
@@ -614,8 +582,8 @@ paths:
             security: []
     /api/verificarcodigo:
         post:
-            summary: 'CLIENTE -  Verificacion de codigo enviado al email del cliente'
-            description: ''
+            summary: 'Verificacion de codigo.'
+            description: 'Verificacion de codigo enviado al email del cliente.'
             parameters:
                 -
                     in: header
@@ -677,7 +645,7 @@ paths:
                                     api_token: { type: string, example: KjUdFmnlAu7aFjlUXWIuSE1L4wPM8y3oWFacDALHOHKbNlbZGIa6ifz6Ojy4 }
                                     imei_celular: { type: string, example: '354651100023680' }
             tags:
-                - Endpoints
+                - Cliente
             requestBody:
                 required: true
                 content:
@@ -699,8 +667,8 @@ paths:
             security: []
     /api/cambiarpassword:
         post:
-            summary: 'CLIENTE - Cambio de password del Cliente'
-            description: ''
+            summary: 'Cambio de password.'
+            description: 'Cambio de password del Cliente.'
             parameters:
                 -
                     in: header
@@ -725,7 +693,7 @@ paths:
                                 type: string
                                 example: "{\n  \"data\": Se cambio la contraseña,\n}"
             tags:
-                - Endpoints
+                - Cliente
             requestBody:
                 required: true
                 content:
@@ -800,256 +768,6 @@ paths:
                             required:
                                 - bearer_token
             security: []
-    /api/habitacioncategorias:
-        get:
-            summary: 'HABITACIONES - Listado de las categorias de las habitaciones'
-            description: ''
-            parameters:
-                -
-                    in: header
-                    name: Content-Type
-                    description: ''
-                    example: application/json
-                    schema:
-                        type: string
-                -
-                    in: header
-                    name: Accept
-                    description: ''
-                    example: application/json
-                    schema:
-                        type: string
-            responses:
-                200:
-                    description: '200, success'
-                    content:
-                        application/json:
-                            schema:
-                                type: object
-                                example:
-                                    id: 4
-                                    nombre: 'Habitacion Presidencial'
-                                    descripcion: '<p>sadsafasfa</p>'
-                                    foto: 'http://pairumanibackoffice.test/public/imagenes/habitaciones/categorias/habitacioncategoria_210422124342.jpg'
-                                properties:
-                                    id: { type: integer, example: 4 }
-                                    nombre: { type: string, example: 'Habitacion Presidencial' }
-                                    descripcion: { type: string, example: '<p>sadsafasfa</p>' }
-                                    foto: { type: string, example: 'http://pairumanibackoffice.test/public/imagenes/habitaciones/categorias/habitacioncategoria_210422124342.jpg' }
-            tags:
-                - Endpoints
-            requestBody:
-                required: true
-                content:
-                    application/json:
-                        schema:
-                            type: object
-                            properties:
-                                bearer_token:
-                                    type: string
-                                    description: 'Campo unico del cliente autenticado para acceder a esta ruta.'
-                                    example: drWa9YnurQFx6bY8rfsRcdMXsXpLvTUWSEkqQHivBDLJpbFv7E31BxxBcj6z
-                            required:
-                                - bearer_token
-            security: []
-    /api/habitaciones:
-        post:
-            summary: 'HABITACIONES - Listado de habitaciones segun la categoria que estan enlazadas'
-            description: ''
-            parameters:
-                -
-                    in: header
-                    name: Content-Type
-                    description: ''
-                    example: application/json
-                    schema:
-                        type: string
-                -
-                    in: header
-                    name: Accept
-                    description: ''
-                    example: application/json
-                    schema:
-                        type: string
-            responses:
-                200:
-                    description: '200, success'
-                    content:
-                        application/json:
-                            schema:
-                                type: object
-                                example:
-                                    nombre: 'Habitacion 1'
-                                    descripcion: '<p>asdafasfasfasfafafas</p>'
-                                    num_habitacion: 1
-                                    precio: '850.00'
-                                    precio_promocion: '550.00'
-                                    capacidad_minima: '3'
-                                    capacidad_maxima: '7'
-                                    estado: Disponible
-                                    foto: 'http://pairumanibackoffice.test/public/imagenes/habitaciones/habitacion_210516222401.jfif'
-                                properties:
-                                    nombre: { type: string, example: 'Habitacion 1' }
-                                    descripcion: { type: string, example: '<p>asdafasfasfasfafafas</p>' }
-                                    num_habitacion: { type: integer, example: 1 }
-                                    precio: { type: string, example: '850.00' }
-                                    precio_promocion: { type: string, example: '550.00' }
-                                    capacidad_minima: { type: string, example: '3' }
-                                    capacidad_maxima: { type: string, example: '7' }
-                                    estado: { type: string, example: Disponible }
-                                    foto: { type: string, example: 'http://pairumanibackoffice.test/public/imagenes/habitaciones/habitacion_210516222401.jfif' }
-            tags:
-                - Endpoints
-            requestBody:
-                required: true
-                content:
-                    application/json:
-                        schema:
-                            type: object
-                            properties:
-                                bearer_token:
-                                    type: string
-                                    description: 'Campo unico del cliente autenticado para acceder a esta ruta.'
-                                    example: drWa9YnurQFx6bY8rfsRcdMXsXpLvTUWSEkqQHivBDLJpbFv7E31BxxBcj6z
-                                categoria_id:
-                                    type: integer
-                                    description: 'Id de la categoria de la habitacion.'
-                                    example: 1
-                            required:
-                                - bearer_token
-                                - categoria_id
-            security: []
-    /api/habitaciondetalle:
-        post:
-            summary: 'HABITACIONES - Detalle de la habitacion'
-            description: ''
-            parameters:
-                -
-                    in: header
-                    name: Content-Type
-                    description: ''
-                    example: application/json
-                    schema:
-                        type: string
-                -
-                    in: header
-                    name: Accept
-                    description: ''
-                    example: application/json
-                    schema:
-                        type: string
-            responses:
-                200:
-                    description: '200, success'
-                    content:
-                        application/json:
-                            schema:
-                                type: object
-                                example:
-                                    nombre: asfasfasgfsagasga
-                                    descripcion: '<p>asasfasfa</p>'
-                                    num_habitacion: 100
-                                    precio: '250.00'
-                                    precio_promocion: '0.00'
-                                    capacidad_minima: '6'
-                                    capacidad_maxima: '8'
-                                    estado: Reservado
-                                    foto: 'http://pairumanibackoffice.test/public/imagenes/habitaciones/habitacion_210430121313.jpg'
-                                properties:
-                                    nombre: { type: string, example: asfasfasgfsagasga }
-                                    descripcion: { type: string, example: '<p>asasfasfa</p>' }
-                                    num_habitacion: { type: integer, example: 100 }
-                                    precio: { type: string, example: '250.00' }
-                                    precio_promocion: { type: string, example: '0.00' }
-                                    capacidad_minima: { type: string, example: '6' }
-                                    capacidad_maxima: { type: string, example: '8' }
-                                    estado: { type: string, example: Reservado }
-                                    foto: { type: string, example: 'http://pairumanibackoffice.test/public/imagenes/habitaciones/habitacion_210430121313.jpg' }
-            tags:
-                - Endpoints
-            requestBody:
-                required: true
-                content:
-                    application/json:
-                        schema:
-                            type: object
-                            properties:
-                                bearer_token:
-                                    type: string
-                                    description: 'Campo unico del cliente autenticado para acceder a esta ruta.'
-                                    example: drWa9YnurQFx6bY8rfsRcdMXsXpLvTUWSEkqQHivBDLJpbFv7E31BxxBcj6z
-                                habitacion_id:
-                                    type: integer
-                                    description: 'Id de la habitacion para ver su detalle.'
-                                    example: 1
-                            required:
-                                - bearer_token
-                                - habitacion_id
-            security: []
-    /api/Habitacionescategoria:
-        get:
-            summary: 'HABITACIONES - Listado de habitaciones a la categoria que pertenece'
-            description: ''
-            parameters:
-                -
-                    in: header
-                    name: Content-Type
-                    description: ''
-                    example: application/json
-                    schema:
-                        type: string
-                -
-                    in: header
-                    name: Accept
-                    description: ''
-                    example: application/json
-                    schema:
-                        type: string
-            responses:
-                200:
-                    description: '200, success'
-                    content:
-                        application/json:
-                            schema:
-                                type: object
-                                example:
-                                    nombre: 'Habitacion 1'
-                                    descripcion: '<p>asdafasfasfasfafafas</p>'
-                                    num_habitacion: 1
-                                    precio: '850.00'
-                                    precio_promocion: '550.00'
-                                    capacidad_minima: '3'
-                                    capacidad_maxima: '7'
-                                    estado: Disponible
-                                    categoria: 'Habitacion Presidencial'
-                                    foto: 'http://pairumanibackoffice.test/public/imagenes/habitaciones/habitacion_210516222401.jfif'
-                                properties:
-                                    nombre: { type: string, example: 'Habitacion 1' }
-                                    descripcion: { type: string, example: '<p>asdafasfasfasfafafas</p>' }
-                                    num_habitacion: { type: integer, example: 1 }
-                                    precio: { type: string, example: '850.00' }
-                                    precio_promocion: { type: string, example: '550.00' }
-                                    capacidad_minima: { type: string, example: '3' }
-                                    capacidad_maxima: { type: string, example: '7' }
-                                    estado: { type: string, example: Disponible }
-                                    categoria: { type: string, example: 'Habitacion Presidencial' }
-                                    foto: { type: string, example: 'http://pairumanibackoffice.test/public/imagenes/habitaciones/habitacion_210516222401.jfif' }
-            tags:
-                - Endpoints
-            requestBody:
-                required: true
-                content:
-                    application/json:
-                        schema:
-                            type: object
-                            properties:
-                                bearer_token:
-                                    type: string
-                                    description: 'Campo unico del cliente autenticado para acceder a esta ruta.'
-                                    example: drWa9YnurQFx6bY8rfsRcdMXsXpLvTUWSEkqQHivBDLJpbFv7E31BxxBcj6z
-                            required:
-                                - bearer_token
-            security: []
     /api/promociones:
         get:
             summary: 'PROMOCION - Listado de promociones de las habitaciones'
@@ -1090,19 +808,6 @@ paths:
                                     foto: { type: string, example: 'http://pairumanibackoffice.test/public/imagenes/promociones/promocion_210513161554.jpg' }
             tags:
                 - Endpoints
-            requestBody:
-                required: true
-                content:
-                    application/json:
-                        schema:
-                            type: object
-                            properties:
-                                bearer_token:
-                                    type: string
-                                    description: 'Campo unico del cliente autenticado para acceder a esta ruta.'
-                                    example: drWa9YnurQFx6bY8rfsRcdMXsXpLvTUWSEkqQHivBDLJpbFv7E31BxxBcj6z
-                            required:
-                                - bearer_token
             security: []
     /api/transportes:
         get:
@@ -2309,4 +2014,225 @@ paths:
                                 - opcion_id
                                 - tamano_id
                                 - preciotamano
+            security: []
+    /api/habitacioncategorias:
+        get:
+            summary: 'Listado de las categorias.'
+            description: 'Muestra la lista de todas las categorias de las habitaciones.'
+            parameters:
+                -
+                    in: header
+                    name: Content-Type
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Accept
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+            responses:
+                200:
+                    description: '200, success'
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                example:
+                                    id: 4
+                                    nombre: 'Habitacion Presidencial'
+                                    descripcion: '<p>sadsafasfa</p>'
+                                    foto: 'http://pairumanibackoffice.test/public/imagenes/habitaciones/categorias/habitacioncategoria_210422124342.jpg'
+                                properties:
+                                    id: { type: integer, example: 4 }
+                                    nombre: { type: string, example: 'Habitacion Presidencial' }
+                                    descripcion: { type: string, example: '<p>sadsafasfa</p>' }
+                                    foto: { type: string, example: 'http://pairumanibackoffice.test/public/imagenes/habitaciones/categorias/habitacioncategoria_210422124342.jpg' }
+            tags:
+                - Habitaciones
+            security: []
+    /api/habitaciones:
+        post:
+            summary: 'Lista de habitaciones.'
+            description: 'Listado de habitaciones segun la categoria que estan enlazadas.'
+            parameters:
+                -
+                    in: header
+                    name: Content-Type
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Accept
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+            responses:
+                200:
+                    description: '200, success'
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                example:
+                                    nombre: 'Habitacion 1'
+                                    descripcion: '<p>asdafasfasfasfafafas</p>'
+                                    num_habitacion: 1
+                                    precio: '850.00'
+                                    precio_promocion: '550.00'
+                                    capacidad_minima: '3'
+                                    capacidad_maxima: '7'
+                                    estado: Disponible
+                                    foto: 'http://pairumanibackoffice.test/public/imagenes/habitaciones/habitacion_210516222401.jfif'
+                                properties:
+                                    nombre: { type: string, example: 'Habitacion 1' }
+                                    descripcion: { type: string, example: '<p>asdafasfasfasfafafas</p>' }
+                                    num_habitacion: { type: integer, example: 1 }
+                                    precio: { type: string, example: '850.00' }
+                                    precio_promocion: { type: string, example: '550.00' }
+                                    capacidad_minima: { type: string, example: '3' }
+                                    capacidad_maxima: { type: string, example: '7' }
+                                    estado: { type: string, example: Disponible }
+                                    foto: { type: string, example: 'http://pairumanibackoffice.test/public/imagenes/habitaciones/habitacion_210516222401.jfif' }
+                404:
+                    description: '404'
+                    content:
+                        text/plain:
+                            schema:
+                                type: string
+                                example: "{\n      \"success\": \"false\",\n      \"message\": \"Categoria no se existe\",\n}"
+            tags:
+                - Habitaciones
+            requestBody:
+                required: true
+                content:
+                    application/json:
+                        schema:
+                            type: object
+                            properties:
+                                categoria_id:
+                                    type: integer
+                                    description: 'Id de la categoria de la habitacion.'
+                                    example: 1
+                            required:
+                                - categoria_id
+            security: []
+    /api/habitaciondetalle:
+        post:
+            summary: 'Detalle habitacion.'
+            description: 'Muestra el detalle de una habitacion.'
+            parameters:
+                -
+                    in: header
+                    name: Content-Type
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Accept
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+            responses:
+                200:
+                    description: '200, success'
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                example:
+                                    nombre: asfasfasgfsagasga
+                                    descripcion: '<p>asasfasfa</p>'
+                                    num_habitacion: 100
+                                    precio: '250.00'
+                                    precio_promocion: '0.00'
+                                    capacidad_minima: '6'
+                                    capacidad_maxima: '8'
+                                    estado: Reservado
+                                    foto: 'http://pairumanibackoffice.test/public/imagenes/habitaciones/habitacion_210430121313.jpg'
+                                properties:
+                                    nombre: { type: string, example: asfasfasgfsagasga }
+                                    descripcion: { type: string, example: '<p>asasfasfa</p>' }
+                                    num_habitacion: { type: integer, example: 100 }
+                                    precio: { type: string, example: '250.00' }
+                                    precio_promocion: { type: string, example: '0.00' }
+                                    capacidad_minima: { type: string, example: '6' }
+                                    capacidad_maxima: { type: string, example: '8' }
+                                    estado: { type: string, example: Reservado }
+                                    foto: { type: string, example: 'http://pairumanibackoffice.test/public/imagenes/habitaciones/habitacion_210430121313.jpg' }
+            tags:
+                - Habitaciones
+            requestBody:
+                required: true
+                content:
+                    application/json:
+                        schema:
+                            type: object
+                            properties:
+                                habitacion_id:
+                                    type: integer
+                                    description: 'Id de la habitacion para ver su detalle.'
+                                    example: 1
+                            required:
+                                - habitacion_id
+            security: []
+    /api/Habitacionescategoria:
+        get:
+            summary: 'Lista de habitaciones con categoria.'
+            description: 'Listado de habitaciones a la categoria que pertenece.'
+            parameters:
+                -
+                    in: header
+                    name: Content-Type
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Accept
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+            responses:
+                200:
+                    description: '200, success'
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                example:
+                                    nombre: 'Habitacion 1'
+                                    descripcion: '<p>asdafasfasfasfafafas</p>'
+                                    num_habitacion: 1
+                                    precio: '850.00'
+                                    precio_promocion: '550.00'
+                                    capacidad_minima: '3'
+                                    capacidad_maxima: '7'
+                                    estado: Disponible
+                                    categoria: 'Habitacion Presidencial'
+                                    foto: 'http://pairumanibackoffice.test/public/imagenes/habitaciones/habitacion_210516222401.jfif'
+                                properties:
+                                    nombre: { type: string, example: 'Habitacion 1' }
+                                    descripcion: { type: string, example: '<p>asdafasfasfasfafafas</p>' }
+                                    num_habitacion: { type: integer, example: 1 }
+                                    precio: { type: string, example: '850.00' }
+                                    precio_promocion: { type: string, example: '550.00' }
+                                    capacidad_minima: { type: string, example: '3' }
+                                    capacidad_maxima: { type: string, example: '7' }
+                                    estado: { type: string, example: Disponible }
+                                    categoria: { type: string, example: 'Habitacion Presidencial' }
+                                    foto: { type: string, example: 'http://pairumanibackoffice.test/public/imagenes/habitaciones/habitacion_210516222401.jfif' }
+            tags:
+                - Habitaciones
             security: []

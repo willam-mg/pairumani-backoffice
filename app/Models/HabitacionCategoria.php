@@ -4,10 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class HabitacionCategoria extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
 
     const PATH = '/imagenes/habitaciones/categorias/';
 
@@ -15,12 +16,16 @@ class HabitacionCategoria extends Model
 
     protected $primaryKey = 'id';
 
-    public $timestamps = false;
-
     protected $fillable = [
         'nombre',
         'descripcion',
         'foto',
+    ];
+
+    protected $hidden = [
+        'created_at',
+        'updated_at',
+        'deleted_at',
     ];
 
     protected $guarded = [];

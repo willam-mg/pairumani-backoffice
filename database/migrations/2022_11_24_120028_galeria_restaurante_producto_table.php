@@ -16,7 +16,7 @@ class GaleriaRestauranteProductoTable extends Migration
         Schema::create('galeria_restaurante_producto', function (Blueprint $table) {
             $table->id();
             $table->string('foto', 100)->nullable();
-            $table->foreignId('restaurante_producto_id')->constrained('restaurante_productos')->nullable();
+            $table->foreignId('restaurante_producto_id')->nullable()->constrained('restaurante_productos');
             $table->timestamps();
             $table->softDeletes();
         });

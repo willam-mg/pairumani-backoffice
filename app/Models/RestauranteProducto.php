@@ -4,10 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class RestauranteProducto extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
 
     const PATH = '/imagenes/restaurantes/productos/';
 
@@ -15,14 +16,18 @@ class RestauranteProducto extends Model
 
     protected $primaryKey = 'id';
 
-    public $timestamps = false;
-
     protected $fillable = [
         'nombre',
         'restaurante_categoria_id',
         'descripcion',
         'precio',
         'foto',
+    ];
+
+    protected $hidden = [
+        'created_at',
+        'updated_at',
+        'deleted_at',
     ];
 
     protected $guarded = [];

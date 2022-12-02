@@ -4,18 +4,17 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Hospedaje extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
 
     const TIPO = 'hospedaje';
 
     protected $table = 'hospedajes';
 
     protected $primaryKey = 'id';
-
-    public $timestamps = false;
 
     protected $fillable = [
         'cliente_id',
@@ -27,6 +26,12 @@ class Hospedaje extends Model
         'adultos',
         'niños',
         'estado',
+    ];
+
+    protected $hidden = [
+        'created_at',
+        'updated_at',
+        'deleted_at',
     ];
 
     protected $guarded = [];
@@ -63,11 +68,6 @@ class Hospedaje extends Model
     public function detallefrigobars()
     {
         return $this->hasMany(HospedajeDetalleFrigobar::class,'hospedaje_id','id');
-    }
-
-    public function acompañantes()
-    {
-        return $this->hasMany(HospedajeAcompanante::class,'hospedaje_id','id');
     }
 
     public function restaurantes()

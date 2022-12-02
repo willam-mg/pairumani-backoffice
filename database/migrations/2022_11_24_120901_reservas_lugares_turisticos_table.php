@@ -18,9 +18,9 @@ class ReservasLugaresTuristicosTable extends Migration
             $table->date('fecha');
             $table->enum('estado', ['Reservado', 'Activo']);
             $table->decimal('precio', 11, 2)->nullable();
-            $table->foreignId('cliente_id')->constrained('clientes')->nullable();
+            $table->foreignId('cliente_id')->nullable()->constrained('clientes');
             $table->foreignId('lugar_turistico_id')->constrained('lugares_turisticos');
-            $table->foreignId('hospedaje_id')->constrained('hospedajes')->nullable();
+            $table->foreignId('hospedaje_id')->nullable()->constrained('hospedajes');
             $table->timestamps();
             $table->softDeletes();
         });
