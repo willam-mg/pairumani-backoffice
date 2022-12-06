@@ -1565,6 +1565,8 @@ class ClienteController extends Controller
     /**
      * RESTAURANTE - Reservas Restaurante
      * 
+     * @group Restaurante
+     * @authenticated
      * @bodyParam hospedaje_id integer required Id del hospedaje. Example: 10
      * @bodyParam cliente_id integer required Id del hospedaje. Example: 10
      * @bodyParam total number required Total pedidos productos restaurante. Example: 600

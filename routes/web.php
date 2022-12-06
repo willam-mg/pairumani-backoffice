@@ -75,7 +75,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::delete('habitacioncategorias/{categoria}', [HabitacionCategoriaController::class, 'destroy'])->name('habitacioncategorias_destroy');
 
     //RUTAS HABITACIONES
-    Route::get('habitaciones', [HabitacionController::class, 'index'])->name('habitaciones_index');
+    Route::get('habitaciones/{categoria?}', [HabitacionController::class, 'index'])->name('habitaciones_index');
     Route::get('habitaciones/create', [HabitacionController::class, 'create'])->name('habitaciones_create');
     Route::post('habitaciones/create', [HabitacionController::class, 'store'])->name('habitaciones_create');
     Route::get('habitaciones/{habitacion}', [HabitacionController::class, 'show'])->name('habitaciones_show');

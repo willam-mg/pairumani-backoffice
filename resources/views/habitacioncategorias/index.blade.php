@@ -64,7 +64,7 @@
 												<td>{{ $categoria->nombre }}</td>
 												<td>
                                                     @if(kvfj(Auth::user()->rol->permisos,'habitaciones_index'))
-                                                        <a href="{{ route('habitaciones_index') }}" class="btn btn-success btn-round btn-just-icon" title="Habitaciones">
+                                                        <a href="{{ route('habitaciones_index', $categoria->id) }}" class="btn btn-success btn-round btn-just-icon" title="Habitaciones">
                                                             <i class="material-icons">meeting_room</i>
                                                         </a>
                                                     @endif

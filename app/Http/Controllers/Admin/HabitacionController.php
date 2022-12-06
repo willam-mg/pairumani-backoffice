@@ -19,9 +19,10 @@ class HabitacionController extends Controller
             $habitaciones = Habitacion::when($categoria, function($query) use ($categoria) {
                     $query->where('habitacion_categoria_id',$categoria->id);
                 })
-                ->orwhere('nombre', 'LIKE', '%' . $query . '%')
-                ->orwhere('num_habitacion','LIKE','%'. $query .'%')
-                // ->where('habitacion_categoria_id', $categoria->id)
+                ->when($query, function ($query) {
+                    $query->orwhere('nombre', 'LIKE', '%' . $query . '%');
+                    $query->orwhere('num_habitacion','LIKE','%'. $query .'%');
+                })
                 ->orderBy('id', 'desc')
                 ->paginate(7);
             return view('habitaciones.index', ["habitaciones" => $habitaciones,'categoria' => $categoria, "searchText" => $query]);
@@ -78,9 +79,10 @@ class HabitacionController extends Controller
         ]);
 
         $galeria = new GaleriaHabitacion();
-        $galeria->foto = crearimagen(request()->hasFile('foto'), request()->file('foto'), GaleriaHabitacion::Name($habitacion->id, $galeria->id), GaleriaHabitacion::Ruta());
         $galeria->habitacion_id = $habitacion->id;
         $galeria->descripcion = request()->post('descripcion');
+        $galeria->save();
+        $galeria->foto = crearimagen(request()->hasFile('foto'), request()->file('foto'), GaleriaHabitacion::Name($habitacion->id, $galeria->id), GaleriaHabitacion::Ruta());
         $galeria->save();
 
         return redirect()->back()->with('message', 'Foto subida')->with('typealert', 'success');
