@@ -11,6 +11,7 @@ use App\Traits\ReservaTrait;
 
 class HelpersController extends Controller
 {
+    use ReservaTrait;
     /**
      * Precio total reserva.
      * Calcula el precio total de la reserva.

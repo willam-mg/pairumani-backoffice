@@ -4,7 +4,7 @@ namespace App\Traits;
 
 use Carbon\Carbon;
 
-class ReservaTrait
+trait ReservaTrait
 {
     /**
      * Precio de reserva

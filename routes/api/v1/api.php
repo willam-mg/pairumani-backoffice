@@ -5,7 +5,9 @@ use App\Http\Controllers\api\v1\ClienteController;
 use App\Http\Controllers\api\v1\ReservaController;
 use App\Http\Controllers\api\v1\AuthController;
 use App\Http\Controllers\api\v1\HabitacionController;
+use App\Http\Controllers\api\v1\HelpersController;
 use App\Http\Controllers\api\v1\HomeController;
+use App\Http\Controllers\api\v1\TransporteController;
 
 // Sliders and Eventos
 Route::get('sliders', [HomeController::class, 'sliders']);

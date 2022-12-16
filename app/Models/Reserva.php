@@ -5,10 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Traits\ReservaTrait;
 
 class Reserva extends Model
 {
-    use HasFactory, SoftDeletes;
+    use HasFactory, SoftDeletes, ReservaTrait;
 
     const TIPO = 'reserva';
 
