@@ -42,6 +42,13 @@ class Reserva extends Model
         'habitacion_id' => 'integer',
     ];
 
+    /**
+     * the appends attributes for accesors.
+     */
+    protected $appends = [
+        'total',
+    ];
+
 
     public function cliente()
     {
@@ -51,5 +58,10 @@ class Reserva extends Model
     public function habitacion()
     {
         return $this->belongsTo(Habitacion::class,'habitacion_id','id');
+    }
+
+    public function getTotalAttribute() {
+        $precio = $this->habitacion?$this->habitacion->precio:0;
+        return $this->precioReserva($this->checkin, $this->checkout, $precio);
     }
 }

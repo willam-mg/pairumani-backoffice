@@ -17,8 +17,8 @@ class RestauranteDetalleReservaProductosTable extends Migration
         Schema::create('rest_det_resv_productos', function (Blueprint $table) {
             $table->id();
             $table->foreignId('restaurante_detalle_reserva_id')->constrained('reservas_restaurante');
-            $table->foreignId('restaurante_producto_opciones_id')->constrained('restaurante_producto_opciones')->nullable();
-            $table->foreignId('restaurante_producto_tamano_id')->constrained('restaurante_producto_tamano')->nullable();
+            $table->foreignId('restaurante_producto_opciones_id')->nullable()->constrained('restaurante_producto_opciones');
+            $table->foreignId('restaurante_producto_tamano_id')->nullable()->constrained('restaurante_producto_tamano');
             $table->decimal('precio_tamanho', 11, 2);
             $table->timestamps();
             $table->softDeletes();
