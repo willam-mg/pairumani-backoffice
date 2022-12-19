@@ -31,6 +31,7 @@ class HabitacionController extends Controller
                 'adultos' => $reserva->adultos,
                 'niños' => $reserva->niños,
                 'estado' => $reserva->estado,
+                'total' => $reserva->total,
                 "cliente" => $cliente ? [
                     'nombre' => $cliente->nombrecompleto,
                     'celular' => $cliente->celular,
@@ -307,6 +308,7 @@ class HabitacionController extends Controller
      *             "adultos": 1,
      *             "niños": 0,
      *             "estado": "Reservado",
+     *             "total": 760,
      *             "cliente": {
      *                 "nombre": "Marina Mamani Chari",
      *                 "celular": "75977665",
