@@ -30,6 +30,7 @@ class HabitacionController extends Controller
                 'checkout' => $reserva->checkout->format('Y-m-d'),
                 'adultos' => $reserva->adultos,
                 'niños' => $reserva->niños,
+                'estado' => $reserva->estado,
                 "cliente" => $cliente ? [
                     'nombre' => $cliente->nombrecompleto,
                     'celular' => $cliente->celular,
