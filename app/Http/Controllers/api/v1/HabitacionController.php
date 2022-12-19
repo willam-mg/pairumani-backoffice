@@ -296,28 +296,42 @@ class HabitacionController extends Controller
      * @authenticated
      * @bodyParam cliente_id int required Id del cliente. Example: 1
      * @bodyParam estado string optional "Reservado", "Activo". Example: "Reservado"
-     * @response scenario=success {
-     *       "id": 5,
-     *      "checkin": "2021-05-06",
-     *       "checkout": "2021-05-08",
-     *      "adultos": 3,
-     *       "niños": 2,
-     *       "cliente": {
-     *           "nombre": "Paola Montecinos Pardo",
-     *           "celular": "8888888",
-     *           "telefono": "9999999",
-     *           "ciudad": "Cochabamba",
-     *           "pais": "Bolivia",
-     *           "oficio": "Arquitecto",
-     *           "email": "paola@gmail.com"
-     *       },
-     *       "habitacion": {
-     *           "nombre": "Habitacion 20",
-     *           "num_habitacion": "20",
-     *           "precio": "450.00",
-     *           "foto": "http://pairumanibackoffice.test/public/imagenes/habitaciones/habitacion_210506153104.jfif"
-     *       }
+     * @response scenario=success
+     * {
+     *     "success": "true",
+     *     "data": [
+     *         {
+     *             "id": 6,
+     *             "checkin": "2022-12-06",
+     *             "checkout": "2022-12-07",
+     *             "adultos": 1,
+     *             "niños": 0,
+     *             "estado": "Reservado",
+     *             "cliente": {
+     *                 "nombre": "Marina Mamani Chari",
+     *                 "celular": "75977665",
+     *                 "telefono": "43243223",
+     *                 "ciudad": "Cochabamba",
+     *                 "pais": "Bolivia",
+     *                 "oficio": "Informatica",
+     *                 "email": "marina@gmail.com"
+     *             },
+     *             "habitacion": {
+     *                 "nombre": "Habitación Doble Estandar N°04",
+     *                 "num_habitacion": "04",
+     *                 "precio": "380.00",
+     *                 "foto": "https://hotelpairumani.com/admin/public/imagenes/habitaciones/habitacion_221129224340.jpg",
+     *                 "estado": "Reservado",
+     *                 "categoria": {
+     *                     "nombre": "Habitación Doble Estandar",
+     *                     "descripcion": "<p>Habitaci&oacute;n individual de 25 metros cuadrados para 2 personas</p>",
+     *                     "foto": "https://hotelpairumani.com/admin/public/imagenes/habitaciones/categorias/habitacioncategoria_221129220914.jpg"
+     *                 }
+     *             }
+     *         },
+     *     ]
      * }
+    
      */
     public function misreservas(Request $request)
     {
