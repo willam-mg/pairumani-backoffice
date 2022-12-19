@@ -43,8 +43,13 @@ class HabitacionController extends Controller
                     'nombre' => $habitacion->nombre,
                     'num_habitacion' => $habitacion->num_habitacion,
                     'precio' => $habitacion->precio,
-                    'foto' => $habitacion->fotourl,
+                    'foto' => $habitacion->foto_url,
                     'estado' => $habitacion->estado,
+                    'categoria'=> $habitacion->categoria?[
+                        'nombre'=> $habitacion->categoria->nombre,
+                        'descripcion'=> $habitacion->categoria->descripcion,
+                        'foto'=> $habitacion->categoria->foto_url,
+                    ]:null,
                 ] : null,
             ];
         });
@@ -284,12 +289,12 @@ class HabitacionController extends Controller
 
     /**
      * Mis reservas.
-     * Muestra la lsita de las reservas del cliente
+     * Muestra la lsita de las reservas pendientes o activas
      * 
      * @group Habitaciones
      * @authenticated
-     * @bodyParam bearer_token string required Campo unico del cliente autenticado para acceder a esta ruta. Example: drWa9YnurQFx6bY8rfsRcdMXsXpLvTUWSEkqQHivBDLJpbFv7E31BxxBcj6z
      * @bodyParam cliente_id int required Id del cliente. Example: 1
+     * @bodyParam estado string optional "Reservado", "Activo". Example: "Reservado"
      * @response scenario=success {
      *       "id": 5,
      *      "checkin": "2021-05-06",
@@ -315,7 +320,10 @@ class HabitacionController extends Controller
      */
     public function misreservas(Request $request)
     {
-        $reservas = Reserva::where('cliente_id', $request->post('cliente_id'))->where('estado', '=', 'Reservado')->get();
+        $reservas = Reserva::where('cliente_id', $request->post('cliente_id'))
+            ->when($request->estado, function($query) use ($request) {
+                $query->where('estado', '=', $request->estado ?: 'Reservado');
+            })->get();
         $detalles = $this->mapMisReservas($reservas);
         return response()->json(['success' => 'true', 'data' => $detalles], 200);
     }
