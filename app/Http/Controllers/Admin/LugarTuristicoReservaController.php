@@ -13,6 +13,8 @@ use App\Traits\Socket;
 
 class LugarTuristicoReservaController extends Controller
 {
+    use Socket;
+
     public function index(Request $request, LugarTuristico $lugar)
     {
         if ($request) {
@@ -47,7 +49,7 @@ class LugarTuristicoReservaController extends Controller
         $reserva->precio = $lugar->precio_recorrido;
         $reserva->save();
         
-        Socket::emmit();
+        $this->emmit();
         return redirect()->route('reservaslugaresturisticos_index', $lugar->id)->with('message', 'Guardado con éxito')->with('typealert', 'success');
     }
     public function edit(LugarTuristico $lugar, ReservaLugarTuristico $reserva)

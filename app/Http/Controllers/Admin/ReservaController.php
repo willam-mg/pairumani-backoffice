@@ -16,6 +16,8 @@ use App\Models\HospedajeDetalleAcompanante;
 use App\Traits\Socket;
 class ReservaController extends Controller
 {
+    use Socket;
+
     public function index(Request $request,Habitacion $habitacion)
     {
         if ($request) {
@@ -56,7 +58,7 @@ class ReservaController extends Controller
         //cambio de estado de la habitación
         $habitacion->estado = 'Reservado';
         $habitacion->save();
-        Socket::emmit();
+        $this->emmit();
         return redirect()->route('reservas_index',[$habitacion->id])->with('message', 'Guardado con éxito')->with('typealert', 'success');
     }
     public function edit(HabitacionCategoria $categoria, Habitacion $habitacion,Reserva $reserva)

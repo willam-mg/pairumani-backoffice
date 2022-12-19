@@ -7,7 +7,10 @@ use App\Http\Controllers\api\v1\AuthController;
 use App\Http\Controllers\api\v1\HabitacionController;
 use App\Http\Controllers\api\v1\HelpersController;
 use App\Http\Controllers\api\v1\HomeController;
+use App\Http\Controllers\api\v1\HospedajeController;
 use App\Http\Controllers\api\v1\TransporteController;
+use App\Http\Controllers\api\v1\LugarTuristicoController;
+use App\Http\Controllers\api\v1\RestauranteController;
 
 // Sliders and Eventos
 Route::get('sliders', [HomeController::class, 'sliders']);
@@ -36,33 +39,33 @@ Route::post('transportedetalle',[TransporteController::class, 'transportedetalle
 Route::post('reservatransporte', [TransporteController::class, 'reservatransporte'])->middleware(['auth:cliente-api']);
 
 // lugares turisticos
-Route::get('lugaresgastronomia',[ClienteController::class,'lugaresgastronomia']);
-Route::get('lugaresturismo',[ClienteController::class,'lugaresturismo']);
-Route::post('turismodetalle',[ClienteController::class,'turismodetalle']);
+Route::get('lugaresgastronomia',[LugarTuristicoController::class,'lugaresgastronomia']);
+Route::get('lugaresturismo',[LugarTuristicoController::class,'lugaresturismo']);
+Route::post('turismodetalle',[LugarTuristicoController::class,'turismodetalle']);
 
 // retaurante
-Route::get('restaurantecategorias',[ClienteController::class,'restaurantecategorias']);
-Route::post('restauranteproductos',[ClienteController::class,'restauranteproductos']);
-Route::post('productodetalle',[ClienteController::class,'productodetalle']);
+Route::get('restaurantecategorias',[RestauranteController::class,'restaurantecategorias']);
+Route::post('restauranteproductos',[RestauranteController::class,'restauranteproductos']);
+Route::post('productodetalle',[RestauranteController::class,'productodetalle']);
 
 // cafeteria
-Route::get('cafeteriacategorias', [ClienteController::class, 'cafeteriacategorias']);
-Route::post('cafeteriaproductos', [ClienteController::class, 'cafeteriaproductos']);
-Route::post('cafeteriaproductodetalle', [ClienteController::class, 'cafeteriaproductodetalle']);
+Route::get('cafeteriacategorias', [CafeteriaController::class, 'cafeteriacategorias']);
+Route::post('cafeteriaproductos', [CafeteriaController::class, 'cafeteriaproductos']);
+Route::post('cafeteriaproductodetalle', [CafeteriaController::class, 'cafeteriaproductodetalle']);
 
 // Cliente
 Route::post('perfil', [ClienteController::class, 'perfil']);
 Route::post('update', [ClienteController::class, 'update']);
 Route::group(['middleware' => 'auth:cliente-api'],function(){
     // reservas
-    Route::post('reservahabitacion',[ClienteController::class,'reservahabitacion']);
-    Route::post('misreservas',[ClienteController::class,'misreservas']);
-    Route::post('mishospedajes',[ClienteController::class,'mishospedajes']);
-    Route::post('mishospedajesocupados',[ClienteController::class,'mishospedajesocupados']);
+    Route::post('reservahabitacion',[HabitacionController::class,'reservahabitacion']);
+    Route::post('misreservas',[HabitacionController::class,'misreservas']);
+    Route::post('mishospedajes',[HospedajeController::class,'mishospedajes']);
+    Route::post('mishospedajesocupados',[HospedajeController::class,'mishospedajesocupados']);
     
-    Route::post('reservalugarturistico',[ClienteController::class,'reservalugarturistico']);
-    Route::post('reservarestaurante',[ClienteController::class,'reservarestaurante']);
-    Route::post('reservacafeteria',[ClienteController::class,'reservacafeteria']);
+    Route::post('reservalugarturistico',[LugarTuristicoController::class,'reservalugarturistico']);
+    Route::post('reservarestaurante',[RestauranteController::class,'reservarestaurante']);
+    Route::post('reservacafeteria',[CafeteriaController::class,'reservacafeteria']);
 });
 
 

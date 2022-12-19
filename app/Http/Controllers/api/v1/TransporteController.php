@@ -63,6 +63,7 @@ class TransporteController extends Controller
     /**
      * TRANSPORTES - Reserva transportes
      * 
+     * @authenticated
      * @bodyParam bearer_token string required Campo unico del cliente autenticado para acceder a esta ruta. Example: drWa9YnurQFx6bY8rfsRcdMXsXpLvTUWSEkqQHivBDLJpbFv7E31BxxBcj6z
      * @bodyParam datos array datos transporte. Example:{
      *       "datos":[

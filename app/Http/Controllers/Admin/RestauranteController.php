@@ -17,6 +17,8 @@ use App\Traits\Socket;
 
 class RestauranteController extends Controller
 {
+    use Socket;
+
     public function index(Request $request)
     {
         if ($request) {
@@ -98,7 +100,7 @@ class RestauranteController extends Controller
             $cont = $cont + 1;
         }
 
-        Socket::emmit();
+        $this->emmit();
         return redirect()->route('restaurantes_index')->with('message', 'Guardado con éxito')->with('typealert', 'success');
     }
     public function destroy(ReservaRestaurante $restaurante)

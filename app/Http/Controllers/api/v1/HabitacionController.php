@@ -2,42 +2,55 @@
 
 namespace App\Http\Controllers\api\v1;
 
-use Carbon\Carbon;
-use App\Models\Evento;
-use App\Models\Cliente;
 use App\Models\Reserva;
-use App\Models\Hospedaje;
 use App\Models\Promocion;
 use App\Models\Habitacion;
-use App\Models\Transporte;
-use Illuminate\Support\Str;
-use App\Models\GaleriaHotel;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use App\Models\LugarTuristico;
-use App\Events\RecoverPassword;
-use App\Models\ReservaCafeteria;
-use App\Models\CafeteriaProducto;
-use App\Models\CafeteriaCategoria;
-use App\Models\ReservaRestaurante;
-use Illuminate\Support\Facades\DB;
 use App\Models\HabitacionCategoria;
-use App\Models\RestauranteProducto;
 use App\Http\Controllers\Controller;
-use App\Models\RestauranteCategoria;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
-use App\Models\ReservaLugarTuristico;
-use App\Models\CafeteriaDetalleReserva;
-use App\Models\RestauranteDetalleReserva;
-use Illuminate\Support\Facades\Validator;
-use App\Models\HospedajeDetalleTransporte;
-use App\Models\CafeteriaDetalleReservaProducto;
-use App\Models\RestauranteDetalleReservaProducto;
 use App\Traits\Socket;
 
 class HabitacionController extends Controller
 {
+    use Socket;
+    /**
+     * Maping reservas.
+     * @param Reserva[]
+     * @return Reserva[]
+     */
+    private function mapMisReservas($reservas)
+    {
+        return  $reservas->map(function ($reserva) {
+            $cliente = $reserva->cliente;
+            $habitacion = $reserva->habitacion;
+            return [
+                'id' => $reserva->id,
+                'checkin' => $reserva->checkin->format('Y-m-d'),
+                'checkout' => $reserva->checkout->format('Y-m-d'),
+                'adultos' => $reserva->adultos,
+                'niños' => $reserva->niños,
+                "cliente" => $cliente ? [
+                    'nombre' => $cliente->nombrecompleto,
+                    'celular' => $cliente->celular,
+                    'telefono' => $cliente->telefono,
+                    'ciudad' => $cliente->ciudad,
+                    'pais' => $cliente->pais,
+                    'oficio' => $cliente->oficio,
+                    'email' => $cliente->email,
+                ] : null,
+                'habitacion' => $habitacion ? [
+                    'nombre' => $habitacion->nombre,
+                    'num_habitacion' => $habitacion->num_habitacion,
+                    'precio' => $habitacion->precio,
+                    'foto' => $habitacion->fotourl,
+                    'estado' => $habitacion->estado,
+                ] : null,
+            ];
+        });
+    }
+
+
     /**
      * Listado de las categorias.
      * Muestra la lista de todas las categorias de las habitaciones.
@@ -218,6 +231,88 @@ class HabitacionController extends Controller
                 'habitacion_id' => $promocion->habitacion_id,
             ]);
         }
+        return response()->json(['success' => 'true', 'data' => $detalles], 200);
+    }
+
+    /**
+     * Nueva reserva.
+     * Creacion de la Reserva de una Habitacion
+     * 
+     * @authenticated
+     * @bodyParam bearer_token string required Campo unico del cliente autenticado para acceder a esta ruta. Example: drWa9YnurQFx6bY8rfsRcdMXsXpLvTUWSEkqQHivBDLJpbFv7E31BxxBcj6z
+     * @bodyParam checkin date required Fecha checkin. Example: 2021-05-17
+     * @bodyParam checkout date required Fecha checkout. Example: 2021-05-19
+     * @bodyParam adultos int required Canridad de adultos en la habitacion. Example: 3
+     * @bodyParam ninos int required Cantidad de niños en la habitacion. Example: 2
+     * @bodyParam cliente_id int required Id del cliente a reservar. Example: 1
+     * @bodyParam habitacion_id int required Id de la habitacion. Example: 1
+     * @response scenario=success {
+     *       "checkin": "2021-05-14",
+     *       "checkout": "2021-05-16",
+     *       "adultos": "3",
+     *       "niños": "2",
+     *       "cliente_id": 7,
+     *       "habitacion_id": 8,
+     *       "id": 8
+     * }
+     */
+    public function reservahabitacion(Request $request)
+    {
+        $habitacion = Habitacion::where('id', $request->post('habitacion_id'))->first();
+        if ($habitacion->estado == 'Reservado') {
+            return response()->json(['success' => 'false', 'data' => 'La habitacion ya fue reservada'], 409);
+        }
+        //creacion de la reserva
+        $reserva = new Reserva();
+        $reserva->checkin = $request->post('checkin');
+        $reserva->checkout = $request->post('checkout');
+        $reserva->adultos = $request->post('adultos');
+        $reserva->niños = $request->post('ninos');
+        $reserva->cliente_id = $request->post('cliente_id');
+        $reserva->habitacion_id = $request->post('habitacion_id');
+        $reserva->save();
+
+        //cambio de estado de la habitacion
+        $habitacion->estado = 'Reservado';
+        $habitacion->save();
+        $this->emmit();
+        return response()->json(['success' => 'true', 'data' => $reserva], 200);
+    }
+
+    /**
+     * Mis reservas.
+     * Muestra la lsita de las reservas del cliente
+     * 
+     * @authenticated
+     * @bodyParam bearer_token string required Campo unico del cliente autenticado para acceder a esta ruta. Example: drWa9YnurQFx6bY8rfsRcdMXsXpLvTUWSEkqQHivBDLJpbFv7E31BxxBcj6z
+     * @bodyParam cliente_id int required Id del cliente. Example: 1
+     * @response scenario=success {
+     *       "id": 5,
+     *      "checkin": "2021-05-06",
+     *       "checkout": "2021-05-08",
+     *      "adultos": 3,
+     *       "niños": 2,
+     *       "cliente": {
+     *           "nombre": "Paola Montecinos Pardo",
+     *           "celular": "8888888",
+     *           "telefono": "9999999",
+     *           "ciudad": "Cochabamba",
+     *           "pais": "Bolivia",
+     *           "oficio": "Arquitecto",
+     *           "email": "paola@gmail.com"
+     *       },
+     *       "habitacion": {
+     *           "nombre": "Habitacion 20",
+     *           "num_habitacion": "20",
+     *           "precio": "450.00",
+     *           "foto": "http://pairumanibackoffice.test/public/imagenes/habitaciones/habitacion_210506153104.jfif"
+     *       }
+     * }
+     */
+    public function misreservas(Request $request)
+    {
+        $reservas = Reserva::where('cliente_id', $request->post('cliente_id'))->where('estado', '=', 'Reservado')->get();
+        $detalles = $this->mapMisReservas($reservas);
         return response()->json(['success' => 'true', 'data' => $detalles], 200);
     }
 }
