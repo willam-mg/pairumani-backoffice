@@ -15,6 +15,7 @@ class LugarTuristicoController extends Controller
      * Lugares gastronomicos.
      * Listado de Lugares Turisticos Gastronomicos
      * 
+     * @group Lugares turisticos
      * @response scenario=success [
      * {
      *       "nombre": "Pairumani",
@@ -55,6 +56,7 @@ class LugarTuristicoController extends Controller
      * Lugares de turismo.
      * Listado de Lugares Turisticos Turismo
      * 
+     * @group Lugares turisticos
      * @response scenario=success {
      *       "nombre": "Pairumani",
      *       "descripcion": "<p>Recorrido por todo el parque</p>",
@@ -92,6 +94,7 @@ class LugarTuristicoController extends Controller
     /**
      * Detalle Lugar Turistico.
      * 
+     * @group Lugares turisticos
      * @bodyParam bearer_token string required Campo unico del cliente autenticado para acceder a esta ruta. Example: drWa9YnurQFx6bY8rfsRcdMXsXpLvTUWSEkqQHivBDLJpbFv7E31BxxBcj6z
      * @bodyParam turismo_id int Id del lugar turistico. Example: 2
      * @response scenario=success {
@@ -128,6 +131,7 @@ class LugarTuristicoController extends Controller
     /**
      * Reservas Lugar Turistico.
      * 
+     * @group Lugares turisticos
      * @authenticated
      * @bodyParam cliente_id integer required Id del cliente. Example: 5
      * @bodyParam lugar_turistico_id integer required Id del lugar turistico. Example: 1

@@ -43,7 +43,7 @@ class AuthController extends Controller
      * Nuevo cliente.
      * Registro de nuevo Cliente.
      * 
-     * @group authentication
+     * @group Authentication
      * @bodyParam nombres string required Los nombes del cliente para el registro. Example: Jose Rodrigo
      * @bodyParam apellidos string required Los apellidos del cliente para el registro. Example: Cespedes Rojas
      * @bodyParam tipo_documento string El tipo de documento que tiene el cliente para el registro . Example: Ci,Pasaporte
@@ -135,7 +135,7 @@ class AuthController extends Controller
      * Login con redes sociales y normal 
      * 1 = Email, 2 = gmail,3 = facebook.
      * 
-     * @group authentication
+     * @group Authentication
      * @bodyParam tipo_login integer required El tipo de login que usara el cliente para iniciar sesion; 1 = Email login, 2 = gmail login,3 = facebook login. Example: 1 
      * @bodyParam email string required El email que usara el cliente para iniciar sesion. Example: cliente@gmail.com
      * @bodyParam password string required El password que usara el cliente para iniciar sesion y registro. Example: cliente1568
@@ -279,7 +279,7 @@ class AuthController extends Controller
      * Envia un codigo.
      * Envia un codigo al email del cliente.
      * 
-     * @group password recovery
+     * @group Authentication
      * @bodyParam email string required Verificacion que existe el email enviado. Example: cliente@gmail.com
      * @response scenario=success {
      * "id": 7,
@@ -335,7 +335,7 @@ class AuthController extends Controller
      * Verificacion de codigo. 
      * Verificacion de codigo enviado al email del cliente.
      * 
-     * @group password recovery
+     * @group Authentication
      * @bodyParam codigo string required Verificacion que el codigo que se envio a su email coincidan. Example: 58741258
      * @bodyParam cliente_id int required Id del cliente para devolver su informacion. Example: 5
      * @response scenario=success {
@@ -379,7 +379,7 @@ class AuthController extends Controller
     /**
      * Cambio de password.
      * 
-     * @group password recovery
+     * @group Authentication
      * @bodyParam id int required Id del cliente a restablecer la contraseña. Example: 5
      * @bodyParam password string required Password por el cual restablecera. Example: cliente12578
      * @bodyParam retypepassword string required Verificacion de que escribio bien la contraseña. Example: cliente12578

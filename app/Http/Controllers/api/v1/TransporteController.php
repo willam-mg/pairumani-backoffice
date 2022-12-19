@@ -9,8 +9,9 @@ use Illuminate\Http\Request;
 class TransporteController extends Controller
 {
     /**
-     * TRANSPORTES - Listado de transportes
+     * Listado de transportes.
      * 
+     * @group Transportes
      * @bodyParam bearer_token string required Campo unico del cliente autenticado para acceder a esta ruta. Example: drWa9YnurQFx6bY8rfsRcdMXsXpLvTUWSEkqQHivBDLJpbFv7E31BxxBcj6z
      * @response scenario=success {
      *       "nombre": "Taxis corona",
@@ -35,8 +36,9 @@ class TransporteController extends Controller
     }
 
     /**
-     * TRANSPORTES - Detalle de transporte
+     * Detalle de transporte.
      * 
+     * @group Transportes
      * @bodyParam bearer_token string required Campo unico del cliente autenticado para acceder a esta ruta. Example: drWa9YnurQFx6bY8rfsRcdMXsXpLvTUWSEkqQHivBDLJpbFv7E31BxxBcj6z
      * @bodyParam transporte_id int required Id del transporte para ver su detalle. Example: 1
      * @response scenario=success {
@@ -61,8 +63,9 @@ class TransporteController extends Controller
     }
 
     /**
-     * TRANSPORTES - Reserva transportes
+     * Reserva transportes.
      * 
+     * @group Transportes
      * @authenticated
      * @bodyParam bearer_token string required Campo unico del cliente autenticado para acceder a esta ruta. Example: drWa9YnurQFx6bY8rfsRcdMXsXpLvTUWSEkqQHivBDLJpbFv7E31BxxBcj6z
      * @bodyParam datos array datos transporte. Example:{

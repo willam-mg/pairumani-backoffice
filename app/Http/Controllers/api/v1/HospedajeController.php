@@ -135,6 +135,7 @@ class HospedajeController extends Controller
     /**
      * Mis hospedajes.
      * 
+     * @group Hospedajes
      * @authenticated
      * @bodyParam bearer_token string required Campo unico del cliente autenticado para acceder a esta ruta. Example: drWa9YnurQFx6bY8rfsRcdMXsXpLvTUWSEkqQHivBDLJpbFv7E31BxxBcj6z
      * @bodyParam cliente_id int required Id del cliente. Example: 1
@@ -234,8 +235,10 @@ class HospedajeController extends Controller
     }
 
     /**
-     * HOSPEDAJES - Hospedajes ocupados del cliente
+     * Hospedajes ocupados.
+     * Hospedajes ocupados del cliente
      * 
+     * @group Hospedajes
      * @bodyParam bearer_token string required Campo unico del cliente autenticado para acceder a esta ruta. Example: drWa9YnurQFx6bY8rfsRcdMXsXpLvTUWSEkqQHivBDLJpbFv7E31BxxBcj6z
      * @bodyParam cliente_id int required Id del cliente. Example: 1
      * @response scenario=success {

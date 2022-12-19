@@ -206,8 +206,10 @@ class HabitacionController extends Controller
     }
 
     /**
-     * PROMOCION - Listado de promociones de las habitaciones
+     * Promociones.
+     * Listado de promociones de las habitaciones
      * 
+     * @group Habitaciones
      * @response scenario=success {
      *       "nombre": "asdasfasfasfa",
      *       "descripcion": "<p>asfasfasfasfsafa</p>",
@@ -238,6 +240,7 @@ class HabitacionController extends Controller
      * Nueva reserva.
      * Creacion de la Reserva de una Habitacion
      * 
+     * @group Habitaciones
      * @authenticated
      * @bodyParam bearer_token string required Campo unico del cliente autenticado para acceder a esta ruta. Example: drWa9YnurQFx6bY8rfsRcdMXsXpLvTUWSEkqQHivBDLJpbFv7E31BxxBcj6z
      * @bodyParam checkin date required Fecha checkin. Example: 2021-05-17
@@ -283,6 +286,7 @@ class HabitacionController extends Controller
      * Mis reservas.
      * Muestra la lsita de las reservas del cliente
      * 
+     * @group Habitaciones
      * @authenticated
      * @bodyParam bearer_token string required Campo unico del cliente autenticado para acceder a esta ruta. Example: drWa9YnurQFx6bY8rfsRcdMXsXpLvTUWSEkqQHivBDLJpbFv7E31BxxBcj6z
      * @bodyParam cliente_id int required Id del cliente. Example: 1

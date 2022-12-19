@@ -14,6 +14,8 @@ class HelpersController extends Controller
     use ReservaTrait;
     /**
      * Precio total reserva.
+     * 
+     * @group Helpers
      * Calcula el precio total de la reserva.
      * @group Reserva
      * @bodyParam habitacion_id integer

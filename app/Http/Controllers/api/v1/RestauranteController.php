@@ -19,6 +19,7 @@ class RestauranteController extends Controller
      * Categorias.
      * Listado de Categorias Restaurante.
      * 
+     * @group Restaurante
      * @response scenario=success {
      *       "nombre": "adasdasfasf",
      *       "descripcion": "<p>safasfasfasfa</p>",
@@ -44,6 +45,7 @@ class RestauranteController extends Controller
      * Productos.
      * Listado de Productos Restaurante segun a la Categoria que pertenecen.
      * 
+     * @group Restaurante
      * @bodyParam categoria_id int required Id de la categoria del producto. Example: 1
      * @response scenario=success {
      *       "nombre": "Pique macho",
@@ -72,6 +74,7 @@ class RestauranteController extends Controller
      * Detalle producto.
      * Deatelle Producto Restaurante.
      * 
+     * @group Restaurante
      * @bodyParam producto_id int required Id del producto. Example: 1
      * @response scenario=success {
      *       "nombre": "Pique macho",
@@ -193,6 +196,7 @@ class RestauranteController extends Controller
      * Mis reservas.
      * Muestra las reservas realizdas por el cliente.
      * 
+     * @group Restaurante
      * @authenticated
      * @bodyParam cliente_id integer required Id del hospedaje. Example: 10
      * @response scenario=success {

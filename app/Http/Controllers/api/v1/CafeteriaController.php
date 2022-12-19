@@ -18,6 +18,7 @@ class CafeteriaController extends Controller
      * Categorias.
      * Listado de Categorias Cafeteria
      * 
+     * @group Cafeteria
      * @bodyParam bearer_token string required Campo unico del cliente autenticado para acceder a esta ruta. Example: drWa9YnurQFx6bY8rfsRcdMXsXpLvTUWSEkqQHivBDLJpbFv7E31BxxBcj6z
      * @response scenario=success {
      *       "nombre": "adasdasfasf",
@@ -44,6 +45,7 @@ class CafeteriaController extends Controller
      * Productos.
      * Listado de Productos Cafeteria segun a la Categoria que pertenecen
      * 
+     * @group Cafeteria
      * @bodyParam bearer_token string required Campo unico del cliente autenticado para acceder a esta ruta. Example: drWa9YnurQFx6bY8rfsRcdMXsXpLvTUWSEkqQHivBDLJpbFv7E31BxxBcj6z
      * @bodyParam categoria_id int required Id de la categoria del producto. Example: 1
      * @response scenario=success {
@@ -71,6 +73,7 @@ class CafeteriaController extends Controller
     /**
      * Detalle Producto Cafeteria.
      * 
+     * @group Cafeteria
      * @bodyParam bearer_token string required Campo unico del cliente autenticado para acceder a esta ruta. Example: drWa9YnurQFx6bY8rfsRcdMXsXpLvTUWSEkqQHivBDLJpbFv7E31BxxBcj6z
      * @bodyParam producto_id int required Id del producto. Example: 1
      * @response scenario=success {
@@ -115,6 +118,7 @@ class CafeteriaController extends Controller
     /**
      * Reservas cafeteria.
      * 
+     * @group Cafeteria
      * @authenticated
      * @bodyParam hospedaje_id integer required Id del hospedaje. Example: 10
      * @bodyParam total number required Total pedidos productos restaurante. Example: 600

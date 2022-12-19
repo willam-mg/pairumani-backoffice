@@ -9,8 +9,10 @@ use Carbon\Carbon;
 class HomeController extends Controller
 {
     /**
-     * SLIDERS - Listado de la Galeria del Hotel
+     * Sliders.
+     * Listado de la Galeria del Hotel.
      * 
+     * @group Home
      * @bodyParam bearer_token string required Campo unico del cliente autenticado para acceder a esta ruta. Example: drWa9YnurQFx6bY8rfsRcdMXsXpLvTUWSEkqQHivBDLJpbFv7E31BxxBcj6z
      * @response scenario=success {
      *   "id": 1,
@@ -33,8 +35,10 @@ class HomeController extends Controller
     }
 
     /**
-     * EVENTOS - Listado de eventos
+     * Eventos.
+     * Listado de eventos.
      * 
+     * @group Home
      * @bodyParam bearer_token string required Campo unico del cliente autenticado para acceder a esta ruta. Example: drWa9YnurQFx6bY8rfsRcdMXsXpLvTUWSEkqQHivBDLJpbFv7E31BxxBcj6z
      * @response scenario=success {
      *       "nombre": "sadaasfasa",
