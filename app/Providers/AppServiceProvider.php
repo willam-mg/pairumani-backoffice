@@ -25,7 +25,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        // updatehospedaje();
+        updatehospedaje();
         Paginator::useBootstrap();
         setLocale(LC_TIME, $this->app->getLocale());
         Schema::defaultStringLength(500);
