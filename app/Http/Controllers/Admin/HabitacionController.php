@@ -12,21 +12,19 @@ use App\Models\HabitacionFrigobar;
 
 class HabitacionController extends Controller
 {
-    public function index(HabitacionCategoria $categoria = null, Request $request)
+    public function index(Request $request, HabitacionCategoria $categoria = null)
     {
-        if ($request) {
-            $query = trim($request->get('searchText'));
-            $habitaciones = Habitacion::when($categoria, function($query) use ($categoria) {
-                    $query->where('habitacion_categoria_id',$categoria->id);
-                })
-                ->when($query, function ($query) {
-                    $query->orwhere('nombre', 'LIKE', '%' . $query . '%');
-                    $query->orwhere('num_habitacion','LIKE','%'. $query .'%');
-                })
-                ->orderBy('id', 'desc')
-                ->paginate(7);
-            return view('habitaciones.index', ["habitaciones" => $habitaciones,'categoria' => $categoria, "searchText" => $query]);
-        }
+        $query = trim($request->searchText?:"");
+        $habitaciones = Habitacion::when($categoria, function($query) use ($categoria) {
+                $query->where('habitacion_categoria_id',$categoria);
+            })
+            ->when($query, function ($query) {
+                $query->orwhere('nombre', 'LIKE', '%' . $query . '%');
+                $query->orwhere('num_habitacion','LIKE','%'. $query .'%');
+            })
+            ->orderBy('id', 'desc')
+            ->paginate(7);
+        return view('habitaciones.index', ["habitaciones" => $habitaciones,'categoria' => $categoria, "searchText" => $query]);
     }
     public function show(HabitacionCategoria $categoria, Habitacion $habitacion)
     {
@@ -35,9 +33,10 @@ class HabitacionController extends Controller
     public function create()
     {
         $categorias = HabitacionCategoria::all();
+        $habitacion = new Habitacion();
         return view('habitaciones.create', [
             'categorias' => $categorias,
-            'habitacion' => new Habitacion(),
+            'habitacion' => $habitacion,
         ]);
     }
     public function store(HabitacionFormRequest $request)
