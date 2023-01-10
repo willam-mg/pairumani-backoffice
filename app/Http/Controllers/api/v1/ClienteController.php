@@ -438,6 +438,7 @@ class ClienteController extends Controller
      * Change password.
      * 
      * @group Cliente
+     * @authenticated
      * @bodyParam cliente_id integer required
      * @bodyParam password string required
      * 
