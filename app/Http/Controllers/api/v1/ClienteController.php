@@ -346,26 +346,27 @@ class ClienteController extends Controller
     }
 
     /**
-     * Editar perfil Cliente.
+     * Editar perfil.
      * 
      * @group Cliente
-     * @bodyParam nombres string required Los nombes del cliente para el registro. Example: Jose Rodrigo
-     * @bodyParam apellidos string required Los apellidos del cliente para el registro. Example: Cespedes Rojas
-     * @bodyParam tipo_documento string El tipo de documento que tiene el cliente para el registro . Example: Ci,Pasaporte
-     * @bodyParam num_documento string Número de documento del cliente para el registro. Example: 657848455
-     * @bodyParam celular string required Número de celular del cliente para el registro. Example: 65582210
-     * @bodyParam direccion string Direccón del cliente para el registro. Example: Av Potosi
-     * @bodyParam ciudad string La ciudad donde vive el cliente para el registro. Example: La Paz
-     * @bodyParam pais string País donde vive el cliente para el registro. Example: Bolivia
-     * @bodyParam oficio string El trabajo que realiza el cliente para el registro. Example: Ing Civil
-     * @bodyParam empresa string La empresa donde trabaja actualemnte el cliente para el registro. Example: YPFB
-     * @bodyParam telefono Número de telefono fijo del cliente para el registro. Example: 4652588
-     * @bodyParam email string Email que usa el cliente para el registro. Example: cliente@gmail.com
-     * @bodyParam password string La clave que usara para ingresar al sistema el cliente para el registro. Example: cliente54782
-     * @bodyParam fecha_nacimiento date Fecha de nacimiento del cliente para el registro. Example: 1985-03-22
-     * @bodyParam motivo_viaje string Motivo por el cual viaja el cliente para el registro. Example: Recreacion,Negocios,Salud,Otro
-     * @bodyParam foto string Foto que se registrara cuando haga login con sus redes sociales o suba una foto el lciente para el registro. Example: foto.jpg
-     * @bodyParam imei_celular string Se registrara el imei del celular del cliente para el registro. Example: 354651100023680
+     * @bodyParam cliente_id integer required
+     * @bodyParam nombres string required
+     * @bodyParam apellidos string
+     * @bodyParam tipo_documento string
+     * @bodyParam num_documento string
+     * @bodyParam celular string required 
+     * @bodyParam direccion string
+     * @bodyParam ciudad string
+     * @bodyParam pais string 
+     * @bodyParam oficio string
+     * @bodyParam empresa string
+     * @bodyParam telefono string
+     * @bodyParam email string
+     * @bodyParam fecha_nacimiento date
+     * @bodyParam motivo_viaje string
+     * @bodyParam foto base64
+     * @bodyParam imei_celular string
+     * 
      * @response scenario=success {
      * "id": 7,
      *   "nombres": "Juan Carlos",
@@ -389,7 +390,7 @@ class ClienteController extends Controller
      */
     public function update(Request $request)
     {
-        $cliente = Cliente::where('id', $request->post('cliente_id'))->first();
+        $cliente = Cliente::findOrFail($request->post('cliente_id'));
         $auxfoto = $cliente->foto;
         if ($request->post() && $cliente) {
             try {
@@ -406,7 +407,7 @@ class ClienteController extends Controller
                     $cliente->empresa = $request->post('empresa');
                     $cliente->telefono = $request->post('telefono');
                     $cliente->email = $request->post('email');
-                    $cliente->password = Hash::make($request->post('password'));
+                    // $cliente->password = Hash::make($request->post('password'));
                     $cliente->fecha_nacimiento = $request->post('fecha_nacimiento');
                     $cliente->motivo_viaje = $request->post('motivo_viaje');
                     if ($request->post('foto')) {
@@ -424,12 +425,55 @@ class ClienteController extends Controller
                     $cliente->save();
 
                 DB::commit();
-                return response()->json(['success' => 'true', 'data' => 'Cliente editado'], 200);
+                return response()->json(['success' => 'true', 'data' =>  $cliente], 200);
             } catch (\Exception $e) {
                 DB::rollback();
                 return response()->json(['success' => 'false', 'data' => $e->getMessage()], 422);
             }
         }
         return response()->json(['success' => 'false', 'data' => 'El cliente no existe'], 400);
+    }
+
+    /**
+     * Change password.
+     * 
+     * @group Cliente
+     * @bodyParam cliente_id integer required
+     * @bodyParam password string required
+     * 
+     * @response scenario=success {
+     *   "id": 7,
+     *   "nombres": "Juan Carlos",
+     *  "apellidos": "Espinoza Cespedes",
+     *   "tipo_documento": "Ci",
+     *   "num_documento": "94564455",
+     *   "celular": "65582210",
+     *   "direccion": "Av Pando",
+     *   "ciudad": "Cochabamba",
+     *   "pais": "Bolivia",
+     *   "oficio": "Arquitecto",
+     *   "empresa": "SOFT",
+     *   "telefono": "4444444",
+     *   "email": "juan@gmail.com",
+     *   "fecha_nacimiento": "1989-05-12",
+     *   "motivo_viaje": "Recreacion",
+     *   "foto": "foto.jpg",
+     *   "api_token": "KjUdFmnlAu7aFjlUXWIuSE1L4wPM8y3oWFacDALHOHKbNlbZGIa6ifz6Ojy4",
+     *   "imei_celular": "354651100023680"
+     * }
+     */
+    public function changePassword(Request $request)
+    {
+        $cliente = Cliente::findOrFail($request->post('cliente_id'));
+        try {
+            DB::beginTransaction();
+            $cliente->password = Hash::make($request->post('password'));
+            $cliente->save();
+            DB::commit();
+            return response()->json(['success' => 'true', 'data' => $cliente], 200);
+        } catch (\Exception $e) {
+            DB::rollback();
+            return response()->json(['success' => 'false', 'data' => $e->getMessage()], 422);
+        }
     }
 }

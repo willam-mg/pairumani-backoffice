@@ -136,26 +136,15 @@ class AuthController extends Controller
      * 1 = Email, 2 = gmail,3 = facebook.
      * 
      * @group Authentication
-     * @bodyParam tipo_login integer required El tipo de login que usara el cliente para iniciar sesion; 1 = Email login, 2 = gmail login,3 = facebook login. Example: 1 
-     * @bodyParam email string required El email que usara el cliente para iniciar sesion. Example: cliente@gmail.com
-     * @bodyParam password string required El password que usara el cliente para iniciar sesion y registro. Example: cliente1568
-     * @bodyParam nombres string required Los nombes del cliente para el registro. Example: Jose Rodrigo
-     * @bodyParam apellidos string required Los apellidos del cliente para el registro. Example: Cespedes Rojas
-     * @bodyParam tipo_documento string El tipo de documento que tiene el cliente para el registro . Example: Ci,Pasaporte
-     * @bodyParam num_documento string Número de documento del cliente para el registro. Example: 657848455
-     * @bodyParam celular string required Número de celular del cliente para el registro. Example: 65582210
-     * @bodyParam direccion string Direccón del cliente para el registro. Example: Av Potosi
-     * @bodyParam ciudad string La ciudad donde vive el cliente para el registro. Example: La Paz
-     * @bodyParam pais string País donde vive el cliente para el registro. Example: Bolivia
-     * @bodyParam oficio string El trabajo que realiza el cliente para el registro. Example: Ing Civil
-     * @bodyParam empresa string La empresa donde trabaja actualemnte el cliente para el registro. Example: YPFB
-     * @bodyParam telefono Número de telefono fijo del cliente para el registro. Example: 4652588
-     * @bodyParam email string Email que usa el cliente para el registro. Example: cliente@gmail.com
-     * @bodyParam password string La clave que usara para ingresar al sistema el cliente para el registro. Example: cliente54782
-     * @bodyParam fecha_nacimiento date Fecha de nacimiento del cliente para el registro. Example: 1985-03-22
-     * @bodyParam motivo_viaje string Motivo por el cual viaja el cliente para el registro. Example: Recreacion,Negocios,Salud,Otro
-     * @bodyParam foto string Foto que se registrara cuando haga login con sus redes sociales o suba una foto el lciente para el registro, esta debe ser una ruta absoluta como https://www.facebook.com/user1/photo.jpg . Example: https://www.facebook.com/user1/photo.jpg
-     * @bodyParam imei_celular string Se registrara el imei del celular del cliente para el registro. Example: 354651100023680
+     * @bodyParam tipo_login integer required Type login Ejm: 1 = Email, 2 = gmail,3 = facebook
+     * @bodyParam nombres string required 
+     * @bodyParam email string required
+     * @bodyParam celular string insted of email
+     * @bodyParam password string required only tipo_login = 1
+     * @bodyParam foto string only tipo_login = 2 or 3
+     * @bodyParam imei_celular string 
+     * @bodyParam apellidos string
+     * 
      * @response scenario=success {
      * "id": 7,
      *   "nombres": "Juan Carlos",
@@ -193,9 +182,12 @@ class AuthController extends Controller
             }
         }
         // login con gmail
-        if ($request->post('email') && $request->post('tipo_login') == Cliente::TIPOGMAIL) {
+        if ($request->post('tipo_login') == Cliente::TIPOGMAIL) {
 
             $cliente = Cliente::where('email', $request->post('email'))->first();
+            if (!$cliente) {
+                $cliente = Cliente::where('email', $request->post('celular').'@pairumanicelular.com')->first();
+            }
             if (!empty($cliente)) {
                 if ($cliente->foto == "" || !$cliente->foto) {
                     $cliente->foto = $request->post('foto');
@@ -207,23 +199,23 @@ class AuthController extends Controller
                     DB::beginTransaction();
                     $cliente = new Cliente();
                     $cliente->nombres = $request->post('nombres');
-                    $cliente->apellidos = $request->post('apellidos');
-                    $cliente->tipo_documento = $request->post('tipo_documento');
-                    $cliente->num_documento = $request->post('num_documento');
-                    $cliente->celular = $request->post('celular');
-                    $cliente->direccion = $request->post('direccion');
-                    $cliente->ciudad = $request->post('ciudad');
-                    $cliente->pais = $request->post('pais');
-                    $cliente->oficio = $request->post('oficio');
-                    $cliente->empresa = $request->post('empresa');
-                    $cliente->telefono = $request->post('telefono');
-                    $cliente->email = $request->post('email');
-                    $cliente->password = Hash::make($request->post('password'));
-                    $cliente->fecha_nacimiento = $request->post('fecha_nacimiento');
-                    $cliente->motivo_viaje = $request->post('motivo_viaje');
-                    $cliente->foto = $request->post('foto');
-                    $cliente->api_token = str::random('60');
-                    $cliente->imei_celular = $request->post('imei_celular');
+                    $cliente->apellidos = $request->post('apellidos') ?: null;
+                    $cliente->tipo_documento = $request->post('tipo_documento') ?: null;
+                    $cliente->num_documento = $request->post('num_documento') ?: null;
+                    $cliente->celular = $request->post('celular') ?: null;
+                    $cliente->direccion = $request->post('direccion') ?: null;
+                    $cliente->ciudad = $request->post('ciudad') ?: null;
+                    $cliente->pais = $request->post('pais') ?: null;
+                    $cliente->oficio = $request->post('oficio') ?: null;
+                    $cliente->empresa = $request->post('empresa') ?: null;
+                    $cliente->telefono = $request->post('telefono') ?: null;
+                    $cliente->email = $request->post('email') ?: $request->post('celular').'@pairumanicelular.com';
+                    $cliente->password = Hash::make($cliente->email) ?: null;
+                    $cliente->fecha_nacimiento = $request->post('fecha_nacimiento') ?: null;
+                    $cliente->motivo_viaje = $request->post('motivo_viaje') ?: null;
+                    $cliente->foto = $request->post('foto') ?: null;
+                    $cliente->api_token = str::random('60') ?: null;
+                    $cliente->imei_celular = $request->post('imei_celular') ?: null;
                     $cliente->save();
                     DB::commit();
                     return response()->json(['success' => 'true', 'data' => $cliente], 200);
@@ -234,7 +226,7 @@ class AuthController extends Controller
             }
         }
         // login con facebook
-        if ($request->post('email') && $request->post('tipo_login') == Cliente::TIPOFACE) {
+        if ( $request->post('tipo_login') == Cliente::TIPOFACE) {
             $cliente = Cliente::where('email', $request->post('email'))->first();
             if (!empty($cliente)) {
                 if ($cliente->foto != "" || !$cliente->foto) {
@@ -247,23 +239,23 @@ class AuthController extends Controller
                     DB::beginTransaction();
                     $cliente = new Cliente();
                     $cliente->nombres = $request->post('nombres');
-                    $cliente->apellidos = $request->post('apellidos');
-                    $cliente->tipo_documento = $request->post('tipo_documento');
-                    $cliente->num_documento = $request->post('num_documento');
-                    $cliente->celular = $request->post('celular');
-                    $cliente->direccion = $request->post('direccion');
-                    $cliente->ciudad = $request->post('ciudad');
-                    $cliente->pais = $request->post('pais');
-                    $cliente->oficio = $request->post('oficio');
-                    $cliente->empresa = $request->post('empresa');
-                    $cliente->telefono = $request->post('telefono');
-                    $cliente->email = $request->post('email');
-                    $cliente->password = Hash::make($request->post('password'));
-                    $cliente->fecha_nacimiento = $request->post('fecha_nacimiento');
-                    $cliente->motivo_viaje = $request->post('motivo_viaje');
-                    $cliente->foto = $request->post('foto');
+                    $cliente->apellidos = $request->post('apellidos') ?: null;
+                    $cliente->tipo_documento = $request->post('tipo_documento') ?: null;
+                    $cliente->num_documento = $request->post('num_documento') ?: null;
+                    $cliente->celular = $request->post('celular') ?: null;
+                    $cliente->direccion = $request->post('direccion') ?: null;
+                    $cliente->ciudad = $request->post('ciudad') ?: null;
+                    $cliente->pais = $request->post('pais') ?: null;
+                    $cliente->oficio = $request->post('oficio') ?: null;
+                    $cliente->empresa = $request->post('empresa') ?: null;
+                    $cliente->telefono = $request->post('telefono') ?: null;
+                    $cliente->email = $request->post('email') ?: $request->post('celular') . '@pairumanicelular.com';
+                    $cliente->password = Hash::make($cliente->email) ?: null;
+                    $cliente->fecha_nacimiento = $request->post('fecha_nacimiento') ?: null;
+                    $cliente->motivo_viaje = $request->post('motivo_viaje') ?: null;
+                    $cliente->foto = $request->post('foto') ?: null;
                     $cliente->api_token = str::random('60');
-                    $cliente->imei_celular = $request->post('imei_celular');
+                    $cliente->imei_celular = $request->post('imei_celular') ?: null;
                     $cliente->save();
                     DB::commit();
                     return response()->json(['success' => 'true', 'data' => $cliente], 200);

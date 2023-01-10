@@ -58,6 +58,7 @@ Route::post('cafeteriaproductodetalle', [CafeteriaController::class, 'cafeteriap
 Route::post('perfil', [ClienteController::class, 'perfil']);
 Route::post('update', [ClienteController::class, 'update']);
 Route::group(['middleware' => 'auth:cliente-api'],function(){
+    Route::put('cliente/change-password', [ClienteController::class, 'changePassword']);
     // reservas
     Route::post('reservahabitacion',[HabitacionController::class,'reservahabitacion']);
     Route::post('misreservas',[HabitacionController::class,'misreservas']);

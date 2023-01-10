@@ -17,7 +17,7 @@ class ClientesTable extends Migration
             $table->id();
             $table->string('nombres', 50);
             $table->string('apellidos', 50)->nullable();
-            $table->enum('tipo_documento', ['Ci', 'Pasaporte'])->nullable();
+            $table->enum('tipo_documento', ['Ci', 'Pasaporte'])->default('Ci')->nullable();
             $table->string('num_documento', 50)->nullable();
             $table->string('celular', 50)->nullable();
             $table->string('direccion', 200)->nullable();
