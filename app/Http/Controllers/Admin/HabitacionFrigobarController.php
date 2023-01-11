@@ -38,10 +38,10 @@ class HabitacionFrigobarController extends Controller
     }
     public function store(HabitacionFrigobarFormRequest $request,Habitacion $habitacion)
     {
-        $existe = HabitacionFrigobar::where('nombre',$request->get('nombre'))->exists();
-        if ($existe) {
-            return redirect()->back()->with('message', 'El producto ya existe')->with('typealert', 'danger');
-        }
+        // $existe = HabitacionFrigobar::where('nombre',$request->get('nombre'))->exists();
+        // if ($existe) {
+        //     return redirect()->back()->with('message', 'El producto ya existe')->with('typealert', 'danger');
+        // }
         $frigobar = (new HabitacionFrigobar())->fill($request->all());
         $frigobar->habitacion_id = $habitacion->id;
         $frigobar->save();
