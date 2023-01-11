@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Hash;
 
 class ClienteController extends Controller
@@ -476,5 +477,30 @@ class ClienteController extends Controller
             DB::rollback();
             return response()->json(['success' => 'false', 'data' => $e->getMessage()], 422);
         }
+    }
+
+    /**
+     * Enums
+     * 
+     * lista los tipos de documentos y motivos de 
+     * viaje a seleccionar.
+     * 
+     * @group Cliente
+     * @responce scenario=success
+     * {
+     *     "tipo_documento": {
+     *         "Ci": "Ci",
+     *         "Pasaporte": "Pasaporte"
+     *     },
+     *     "motivo_viaje": {
+     *         "Recreacion": "Recreacion",
+     *         "Negocios": "Negocios",
+     *         "Salud": "Salud",
+     *         "Otro": "Otro"
+     *     }
+     * }
+     */
+    public function enums(){
+        return config('constants.enums.cliente');
     }
 }
