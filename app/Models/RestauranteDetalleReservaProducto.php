@@ -19,7 +19,7 @@ class RestauranteDetalleReservaProducto extends Model
         'restaurante_detalle_reserva_id',
         'restaurante_producto_opciones_id',
         'restaurante_producto_tamano_id',
-        'precio_tamanho',
+        'precio_tamano',
     ];
 
     protected $guarded = [];

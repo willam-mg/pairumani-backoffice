@@ -174,13 +174,14 @@ class RestauranteController extends Controller
                 if (!$detalle->save()) {
                     throw new \Exception($detalle->errors);
                 }
-
                 $detalleproducto = new RestauranteDetalleReservaProducto();
                 $detalleproducto->restaurante_detalle_reserva_id = $detalle->id;
                 $detalleproducto->restaurante_producto_opciones_id = $value['opcion_id'];
                 $detalleproducto->restaurante_producto_tamano_id = $value['tamano_id'];
-                $detalleproducto->precio_tamanho = $value['preciotamano'];
-                $detalleproducto->save();
+                $detalleproducto->precio_tamano = $value['preciotamano'];
+                if (!$detalleproducto->save()) {
+                    throw new \Exception($detalleproducto->errors);
+                }
             }
             DB::commit();
 

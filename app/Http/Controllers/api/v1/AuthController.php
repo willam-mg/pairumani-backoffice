@@ -361,11 +361,12 @@ class AuthController extends Controller
             $respuesta = Cliente::where('id', $request->post('cliente_id'))->first();
             //destruir la variable se sesion
             session()->forget('code');
+            return response()->json(['success' => 'true', 'data' => $respuesta], 200);
         } else {
-            $respuesta = 'Código incorrecto, intente nuevamente';
+            $respuesta = 'Código invalido';
+            return response()->json(['success' => 'false', 'data' => $respuesta], 200);
         }
 
-        return response()->json(['success' => 'true', 'data' => $respuesta], 200);
     }
 
     /**
@@ -381,7 +382,8 @@ class AuthController extends Controller
      */
     public function cambiarpassword(Request $request)
     {
-        $cliente = Cliente::where('id', $request->post('cliente_id'))->first();
+        // $cliente = Cliente::where('id', $request->post('cliente_id'))->first();
+        $cliente = Cliente::findOrFail($request->post('id'));
         $password = $request->post('password');
         $retypepassword = $request->post('retypepassword');
 

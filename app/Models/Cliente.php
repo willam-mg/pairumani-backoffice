@@ -89,6 +89,7 @@ class Cliente extends Authenticatable
                 return $this->foto;
             }
             if (strpos($this->foto, 'google') !== false) {
+            // if (strpos($this->foto, 'photo') !== false) {
                 return $this->foto;
             }
             return asset(self::PATH) .'/'. $this->foto;
