@@ -104,6 +104,7 @@
         $("#pproducto_id").change(event => {
             $.get(`opciones/${event.target.value[0]}`,function(res,sta){
                 $("#popcion_id").empty();
+                $("#popcion_id").append(`<option value>Seleccione una opcion</option>`);
                 res.forEach(element => {
                     $("#popcion_id").append(`<option value=${element.id}> ${element.nombre} </option>`);
                 });
@@ -112,6 +113,7 @@
         $("#pproducto_id").change(event => {
             $.get(`tamanos/${event.target.value[0]}`,function(res,sta){
                 $("#ptamaño_id").empty();
+                $("#ptamaño_id").append(`<option value>Seleccione un tamaño</option>`);
                 res.forEach(element => {
                     $("#ptamaño_id").append(`<option value=${element.id}_${element.precio}> ${element.nombre} </option>`);
                 });
