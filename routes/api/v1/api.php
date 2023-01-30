@@ -5,6 +5,7 @@ use App\Http\Controllers\api\v1\ClienteController;
 use App\Http\Controllers\api\v1\ReservaController;
 use App\Http\Controllers\api\v1\AuthController;
 use App\Http\Controllers\api\v1\CafeteriaController;
+use App\Http\Controllers\api\v1\ContactController;
 use App\Http\Controllers\api\v1\HabitacionController;
 use App\Http\Controllers\api\v1\HelpersController;
 use App\Http\Controllers\api\v1\HomeController;
@@ -16,6 +17,7 @@ use App\Http\Controllers\api\v1\RestauranteController;
 // Sliders and Eventos
 Route::get('sliders', [HomeController::class, 'sliders']);
 Route::get('eventos', [HomeController::class, 'eventos']);
+Route::post('contact-us', [ContactController::class, 'sendMail']);
 
 // Helpers
 Route::post('reserva/helpers/total', [HelpersController::class, 'calcularTotal']);
