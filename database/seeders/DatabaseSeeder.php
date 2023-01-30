@@ -17,6 +17,7 @@ class DatabaseSeeder extends Seeder
             RolSeeder::class,
             UserSeeder::class,
             CategoriaHabitacionSeeder::class,
+            HabitacionSeeder::class,
         ]);
         // \App\Models\User::factory(10)->create();
     }

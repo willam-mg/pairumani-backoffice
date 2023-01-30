@@ -20,7 +20,9 @@ class CategoriaHabitacionSeeder extends Seeder
             'id' => 2,
             'nombre'=> 'Habitación Matrimonial Estandar',
             'foto'=> 'matrimonialestandar.jpg',
-            'cantidad' => 5
+            'cantidad' => 5,
+            'precio' => 100,
+            'capacidad_maxima' => 4
         ],
         [
             'id' => 3,

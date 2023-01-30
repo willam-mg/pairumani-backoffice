@@ -20,12 +20,13 @@ class HabitacionSeeder extends Seeder
         $listaCategorias = $categoriaSeeder->categorias;
         foreach ($categorias as $key => $item) {
             $key = array_search($item->id, array_column($listaCategorias, 'id'));
-            for ($i = 1; $i <= $listaCategorias[$key]['cantiad']; $i++) { 
-                DB::table('habitacion')->insert([
+            for ($i = 1; $i <= $listaCategorias[$key]['cantidad']; $i++) { 
+                DB::table('habitaciones')->insert([
                     'nombre' => $item->nombre,
                     'descripcion' => '',
                     'num_habitacion' => $i,
                     'precio' => $listaCategorias[$key]['precio'],
+                    'foto' => $listaCategorias[$key]['foto'],
                     'capacidad_minima' => 1,
                     'capacidad_maxima' => $listaCategorias[$key]['capacidad_maxima'],
                     'estado' => 'Disponible',
